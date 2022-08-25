@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Contact = () => {
@@ -8,5 +9,7 @@ export const Contact = () => {
         </div>
     )
 }
+
+Contact.Layout = PrivateLayout;
 
 export default Contact;

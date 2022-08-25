@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Account = () => {
@@ -8,5 +9,8 @@ export const Account = () => {
         </div>
     )
 }
+
+
+Account.Layout = PrivateLayout
 
 export default Account;

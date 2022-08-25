@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Support = () => {
@@ -8,5 +9,7 @@ export const Support = () => {
         </div>
     )
 }
+
+Support.Layout = PrivateLayout;
 
 export default Support;

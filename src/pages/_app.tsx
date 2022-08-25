@@ -1,8 +1,36 @@
 import '../styles/main.scss'
-import type { AppProps } from 'next/app'
+import React, { ComponentType } from 'react'
+import { AppInitialProps, AppProps } from 'next/app'
+import PrimeReact, { addLocale, locale } from 'primereact/api';
+import Head from 'next/head';
+import { primeOptions } from '@utils/mock';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+PrimeReact.ripple = true;
+
+addLocale('tr', primeOptions);
+
+locale('tr');
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const { Layout, Title }: any = Component;
+  const Container = Layout ? Layout : React.Fragment;
+  return (
+    <Container> 
+      <Head>
+        <title>{Title || 'Yükgetir'}</title>
+      </Head>
+        <Component {...pageProps} /> 
+    </Container>
+  )
 }
 
-export default MyApp
+
+const App = (props: AppProps) => {
+
+  return (
+        <MyApp {...props} />
+  )
+}
+
+export default App
+

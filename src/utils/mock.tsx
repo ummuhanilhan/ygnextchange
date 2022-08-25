@@ -14,7 +14,7 @@ export const menuItems = [
     {
         title:'İlanlarım',
         icon: <ListCheck className="menu-icon" />,
-        path:'/account/cargo'
+        path:'/account/cargoes'
     },
     {
         title:'Araçlarım',
@@ -48,3 +48,66 @@ export const menuItems = [
     },
     
 ]
+
+
+
+
+
+
+
+export const primeOptions = {
+  accept: "Evet",
+  reject: "Hayır",
+  choose: "Seç",
+  upload: "Yükle",
+  cancel: "Vazgeç",
+  dayNames: [
+    "Pazartesi",
+    "Salı",
+    "Çarşamba",
+    "Perşembe",
+    "Cuma",
+    "Cumartesi",
+    "Pazar",
+  ],
+  dayNamesShort: ["Pzt", "Sal", "Çrş", "Prş", "Cuma", "Cmt", "Pzr"],
+  dayNamesMin: ["Pzt", "Sal", "Çrş", "Prş", "Cuma", "Cmt", "Pzr"],
+  monthNames: [
+    "Ocak",
+    "Şubat",
+    "Mart",
+    "Nisan",
+    "Mayıs",
+    "Haziran",
+    "Temmuz",
+    "Ağustos",
+    "Eylül",
+    "Ekim",
+    "Kasım",
+    "Aralık",
+  ],
+  monthNamesShort: [
+    "Ock",
+    "Şub",
+    "Mar",
+    "Nis",
+    "May",
+    "Haz",
+    "Tem",
+    "Ağu",
+    "Eyl",
+    "Ekm",
+    "Kas",
+    "Ark",
+  ],
+  today: "Bugün",
+  clear: "Temizle",
+  weekHeader: "Hf",
+  firstDayOfWeek: 0,
+  dateFormat: "dd.mm.yy",
+  weak: "Zayıf",
+  medium: "Orta",
+  strong: "Güçlü",
+  passwordPrompt: "Şifrenizi girin",
+};
+

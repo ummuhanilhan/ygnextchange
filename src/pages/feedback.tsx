@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Feedback = () => {
@@ -8,5 +9,7 @@ export const Feedback = () => {
         </div>
     )
 }
+
+Feedback.Layout = PrivateLayout;
 
 export default Feedback;

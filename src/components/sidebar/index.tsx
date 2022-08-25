@@ -15,7 +15,7 @@ export const Sidebar = () =>{
                         key={`menu-item-${key}`} 
                         className={key==0?`active`:''}
                         onClick={()=>{
-                            router.push(item.path)
+                            router.push(item.path, undefined, { shallow: true })
                         }}
                     >
                         {item.icon}

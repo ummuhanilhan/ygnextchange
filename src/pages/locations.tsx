@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Locations = () => {
@@ -8,5 +9,7 @@ export const Locations = () => {
         </div>
     )
 }
+
+Locations.Layout = PrivateLayout;
 
 export default Locations;

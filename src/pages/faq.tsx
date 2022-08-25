@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Faq = () => {
@@ -8,5 +9,7 @@ export const Faq = () => {
         </div>
     )
 }
+
+Faq.Layout = PrivateLayout;
 
 export default Faq;

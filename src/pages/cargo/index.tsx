@@ -1,3 +1,4 @@
+import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const Cargo = () => {
@@ -8,5 +9,7 @@ export const Cargo = () => {
         </div>
     )
 }
+
+Cargo.Layout = PrivateLayout;
 
 export default Cargo;
