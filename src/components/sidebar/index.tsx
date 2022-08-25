@@ -4,7 +4,8 @@ import { BoxArrowRight } from "@yukgetir-icons"
 export const Sidebar = () =>{
 
     return (
-        <div id="sidebar">
+       <div className="wrapper fixed h-screen p-6">
+         <div id="sidebar">
             <img src="/logo.png" alt="yukgetir logo" className="logo" height={150} />
             <ul className="menu">
                 {menuItems.map((item, key:number)=>(
@@ -22,5 +23,6 @@ export const Sidebar = () =>{
             </ul>
             <p></p>
         </div>  
+       </div>
     )
 }

@@ -1,4 +1,36 @@
 
 #header{
-    
+    @apply
+    bg-white
+    w-full
+    flex 
+    justify-between
+    p-1
+    px-6
+    rounded-md
+    ;
+
+    .actions{
+        @extend .flex-center;
+        li{
+            @extend .flex-center;
+        }
+    }
+
+    .profile{
+        @extend .flex-center;
+        ul{
+            @extend .flex-center;
+            li{
+                @extend .flex-center;
+            }
+        }
+    }
+
+    .menu-icon{
+        @apply 
+        fill-yukgetir-blue 
+        h-5 
+        mr-2;
+    }
 }

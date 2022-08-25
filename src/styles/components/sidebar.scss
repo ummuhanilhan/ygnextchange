@@ -2,11 +2,11 @@
 
 #sidebar{
     @apply 
+    h-full 
     w-[285px]
     bg-white 
     p-2 
     rounded-lg
-    h-full 
     flex 
     flex-col 
     items-center;
