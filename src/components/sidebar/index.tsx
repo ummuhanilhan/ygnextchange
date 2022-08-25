@@ -8,7 +8,13 @@ export const Sidebar = () =>{
     return (
        <div className="wrapper fixed h-screen p-6">
          <div id="sidebar">
-            <img src="/logo.png" alt="yukgetir logo" className="logo" height={150} />
+            <img 
+                src="/logo.png" 
+                alt="yukgetir logo" 
+                className="logo" 
+                height={150} 
+                onClick={()=>router.push('/', undefined, { shallow: true })}
+            />
             <ul className="menu">
                 {menuItems.map((item, key:number)=>(
                     <li 

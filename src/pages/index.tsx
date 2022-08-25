@@ -3,10 +3,13 @@ import { Sidebar } from '@components/sidebar'
 import { Apple } from '@yukgetir-icons'
 import type { NextPage } from 'next'
 import Main from '@containers/Main'
-const Home: NextPage = () => {
+import PrivateLayout from '@layouts/PrivateLayout'
+import React from 'react'
+
+const Home = () => {
    
   return (
-    <Main>
+    <React.Fragment>
       <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur eos fugiat odit laborum temporibus explicabo at accusantium aperiam atque impedit. Expedita veniam quod illo consequuntur similique sint, modi nostrum officiis.
           Necessitatibus explicabo distinctio veritatis ipsam magni error sunt consectetur quas eius laudantium debitis nobis expedita, quia aliquam amet nisi corporis laborum delectus, deleniti earum? Impedit nesciunt esse officia placeat culpa.
@@ -34,8 +37,10 @@ const Home: NextPage = () => {
           Provident, quidem? Ipsum magnam fugit veritatis ex vero quia totam repellat quo, ea expedita at. Cupiditate molestias a incidunt facere rem voluptatem eligendi velit excepturi quod delectus, veritatis quam harum.
           Dolor hic illum necessitatibus ratione, dicta doloremque sed natus veritatis eius esse odio maxime similique magni. Tenetur atque ducimus ipsa ab asperiores perspiciatis. Velit eaque, ea illo eligendi aliquid vel?
         </p>
-    </Main>
+    </React.Fragment>
   )
 }
+
+Home.Layout = PrivateLayout
 
 export default Home
