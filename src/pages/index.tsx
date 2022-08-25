@@ -4,11 +4,8 @@ import type { NextPage } from 'next'
 const Home: NextPage = () => {
    
   return (
-    <div>
-      <div className="">
+    <div className='h-screen p-4'>
         <Sidebar />
-         
-      </div>
     </div>
   )
 }
