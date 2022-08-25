@@ -1,5 +1,4 @@
-import { ChatLeftText, Envelope, ListCheck, ListStars, Person, PinMap, QuestionCircle, Smile, TruckFront } from "@shared/icons";
-
+import { ChatLeftText, Envelope, ListCheck, ListStars, Person, PinMap, QuestionCircle, Smile, TruckFront } from "@yukgetir-icons";
 
 export const menuItems = [
     {
