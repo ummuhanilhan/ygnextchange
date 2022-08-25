@@ -1,5 +1,18 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@shared/*": ["./@shared/*"],
+      "@yg-icons": ["./@shared/icons"],
+      "@components/*": ["./components/*"],
+      "@containers/*": ["./containers/*"],
+      "@layouts/*": ["./layouts/*"],
+      "@utils/*": ["./utils/*"],
+      "@styles/*": ["./styles/*"],
+      "@pages/*": ["./pages/*"],
+      "@public/*": ["./public/*"],
+      "@store/*": ["./store/*"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

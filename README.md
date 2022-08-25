@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://yukgetir.com/" target="blank"><img src="public/logo-mini192.png" width="130" alt="Yükgetir Logo" /></a>
+  <a href="https://yukgetir.com/" target="blank"><img src="src/public/logo-mini192.png" width="130" alt="Yükgetir Logo" /></a>
 </p>
 
 <p align="center">

@@ -1,11 +1,15 @@
+import { Apple } from '@yg-icons'
 import type { NextPage } from 'next'
-
 const Home: NextPage = () => {
    
   return (
     <div>
       <div className="p-3">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus incidunt totam quas. Voluptate voluptatum, quia molestiae rerum sequi nam id? Ducimus labore optio libero neque fugit, est doloribus consectetur voluptatibus.</p>
+          <Apple width={'300px'} height={'300px'}  fill={'red'} />
+
+          <div className="sidebar">
+            <img src="" alt="" />
+          </div>
       </div>
     </div>
   )
