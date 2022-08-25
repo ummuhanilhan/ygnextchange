@@ -3,7 +3,7 @@
     "baseUrl": "./src",
     "paths": {
       "@shared/*": ["./@shared/*"],
-      "@yg-icons": ["./@shared/icons"],
+      "@yukgetir-icons": ["./@shared/icons"],
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"],
       "@layouts/*": ["./layouts/*"],
