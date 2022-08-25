@@ -10,7 +10,17 @@ module.exports = {
     "./src/utils/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        yukgetir:{
+          lightblue: '#F6F8FB',
+          blue: '#0069B4',
+          orange: '#F39200',
+          gray: '#868A9A',
+          green: '#1DBF73',
+        }
+      }
+    },
   },
   plugins: [],
 }

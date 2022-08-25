@@ -1,0 +1,17 @@
+
+
+#sidebar{
+    .logo{
+        @apply h-10;
+    }
+    ul{
+        li{
+            @apply flex items-start;
+            .menu-icon{
+                @apply fill-yukgetir-blue h-5 mr-2;
+            }
+        }
+    }
+
+    
+}

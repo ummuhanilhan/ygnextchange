@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "icon": "svgr --out-dir src/@shared/icons --ignore-existing --typescript --no-dimensions -- src/public/assets/icons"
+    "icon": "svgr --out-dir src/@shared/icons --ignore-existing --typescript --no-dimensions -- public/assets/icons"
   },
   "dependencies": {
     "next": "12.2.5",
