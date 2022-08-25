@@ -4,7 +4,7 @@ export const menuItems = [
     {
         title:'Güncel İlanlar',
         icon: <ListStars className="menu-icon" />,
-        path:'/cargoes'
+        path:'/cargo'
     },
     {
         title:'Hesabım',
@@ -14,7 +14,7 @@ export const menuItems = [
     {
         title:'İlanlarım',
         icon: <ListCheck className="menu-icon" />,
-        path:'/account/cargoes'
+        path:'/account/cargo'
     },
     {
         title:'Araçlarım',

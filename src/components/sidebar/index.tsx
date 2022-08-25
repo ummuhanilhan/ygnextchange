@@ -1,7 +1,9 @@
 import { menuItems } from "@utils/mock"
 import { BoxArrowRight } from "@yukgetir-icons"
+import { useRouter } from "next/router"
 
 export const Sidebar = () =>{
+    const router = useRouter();
 
     return (
        <div className="wrapper fixed h-screen p-6">
@@ -9,7 +11,13 @@ export const Sidebar = () =>{
             <img src="/logo.png" alt="yukgetir logo" className="logo" height={150} />
             <ul className="menu">
                 {menuItems.map((item, key:number)=>(
-                    <li key={`menu-item-${key}`} className={key==0?`active`:''}>
+                    <li 
+                        key={`menu-item-${key}`} 
+                        className={key==0?`active`:''}
+                        onClick={()=>{
+                            router.push(item.path)
+                        }}
+                    >
                         {item.icon}
                         <p>{item.title}</p>
                     </li>

@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     <div className='h-screen flex items-start '>
 
         <Sidebar />
-        <div className='ml-[325px] w-full  mt-6 mr-3 pb-3'>
+        <div className='ml-[325px] w-full  mt-6 mr-4 pb-3'>
           <Header />
           <div className="content mt-3">
             <p>
