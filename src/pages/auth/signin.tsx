@@ -5,13 +5,13 @@ import { XCircle } from "@shared/icons";
 export const Signin = () =>{
 
     return (
-        <div id="signin" className="w-full flex items-center justify-center">
+        <div id="signin" className="w-full flex items-center justify-center h-screen">
             <div className="form w-3/5 my-6 p-4 rounded-md flex flex-col items-center justify-center">
                 <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                 <h3 className="text-base mt-3 mb-4">Kullanıcı Girişi</h3>
                  
-                {Array.from(Array(2)).map(item=>(
-                    <div className="input bg-white w-full h-12 rounded-md flex 
+                {Array.from(Array(2)).map((item,key:number)=>(
+                    <div key={`f-${key}`}  className="input bg-white w-full h-12 rounded-md flex border border-gray 
                     justify-between items-center px-4 mb-3">
                         <input type="text" 
                             placeholder="Şifrenizi Giriniz"

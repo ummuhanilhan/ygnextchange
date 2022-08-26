@@ -5,12 +5,13 @@
 @import "primereact/resources/primereact.min.css";                  //core css
 @import "primeicons/primeicons.css";                                //icons
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "../../public/fonts/proxima/stylesheet.css";                                
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Proxima Nova Rg, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color:$bg-color;
 }
