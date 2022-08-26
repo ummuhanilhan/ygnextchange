@@ -6,7 +6,7 @@ export const Sidebar = () =>{
     const router = useRouter();
 
     return (
-       <div className="wrapper fixed h-screen p-6">
+       <div className="wrapper fixed h-screen p-4">
          <div id="sidebar">
             <img 
                 src="/logo.png" 

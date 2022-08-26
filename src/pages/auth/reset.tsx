@@ -8,3 +8,5 @@ export const Reset = () =>{
         </div>
     )
 }
+
+export default Reset;

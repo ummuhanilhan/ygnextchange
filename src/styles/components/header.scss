@@ -22,6 +22,7 @@
             h-12
             cursor-pointer
             mr-3
+            lg:mb-2
             hover:bg-slate-100
             text-[.9em];
         }
@@ -37,7 +38,7 @@
                 flex 
                 items-center 
                 flex-col 
-                mr-2
+                mr-2 
                 cursor-pointer
                 text-[.8em];
             }

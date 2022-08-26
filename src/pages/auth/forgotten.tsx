@@ -8,3 +8,5 @@ export const Forgotten = () =>{
         </div>
     )
 }
+
+export default Forgotten;

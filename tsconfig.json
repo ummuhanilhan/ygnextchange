@@ -10,7 +10,7 @@
       "@utils/*": ["./utils/*"],
       "@styles/*": ["./styles/*"],
       "@pages/*": ["./pages/*"],
-      "@public/*": ["./public/*"],
+      "@public/*": ["../public/*"],
       "@store/*": ["./store/*"]
     },
     "target": "es5",
