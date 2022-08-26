@@ -17,7 +17,7 @@ export const SignLayout = ({children}:DefaultState) => {
                 {children}
             </div>
             <div className="introduce w-1/3 bg-yukgetir-blue h-screen flex flex-col items-center justify-center">
-                <Truck className="truck ml-[-10em] mt-4" height="29em" />    
+                <Truck className="truck ml-[-10em] mt-4 mb-2" height="29em" />    
                 <div className="w-full">
                     <h1 className="text-5xl text-white font-light mr-4 mt-[-2em] max-w-sm text-right ">Lojistiğini Cepten Yönet</h1>
                 </div>
