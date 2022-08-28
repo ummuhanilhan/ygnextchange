@@ -19,7 +19,7 @@ export const Sidebar = () =>{
                 {menuItems.map((item, key:number)=>(
                     <li 
                         key={`menu-item-${key}`} 
-                        className={key==0?`active`:''}
+                        className={`${key==0?`active`:''} text`}
                         onClick={()=>{
                             router.push(item.path, undefined, { shallow: true })
                         }}
@@ -30,7 +30,7 @@ export const Sidebar = () =>{
                 ))}
             </ul>
             <ul className="footer">
-                <li>
+                <li className="justify-center">
                     <BoxArrowRight className="menu-icon" />
                     <p>Çıkış Yap</p>
                 </li>

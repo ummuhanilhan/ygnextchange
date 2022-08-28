@@ -4,12 +4,12 @@ import { useRouter } from "next/router"
 export const Header = () =>{
     const router = useRouter()
     return (
-        <div id="header">
+        <div id="header" className="md:flex-col">
             <ul className="actions">
                 <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}><PlusCircle className="menu-icon" /> <p>Yüküm Var</p> </li>
                 <li onClick={()=>router.push('/account/vehicles/create', undefined, { shallow: true })}><Truck className="menu-icon" /> <p>Aracım Var</p> </li>
             </ul>
-            <div className="profile">
+            <div className="profile ">
             <ul className="">
                     <li>
                        <Share className="menu-icon" />
