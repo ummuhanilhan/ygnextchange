@@ -5,6 +5,7 @@ import classnames from "classnames";
 
 export const FloatingLabelInput = ({ type, name, placeholder, value, onChange, onBlur, error }:any) => {
     const [active, setActive] = React.useState(false);
+    const [hide, setHide] = React.useState(true);
   
     function handleActivation(e:any) {
       setActive(!!e.target.value);
@@ -23,7 +24,7 @@ export const FloatingLabelInput = ({ type, name, placeholder, value, onChange, o
               ].join(" ")}
               id={name}
               value={value}
-              type={type}
+              type={type=='password'? (!hide?'text':type) : type }
               onTouchMove={handleActivation}
               onChange={handleActivation}
             />
@@ -39,9 +40,15 @@ export const FloatingLabelInput = ({ type, name, placeholder, value, onChange, o
           <InputAppend 
               type={type}
               active={active}
+              color={!!error?'fill-red-500':'fill-gray-500'}
+              hide={hide}
+              value={value}
+              onChange={onChange}
+              setActive={setActive}
+              toggle={()=>setHide(!hide)}
           />
           </div>
-          {error && (
+          {false && error && (
             <p className="mb-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">Oh, snapp!</span> Some error message. </p>
           )}
       </div>
@@ -115,27 +122,39 @@ export const FloatingLabelPhone = ({ type, name, children }:any) => {
   );
 }
 
-const InputAppend = ({active,type}:any) =>{
-    const [pass, setPass] = React.useState(false);
-    const changePass = () => setPass(!pass);
+const InputAppend = ({active,type, value, onChange, color, hide, toggle, setActive}:any) =>{
+     
 
     return (
       <div className="pl-2 cursor-pointer">
           {type=='password' && (
-            pass ? <EyeSlash className={[
-              "icon h-4 fill-gray-500 icon-gray absolute right-4",
+            hide ? <EyeSlash className={[
+              "icon h-4  icon-gray absolute right-4",
+              color,
               active ? "top-[1.15rem]" : "top-[1.15rem]"
-          ].join(' ')}  onClick={changePass} /> :
+          ].join(' ')}  onClick={toggle} /> :
           <Eye className={[
-              "icon h-4 fill-gray-500 icon-gray absolute right-4",
+              "icon h-4 icon-gray absolute right-4",
+              color,
               active ? "top-[1.15rem]" : "top-[1.15rem]"
-          ].join(' ')} onClick={changePass} />
+          ].join(' ')} onClick={toggle} />
           )}
-          {type!='password' && (
-            <ArrowClockwise className={[
-              "icon h-4 fill-gray-500 icon-gray absolute right-4",
+          {!value && type!='password' && (
+            <ArrowClockwise 
+            className={[
+              "icon h-4 icon-gray absolute right-4",
+              color,
               active ? "top-[1.15rem]" : "top-[1.15rem]"
           ].join(' ')} />
+          )}
+           {value && type!='password' && (
+            <XCircle 
+              onClick={()=>{onChange(''); setActive(false);}}  
+              className={[
+                "icon h-4 icon-gray absolute right-4",
+                color,
+                active ? "top-[1.15rem]" : "top-[1.15rem]"
+              ].join(' ')} />
           )}
           
       </div>
