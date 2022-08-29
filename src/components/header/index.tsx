@@ -27,6 +27,7 @@ export const Header = () =>{
                 <div className="profile-dropdown">
                     <img src="/assets/default.png" alt="profile image" width={45} onClick={()=>router.push('/account/profile', undefined, { shallow: true })} />
                 </div>
+                
             </div>
         </div>
     )
