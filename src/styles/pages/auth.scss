@@ -1,5 +1,9 @@
 
 
+.auth{
+    @apply w-full flex items-center justify-center h-screen md:h-auto xl:w-screen;
+}
+
 #signin{}
 #signup{}
 #fogotten{}

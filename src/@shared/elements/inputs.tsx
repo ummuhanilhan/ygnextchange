@@ -64,10 +64,10 @@ export const FloatingLabelInput = ({ type, name, children }:any) => {
   
     return (
       <div className="relative border rounded bg-white w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
-        <input
+        <input  
           className={[
-            "outline-none w-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
-            active ? "pt-6 text-gray-500" : "pt-4"
+            "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
+            active ? "pt-6 text-gray-500" : "pt-2"
           ].join(" ")}
           id={name}
           name={name}
@@ -84,26 +84,36 @@ export const FloatingLabelInput = ({ type, name, children }:any) => {
         >
           {children}
         </label>
-        <div className="pl-2 cursor-pointer">
-           {type=='password' && (
-             true ? <EyeSlash className={[
-                "icon h-4 fill-gray-500 icon-gray absolute right-4",
-                active ? "top-[1.15rem]" : "top-[1.15rem]"
-            ].join(' ')} /> :
-            <Eye className={[
-                "icon h-4 fill-gray-500 icon-gray absolute right-4",
-                active ? "top-[1.15rem]" : "top-[1.15rem]"
-            ].join(' ')} />
-           )}
-           {type!='password' && (
-             <ArrowClockwise className={[
-                "icon h-4 fill-gray-500 icon-gray absolute right-4",
-                active ? "top-[1.15rem]" : "top-[1.15rem]"
-            ].join(' ')} />
-           )}
-           
-        </div>
+       <InputAppend 
+          type={type}
+          active={active}
+       />
       </div>
     );
   }
   
+
+  const InputAppend = ({active,type}:any) =>{
+
+    return (
+      <div className="pl-2 cursor-pointer">
+          {type=='password' && (
+            true ? <EyeSlash className={[
+              "icon h-4 fill-gray-500 icon-gray absolute right-4",
+              active ? "top-[1.15rem]" : "top-[1.15rem]"
+          ].join(' ')} /> :
+          <Eye className={[
+              "icon h-4 fill-gray-500 icon-gray absolute right-4",
+              active ? "top-[1.15rem]" : "top-[1.15rem]"
+          ].join(' ')} />
+          )}
+          {type!='password' && (
+            <ArrowClockwise className={[
+              "icon h-4 fill-gray-500 icon-gray absolute right-4",
+              active ? "top-[1.15rem]" : "top-[1.15rem]"
+          ].join(' ')} />
+          )}
+          
+      </div>
+    )
+  }
