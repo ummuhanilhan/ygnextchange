@@ -16,7 +16,7 @@ export const Forgotten = () =>{
                 </FloatingLabelInput>
              
 
-                 <div className="button cursor-pointer bg-yukgetir-blue mt-2 text-white p-3 w-full text-center rounded-md text-sm">
+                 <div className="button">
                     Şifremi yenile
                  </div>
             </div>

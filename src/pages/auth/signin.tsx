@@ -54,7 +54,7 @@ export const Signin = () =>{
                     <a href="#"><p className="text-lightgray text-sm text-gray-600">Şifremi Unuttum</p></a>
                 </div>
 
-                 <div className="button cursor-pointer bg-yukgetir-blue text-white p-3 w-full text-center rounded-md text-sm">Giriş Yap</div>
+                 <div className="button">Giriş Yap</div>
             </div>
         </div>
     )
