@@ -64,31 +64,35 @@ export const FloatingLabelInput = ({ type, name, children }:any) => {
     }
   
     return (
-      <div className="relative border rounded bg-white w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
-        <input  
-          className={[
-            "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
-            active ? "pt-6 text-gray-500" : "pt-2"
-          ].join(" ")}
-          id={name}
-          name={name}
-          type={type}
-          onTouchMove={handleActivation}
-          onChange={handleActivation}
-        />
-        <label
-          className={[
-            "absolute top-0 left-0 flex items-center text-opacity-50 p-2 transition-all duration-200 ease-in-out",
-            active ? "text-xs font-medium" : "text-sm text-gray-800 pt-4"
-          ].join(" ")}
-          htmlFor={name}
-        >
-          {children}
-        </label>
-       <InputAppend 
-          type={type}
-          active={active}
-       />
+      <div className="w-full">
+          <div className="error relative border rounde w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
+            <input  
+              className={[
+                "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
+                active ? "pt-6 text-gray-500" : "pt-2"
+              ].join(" ")}
+              id={name}
+              name={name}
+              type={type}
+              onTouchMove={handleActivation}
+              onChange={handleActivation}
+            />
+            <label
+              className={[
+                "absolute top-0 left-0 flex items-center text-opacity-50 p-2 transition-all duration-200 ease-in-out",
+                active ? "text-xs font-medium" : "text-sm text-gray-800 pt-4"
+              ].join(" ")}
+              htmlFor={name}
+            >
+              {children}
+            </label>
+          <InputAppend 
+              type={type}
+              active={active}
+          />
+          </div>
+
+
       </div>
     );
 }
@@ -102,7 +106,7 @@ export const FloatingLabelPhone = ({ name, children }:any) => {
   }
 
   return (
-    <div className="relative border rounded bg-white w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
+    <div className="relative error border rounded bg-white w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
    
 
         <div className={classnames({
@@ -111,7 +115,10 @@ export const FloatingLabelPhone = ({ name, children }:any) => {
         })}>
         {active && (
             <div className="flex items-center mt-[1.44rem]">
-              <TR width={23} />
+              <div className="relative">
+                <TR width={23} />
+
+              </div>
               <p className="font-bold ml-1 text-sm">+90</p>
             </div>
           )}
@@ -122,7 +129,9 @@ export const FloatingLabelPhone = ({ name, children }:any) => {
             ].join(" ")}
             id={name}
             name={name}
-            type="number"
+            type="text"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            data-valid-example="555/555/55/55"
             onTouchMove={handleActivation}
             onChange={handleActivation}
           />

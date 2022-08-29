@@ -5,6 +5,42 @@
     .button{
         @apply cursor-pointer bg-yukgetir-blue mt-2 text-white p-3 w-full text-center rounded-md text-sm ;
     }
+
+    .success{
+        input{
+            @apply
+            border
+            border-green-600 
+            dark:bg-gray-700 dark:border-green-500 appearance-none dark:text-white dark:focus:border-green-500 
+            focus:outline-none focus:ring-0 focus:border-green-600  
+            ;
+        }
+
+        label{
+            @apply 
+            text-green-600
+            dark:text-green-500
+            ;
+        }
+    }
+
+    .error{
+        input{
+            @apply
+            border
+            border-red-600 
+            dark:bg-gray-700 dark:border-red-500 appearance-none dark:text-white dark:focus:border-red-500 
+            focus:outline-none focus:ring-0 focus:border-red-600  
+            ;
+        }
+
+        label{
+            @apply 
+            text-red-600
+            dark:text-red-500
+            ;
+        }
+    }
 }
 
 #signin{}
