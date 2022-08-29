@@ -1,5 +1,4 @@
 import { SignLayout } from "@layouts/SignLayout";
-import { XCircle } from "@shared/icons";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FloatLabelHook } from "@shared/elements/hooks";
 import { signinSchema } from "@utils/validations/auth";
@@ -25,8 +24,8 @@ export const Signin = () =>{
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div id="signin" className="auth">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex items-center justify-center h-screen">
+            <div id="signin" className="auth transform scale-[100%] h-auto">
                 <div className="form w-3/6 md:w-full my-6 p-4 rounded-md flex flex-col items-center justify-center">
                     <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                     <h3 className="text-base mt-2 mb-12">Kullanıcı Girişi</h3>
@@ -37,16 +36,25 @@ export const Signin = () =>{
                     
 
                     <div className="flex justify-between w-full my-2">
-                        <div className="checkbox">
-                        <div className="check">
-                        <div className=" flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                            <label htmlFor="default-checkbox" 
-                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                Beni Hatırla
-                            </label>
+                        <div className="rememberme">
+                            <div className="flex items-center">
+                            <input type="checkbox" id="A3-yes" name="A3-confirmation" value="yes" className="opacity-0
+                            absolute h-6 w-6" />
+                            <div className="bg-white border-2 rounded-xl border-blue-400 w-5 h-5 flex flex-shrink-0 
+                            justify-center items-center mr-2 focus-within:border-blue-500">
+                            <svg className="fill-current hidden  w-[0.6rem] ml-[.08rem] h-2 stroke-6 text-blue-600 pointer-events-none" version="1.1" viewBox="0 0 17 12" xmlns="http://www.w3.org/2000/svg">
+                                <g fill="none" fill-rule="evenodd">
+                                <g transform="translate(-9 -11)" fill="#1F73F1" fill-rule="nonzero">
+                                    <path d="m25.576 11.414c0.56558 0.55188 0.56558 1.4439 0 1.9961l-9.404 9.176c-0.28213 0.27529-0.65247 0.41385-1.0228 0.41385-0.37034 0-0.74068-0.13855-1.0228-0.41385l-4.7019-4.588c-0.56584-0.55188-0.56584-1.4442 0-1.9961 0.56558-0.55214 1.4798-0.55214 2.0456 0l3.679 3.5899 8.3812-8.1779c0.56558-0.55214 1.4798-0.55214 2.0456 0z" />
+                                </g>
+                                </g>
+                            </svg>
+                            </div>
+                            <label htmlFor="A3-yes" className="select-none text-sm">Remember Me</label>
                         </div>
-                        </div>
+
+
+                         
                         </div>
                         <a href="/auth/forgotten" className="cursor-pointer">
                             <p className="text-lightgray text-sm text-gray-600">Şifremi Unuttum</p>

@@ -6,6 +6,10 @@
         @apply cursor-pointer bg-yukgetir-blue mt-2 text-white p-3 w-full text-center rounded-md text-sm ;
     }
 
+    input{
+        @apply bg-white;
+    }
+
     .success{
         input{
             @apply

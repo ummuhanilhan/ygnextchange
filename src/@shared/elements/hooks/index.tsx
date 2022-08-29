@@ -1,6 +1,6 @@
 import { SigninValues } from "@pages/auth/signin"
 import { Controller, useForm, useWatch, Control  } from "react-hook-form"
-import { FloatingLabelInput } from "../inputs"
+import { FloatingLabelInput, FloatingLabelPhone } from "../inputs"
 
 
 export const FloatLabelHook = ({
@@ -9,7 +9,7 @@ export const FloatLabelHook = ({
     name,
     type
 }:{ 
-    control: Control<SigninValues>, 
+    control: Control<any>, 
     placeholder:string,
     name:string,
     type:string,
@@ -25,6 +25,44 @@ export const FloatLabelHook = ({
                 formState,
             }) => (
                 <FloatingLabelInput
+                    onBlur={onBlur} // notify when input is touched
+                    onChange={onChange} // send value to hook form
+                    value={value}
+                    inputRef={ref}
+                    placeholder={placeholder}
+                    type={type}
+                    error={error}
+                    name={name}
+                />
+            )}
+        />
+    )
+}
+
+
+
+export const FloatLabelPhoneHook = ({
+    control, 
+    placeholder,
+    name,
+    type
+}:{ 
+    control: Control<any>, 
+    placeholder:string,
+    name:string,
+    type:string,
+  }) => {
+
+    return (
+        <Controller
+            control={control}
+            name={name}
+            render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { isTouched, isDirty, error },
+                formState,
+            }) => (
+                <FloatingLabelPhone
                     onBlur={onBlur} // notify when input is touched
                     onChange={onChange} // send value to hook form
                     value={value}

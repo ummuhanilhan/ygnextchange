@@ -11,11 +11,11 @@ export const signupSchema = object({
   fullname: string().required(),
   name: string().required(),
   email: string().email().required(),
-  password: string().min(8).max(32).required(),
-  confirm: string(),
-  phone: string(),
+  password: string().min(8).max(32).required().required(),
+  confirm: string().required(),
+  phone: string().min(7).max(13).required(),
   type: boolean(),
-});
+}).required();
 
 export const forgottenSchema = object({
   email: string().email().required(),

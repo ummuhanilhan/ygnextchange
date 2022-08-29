@@ -41,3 +41,9 @@ a {
   }
 }
 
+input:checked + div {
+  @apply border-blue-500;
+}
+input:checked + div svg {
+  @apply block;
+}

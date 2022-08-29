@@ -55,18 +55,23 @@ export const FloatingLabelInput = ({ type, name, placeholder, value, onChange, o
     );
 }
 
-export const FloatingLabelPhone = ({ type, name, children }:any) => {
+export const FloatingLabelPhone = ({ type, name, placeholder, value, onChange, onBlur, error }:any) => {
   const [active, setActive] = React.useState(false);
+  const [hide, setHide] = React.useState(true);
   const [code, setCode] = React.useState('tr');
   const [status, setStatus] = React.useState(false);
 
   function handleActivation(e:any) {
     setActive(!!e.target.value);
+    onChange(e.target.value);
   }
 
+
   return (
-    <div className="w-full">
-        <div className="error relative border rounded bg-white- w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
+    <div className={classnames({
+      'error': error
+    }, 'w-full')}>
+        <div className="relative border rounded bg-white- w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
           {active && (
               <div className="flex items-center mt-[1.44rem] absolute left-[.5rem] top-[.1rem]">
                 <div className="relative">
@@ -97,10 +102,11 @@ export const FloatingLabelPhone = ({ type, name, children }:any) => {
               active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2"
             ].join(" ")}
             id={name}
-            name={name}
-            type={type}
+            value={value}
+            type="text"
             onTouchMove={handleActivation}
             onChange={handleActivation}
+            
           />
           <label
             className={[
@@ -109,15 +115,19 @@ export const FloatingLabelPhone = ({ type, name, children }:any) => {
             ].join(" ")}
             htmlFor={name}
           >
-            {children}
+            {placeholder}
           </label>
         <InputAppend 
-            type={type}
-            active={active}
+             type={type}
+             active={active}
+             color={!!error?'fill-red-500':'fill-gray-500'}
+             hide={hide}
+             value={value}
+             onChange={onChange}
+             setActive={setActive}
+             toggle={()=>setHide(!hide)}
         />
         </div>
-
-
     </div>
   );
 }
