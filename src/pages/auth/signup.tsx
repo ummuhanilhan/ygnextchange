@@ -6,6 +6,7 @@ import React from "react";
 
 
 export const Signup = () =>{
+    const [status, setStatus] = React.useState(false)
 
     const [type, setType] = React.useState(false);
     const change = () => setType(!type);
@@ -58,6 +59,11 @@ export const Signup = () =>{
                     </div>
                 </div>
             </div>
+            
+
+
+         
+
         </div>
     )
 }
