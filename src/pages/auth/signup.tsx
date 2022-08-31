@@ -6,7 +6,7 @@ import classnames from "classnames";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FloatLabelHook, FloatLabelPhoneHook } from "@shared/elements/hooks";
+import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook } from "@shared/elements/hooks";
 
 
 export type SignupValues = {
@@ -57,8 +57,7 @@ export const Signup = () =>{
                 w-screen
                 max-w-[53em]
                 sm:px-24
-          
-                 my-6 p-4 rounded-md flex flex-col items-center justify-center">
+                my-6 p-4 rounded-md flex flex-col items-center justify-center">
                     <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                     <h3 className="text-base mt-2 mb-12">Üye ol</h3>
                     <ul className="w-full flex justify-between gap-2 mb-4">
@@ -79,7 +78,28 @@ export const Signup = () =>{
                         <FloatLabelHook name="password" type="password" placeholder="Şifre" example="" control={control} />
                         <FloatLabelHook name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
                     </div>
-                    <div className="flex justify-end items-end">
+                    <div className="my-2 flex items-start flex-col gap-2 justify-center w-full">
+                        <CheckboxHook name="terms" control={control}>
+                            <p className="">
+                                <span className="text-blue-500 cursor-pointer"> Kullanıcı & Üyelik Sözleşmesi </span>
+                                'ni okudum, anladım ve kabul ediyorum.
+                            </p>
+                        </CheckboxHook>
+                        <CheckboxHook name="kvkk" control={control} >
+                            <p className="flex items-start justify-center">
+                                <span className="text-blue-500 cursor-pointer"> KVKK Metni</span>
+                                'ni ve 
+                                <span className="text-blue-500 cursor-pointer"> Aydınlatma Metni </span>
+                                'ni okudum, anladım ve kabul ediyorum.
+                            </p>
+                        </CheckboxHook>
+                        <CheckboxHook name="campaign" control={control}>
+                            <p className="">
+                                Kampanya ve tanıtımlar için Email, Telefon ve Sms ile iletişim kurulmasını kabul ediyorum.
+                            </p>
+                        </CheckboxHook>
+                    </div>
+                    <div className="flex justify-end items-end w-full">
                         <button type="submit" className="px-20 cursor-pointer bg-yukgetir-orange mt-2 text-white p-3 w-full text-center rounded-md text-sm">
                             Üye ol
                         </button>

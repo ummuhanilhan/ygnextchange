@@ -10,7 +10,7 @@ export const FloatingLabelInput = ({
    type,
    name,
    placeholder,
-   example,
+   example='',
    value,
    onChange,
    onBlur,
@@ -69,15 +69,26 @@ export const FloatingLabelInput = ({
     );
 }
 
-export const FloatingLabelPhone = ({ type, name, placeholder, value, onChange, onBlur, error }:any) => {
+export const FloatingLabelPhone = ({ 
+  type,
+  name,
+  placeholder,
+  example='',
+  value,
+  onChange,
+  onBlur,
+  error }:any) => {
   const [active, setActive] = React.useState(false);
   const [hide, setHide] = React.useState(true);
   const [status, setStatus] = React.useState(false);
   const [code, setCode] = React.useState<any>({});
 
+  React.useEffect(()=>{
+    setCode({country:'', countryCode:''});
+  },[active])
+
   function handleActivation(e:any) {
     setActive(!!e.target.value);
-
     onChange(e.target.value);
   }
 
@@ -184,25 +195,26 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
     )
   }
 
-  /**
-   * Input group select country dropdown
-   * @param status
-   * @returns country code 
-   */
-  const CountryCodeDropdown = ({status, setStatus, handleCode}:{status:boolean, setStatus:Function, handleCode:Function, }) =>{
+/**
+ * Input group dropdown for select country
+ * @param status
+ * @returns country code 
+ */
+const CountryCodeDropdown = ({status, setStatus, handleCode}:{status:boolean, setStatus:Function, handleCode:Function, }) =>{
     const [query, setQuery] = React.useState('');
     const [data, setData] = React.useState(rawCountries)
     const [code, setCode] = React.useState<any>({
-      country:''
+      country:'',
+      countryCode:'',
     });
-
+    console.log(code)
     const defaultFlag = <TR width={23} onClick={()=>setStatus(!status)}  className="mt-[-4px] cursor-pointer"  />;
 
     return (
       <div className="relative flags">
       
                   {!code.country &&  defaultFlag }
-                  {code.country=='tr' &&  defaultFlag }
+                  {code.country.toLowerCase() =='tr' &&  defaultFlag }
                    {code.country!='tr' && code.country && (
                     <div className={classNames('flag placeholder cursor-pointer', code.country||'tr')} onClick={()=>setStatus(!status)} ></div>
                   )}
@@ -230,7 +242,8 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
                       
 
                       <ul className="overflow-y-auto py-1 h-auto text-gray-700 dark:text-gray-200
-                      flex items-start flex-col justify-center scroll-auto	max-h-56 pt-4" aria-labelledby="dropdownUsersButton">
+                      flex items-start flex-col justify-center scroll-auto
+                      md:max-h-44 lg:max-h-56  pt-4" aria-labelledby="dropdownUsersButton">
                         
                         {data
                         .sort((a:any, b:any) => {
@@ -282,4 +295,7 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
                   </div>
                 </div>
     )
-  }
+}
+
+
+ 

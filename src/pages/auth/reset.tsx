@@ -24,7 +24,11 @@ export const Reset = () =>{
     return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex items-center justify-center h-screen">
         <div id="reset" className="auth">
-            <div className="form w-3/6 md:w-full my-6 p-4 rounded-md flex flex-col items-center justify-center">
+            <div className="form 
+                 w-screen
+                 max-w-[53em]
+                 sm:px-24
+                 md:w-full my-6 p-4 rounded-md flex flex-col items-center justify-center">
                 <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                 <h3 className="text-base mt-2 mb-12">Yeni Şifre Oluştur</h3>
         

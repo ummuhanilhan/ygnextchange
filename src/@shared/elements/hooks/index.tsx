@@ -1,5 +1,6 @@
 import { SigninValues } from "@pages/auth/signin"
 import { Controller, useForm, useWatch, Control  } from "react-hook-form"
+import { Checkbox } from "../checkboxes"
 import { FloatingLabelInput, FloatingLabelPhone } from "../inputs"
 
 
@@ -12,7 +13,7 @@ export const FloatLabelHook = ({
 }:{ 
     control: Control<any>, 
     placeholder:string,
-    example:string,
+    example?:string,
     name:string,
     type:string,
   }) => {
@@ -43,7 +44,6 @@ export const FloatLabelHook = ({
 }
 
 
-
 export const FloatLabelPhoneHook = ({
     control, 
     placeholder,
@@ -53,7 +53,7 @@ export const FloatLabelPhoneHook = ({
 }:{ 
     control: Control<any>, 
     placeholder:string,
-    example:string,
+    example?:string,
     name:string,
     type:string,
   }) => {
@@ -82,3 +82,37 @@ export const FloatLabelPhoneHook = ({
         />
     )
 }
+
+
+export const CheckboxHook = ({
+    control, 
+    name,
+    label,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+            control={control}
+            name={name}
+            render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { isTouched, isDirty, error },
+                formState,
+            }) => (
+                <Checkbox
+                    onBlur={onBlur}  
+                    onChange={onChange}  
+                    value={value}
+                    inputRef={ref}
+                    error={error}
+                    name={name}
+                    label={label}
+                    children={label}
+                    {...rest}
+                />
+            )}
+        />
+    )
+}
+
