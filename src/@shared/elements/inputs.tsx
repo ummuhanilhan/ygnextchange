@@ -105,9 +105,9 @@ export const FloatingLabelPhone = ({ type, name, placeholder, value, onChange, o
           <input  
             className={[
               "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
-              active ? "pt-6 text-gray-500" : "pt-2", // pl-[3.8rem], 4-3
-              active && code.countryCode.length > 2 ? 'pl-[4.5rem]' : 'pl-[3.8rem]',
-              active && code.countryCode.length == 4 ? 'pl-[4.8rem]' : 'pl-[3.8rem]' 
+              active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
+              active && code.countryCode?.length > 2 ? 'pl-[4.5rem]' : '',
+              active && code.countryCode?.length == 4 ? 'pl-[4.8rem]' : '',
             ].join(" ")}
             id={name}
             value={value}
@@ -191,11 +191,12 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
    */
   const CountryCodeDropdown = ({status, setStatus, handleCode}:{status:boolean, setStatus:Function, handleCode:Function, }) =>{
     const [query, setQuery] = React.useState('');
+    const [data, setData] = React.useState(rawCountries)
     const [code, setCode] = React.useState<any>({
       country:''
     });
 
-    const defaultFlag = <TR width={23} onClick={()=>setStatus(!status)}  style={{marginTop:'-4px'}}  />;
+    const defaultFlag = <TR width={23} onClick={()=>setStatus(!status)}  className="mt-[-4px] cursor-pointer"  />;
 
     return (
       <div className="relative flags">
@@ -203,7 +204,7 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
                   {!code.country &&  defaultFlag }
                   {code.country=='tr' &&  defaultFlag }
                    {code.country!='tr' && code.country && (
-                    <div className={classNames('flag placeholder', code.country||'tr')} onClick={()=>setStatus(!status)} ></div>
+                    <div className={classNames('flag placeholder cursor-pointer', code.country||'tr')} onClick={()=>setStatus(!status)} ></div>
                   )}
 
                   <div id="dropdownUsers" className={`${status?'':'hidden'} absolute left-[-.7rem] top-8 z-10 
@@ -231,8 +232,13 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
                       <ul className="overflow-y-auto py-1 h-auto text-gray-700 dark:text-gray-200
                       flex items-start flex-col justify-center scroll-auto	max-h-56 pt-4" aria-labelledby="dropdownUsersButton">
                         
-                        {rawCountries.filter(f=>{
+                        {data
+                        .sort((a:any, b:any) => {
+                            return a[0].localeCompare(b[0]);
+                        })
+                        .filter((f:any)=>{
                             const org = f[0]
+                            // @ts-ignore
                             const name = tr[f[2]]
                             const country = f[2]
                             const code = f[3]
@@ -244,8 +250,11 @@ const InputAppend = ({type, value, onChange, color, hide, toggle, active, setAct
                             return  isName || isCode || isCountry || isOrg;
                           
 
-                        }).map((item, key:number)=>{
+                        })
+                     
+                        .map((item, key:number)=>{
                           const org = item[0];
+                            // @ts-ignore
                           const name = tr[item[2]];
                           const country = item[2]
                           const countryCode = item[3]
