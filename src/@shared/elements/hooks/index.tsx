@@ -7,10 +7,12 @@ export const FloatLabelHook = ({
     control, 
     placeholder,
     name,
-    type
+    type,
+    ...rest
 }:{ 
     control: Control<any>, 
     placeholder:string,
+    example:string,
     name:string,
     type:string,
   }) => {
@@ -33,6 +35,7 @@ export const FloatLabelHook = ({
                     type={type}
                     error={error}
                     name={name}
+                    {...rest}
                 />
             )}
         />
@@ -45,10 +48,12 @@ export const FloatLabelPhoneHook = ({
     control, 
     placeholder,
     name,
-    type
+    type,
+    ...rest
 }:{ 
     control: Control<any>, 
     placeholder:string,
+    example:string,
     name:string,
     type:string,
   }) => {
@@ -71,6 +76,7 @@ export const FloatLabelPhoneHook = ({
                     type={type}
                     error={error}
                     name={name}
+                    {...rest}
                 />
             )}
         />

@@ -26,7 +26,11 @@ export const Forgotten = () =>{
     return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex items-center justify-center h-screen">
         <div id="forgotten" className="auth">
-            <div className="form w-3/6 md:w-full my-6 p-4 rounded-md flex flex-col items-center justify-center">
+            <div className="for
+              w-screen
+                max-w-[53em]
+                sm:px-24
+                my-6 p-4 rounded-md flex flex-col items-center justify-center">
                 <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                 <h3 className="text-base mt-2 mb-12">Kullanıcı Girişi</h3>
         

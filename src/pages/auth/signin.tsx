@@ -26,13 +26,17 @@ export const Signin = () =>{
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex items-center justify-center h-screen">
             <div id="signin" className="auth transform scale-[100%] h-auto">
-                <div className="form w-3/6 md:w-full my-6 p-4 rounded-md flex flex-col items-center justify-center">
+                <div className="form 
+                  w-screen
+                  max-w-[53em]
+                  sm:px-24
+                  my-6 p-4 rounded-md flex flex-col items-center justify-center">
                     <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                     <h3 className="text-base mt-2 mb-12">Kullanıcı Girişi</h3>
         
-                    <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" control={control} />
-                    <FloatLabelHook name="email" type="text" placeholder="Eposta" control={control} />
-                    <FloatLabelHook name="password" type="password" placeholder="Şifre" control={control} />
+                    <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
+                    <FloatLabelHook name="email" type="text" placeholder="Eposta" example="test@test.com" control={control} />
+                    <FloatLabelHook name="password" type="password" placeholder="Şifre" example="" control={control} />
                     
 
                     <div className="flex justify-between w-full my-2">
@@ -40,7 +44,7 @@ export const Signin = () =>{
                             <div className="flex items-center">
                             <input type="checkbox" id="A3-yes" name="A3-confirmation" value="yes" className="opacity-0
                             absolute h-6 w-6" />
-                            <div className="bg-white border-2 rounded-xl border-blue-400 w-5 h-5 flex flex-shrink-0 
+                            <div className="border-2 rounded-xl border-blue-400 w-5 h-5 flex flex-shrink-0 
                             justify-center items-center mr-2 focus-within:border-blue-500">
                             <svg className="fill-current hidden  w-[0.6rem] ml-[.08rem] h-2 stroke-6 text-blue-600 pointer-events-none" version="1.1" viewBox="0 0 17 12" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" fill-rule="evenodd">

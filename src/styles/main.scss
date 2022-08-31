@@ -2,6 +2,8 @@
 @import 'variables';
 @import 'globals';
 @layer components {
+    @import 'flags/flags';
+    @import 'flags/high-res-flags';
     @import 'pages/auth';
     @import 'pages/cargo/form';
     @import 'pages/cargo/filter';
