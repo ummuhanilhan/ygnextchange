@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "icon": "svgr --out-dir src/@shared/icons --ignore-existing --typescript --no-dimensions -- public/assets/icons",
+    "icons": "svgr --out-dir src/@shared/icons --ignore-existing --typescript --no-dimensions -- public/assets/icons",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build:tailwind": "postcss src/styles/main.scss -o src/styles/tailwind.scss"

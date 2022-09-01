@@ -1,4 +1,4 @@
-import { Bell, Heart, PlusCircle, Share, Truck } from "@yukgetir-icons"
+import { Bell, Heart, Packet, PlusCircle, Share, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import { useRouter } from "next/router"
 import React from "react"
@@ -17,7 +17,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                 {hidden: !mobile}
             )}>
                 <li className="flex items-cente" onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
-                    <PlusCircle className="menu-icon " /> <p className="hidden sm:block">Yüküm Var</p> </li>
+                    <Packet className="menu-icon orange" /> <p className="hidden sm:block">Yüküm Var</p> </li>
                 <li className={classNames(
                     "flex items-center",
                 {hidden: !mobile}
