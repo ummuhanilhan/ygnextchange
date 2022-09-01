@@ -15,7 +15,7 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
     <img 
         src="/logo.png" 
         alt="yukgetir logo" 
-        className="logo" 
+        className="logo cursor-pointer" 
         height={150} 
         onClick={()=>router.push('/', undefined, { shallow: true })}
     />

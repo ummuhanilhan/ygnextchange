@@ -41,7 +41,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                     </li>
                     <li className="relative hover:bg-gray-100 rounded-full mx-1 p-2 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
                             <Bell className="menu-icon" />
-                            <span className="flex h-3 w-3 absolute top-[.3rem] right-[.2rem]">
+                            <span className="flex h-3 w-3 absolute top-[.3rem] right-[.8rem]">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                             </span>
