@@ -1,3 +1,4 @@
+import Outside from "@utils/useoutside"
 import { Bell, Heart, Packet, PlusCircle, Share, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import { useRouter } from "next/router"
@@ -40,14 +41,15 @@ export const Header = ({mobile, setMobile}:any) =>{
                         {/** <p>Davet Et</p> **/}
                     </li>
                     <li className="relative hover:bg-gray-100 rounded-full mx-1 p-2 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
-                            <Bell className="menu-icon" />
-                            <span className="flex h-3 w-3 absolute top-[.3rem] right-[.8rem]">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                            </span>
-
-                        <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
+                    <Outside cb={()=>setBellStatus(false)}>
+                        <Bell className="menu-icon" />
+                        <span className="flex h-3 w-3 absolute top-[.3rem] right-[.8rem]">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                        </span>
+                            <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
                         {/**  <p>Bildiriler</p> **/}
+                     </Outside>
                     </li>
                     <li className="relative hover:bg-gray-100 rounded-full mr-1 p-2 flex items-center justify-center"
                      onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
@@ -56,40 +58,42 @@ export const Header = ({mobile, setMobile}:any) =>{
                     </li>
                 </ul>
                 <div className="profile-dropdown relative">
-                
-                <button 
-                onClick={()=>setOpen(!open)}
-                className="flex text-sm
-                rounded-full md:mr-0 focus:ring-4 focus:ring-gray-100
-                " type="button">
-                    <span className="sr-only">Open user menu</span>
-                    <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="" />
-                </button>
-                <div className={classNames(
-                    "z-10 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
-                    {'hidden':!open},
-                )}>
-                <div className=" py-3 px-4 text-sm text-gray-900 dark:text-white">
-                    <div>Tester Test</div>
-                    <div className="font-medium truncate">test@test.com</div>
+               
+                <Outside cb={()=>setOpen(false)}>
+                    <button 
+                    onClick={()=>setOpen(!open)}
+                    className="flex text-sm
+                    rounded-full md:mr-0 focus:ring-4 focus:ring-gray-100
+                    " type="button">
+                        <span className="sr-only">Open user menu</span>
+                        <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="avatar" />
+                    </button>
+                    <div className={classNames(
+                        "z-10 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
+                        {'hidden':!open},
+                    )}>
+                    <div className=" py-3 px-4 text-sm text-gray-900 dark:text-white">
+                        <div>Tester Test</div>
+                        <div className="font-medium truncate">test@test.com</div>
+                        </div>
+                        <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
+                        {profileMenu.map((item, i:number)=>(
+                            <li key={`profile-menu-${i}`}>
+                                <div onClick={()=>router.push(item.path)} className="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    {item.title}
+                                </div>
+                            </li>
+                        ))}
+                    
+                        </ul>
+                        <div className="py-1">
+                        <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            Güvenli Çıkış
+                        </a>
+                        </div>
                     </div>
-                    <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
-                    {profileMenu.map((item, i:number)=>(
-                        <li key={`profile-menu-${i}`}>
-                            <div onClick={()=>router.push(item.path)} className="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                {item.title}
-                            </div>
-                        </li>
-                    ))}
-                 
-                    </ul>
-                    <div className="py-1">
-                    <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                        Güvenli Çıkış
-                    </a>
-                    </div>
-                </div>
 
+                </Outside>
 
                 </div>
                 <div className="mx-2 cursor-pointer lg:hidden" onClick={()=>setMobile(!mobile)} >
