@@ -34,7 +34,6 @@
                 flex 
                 items-center 
                 flex-col 
-                mr-2 
                 cursor-pointer
                 text-[.8em];
             }
@@ -45,8 +44,8 @@
         @apply 
         fill-yukgetir-blue 
         h-6
-        mb-1
-        mr-2;
+        mr-2
+        ;
         &.orange{
             @apply fill-yukgetir-orange; 
         }

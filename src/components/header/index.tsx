@@ -4,6 +4,13 @@ import { useRouter } from "next/router"
 import React from "react"
 import { useState } from "react"
 import { FiMenu } from 'react-icons/fi' 
+
+const profileMenu = [
+    {title:'Hesabım', path:'/account'},
+    {title:'Ayarlar', path:'/account/settings'},
+    {title:'Favorilerim', path:'/account/favorites'},
+]
+
 export const Header = ({mobile, setMobile}:any) =>{
     const [open, setOpen ] = useState(false)
     const [bellStatus, setBellStatus ] = useState(false)
@@ -28,24 +35,22 @@ export const Header = ({mobile, setMobile}:any) =>{
             </ul>
             <div className="profile ">
                 <ul className="">
-                    <li>
+                    <li className="relative hover:bg-gray-100 rounded-full p-2 flex items-center justify-center">
                         <Share className="menu-icon" />
                         {/** <p>Davet Et</p> **/}
                     </li>
-                    <li className="relative">
-                       <div onClick={()=>setBellStatus(!bellStatus)}>
+                    <li className="relative hover:bg-gray-100 rounded-full mx-1 p-2 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
                             <Bell className="menu-icon" />
-                            <span className="flex h-3 w-3 absolute top-[-.2rem] right-[.3rem]">
+                            <span className="flex h-3 w-3 absolute top-[.3rem] right-[.2rem]">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                             </span>
-                       </div>
 
                         <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
-
                         {/**  <p>Bildiriler</p> **/}
                     </li>
-                    <li onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
+                    <li className="relative hover:bg-gray-100 rounded-full mr-1 p-2 flex items-center justify-center"
+                     onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
                         <Heart className="menu-icon orange" />
                         {/**  <p>Favorilerim</p **/}
                     </li>
@@ -69,21 +74,14 @@ export const Header = ({mobile, setMobile}:any) =>{
                     <div className="font-medium truncate">test@test.com</div>
                     </div>
                     <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
-                    <li>
-                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            Hesabım
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            Ayarlar
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            Favorilerim
-                        </a>
-                    </li>
+                    {profileMenu.map((item, i:number)=>(
+                        <li key={`profile-menu-${i}`}>
+                            <div onClick={()=>router.push(item.path)} className="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                {item.title}
+                            </div>
+                        </li>
+                    ))}
+                 
                     </ul>
                     <div className="py-1">
                     <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
@@ -101,7 +99,6 @@ export const Header = ({mobile, setMobile}:any) =>{
         </div>
     )
 }
-
 
 export const NotificationDropdown = ({status, setBellStatus}:any) => {
     const router = useRouter()
