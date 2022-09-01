@@ -1,4 +1,4 @@
-import { ChatLeftText, Envelope, ListCheck, ListStars, Person, PinMap, QuestionCircle, Smile, TruckFront } from "@yukgetir-icons";
+import { BookmarkStar, ChatLeftText, Envelope, ListCheck, ListStars, MessagePlus, Person, PinMap, QuestionCircle, Smile, TruckFront } from "@yukgetir-icons";
 
 export const menuItems = [
     {
@@ -20,6 +20,16 @@ export const menuItems = [
         title:'Araçlarım',
         icon: <TruckFront className="menu-icon" />,
         path:'/account/vehicles'
+    },
+    {
+        title:'Gelen Tekliflerim',
+        icon: <BookmarkStar className="menu-icon" />,
+        path:'/account/offers/inbox'
+    },
+    {
+        title:'Giden Tekliflerim',
+        icon: <MessagePlus className="menu-icon" />,
+        path:'/account/offers/outbox'
     },
     {
         title:'Lokasyonlar',

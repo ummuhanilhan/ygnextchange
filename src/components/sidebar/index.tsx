@@ -8,6 +8,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 
 export const Sidebar = ({mobile, setMobile}:any) =>{
     const router = useRouter();
+    const {pathname} = router;
     const [ref, { height }]:any = useDimensions();
 
     const logo = (
@@ -38,7 +39,7 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
                     {menuItems.map((item, key:number)=>(
                         <li 
                             key={`menu-item-${key}`} 
-                            className={`${key==0?`active`:''} text`}
+                            className={`${item.path==pathname?`active`:''} text`}
                             onClick={()=>{
                                 router.push(item.path, undefined, { shallow: true })
                             }}
