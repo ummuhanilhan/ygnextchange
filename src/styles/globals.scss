@@ -40,6 +40,10 @@ a {
   .flex-center{
     @apply flex items-center justify-center;
   }
+  
+  .transitionable{
+    @apply transition ease-in-out delay-500;
+  }
 }
 
 input:checked + div {
@@ -47,4 +51,7 @@ input:checked + div {
 }
 input:checked + div svg {
   @apply block;
+}
+.simplebar-scrollbar:before {
+  background:rgb(200, 200, 200)!important;
 }

@@ -11,7 +11,6 @@ type DefaultState = {
 export const Private = ({children}: DefaultState) => {
     const router = useRouter()
 
-  
     return (
         <Main>
             {children}

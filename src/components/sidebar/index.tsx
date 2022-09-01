@@ -1,10 +1,14 @@
 import { menuItems } from "@utils/mock"
+import useDimensions from "@utils/useDimensions";
 import { BoxArrowRight } from "@yukgetir-icons"
 import { useRouter } from "next/router"
 import { FiX } from "react-icons/fi";
+import SimpleBar from "simplebar-react";
+import 'simplebar-react/dist/simplebar.min.css';
 
 export const Sidebar = ({mobile, setMobile}:any) =>{
     const router = useRouter();
+    const [ref, { height }]:any = useDimensions();
 
     const logo = (
     <img 
@@ -16,37 +20,43 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
     />
     )
     return (
-         <div id="sidebar" >
-            {!mobile ? logo : (
-                <div className="flex justify-between items-start w-full">
-                    {logo}
-                    <FiX 
-                    onClick={()=>setMobile(false)}
-                    size={23} 
-                    className="mr-2 mt-2 text-gray-500 cursor-pointer" />
-                </div>
-            )}
-            <ul className="menu">
-                {menuItems.map((item, key:number)=>(
-                    <li 
-                        key={`menu-item-${key}`} 
-                        className={`${key==0?`active`:''} text`}
-                        onClick={()=>{
-                            router.push(item.path, undefined, { shallow: true })
-                        }}
-                    >
-                        {item.icon}
-                        <p>{item.title}</p>
+            <div id="sidebar" className="transitionable" ref={ref} >
+                {!mobile ? logo : (
+                    <div className="flex justify-between items-start w-full">
+                        {logo}
+                        <div className="p-2 rounded-full cursor-pointer hover:bg-gray-200 flex items-center justify-center"  onClick={()=>setMobile(false)} >
+                            <FiX 
+                                size={23} 
+                                className="text-gray-500" 
+                            />
+                        </div>
+                    </div>
+                )}
+
+                <ul className="menu">
+                 <SimpleBar style={{ maxHeight: height-260||400 }}>
+                    {menuItems.map((item, key:number)=>(
+                        <li 
+                            key={`menu-item-${key}`} 
+                            className={`${key==0?`active`:''} text`}
+                            onClick={()=>{
+                                router.push(item.path, undefined, { shallow: true })
+                            }}
+                        >
+                            {item.icon}
+                            <p>{item.title}</p>
+                        </li>
+                    ))}
+                  </SimpleBar>
+                </ul>
+
+                <ul className="footer">
+                    <li className="justify-center">
+                        <BoxArrowRight className="menu-icon" />
+                        <p className="text-yukgetir-gray">Çıkış Yap</p>
                     </li>
-                ))}
-            </ul>
-            <ul className="footer">
-                <li className="justify-center">
-                    <BoxArrowRight className="menu-icon" />
-                    <p className="text-yukgetir-gray">Çıkış Yap</p>
-                </li>
-            </ul>
-            <p className="text-yukgetir-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinvoa Bilişim A.Ş.</p>
-        </div>  
+                </ul>
+                <p className="text-yukgetir-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinvoa Bilişim A.Ş.</p>
+            </div>  
     )
 }

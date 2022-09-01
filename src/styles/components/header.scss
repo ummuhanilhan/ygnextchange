@@ -27,9 +27,9 @@
 
     .profile{
         @extend .flex-center;
-        ul{
+       >  ul{
             @extend .flex-center;
-            li{
+         >   li{
                 @apply 
                 flex 
                 items-center 

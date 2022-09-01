@@ -14,10 +14,10 @@ export const MainContainer = ({children}:any) => {
     return (
       <div className='h-screen flex items-start'>
           <div className={classNames(
-            'wrapper fixed h-screen p-4 z-1 lg:translate-x-0 transition ease-in-out delay-100',
+            'wrapper fixed h-screen p-4 z-10 lg:translate-x-0 transition ease-in-out delay-100',
             mini
           )}>
-          <Sidebar mobile setMobile={setMobile} />
+          <Sidebar mobile={mobile} setMobile={setMobile} />
        </div>
         <div className={classNames(blur, 'lg:ml-[325px] w-screen m-4 lg:blur-0')}>
           <Header  
