@@ -2,9 +2,7 @@
 #header{
     @apply
     bg-white
-    w-full
     flex 
-    justify-between
     px-2
     text-[1.07em]
     py-2
@@ -12,26 +10,23 @@
     ;
 
     .actions{
-        @extend .flex-center;
-        @apply lg:flex-col ;
+       
 
         li{
             @extend .flex-center;
             @apply bg-yukgetir-lightblue p-4
             rounded-md
             px-10
+            my-1
             h-12
             cursor-pointer
             mr-3
-            lg:mb-2
             hover:bg-slate-100
-            text-[.9em];
-        }
+         }
     }
 
     .profile{
         @extend .flex-center;
-        @apply mr-2;
         ul{
             @extend .flex-center;
             li{

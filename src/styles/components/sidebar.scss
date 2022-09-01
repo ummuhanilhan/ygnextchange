@@ -3,9 +3,11 @@
 #sidebar{
     @apply 
     h-full 
+    transition ease-in-out duration-300
     w-[300px]
     bg-white 
     p-2 
+    z-50
     rounded-lg
     flex 
     flex-col 
@@ -69,4 +71,16 @@
             }
         }
     }
+}
+
+.overlay{
+    @apply
+        left-0
+        right-0
+        top-0
+        bottom-0
+        bg-black
+        opacity-50
+        z-10
+    ;
 }
