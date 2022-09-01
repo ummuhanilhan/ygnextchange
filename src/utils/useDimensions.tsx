@@ -40,7 +40,7 @@ function useDimensions({
     liveMeasure = true
 }: UseDimensionsArgs = {}): UseDimensionsHook {
     const [dimensions, setDimensions] = useState({});
-    const [node, setNode] = useState(null);
+    const [node, setNode] = useState<any>(null);
 
     const ref = useCallback((node:any) => {
         setNode(node);
