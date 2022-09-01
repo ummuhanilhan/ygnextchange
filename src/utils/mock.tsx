@@ -19,7 +19,7 @@ export const menuItems = [
     {
         title:'Araçlarım',
         icon: <TruckFront className="menu-icon" />,
-        path:'/account/vehicles'
+        path:'/vehicles'
     },
     {
         title:'Gelen Tekliflerim',

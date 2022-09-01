@@ -14,7 +14,7 @@ export const MainContainer = ({children}:any) => {
 
       
     return (
-        <div className='h-screen flex items-start'>
+          <div className='h-screen flex items-start '>
           <Outside cb={()=>setMobile(false)}>
               <div className={classNames(
                   'wrapper fixed h-screen p-4 z-10 lg:translate-x-0 transition ease-in-out delay-100',
@@ -35,7 +35,7 @@ export const MainContainer = ({children}:any) => {
           </div>
           {mobile && <div className="overlay"></div> }
         </div>
-    )
+     )
 }
 
 export default MainContainer;
