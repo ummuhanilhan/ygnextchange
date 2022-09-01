@@ -4,6 +4,7 @@ import { Header } from '@components/header'
 import { Sidebar } from '@components/sidebar'
 import classNames from "classnames";
 import Outside from "@utils/useoutside";
+
 export const MainContainer = ({children}:any) => {
     const [mobile, setMobile] = React.useState(false)
         
@@ -38,3 +39,4 @@ export const MainContainer = ({children}:any) => {
 }
 
 export default MainContainer;
+

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { useRouter } from "next/router";
 import Main from "@containers/Main";
+import { Frame } from "@shared/frames/MainFrame";
 
 
 type DefaultState = {
@@ -9,11 +9,11 @@ type DefaultState = {
 }
 
 export const Private = ({children}: DefaultState) => {
-    const router = useRouter()
-
     return (
         <Main>
-            {children}
+           <Frame>
+               {children}
+           </Frame>
         </Main>
     )
 }

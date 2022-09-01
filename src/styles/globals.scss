@@ -55,3 +55,8 @@ input:checked + div svg {
 .simplebar-scrollbar:before {
   background:rgb(200, 200, 200)!important;
 }
+
+::selection {
+  color: white;
+  background: $secondaryColor;
+}
