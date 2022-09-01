@@ -24,12 +24,12 @@ export const menuItems = [
     {
         title:'Gelen Tekliflerim',
         icon: <BookmarkStar className="menu-icon" />,
-        path:'/account/offers/inbox'
+        path:'/offers/ingoing'
     },
     {
         title:'Giden Tekliflerim',
         icon: <MessagePlus className="menu-icon" />,
-        path:'/account/offers/outbox'
+        path:'/offers/outgoing'
     },
     {
         title:'Lokasyonlar',
