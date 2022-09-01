@@ -1,10 +1,12 @@
 import { Bell, Heart, PlusCircle, Share, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import { useRouter } from "next/router"
+import React from "react"
 import { useState } from "react"
 import { FiMenu } from 'react-icons/fi' 
 export const Header = ({mobile, setMobile}:any) =>{
     const [open, setOpen ] = useState(false)
+    const [bellStatus, setBellStatus ] = useState(false)
 
     const router = useRouter()
     return (
@@ -30,8 +32,17 @@ export const Header = ({mobile, setMobile}:any) =>{
                         <Share className="menu-icon" />
                         {/** <p>Davet Et</p> **/}
                     </li>
-                    <li onClick={()=>router.push('/notifications', undefined, { shallow: true })}>
-                        <Bell className="menu-icon" />
+                    <li className="relative">
+                       <div onClick={()=>setBellStatus(!bellStatus)}>
+                            <Bell className="menu-icon" />
+                            <span className="flex h-3 w-3 absolute top-[-.2rem] right-[.3rem]">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                            </span>
+                       </div>
+
+                        <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
+
                         {/**  <p>Bildiriler</p> **/}
                     </li>
                     <li onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
@@ -47,7 +58,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-100
                 " type="button">
                     <span className="sr-only">Open user menu</span>
-                    <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="user photo" />
+                    <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="" />
                 </button>
                 <div className={classNames(
                     "z-10 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
@@ -57,7 +68,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                     <div>Tester Test</div>
                     <div className="font-medium truncate">test@test.com</div>
                     </div>
-                    <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+                    <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
                     <li>
                         <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                             Hesabım
@@ -88,5 +99,68 @@ export const Header = ({mobile, setMobile}:any) =>{
                 </div>
             </div>
         </div>
+    )
+}
+
+
+export const NotificationDropdown = ({status, setBellStatus}:any) => {
+    const router = useRouter()
+
+    return (
+        <React.Fragment>
+            <div id="dropdownNotification" className={classNames(
+                "absolute right-0 top-8 z-20 w-80 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
+                {'hidden':!status}
+            )} >
+            <div className="block py-2 px-4 font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-800 dark:text-white">
+                Bildirimler
+            </div>
+            <div className="divide-y divide-gray-100 dark:divide-gray-700">
+              
+                <a href="#" className="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <div className="flex-shrink-0">
+                    <img className="w-11 h-11 rounded-full" src="/assets/default.png" alt="" />
+                    <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-gray-900 rounded-full border border-white dark:border-gray-800">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
+                    </div>
+                </div>
+                <div className="pl-3 w-full">
+                    <div className="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span className="font-semibold text-gray-900 dark:text-white">Joseph Mcfall</span> and <span className="font-medium text-gray-900 dark:text-white">5 others</span> started following you.</div>
+                    <div className="text-xs text-blue-600 dark:text-blue-500">10 minutes ago</div>
+                </div>
+                </a>
+                <a href="#" className="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <div className="flex-shrink-0">
+                    <img className="w-11 h-11 rounded-full" src="/assets/default.png" alt="" />
+                    <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-red-600 rounded-full border border-white dark:border-gray-800">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+                    </div>
+                </div>
+                <div className="pl-3 w-full">
+                    <div className="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span className="font-semibold text-gray-900 dark:text-white">Bonnie Green</span> and <span className="font-medium text-gray-900 dark:text-white">141 others</span> love your story. See it and view more stories.</div>
+                    <div className="text-xs text-blue-600 dark:text-blue-500">44 minutes ago</div>
+                </div>
+                </a>
+                <a href="#" className="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <div className="flex-shrink-0">
+                    <img className="w-11 h-11 rounded-full" src="/assets/default.png" alt="" />
+                    <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-green-400 rounded-full border border-white dark:border-gray-800">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                    </div>
+                </div>
+                <div className="pl-3 w-full">
+                    <div className="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span className="font-semibold text-gray-900 dark:text-white">Leslie Livingston</span> mentioned you in a comment: <span className="font-medium text-blue-500" >@bonnie.green</span> what do you say?</div>
+                    <div className="text-xs text-blue-600 dark:text-blue-500">1 hour ago</div>
+                </div>
+                </a>
+            </div>
+            <a href="#" className="block py-2 text-sm font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
+                <div className="inline-flex items-center ">
+                <svg className="mr-2 w-4 h-4 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                    Hepsini gör
+                </div>
+            </a>
+            </div>
+        </React.Fragment>
     )
 }
