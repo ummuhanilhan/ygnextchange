@@ -5,9 +5,9 @@ import React from "react"
 export const AccountLayout = ({children}:any) => {
 
     return (
-        <React.Fragment>
+        <div id="account">
             <ProfileTab />
             {children}
-        </React.Fragment>
+        </div>
     )
 }
