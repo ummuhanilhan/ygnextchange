@@ -1,10 +1,13 @@
+import { ProfileTab } from "@components/tabs/ProfileTab"
+import React from "react"
 
 
-export const AccountLayout = () => {
+export const AccountLayout = ({children}:any) => {
 
     return (
-        <div>
-            
-        </div>
+        <React.Fragment>
+            <ProfileTab />
+            {children}
+        </React.Fragment>
     )
 }

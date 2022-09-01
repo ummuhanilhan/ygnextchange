@@ -1,4 +1,4 @@
-import { BookmarkStar, ChatLeftText, Envelope, ListCheck, ListStars, MessagePlus, Person, PinMap, QuestionCircle, Smile, TruckFront } from "@yukgetir-icons";
+import { BookmarkStar, ChatLeftText, Envelope, Gear, GeoAlt, Heart, ListCheck, ListStars, MessagePlus, Person, PersonCheck, PinMap, QuestionCircle, ShieldCheck, Smile, TruckFront } from "@yukgetir-icons";
 
 export const menuItems = [
     {
@@ -121,3 +121,14 @@ export const primeOptions = {
   passwordPrompt: "Şifrenizi girin",
 };
 
+
+
+
+export const profileTabMenu = [
+    {id:1, title:'Profilim', icon: <PersonCheck className="menu-icon" /> },
+    {id:2, title:'Şifremi Değiştir', icon: <ShieldCheck className="menu-icon" /> },
+    {id:3, title:'Adres Listem', icon: <GeoAlt className="menu-icon" /> },
+    {id:4, title:'Favorilerim', icon: <Heart className="menu-icon" /> },
+    {id:5, title:'Ayarlar', icon: <Gear className="menu-icon" /> },
+
+]

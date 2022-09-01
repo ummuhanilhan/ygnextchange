@@ -1,12 +1,13 @@
+import { AccountLayout } from "@layouts/AccountLayouts";
 import PrivateLayout from "@layouts/PrivateLayout";
 
 
 export const MyCargo = () => {
 
     return (
-        <div>
+        <AccountLayout>
             <h1 className="text-2xl">MyCargo</h1>
-        </div>
+        </AccountLayout>
     )
 }
 
