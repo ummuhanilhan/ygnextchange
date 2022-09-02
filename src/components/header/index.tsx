@@ -27,7 +27,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                 <li className="flex items-cente" onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
                     <Packet className="menu-icon orange" /> <p className="hidden sm:block">Yüküm Var</p> </li>
                 <li className={classNames(
-                    "flex items-center",
+                    "flex items-center border-l-[.4rem] border-yukgetir-orange",
                 {hidden: !mobile}
                 )} 
                 onClick={()=>router.push('/account/vehicles/create', undefined, 

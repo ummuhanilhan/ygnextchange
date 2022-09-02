@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "icons": "svgr --out-dir src/@shared/icons --ignore-existing --typescript --no-dimensions -- public/assets/icons",
+    "vehicle:icons": "svgr --out-dir src/@shared/vehicleIcons --ignore-existing --typescript --no-dimensions -- public/assets/vehicles",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build:tailwind": "postcss src/styles/main.scss -o src/styles/tailwind.scss"

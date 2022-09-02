@@ -1,9 +1,6 @@
-import Trailer from '@public/assets/vehicles/trailer.svg';
-import Refrigerated from '@public/assets/vehicles/refrigerated.svg';
-import Truck from '@public/assets/vehicles/truck.svg';
-import Wheeler18 from '@public/assets/vehicles/18wheeler.svg';
-import TractorTrailer from '@public/assets/vehicles/tractortrailer.svg';
-import SemiTruck from '@public/assets/vehicles/semitruck.svg';
+import { Refrigerated, Semitruck, Svg18Wheeler, Tractortrailer, Trailer, Truck } from "@shared/vehicleIcons"
+import classNames from "classnames"
+
 
 export const VehicleRadio = ({
     name,
@@ -20,7 +17,10 @@ export const VehicleRadio = ({
             {vehicleMenu.map((item,i:number)=>(
                 <li 
                     onClick={()=>onChange(item.title.toLocaleLowerCase())}
-                    className={`${value==item.title.toLocaleLowerCase()}`}                
+                    className={classNames(
+                        'text-md mx-1',
+                        {'active':value==item.title.toLocaleLowerCase()}
+                    )}                
                     key={`vehicle-${i}`}
                 > {item.icon} <p>{item.title}</p> </li>
             ))}
@@ -29,10 +29,10 @@ export const VehicleRadio = ({
 }
 
 export const vehicleMenu = [
-    {title:'Dorse', icon: <Trailer size={25} />  },
-    {title:'Frigofirik', icon: <Refrigerated size={25} />  },
-    {title:'Kamyon', icon: <Truck size={25} />  },
-    {title:'Kırkayak', icon: <Wheeler18 size={25} />  },
-    {title:'Romork', icon: <TractorTrailer size={25} />  },
-    {title:'Tır', icon: <SemiTruck size={25} />  },
+    {title:'Dorse', icon: <Trailer className="vehicle-icon" />  },
+    {title:'Frigofirik', icon: <Refrigerated className="vehicle-icon" />  },
+    {title:'Kamyon', icon: <Truck className="vehicle-icon" />  },
+    {title:'Kırkayak', icon: <Svg18Wheeler className="vehicle-icon" />  },
+    {title:'Romork', icon: <Tractortrailer className="vehicle-icon" />  },
+    {title:'Tır', icon: <Semitruck className="vehicle-icon" />  },
 ]

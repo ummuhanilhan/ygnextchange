@@ -2,6 +2,7 @@ import { SigninValues } from "@pages/auth/signin"
 import { Controller, useForm, useWatch, Control  } from "react-hook-form"
 import { Checkbox } from "../checkboxes"
 import { FloatingLabelInput, FloatingLabelPhone } from "../inputs"
+import { VehicleRadio } from "../radios"
 
 
 export const FloatLabelHook = ({
@@ -116,3 +117,36 @@ export const CheckboxHook = ({
     )
 }
 
+
+
+export const VehicleRadioHook = ({
+    control, 
+    name,
+    label,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <VehicleRadio
+                onBlur={onBlur}  
+                onChange={onChange}  
+                value={value}
+                ref={ref}
+                error={error}
+                name={name}
+                label={label}
+                children={label}
+                {...rest}
+            />
+        )}
+    />
+    )
+}
