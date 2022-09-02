@@ -3,6 +3,8 @@ import { Controller, useForm, useWatch, Control  } from "react-hook-form"
 import { Checkbox } from "../checkboxes"
 import { FloatingLabelInput, FloatingLabelPhone } from "../inputs"
 import { VehicleRadio } from "../radios"
+import { MultiSelect } from 'primereact/multiselect';
+import { Calendar } from "primereact/calendar"
 
 
 export const FloatLabelHook = ({
@@ -32,7 +34,6 @@ export const FloatLabelHook = ({
                     onBlur={onBlur} // notify when input is touched
                     onChange={onChange} // send value to hook form
                     value={value}
-                    ref={ref}
                     placeholder={placeholder}
                     type={type}
                     error={error}
@@ -72,7 +73,6 @@ export const FloatLabelPhoneHook = ({
                     onBlur={onBlur} // notify when input is touched
                     onChange={onChange} // send value to hook form
                     value={value}
-                    ref={ref}
                     placeholder={placeholder}
                     type={type}
                     error={error}
@@ -105,7 +105,6 @@ export const CheckboxHook = ({
                     onBlur={onBlur}  
                     onChange={onChange}  
                     value={value}
-                    ref={ref}
                     error={error}
                     name={name}
                     label={label}
@@ -139,7 +138,6 @@ export const VehicleRadioHook = ({
                 onBlur={onBlur}  
                 onChange={onChange}  
                 value={value}
-                ref={ref}
                 error={error}
                 name={name}
                 label={label}
@@ -150,3 +148,75 @@ export const VehicleRadioHook = ({
     />
     )
 }
+
+
+
+
+const cities = [
+    {name: 'İstanbul', code: 'IST'},
+    {name: 'New York', code: 'NY'},
+    {name: 'Rome', code: 'RM'},
+    {name: 'London', code: 'LDN'},
+    {name: 'Paris', code: 'PRS'}
+];
+
+export const MultiSelectHook = ({
+    control, 
+    name,
+    placeholder,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <MultiSelect 
+                value={value} 
+                options={cities}
+                placeholder={placeholder}
+                optionLabel="name" 
+                optionValue="code"
+                className="w-full py-[.2rem]"
+                onChange={(e) => onChange(e.value)}     
+            />
+        )}
+    />
+    )
+}
+
+
+
+export const CalendarHook = ({
+    control, 
+    name,
+    placeholder,
+    ...rest
+}:any) => {
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <Calendar 
+                dateFormat="dd/mm/yy"
+                maxDate={new Date()} 
+                value={value} 
+                placeholder={placeholder}
+                className="w-full py-[.2rem]"
+                onChange={(e:any) => onChange(e.value)}     
+            />
+        )}
+    />
+    )
+}
+

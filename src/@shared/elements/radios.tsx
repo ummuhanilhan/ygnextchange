@@ -19,7 +19,7 @@ export const VehicleRadio = ({
                     onClick={()=>onChange(item.title.toLocaleLowerCase())}
                     className={classNames(
                         'text-md mx-1',
-                        {'active':value==item.title.toLocaleLowerCase()}
+                        {'active': !value ? ++i==1 : (value==item.title.toLocaleLowerCase())}
                     )}                
                     key={`vehicle-${i}`}
                 > {item.icon} <p>{item.title}</p> </li>

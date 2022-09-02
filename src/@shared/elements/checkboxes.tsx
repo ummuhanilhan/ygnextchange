@@ -15,7 +15,6 @@ export const Checkbox = ({
     <div className="flex items-center justify-center"  >
         <input type="checkbox" 
         id={name} name="confirmation" 
-        checked={value} 
         onClick={()=>onChange(!value)} 
         className="opacity-0
         absolute h-6 w-6" 

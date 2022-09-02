@@ -141,13 +141,9 @@ export const Corporate = ({control}:any) => {
                 <FloatLabelHook name="address" type="text" placeholder="Şirket adresi" example="" control={control} />
                 <FloatLabelHook name="district" type="text" placeholder="İlçe" example="" control={control} />
             </div>    
-            <div className="mt-5">
-                <CheckboxHook name="accept" label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} />
-            </div>
-            <div className="w-full flex justify-end">
-                <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
-                <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>
-            </div>
+           <FormFooter 
+            control={control}
+           />
         </li>
     )
 }
@@ -179,5 +175,20 @@ export const Healthy = () => {
         <div>
 
         </div>
+    )
+}
+
+export const FormFooter = ({control}:any) => {
+
+    return (
+        <React.Fragment>
+            <div className="mt-5">
+                <CheckboxHook name="accept" label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} />
+            </div>
+            <div className="w-full flex justify-end">
+                <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
+                <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>
+            </div>
+        </React.Fragment>
     )
 }

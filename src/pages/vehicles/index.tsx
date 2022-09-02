@@ -3,17 +3,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@utils/validations/account";
 import classNames from "classnames";
-import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook, VehicleRadioHook } from "@shared/elements/hooks";
+import { CalendarHook, CheckboxHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 import React from "react";
 import { TitleFrame, TitleFrameCovered } from "@components/frames/TitleFrame";
 
 export type SignupValues = {
-    brand: string,
+    brand: object[],
+    m_date: Date,
 };
 
 const initialValues = {
-    brand:'tester',
+    brand:[],
     accept:false,
+    m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)")
 }
 
 export enum VehicleType {
@@ -40,28 +42,48 @@ export const Vehicles = () => {
         console.log(errors)
 
     };
-    return (
+
+     return (
        <div id="vehicles">
           <div className="grid grid-cols-2 gap-2 w-full">
-            <TitleFrame title="Araç Markası"><FloatLabelHook name="brand" type="text" placeholder="Araç Markası Seçiniz" example="" control={control} /></TitleFrame>
-            <TitleFrameCovered title="Araç Modeli" name="model" placeholder="Araç Modeli Seçiniz"  control={control} /> 
-            <TitleFrame title="Araç Model Yılı"><FloatLabelHook name="model_year" type="text" placeholder="Araç Model Yılını Seçiniz" example="" control={control} /></TitleFrame>
+              <TitleFrame title="Araç Markası">
+                <MultiSelectHook name="brand" control={control} placeholder="Araç Özellikleri Seçiniz" />                 
+             </TitleFrame>
+             <TitleFrame title="Araç Modeli">
+                <MultiSelectHook name="model" control={control} placeholder="Araç Modeli Seçiniz"  />                 
+            </TitleFrame>
+            <TitleFrame title="Araç Model Yılını">
+                <MultiSelectHook name="model_year" control={control} placeholder="Araç Model Yılını Seçiniz"  />                 
+            </TitleFrame>    
             <TitleFrameCovered title="Araç Plakası" name="plate" placeholder="Araç Plakasını Yazınız"  control={control} /> 
           </div>
+          
           <div className="grid grid-cols-1 gap-2 w-full">
            <TitleFrame title="Araç Tipi">
                 <VehicleRadioHook name="type" control={control} />
            </TitleFrame>
           </div>
           <div className="grid grid-cols-2 gap-2 w-full">
-            <TitleFrameCovered title="Araç Özellikleri" name="a" placeholder="Araç Özellikleri Seçiniz"  control={control} /> 
-            <TitleFrameCovered title="Araç Donanımı" name="a1" placeholder="Araç Donanımı Seçiniz"  control={control} /> 
+           
+             <TitleFrame title="Araç Özellikleri">
+                <MultiSelectHook name="b" control={control} placeholder="Araç Özellikleri Seçiniz" />                 
+            </TitleFrame>
+            <TitleFrame title="Araç Donanımı">
+                <MultiSelectHook name="b1" control={control} placeholder="Araç Donanımı Seçiniz"  />                 
+            </TitleFrame>
+
             <TitleFrameCovered title="Araç Sigorta Tarihi" name="a2" placeholder="Araç Sigorta Tarihi Seçiniz"  control={control} /> 
-            <TitleFrameCovered title="Araç Muayene Tarihi" name="a3" placeholder="Araç Muayene Tarihi Seçiniz"  control={control} /> 
-            <TitleFrameCovered title="Araç Kasko Tarihi" name="a4" placeholder="Araç Kasko Tarihi Seçiniz"  control={control} /> 
+          
+            <TitleFrame title="Araç Muayene Tarihi">
+                <CalendarHook name="m_date" control={control} placeholder="Araç Muayene Tarihi Seçiniz"  />                 
+            </TitleFrame>   
+
+            <TitleFrame title="Araç Kasko Tarihi">
+                <CalendarHook name="k_date" control={control} placeholder="Araç Kasko Tarihi Seçiniz"  />                 
+            </TitleFrame>   
+
             <TitleFrameCovered title="K1 Yetki Belgesi" name="a5" placeholder="K1 Yetki Belgesi Ekle (Opsiyonel)"  control={control} /> 
           </div>
-            
        </div>
     )
 }
