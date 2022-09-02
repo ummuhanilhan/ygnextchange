@@ -1,0 +1,22 @@
+
+#vehicles{
+    input{
+        @apply bg-white border-0 outline-none shadow-none; 
+    }
+
+    .vehicle-icons{
+        > li{
+            @apply
+                p-3 
+                bg-white
+                flex 
+                items-center
+                justify-center
+                flex-col
+                border-2
+                border-transparent
+                text-gray-400
+            ; 
+        }
+    }
+}
