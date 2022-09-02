@@ -32,7 +32,7 @@ export const FloatingLabelInput = ({
             <input  
               className={[
                 "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
-                active ? "pt-6 text-gray-500" : "pt-2"
+                value || active ? "pt-6 text-gray-500" : "pt-2"
               ].join(" ")}
               id={name}
               value={value}
@@ -45,7 +45,7 @@ export const FloatingLabelInput = ({
             <label
               className={[
                 "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out",
-                active ? "text-xs font-medium" : "text-sm text-gray-500 pt-4"
+                value || active ? "text-xs font-medium" : "text-sm text-gray-500 pt-4"
               ].join(" ")}
               htmlFor={name}
             >
@@ -78,7 +78,7 @@ export const FloatingLabelPhone = ({
   onChange,
   onBlur,
   error }:any) => {
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = React.useState(value);
   const [hide, setHide] = React.useState(true);
   const [status, setStatus] = React.useState(false);
   const [code, setCode] = React.useState<any>({});
@@ -94,8 +94,7 @@ export const FloatingLabelPhone = ({
 
   function handleCode(data:any){
     setCode(data)
-  }
-
+  } 
 
   return (
     <div className={classnames({
@@ -116,7 +115,7 @@ export const FloatingLabelPhone = ({
           <input  
             className={[
               "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
-              active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
+              value || active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
               active && code.countryCode?.length > 2 ? 'pl-[4.5rem]' : '',
               active && code.countryCode?.length == 4 ? 'pl-[4.8rem]' : '',
             ].join(" ")}
@@ -130,7 +129,7 @@ export const FloatingLabelPhone = ({
           <label
             className={[
               "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out",
-              active ? "text-xs font-medium " : "text-sm text-gray-500 pt-4"
+              value || active ? "text-xs font-medium " : "text-sm text-gray-500 pt-4"
             ].join(" ")}
             htmlFor={name}
           >

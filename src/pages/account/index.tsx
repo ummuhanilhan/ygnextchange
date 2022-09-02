@@ -16,15 +16,35 @@ export type SignupValues = {
     fullname: string,
     company: string,
     type: boolean,
+    tax: string,
+    tax_administrator: string,
+    business_phone: string,
+    website: string,
+    authorized: string,
+    gender: string,
+    city: string,
+    address: string,
+    district: string,
+    accept: boolean,
 };
 
 const initialValues = {
     name:'tester',
     email:'test@test.com',
     phone:'0505 555 55 55',
-    fullname:'',
+    fullname:'Tester Test',
     company:'HyperWise.co',
+    tax: '',
+    tax_administrator: '',
+    business_phone: '',
+    website: '',
+    authorized: '',
+    gender: true,
+    city: '',
+    address: '',
+    district: '',
     type:false,
+    accept:false,
 }
 
 export const Account = () => {
@@ -58,7 +78,7 @@ export const Account = () => {
                         <People className="menu-icon" /> <p>Kurumsal Bilgilerim</p> <FiChevronDown size={15} />    
                     </a>
                     <div className="grid grid-cols-2 gap-2 w-full">
-                        <FloatLabelHook name="{type?'fullname':'company'}" type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
+                        <FloatLabelHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
                         <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                         <FloatLabelHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
                         <FloatLabelHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
@@ -77,11 +97,14 @@ export const Account = () => {
                
                     </div>    
 
-                    <CheckboxHook name="accept" label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} className="mx-2" />
+                    <div className="mt-5">
+                        <CheckboxHook name="accept" label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} />
+                    </div>
                     <div className="w-full flex justify-end">
                         <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
                         <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>
                     </div>
+
                 </li>
                 <li> 
                     <a href="#" className="centerize">
