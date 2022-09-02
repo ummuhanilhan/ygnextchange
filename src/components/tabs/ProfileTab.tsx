@@ -1,10 +1,8 @@
 import { profileTabMenu } from "@utils/mock"
 import classNames from "classnames"
-import { useState } from "react"
 
 
-export const ProfileTab = ({}:any) => {
-    const [selected, setSelected] = useState<number>(1)
+export const ProfileTab = ({selected, setSelected}:any) => {
     return (
         <div>
             <ul className="grid grid-cols-5 gap-3 profile-tab">

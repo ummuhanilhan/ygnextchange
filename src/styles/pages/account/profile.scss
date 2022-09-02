@@ -1,0 +1,22 @@
+
+#profile{
+    @apply
+    p-0
+    ;
+    .menu-icon{
+        @apply
+        h-5
+        ;
+    }
+    .centerize{
+        @apply flex items-center justify-start my-3;
+    }
+
+    input{
+        @apply bg-white border-0;
+    }
+    .icon{
+        @apply fill-gray-400 #{!important};
+    }
+
+}

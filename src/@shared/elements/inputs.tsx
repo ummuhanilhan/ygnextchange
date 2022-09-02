@@ -28,7 +28,7 @@ export const FloatingLabelInput = ({
       <div className={classnames({
         'error': error
       }, 'w-full')}>
-          <div className=" relative border rounde bg-white- w-full mb-2 h-[55px] border-gray-300 border-opacity-25">
+          <div className=" relative border rounde bg-white- w-full mb-1- h-[55px] border-gray-300 border-opacity-25">
             <input  
               className={[
                 "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
@@ -102,7 +102,7 @@ export const FloatingLabelPhone = ({
       'error': error
     }, 'w-full')}>
         <div className="relative border rounded bg-white-
-         mb-2 h-[55px] border-gray-500 border-opacity-25">
+         mb-1- h-[55px] border-gray-500 border-opacity-25">
           {active && (
               <div className="flex items-center mt-[1.44rem] absolute left-[.5rem] top-[.1rem]">
                 <CountryCodeDropdown 
