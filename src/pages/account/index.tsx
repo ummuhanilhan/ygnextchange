@@ -3,7 +3,7 @@ import { AccountLayout, AccountType } from "@layouts/AccountLayouts";
 import PrivateLayout from "@layouts/PrivateLayout";
 import { CreditCard2Front, HeartPulse, People, Person } from "@shared/icons";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
-import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook } from "@shared/elements/hooks";
+import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook } from "@shared/elements/hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@utils/validations/account";
@@ -21,10 +21,10 @@ export type SignupValues = {
     business_phone: string,
     website: string,
     authorized: string,
-    gender: string,
-    city: string,
+    gender: any,
+    city: any,
     address: string,
-    district: string,
+    district: any,
     accept: boolean,
 };
 
@@ -39,10 +39,7 @@ const initialValues = {
     business_phone: '',
     website: '',
     authorized: '',
-    gender: true,
-    city: '',
     address: '',
-    district: '',
     type:false,
     accept:false,
 }
@@ -120,30 +117,34 @@ export const Corporate = ({control}:any) => {
 
     return(
         <li className="personal flex items-start flex-col"> 
-            <a href="#" className="centerize">
-                <People className="menu-icon" /> <p>Kurumsal Bilgilerim</p> <FiChevronDown size={15} />    
+            <a href="#" className="centerize" onClick={()=>setStatus(!status)}>
+                <People className="menu-icon" /> <p>Kurumsal Bilgilerim</p> {status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
             </a>
-            <div className="grid grid-cols-2 gap-2 w-full">
-                <FloatLabelHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
-                <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                <FloatLabelHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
-                <FloatLabelHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
-                <FloatLabelPhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
-                <FloatLabelPhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
-                {/** verified **/}
-                <FloatLabelHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
-                <FloatLabelHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
-                <FloatLabelHook name="authorized" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />
-                {/** selecbox **/}
-                <FloatLabelHook name="gender" type="text" placeholder="Cinsiyet" example="" control={control} />
-                <FloatLabelHook name="city" type="text" placeholder="İl" example="" control={control} />
-                {/** textarea **/}
-                <FloatLabelHook name="address" type="text" placeholder="Şirket adresi" example="" control={control} />
-                <FloatLabelHook name="district" type="text" placeholder="İlçe" example="" control={control} />
-            </div>    
-           <FormFooter 
-            control={control}
-           />
+            <div className={classNames({'hidden':status}, 'w-full')}>
+                <div className='grid grid-cols-2 gap-2 w-full'>
+                    <FloatLabelHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
+                    <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
+                    <FloatLabelHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
+                    <FloatLabelHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
+                    <FloatLabelPhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
+                    <FloatLabelPhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                    {/** verified **/}
+                    <FloatLabelHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
+                    <FloatLabelHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
+                    <FloatLabelHook name="authorized" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />
+                    {/** selecbox **/}
+                    <MultiSelectHook name="gender" control={control} placeholder="Cinsiyet Seçiniz"  />                 
+                    <MultiSelectHook name="city" control={control} placeholder="İl Seçiniz"  />                 
+                    <MultiSelectHook name="district" control={control} placeholder="İlçe Seçiniz"  />                 
+
+                    {/** textarea **/}
+                    <FloatLabelHook name="address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
+                </div>    
+                <FormFooter 
+                    label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum"
+                    control={control}
+                />
+            </div>
         </li>
     )
 }
@@ -178,12 +179,12 @@ export const Healthy = () => {
     )
 }
 
-export const FormFooter = ({control}:any) => {
+export const FormFooter = ({control, label}:any) => {
 
     return (
         <React.Fragment>
-            <div className="mt-5">
-                <CheckboxHook name="accept" label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} />
+            <div className="mt-5 flex items-start my-1">
+                <CheckboxHook name="accept" label={label} control={control} />
             </div>
             <div className="w-full flex justify-end">
                 <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>

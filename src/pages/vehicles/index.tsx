@@ -3,9 +3,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@utils/validations/account";
 import classNames from "classnames";
-import { CalendarHook, CheckboxHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
+import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 import React from "react";
 import { TitleFrame, TitleFrameCovered } from "@components/frames/TitleFrame";
+import { FormFooter } from "@pages/account";
 
 export type SignupValues = {
     brand: object[],
@@ -82,8 +83,15 @@ export const Vehicles = () => {
                 <CalendarHook name="k_date" control={control} placeholder="Araç Kasko Tarihi Seçiniz"  />                 
             </TitleFrame>   
 
-            <TitleFrameCovered title="K1 Yetki Belgesi" name="a5" placeholder="K1 Yetki Belgesi Ekle (Opsiyonel)"  control={control} /> 
+            <TitleFrame title="K1 Yetki Belgesi">
+                <FileUploadHook name="k_date" control={control} placeholder="K1 Yetki Belgesi Ekle (Opsiyonel)"  />                 
+            </TitleFrame>   
+
           </div>
+            <FormFooter 
+                label="Araç Bilgilerim'in doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum."
+                control={control} 
+            />
        </div>
     )
 }

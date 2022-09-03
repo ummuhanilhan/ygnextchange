@@ -5,18 +5,22 @@ import { FloatingLabelInput, FloatingLabelPhone } from "../inputs"
 import { VehicleRadio } from "../radios"
 import { MultiSelect } from 'primereact/multiselect';
 import { Calendar } from "primereact/calendar"
+import { FileUpload } from 'primereact/fileupload';
+import React from "react"
 
 
 export const FloatLabelHook = ({
     control, 
     placeholder,
     name,
+    textarea,
     type,
     ...rest
 }:{ 
     control: Control<any>, 
     placeholder:string,
     example?:string,
+    textarea?:boolean,
     name:string,
     type:string,
   }) => {
@@ -38,6 +42,7 @@ export const FloatLabelHook = ({
                     type={type}
                     error={error}
                     name={name}
+                    textarea
                     {...rest}
                 />
             )}
@@ -182,8 +187,8 @@ export const MultiSelectHook = ({
                 placeholder={placeholder}
                 optionLabel="name" 
                 optionValue="code"
-                className="w-full py-[.2rem]"
-                onChange={(e) => onChange(e.value)}     
+                className="w-full py-[.43rem]"
+                onChange={(e) => onChange(e.value)}
             />
         )}
     />
@@ -207,16 +212,51 @@ export const CalendarHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <Calendar 
-                dateFormat="dd/mm/yy"
-                maxDate={new Date()} 
-                value={value} 
-                placeholder={placeholder}
-                className="w-full py-[.2rem]"
-                onChange={(e:any) => onChange(e.value)}     
+           <div className="bg-white w-full h-[4rem]" >
+             <Calendar 
+                    dateFormat="dd/mm/yy"
+                    maxDate={new Date()} 
+                    value={value} 
+                    placeholder={placeholder}
+                    className="w-auto mt-2"
+                    onChange={(e:any) => onChange(e.value)}     
+                />
+           </div>
+        )}
+    />
+    )
+}
+
+
+
+
+
+
+export const FileUploadHook = ({
+    control, 
+    name,
+    placeholder,
+    ...rest
+}:any) => {
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <FileUpload  
+                name={value}
+                url="./upload"  
+                accept="image/*" 
+                className="w-full py-[.2rem] bg-white text-yukgetir-blue"
+                mode="basic"
             />
         )}
     />
     )
 }
+
 

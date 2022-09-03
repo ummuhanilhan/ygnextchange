@@ -12,6 +12,7 @@ export const FloatingLabelInput = ({
    placeholder,
    example='',
    value,
+   textarea,
    onChange,
    onBlur,
    error 
@@ -29,7 +30,7 @@ export const FloatingLabelInput = ({
           <div className=" relative border rounde bg-white- w-full mb-1- h-[55px] border-gray-300 border-opacity-25">
             <input  
               className={[
-                "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
+                "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-lg pr-10 transition-all duration-200 ease-in-out p-2",
                 value || active ? "pt-6 text-gray-500" : "pt-2"
               ].join(" ")}
               id={name}
@@ -42,8 +43,8 @@ export const FloatingLabelInput = ({
             />
             <label
               className={[
-                "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out",
-                value || active ? "text-xs font-medium" : "text-sm text-gray-500 pt-4"
+                "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out ",
+                value || active ? "text-md font-medium" : "text-lg text-gray-500 pt-4"
               ].join(" ")}
               htmlFor={name}
             >
