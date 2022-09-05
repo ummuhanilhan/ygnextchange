@@ -25,33 +25,33 @@ export const Header = ({mobile, setMobile}:any) =>{
                 {hidden: !mobile}
             )}>
                 <li className="flex items-cente" onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
-                    <Packet className="menu-icon orange" /> <p className="hidden sm:block">Yüküm Var</p> </li>
+                    <Packet className="menu-icon orange mr-2" /> <p className="hidden sm:block">Yüküm Var</p> </li>
                 <li className={classNames(
                     "flex items-center border-l-[.4rem] border-yukgetir-orange",
                 {hidden: !mobile}
                 )} 
                 onClick={()=>router.push('/vehicles/create', undefined, 
                 { shallow: true })}>
-                    <Truck className="menu-icon orange" /> <p className="hidden sm:block">Aracım Var</p> </li>
+                    <Truck className="menu-icon orange mr-2" /> <p className="hidden sm:block">Aracım Var</p> </li>
             </ul>
             <div className="profile ">
                 <ul className="">
-                    <li className="relative hover:bg-gray-100 rounded-full p-2 flex items-center justify-center">
+                    <li className="relative hover:bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center">
                         <Share className="menu-icon" />
                         {/** <p>Davet Et</p> **/}
                     </li>
-                    <li className="relative hover:bg-gray-100 rounded-full mx-1 p-2 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
+                    <li className="relative hover:bg-gray-100 rounded-full mx-1- w-12 h-12 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
                     <Outside cb={()=>setBellStatus(false)}>
                         <Bell className="menu-icon" />
-                        <span className="flex h-3 w-3 absolute top-[.3rem] right-[.8rem]">
+                        <span className="flex h-3 w-3 absolute top-[.6rem] right-[.6rem]">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                         </span>
-                            <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
+                        <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
                         {/**  <p>Bildiriler</p> **/}
                      </Outside>
                     </li>
-                    <li className="relative hover:bg-gray-100 rounded-full mr-1 p-2 flex items-center justify-center"
+                    <li className="relative hover:bg-gray-100 rounded-full mr-1 w-12 h-12 flex items-center justify-center"
                      onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
                         <Heart className="menu-icon orange" />
                         {/**  <p>Favorilerim</p **/} 
