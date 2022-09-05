@@ -19,6 +19,14 @@ module.exports = {
           orange: '#F39200',
           gray: '#868A9A',
           green: '#1DBF73',
+        },
+         fontSize: {
+          'smallest': '.8rem',
+          'small': '.9rem',
+          'normal': '1rem',
+          'big': '1.1rem',
+          'bigger': '1.3rem',
+    
         }
       },
     },

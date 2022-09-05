@@ -7,6 +7,8 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Calendar } from "primereact/calendar"
 import { FileUpload } from 'primereact/fileupload';
 import React from "react"
+import { CloudArrowUp } from "@shared/icons"
+import { FiXCircle } from "react-icons/fi"
 
 
 export const FloatLabelHook = ({
@@ -230,6 +232,42 @@ export const CalendarHook = ({
 
 
 
+export const AvatarHook = ({
+    control, 
+    name,
+    placeholder,
+    ...rest
+}:any) => {
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <div className="flex flex-start">
+                <div className="relative w-full">
+                    <FileUpload  
+                        name={value}
+                        url="./upload"  
+                        accept="image/*" 
+                        className="w-full py-[.2rem] border-none text-yukgetir-orange"
+                        mode="basic"
+                    />
+                    <CloudArrowUp className="absolute right-3 top-[1.1rem] fill-yukgetir-orange" height={17} />
+                </div>
+                <div className="btn p-2 bg-white rounded-md ml-2 w-14 h-14 flex items-center justify-center cursor-pointer"><FiXCircle className="text-xl text-gray-400" width={35} /></div>                 
+            </div>
+
+        )}
+    />
+    )
+}
+
+
+
 
 
 export const FileUploadHook = ({
@@ -247,13 +285,16 @@ export const FileUploadHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <FileUpload  
-                name={value}
-                url="./upload"  
-                accept="image/*" 
-                className="w-full py-[.2rem] bg-white text-yukgetir-blue"
-                mode="basic"
-            />
+            <div className="relative w-full">
+                <FileUpload  
+                    name={value}
+                    url="./upload"  
+                    accept="image/*" 
+                    className="w-full py-[.2rem] border-none text-yukgetir-orange"
+                    mode="basic"
+                />
+                <CloudArrowUp className="absolute right-2 top-[.9rem] fill-yukgetir-orange" height={25} />
+            </div>
         )}
     />
     )

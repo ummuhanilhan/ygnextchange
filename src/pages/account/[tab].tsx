@@ -51,7 +51,10 @@ export const Account = () => {
     const [selected, setSelected] = React.useState<number>(1)
     const router = useRouter()
     const { pid, pathname } = router.query
-    React.useEffect(()=>{},[pathname])
+    React.useEffect(()=>{
+        alert(pathname)
+        
+    },[pid])
 
     const change = () => setType(!type);
     const form = useForm<SignupValues>({
@@ -110,7 +113,7 @@ export const ProfileInformation = ({control, selected, setSelected}:any) =>{
                 <Healthy control={control} />
 
             </ul>
-            <FormFooter check label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} />
+            <FormFooter label="Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum" control={control} />
         </div>
     )
 }
@@ -228,15 +231,13 @@ export const Healthy = ({control}:any) => {
     )
 }
 
-export const FormFooter = ({control, label, check}:any) => {
+export const FormFooter = ({control, label}:any) => {
 
     return (
         <React.Fragment>
-            {check && (
-                 <div className="mt-5 flex items-start my-1">
-                    <CheckboxHook name="accept" label={label} control={control} />
-                </div>
-            )}
+            <div className="mt-5 flex items-start my-1">
+                <CheckboxHook name="accept" label={label} control={control} />
+            </div>
             <div className="w-full flex justify-end">
                 <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
                 <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>

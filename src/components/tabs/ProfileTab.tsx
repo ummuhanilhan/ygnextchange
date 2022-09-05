@@ -1,24 +1,30 @@
 import { profileTabMenu } from "@utils/mock"
 import classNames from "classnames"
+import { useRouter } from "next/router"
+import React from "react"
 
 
-export const ProfileTab = ({selected, setSelected}:any) => {
+export const ProfileTab = ({change}:any) => {
+    const [selected, setSelected] = React.useState<number>(1)
+
+    const router = useRouter();
     return (
-        <div>
-            <ul className="grid grid-cols-5 gap-3 profile-tab">
-                {profileTabMenu.map((item:any, i:number)=>(
-                    <li 
-                    key={`profile-menu-${i}`} 
-                    className={classNames({active:selected==item.id},`
-                    text-md flex flex-center items-center border border-transparent border-b-4  bg-white p-3 rounded-md
-                    cursor-pointer mb-3
-                    `)} 
-                    onClick={()=>setSelected(item.id)} >
-                        {item.icon}
-                        {item.title}
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <ul className="grid grid-cols-5 gap-3 profile-tab">
+            {profileTabMenu.map((item:any, i:number)=>(
+                <li 
+                key={`profile-menu-${i}`} 
+                className={classNames({active:(router.pathname == item.path) },`
+                text-md flex flex-center items-center border border-transparent border-b-4 bg-white p-3 rounded-md
+                cursor-pointer mb-3
+                `)} 
+                onClick={()=>{
+                    setSelected(item.id)
+                    router.push(item.path,  undefined, { shallow: true })
+                }} >
+                    {item.icon}
+                    {item.title}
+                </li>
+            ))}
+        </ul>
     )
 }

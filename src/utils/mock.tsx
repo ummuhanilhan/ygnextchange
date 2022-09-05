@@ -58,13 +58,7 @@ export const menuItems = [
     },
     
 ]
-
-
-
-
-
-
-
+ 
 export const primeOptions = {
   accept: "Evet",
   reject: "Hayır",
@@ -121,14 +115,11 @@ export const primeOptions = {
   passwordPrompt: "Şifrenizi girin",
 };
 
-
-
-
 export const profileTabMenu = [
-    {id:1, title:'Profilim', icon: <PersonCheck className="menu-icon" /> },
-    {id:2, title:'Şifremi Değiştir', icon: <ShieldCheck className="menu-icon" /> },
-    {id:3, title:'Adres Listem', icon: <GeoAlt className="menu-icon" /> },
-    {id:4, title:'Favorilerim', icon: <Heart className="menu-icon" /> },
-    {id:5, title:'Ayarlar', icon: <Gear className="menu-icon" /> },
+    {id:1, title:'Profilim', icon: <PersonCheck className="menu-icon" />, path:'/account' },  
+    {id:2, title:'Şifremi Değiştir', icon: <ShieldCheck className="menu-icon" />, path:'/account/change-password' },
+    {id:3, title:'Adres Listem', icon: <GeoAlt className="menu-icon" />, path:'/account/address' },
+    {id:4, title:'Favorilerim', icon: <Heart className="menu-icon" />, path:'/account/favorites' },
+    {id:5, title:'Ayarlar', icon: <Gear className="menu-icon" />, path:'/account/settings' },
 
 ]

@@ -27,10 +27,10 @@ export const FloatingLabelInput = ({
   
     return (
       <div className={classnames({'error': error}, 'w-full')}>
-          <div className=" relative border rounde bg-white- w-full mb-1- h-[65px] border-gray-300 border-opacity-25">
+          <div className=" relative border rounde bg-white- w-full mb-1- h-[4rem] border-gray-300 border-opacity-25">
             <input  
               className={[
-                "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-lg pr-10 transition-all duration-200 ease-in-out p-2",
+                "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-[1.03rem] pr-10 transition-all duration-200 ease-in-out p-2",
                 value || active ? "pt-6 text-gray-500" : "pt-2"
               ].join(" ")}
               id={name}
@@ -44,7 +44,7 @@ export const FloatingLabelInput = ({
             <label
               className={[
                 "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out ",
-                value || active ? "text-md font-medium" : "text-lg text-gray-500 pt-4"
+                value || active ? "text-sm font-medium" : "text-[1.03rem] text-gray-500 pt-5"
               ].join(" ")}
               htmlFor={name}
             >
