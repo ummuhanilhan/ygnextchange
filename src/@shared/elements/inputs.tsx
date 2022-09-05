@@ -27,7 +27,7 @@ export const FloatingLabelInput = ({
   
     return (
       <div className={classnames({'error': error}, 'w-full')}>
-          <div className=" relative border rounde bg-white- w-full mb-1- h-[55px] border-gray-300 border-opacity-25">
+          <div className=" relative border rounde bg-white- w-full mb-1- h-[65px] border-gray-300 border-opacity-25">
             <input  
               className={[
                 "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-lg pr-10 transition-all duration-200 ease-in-out p-2",
