@@ -7,9 +7,9 @@ import { useState } from "react"
 import { FiMenu } from 'react-icons/fi' 
 
 const profileMenu = [
-    {title:'Hesabım', path:'/account'},
-    {title:'Ayarlar', path:'/account/settings'},
-    {title:'Favorilerim', path:'/account/favorites'},
+    {id:1, title:'Hesabım', path:'/account'},
+    {id:2, title:'Ayarlar', path:'/account/settings'},
+    {id:3, title:'Favorilerim', path:'/account/favorites'},
 ]
 
 export const Header = ({mobile, setMobile}:any) =>{
@@ -54,7 +54,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                     <li className="relative hover:bg-gray-100 rounded-full mr-1 p-2 flex items-center justify-center"
                      onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
                         <Heart className="menu-icon orange" />
-                        {/**  <p>Favorilerim</p **/}
+                        {/**  <p>Favorilerim</p **/} 
                     </li>
                 </ul>
                 <div className="profile-dropdown relative">
@@ -79,7 +79,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                         <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
                         {profileMenu.map((item, i:number)=>(
                             <li key={`profile-menu-${i}`}>
-                                <div onClick={()=>router.push(item.path)} className="cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                <div onClick={()=>router.push(item.path)} className="relative cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                     {item.title}
                                 </div>
                             </li>

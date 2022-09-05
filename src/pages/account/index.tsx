@@ -71,25 +71,8 @@ export const Account = () => {
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
             className="flex items-center justify-start flex-col h-screen informations" id="profile">
-             
                 <ProfileInformation control={control} setSelected={setSelected} selected={selected} />
-
-                <div className={classNames(' w-full',{'hidden':selected!=AccountType.ChangePassword})} >
-
-                </div>
-
-                <div className={classNames(' w-full',{'hidden':selected!=AccountType.AddressList})} >
-
-                </div>
-
-                <div className={classNames(' w-full',{'hidden':selected!=AccountType.Favorites})} >
-
-                </div>
-
-                <div className={classNames(' w-full',{'hidden':selected!=AccountType.Settings})} >
-
-                </div>
-            
+                <div className={classNames(' w-full',{'hidden':selected!=AccountType.ChangePassword})} ></div>
             </form>
         </AccountLayout>
     )
@@ -101,11 +84,11 @@ Account.Layout = PrivateLayout
 export default Account;
 
 export const ProfileInformation = ({control, selected, setSelected}:any) =>{
-
+    const [type, setType] = React.useState(false)
     return(
         <div className={classNames('w-full',{'hidden':selected!=AccountType.Profile})} >
             <ul className='w-full'>
-                <Corporate control={control} />
+                <Corporate control={control} corporate={type} setCorporate={setType} />
                 <DriverLicense control={control} />
                 <Healthy control={control} />
 
@@ -115,15 +98,20 @@ export const ProfileInformation = ({control, selected, setSelected}:any) =>{
     )
 }
 
-export const Corporate = ({control}:any) => {
+export const Corporate = ({control, corporate, setCorporate}:any) => {
     const [type, setType] = React.useState(false)
     const [status, setStatus] = React.useState(false)
 
     return(
         <li className="personal flex items-start flex-col"> 
-            <a href="#" className="centerize" onClick={()=>setStatus(!status)}>
-                <People className="menu-icon" /> <p>Kurumsal Bilgilerim</p> {status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
-            </a>
+            <div className="centerize cursor-pointer" onClick={()=>{
+                setCorporate(!corporate)
+                setStatus(!status)
+            }}>
+                <People className="menu-icon" /> 
+                {corporate ? <p>Kurumsal Bilgilerim</p> : <p>Bireysel Bilgilerim</p> } 
+                {status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
+            </div>
             <div className={classNames({'hidden':status}, 'w-full')}>
 
                 <div className="grid grid-cols-2 gap-2 w-full mb-4">

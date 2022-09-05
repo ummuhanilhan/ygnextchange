@@ -59,7 +59,7 @@ export const Vehicles = () => {
             <TitleFrameCovered title="Araç Plakası" name="plate" placeholder="Araç Plakasını Yazınız"  control={control} /> 
           </div>
           
-          <div className="grid grid-cols-1 gap-2 w-full">
+          <div className="grid grid-cols-1 w-full">
            <TitleFrame title="Araç Tipi">
                 <VehicleRadioHook name="type" control={control} />
            </TitleFrame>
@@ -88,10 +88,7 @@ export const Vehicles = () => {
             </TitleFrame>   
 
           </div>
-            <FormFooter 
-                label="Araç Bilgilerim'in doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum."
-                control={control} 
-            />
+         <FormFooter control={control} label="Araç Bilgilerim'in doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum." />
        </div>
     )
 }

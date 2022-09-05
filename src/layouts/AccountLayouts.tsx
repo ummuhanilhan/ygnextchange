@@ -10,7 +10,6 @@ export enum AccountType {
     Settings = 5,
 }
 
-
 export enum AccountRoute {
     'profile' = 1,
     'change-password' = 2,
