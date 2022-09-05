@@ -256,7 +256,9 @@ export const AvatarHook = ({
                         className="w-full py-[.2rem] border-none text-yukgetir-orange"
                         mode="basic"
                     />
-                    <CloudArrowUp className="absolute right-3 top-[1.1rem] fill-yukgetir-orange" height={17} />
+                    <div className="bg-white">
+                        <CloudArrowUp className="absolute right-3 top-[1.1rem] bg-white fill-yukgetir-orange" height={17} />
+                    </div>
                 </div>
                 <div className="btn p-2 bg-white rounded-md ml-2 w-14 h-14 flex items-center justify-center cursor-pointer"><FiXCircle className="text-xl text-gray-400" width={35} /></div>                 
             </div>

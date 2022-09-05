@@ -2,6 +2,7 @@ import { menuItems } from "@utils/mock"
 import useDimensions from "@utils/useDimensions";
 import { BoxArrowRight } from "@yukgetir-icons"
 import { useRouter } from "next/router"
+import { useRef } from "react";
 import { FiX } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
@@ -37,16 +38,7 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
                 <ul className="menu">
                  <SimpleBar style={{ maxHeight: height-260||400 }}>
                     {menuItems.map((item, key:number)=>(
-                        <li 
-                            key={`menu-item-${key}`} 
-                            className={`${item.path==pathname?`active`:''} text`}
-                            onClick={()=>{
-                                router.push(item.path, undefined, { shallow: true })
-                            }}
-                        >
-                            {item.icon}
-                            <p>{item.title}</p>
-                        </li>
+                        <MenuItem item={item} key={`menu-item-${key}`} pathname={pathname}  />
                     ))}
                   </SimpleBar>
                 </ul>
@@ -59,5 +51,30 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
                 </ul>
                 <p className="text-yukgetir-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinvoa Bilişim A.Ş.</p>
             </div>  
+    )
+}
+
+export const MenuItem = ({item, pathname}:any) => {
+    const router = useRouter();
+    const ref = useRef(null);
+    return(
+        <li 
+            ref={ref}
+            className={`${item.path==pathname?`active`:''} text`}
+            onClick={()=>{
+                router.push(item.path, undefined, { shallow: true })
+            }}
+            onMouseDown={(e:any)=>{
+                e.preventDefault()
+                if(e.button === 1 )
+                    window.open(item.path, "_blank")    
+
+                if(e.which === 3)
+                    window.open(item.path, "_blank")       
+            }}
+        >
+            {item.icon}
+            <p>{item.title}</p>
+        </li>
     )
 }

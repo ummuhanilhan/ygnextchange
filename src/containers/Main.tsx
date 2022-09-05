@@ -29,7 +29,7 @@ export const MainContainer = ({children}:any) => {
               mobile={mobile}
               setMobile={setMobile}
             />
-            <div className="content mt-3">
+            <div className="content mb-14 h-auto">
               {children}
             </div>
           </div>

@@ -8,7 +8,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@utils/validations/account";
 import classNames from "classnames";
-import { IconFrame } from "@components/frames/IconFrame";
+import { IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
 
 export type SignupValues = {
@@ -70,7 +70,7 @@ export const Account = () => {
     return (
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
-            className="flex items-center justify-start flex-col h-screen informations" id="profile">
+            className="flex items-center justify-start flex-col h-full informations" id="profile">
                 <ProfileInformation control={control} setSelected={setSelected} selected={selected} />
                 <div className={classNames(' w-full',{'hidden':selected!=AccountType.ChangePassword})} ></div>
             </form>
@@ -84,7 +84,7 @@ Account.Layout = PrivateLayout
 export default Account;
 
 export const ProfileInformation = ({control, selected, setSelected}:any) =>{
-    const [type, setType] = React.useState(false)
+    const [type, setType] = React.useState(true)
     return(
         <div className={classNames('w-full',{'hidden':selected!=AccountType.Profile})} >
             <ul className='w-full'>
@@ -100,19 +100,17 @@ export const ProfileInformation = ({control, selected, setSelected}:any) =>{
 
 export const Corporate = ({control, corporate, setCorporate}:any) => {
     const [type, setType] = React.useState(false)
-    const [status, setStatus] = React.useState(false)
+    const [status, setStatus] = React.useState(true)
 
     return(
         <li className="personal flex items-start flex-col"> 
-            <div className="centerize cursor-pointer" onClick={()=>{
-                setCorporate(!corporate)
-                setStatus(!status)
-            }}>
+            <div className="centerize cursor-pointer" onClick={()=>setStatus(!status)}>
                 <People className="menu-icon" /> 
-                {corporate ? <p>Kurumsal Bilgilerim</p> : <p>Bireysel Bilgilerim</p> } 
-                {status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
+                <p> {corporate ? 'Kurumsal' : 'Kişisel' } Bilgilerim</p>  
+                {!status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
             </div>
-            <div className={classNames({'hidden':status}, 'w-full')}>
+            
+            <div className={classNames({'hidden':!status}, 'w-full')}>
 
                 <div className="grid grid-cols-2 gap-2 w-full mb-4">
                     <div className="flex items-start w-full gap-3">
@@ -127,8 +125,11 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     </div>
                     <div>
                       <IconFrame icon={<TextareaResize className="menu-icon" />} title="Üyelik Tipi" />
-                      <div className="type border border-yukgetir-blue rounded-md p-2 py-4 w-full cursor-pointer">
-                            <p className="text-yukgetir-blue">Kurumsal Üyelik</p>
+                      <div 
+                        onClick={()=>setCorporate(!corporate)}
+                        className="type border border-yukgetir-blue rounded-md p-2 py-4 w-full cursor-pointer"
+                        >
+                            <p className="text-yukgetir-blue">{corporate ? 'Kurumsal':'Bireysel'} Üyelik</p>
                       </div>
                         
                     </div>
@@ -160,58 +161,76 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
 }
 
 export const Personal = ({control}:any) => {
-    const [status, setStatus] = React.useState(false)
+    const [status, setStatus] = React.useState(true)
 
     return(
         <li> 
-        <a href="#" className="centerize">
-            <Person className="menu-icon" /> <p>Kişisel Bilgilerim</p> <FiChevronRight size={15} /> 
-        </a>
-        <div className="">
+       
+        <IconFrameDropdown 
+            icon={<Person className="menu-icon" />}
+            title='Kişisel Bilgilerim'
+            status={status}
+            setStatus={setStatus}
+        />
+        {status && (
+             <div className="">
 
         
-        </div>
+             </div>
+        )}
     </li>
     )
 }
 
 export const DriverLicense = ({control}:any) => {
-    const [status, setStatus] = React.useState(false)
+    const [status, setStatus] = React.useState(true)
 
     return(
         <li> 
-        <a href="#" className="centerize">
-        <CreditCard2Front className="menu-icon" /> <p>Sürücü Bilgilerim</p> <FiChevronRight size={15} /> 
-        </a>
-        <div>
-             <div className="grid grid-cols-2 gap-2">
-                <FloatLabelHook name="driver" type="text" placeholder="Sürücü Bilgilerim" example="" control={control} />
-                <MultiSelectHook name="licence_year" control={control} placeholder="Ehliyet Tescil Yılı"  />                 
+            <IconFrameDropdown 
+                icon={<CreditCard2Front className="menu-icon" />}
+                title='Sürücü Bilgilerim'
+                status={status}
+                setStatus={setStatus}
+            />
+            
+            {status&&(
+                <div>
+                <div className="grid grid-cols-2 gap-2">
+                    <FloatLabelHook name="driver" type="text" placeholder="Sürücü Bilgilerim" example="" control={control} />
+                    <MultiSelectHook name="licence_year" control={control} placeholder="Ehliyet Tescil Yılı"  />                 
+                </div>
+    
+                <div className="grid grid-cols-3 gap-2 mt-2">
+                    <FileUploadHook name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
+                    <FileUploadHook name="src_file" control={control} placeholder="Src Belgesi Ekle"  />
+                    <FileUploadHook name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
+                </div>
+    
             </div>
-
-            <div className="grid grid-cols-3 gap-2 mt-2">
-                <FileUploadHook name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
-                <FileUploadHook name="src_file" control={control} placeholder="Src Belgesi Ekle"  />
-                <FileUploadHook name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
-            </div>
-
-        </div>
+            )}
         </li>
     )
 }
 
 export const Healthy = ({control}:any) => {
-    const [status, setStatus] = React.useState(false)
+    const [status, setStatus] = React.useState(true)
 
     return(
         <li> 
-            <a href="#" className="centerize">
-            <HeartPulse className="menu-icon" /> <p>Sağlık Bilgilerim</p> <FiChevronRight size={15} /> 
-            </a>
-            <div className="grid grid-cols-2 gap-2">
-                <FloatLabelHook name="bloodgroup" type="text" placeholder="Kan Grubu" example="" control={control} />
-                <FloatLabelHook name="disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
-            </div>
+            <IconFrameDropdown 
+                icon={<HeartPulse className="menu-icon" />}
+                title='Sağlık Bilgilerim'
+                status={status}
+                setStatus={setStatus}
+            />
+            
+            {status&&(
+                <div className="grid grid-cols-2 gap-2">
+                    <FloatLabelHook name="bloodgroup" type="text" placeholder="Kan Grubu" example="" control={control} />
+                    <FloatLabelHook name="disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
+                </div>
+            )}
         </li>
     )
 }
@@ -221,7 +240,7 @@ export const FormFooter = ({control, label, check}:any) => {
     return (
         <React.Fragment>
             {check && (
-                 <div className="mt-5 flex items-start my-1">
+                 <div className="mt-5 flex items-start my-1 mb-5">
                     <CheckboxHook name="accept" label={label} control={control} />
                 </div>
             )}

@@ -30,7 +30,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                     "flex items-center border-l-[.4rem] border-yukgetir-orange",
                 {hidden: !mobile}
                 )} 
-                onClick={()=>router.push('/account/vehicles/create', undefined, 
+                onClick={()=>router.push('/vehicles/create', undefined, 
                 { shallow: true })}>
                     <Truck className="menu-icon orange" /> <p className="hidden sm:block">Aracım Var</p> </li>
             </ul>
