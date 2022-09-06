@@ -154,9 +154,7 @@ export const VehicleRadioHook = ({
         )}
     />
     )
-}
-
-
+} 
 
 
 const cities = [
@@ -197,6 +195,29 @@ export const MultiSelectHook = ({
     )
 }
 
+export const SelectHook = ({
+    control, 
+    name,
+    label,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <div>
+                
+            </div>
+        )}
+    />
+    )
+}
 
 
 export const CalendarHook = ({
@@ -228,7 +249,6 @@ export const CalendarHook = ({
     />
     )
 }
-
 
 
 
@@ -269,9 +289,6 @@ export const AvatarHook = ({
 }
 
 
-
-
-
 export const FileUploadHook = ({
     control, 
     name,
@@ -303,3 +320,27 @@ export const FileUploadHook = ({
 }
 
 
+
+export const MultiTagHook = ({
+    control, 
+    name,
+    label,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <div>
+
+            </div>
+        )}
+    />
+    )
+}

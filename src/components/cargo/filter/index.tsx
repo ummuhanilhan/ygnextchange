@@ -8,6 +8,9 @@ import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { View } from "../view";
+import { MultiSelectHook } from "@shared/elements/hooks";
+import classNames from "classnames";
+import Outside from "@utils/useoutside";
 
 export type FilterValues = {
     name: string,
@@ -29,6 +32,7 @@ export const CargoFilter = () => {
 
 const Filter = ({}:any) => {
     const [ref, { height }]:any = useDimensions();
+    const [sync, setSync] = React.useState(false);
     const form = useForm<FilterValues>({
         defaultValues: initialValues,
         // resolver: yupResolver(),
@@ -44,16 +48,15 @@ const Filter = ({}:any) => {
     };
     return (
         <div className="filter bg-yukgetir-lightblue sticky top-4 left-0 h-0 p-1 rounded-md w-[15em]" ref={ref}>
-            <SimpleBar style={{ maxHeight: height-160||400 }}>
-              <form onSubmit={handleSubmit(onSubmit, onError)}>
-                <Search control={control} />
-                <Location control={control} />
-                <Dates control={control} />
-                <Hiring control={control} />
-                <VehicleType control={control} />
-                <VehicleFeatures control={control} />
-                <VehicleOptions control={control} />
-                
+            <SimpleBar style={{ maxHeight: '85vh',  }} className='pb-4'>
+                <form onSubmit={handleSubmit(onSubmit, onError)}>
+                    <Search control={control} />
+                    <Location control={control} />
+                    <Dates control={control} />
+                    <Hiring control={control} />
+                    <VehicleType control={control} />
+                    <VehicleFeatures control={control} />
+                    <VehicleOptions control={control} />
                 </form>
             </SimpleBar>
         </div>
@@ -61,7 +64,7 @@ const Filter = ({}:any) => {
 }
 
 
-export const Search = () => {
+export const Search = ({control}:any) => {
     return(
         <div className="search bg-white p-1 flex justify-between">
             <input type="text" className="bg-transparent border-0 w-full text-gray-500 px-1 outline-none" />
@@ -79,6 +82,10 @@ export const Location = ({control}:any) => {
             setStatus={setStatus} 
             icon={<PinMap className="fill-yukgetir-blue" width={19} />} title="Konum" />
 
+            <div className={classNames({hidden:!status})}>
+                <MultiSelectHook name="load" control={control} placeholder="Yükleme yeri"  />                 
+                <MultiSelectHook name="unload" control={control} placeholder="Boşaltma yeri"  />                 
+            </div>
         </React.Fragment>
     )
 }
@@ -91,7 +98,9 @@ export const Dates = ({control}:any) => {
              status={status}
              setStatus={setStatus} 
             icon={<Calendar className="fill-yukgetir-blue" width={19} />} title="Tarih" />
+            <div className={classNames({hidden:!status})}>
 
+            </div>
         </React.Fragment>
     )
 }
@@ -104,7 +113,9 @@ export const Hiring = ({control}:any) => {
              status={status}
              setStatus={setStatus} 
             icon={<CircleHalf className="fill-yukgetir-blue" width={15} />} title="Kiralama Tipi" />
+            <div className={classNames({hidden:!status})}>
 
+            </div>
         </React.Fragment>
     )
 }
@@ -117,7 +128,9 @@ export const VehicleType = ({control}:any) => {
              status={status}
              setStatus={setStatus} 
             icon={<Truck className="fill-yukgetir-blue" width={19} />} title="Araç Tipi" />
-
+            <div className={classNames({hidden:!status})}>
+                <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+            </div>
         </React.Fragment>
     )
 }
@@ -130,7 +143,9 @@ export const VehicleFeatures = ({control}:any) => {
              status={status}
              setStatus={setStatus} 
             icon={<FilePlus className="fill-yukgetir-blue" width={19} />} title="Araç Özellikleri" />
-
+            <div className={classNames({hidden:!status})}>
+                <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+            </div>
         </React.Fragment>
     )
 }
@@ -143,7 +158,9 @@ export const VehicleOptions = ({control}:any) => {
              status={status}
              setStatus={setStatus} 
             icon={<FileText className="fill-yukgetir-blue" width={19} />} title="Donanım Özellikleri" />
-
+            <div className={classNames({hidden:!status})}>
+                 <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+            </div>
         </React.Fragment>
     )
 }
@@ -156,7 +173,9 @@ export const RangePrice = ({control}:any) => {
              status={status}
              setStatus={setStatus} 
             icon={<Cash className="fill-yukgetir-blue" width={21} />} title="Fiyat Aralığı" />
-
+            <div className={classNames({hidden:!status})}>
+                 <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+            </div>
         </React.Fragment>
     )
 }
