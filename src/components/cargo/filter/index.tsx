@@ -51,6 +51,8 @@ const Filter = ({}:any) => {
             <SimpleBar style={{ maxHeight: '85vh',  }} className='pb-4'>
                 <form onSubmit={handleSubmit(onSubmit, onError)}>
                     <Search control={control} />
+                    <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
+                    <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>
                     <Location control={control} />
                     <Dates control={control} />
                     <Hiring control={control} />
