@@ -1,3 +1,4 @@
+import { CargoFilter } from "@components/cargo/filter";
 import PrivateLayout from "@layouts/PrivateLayout";
 import { FloatingLabelInput } from "@shared/elements/inputs";
 
@@ -5,11 +6,7 @@ import { FloatingLabelInput } from "@shared/elements/inputs";
 export const Cargo = () => {
 
     return (
-        <div>
-            <h1 className="text-2xl">Cargo</h1>
-                 
-
-        </div>
+        <CargoFilter />
     )
 }
 
