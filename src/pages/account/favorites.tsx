@@ -2,6 +2,7 @@ import PrivateLayout from "@layouts/PrivateLayout";
 import { AccountLayout } from "@layouts/AccountLayouts";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { View } from "@components/cargo/view";
 
 export type FavoriteValues = {
     password: string,
@@ -31,8 +32,7 @@ export const Favorites = () => {
     };
     return (
         <AccountLayout>
-            <h1 className="text-3xl">Favorites</h1>
-           
+            <View wide />
          </AccountLayout>
     )
 }

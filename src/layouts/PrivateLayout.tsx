@@ -13,9 +13,7 @@ export const Private = ({children}: DefaultState) => {
         <div className="flex flex-center items-center">
             <div className="max-w-[1669px] w-full">
             <Main>
-                <Frame>
                     {children}
-                </Frame>
             </Main>
         </div>
         </div>

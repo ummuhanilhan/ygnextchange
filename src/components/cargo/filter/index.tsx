@@ -11,6 +11,7 @@ import { View } from "../view";
 import { MultiSelectHook } from "@shared/elements/hooks";
 import classNames from "classnames";
 import Outside from "@utils/useoutside";
+import { DoubleFrame } from "@components/frames/MainFrame";
 
 export type FilterValues = {
     name: string,
@@ -23,10 +24,12 @@ const initialValues = {
 export const CargoFilter = () => {
 
     return (
-        <div id="cargoes" className="relative">
-            <Filter />
-           <View />
-        </div>
+          <div id="cargoes" className="relative">
+              <DoubleFrame>
+                    <Filter />
+                <View />
+            </DoubleFrame>
+            </div>
     )
 }
 
@@ -47,9 +50,10 @@ const Filter = ({}:any) => {
 
     };
     return (
-        <div className="filter bg-yukgetir-lightblue sticky top-4 left-0 h-0 p-1 rounded-md w-[15em]" ref={ref}>
-                <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col h-[80vh] justify-between'>
-                  <SimpleBar style={{ maxHeight: '65vh',  }} className='pb-4'>
+        <div className="filter bg-gray-50 sticky top-4 left-0 h-0 rounded-md w-[18em]" ref={ref}>
+                <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col h-[80vh] justify-between 
+                bg-gray-50 p-3 rounded-lg'>
+                  <SimpleBar style={{ maxHeight: '65vh',  }} className='pb-1'>
                         <Search control={control} />
                         <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
                         <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>

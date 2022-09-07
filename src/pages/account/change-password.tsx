@@ -22,7 +22,7 @@ const initialValues = {
 }
 
 export const ChangePassword = () => {
-    const [status, setStatus] = React.useState(false)
+    const [status, setStatus] = React.useState(true)
 
     const form = useForm<ResetValues>({
         defaultValues: initialValues,
@@ -46,13 +46,13 @@ export const ChangePassword = () => {
                 setStatus={setStatus}
             />
            {status && (
-             <div className="grid grid-cols-3 gap-2 mb-2">
+             <div className="grid grid-cols-3 gap-2 mb-2 change-password">
                 <FloatLabelHook name="old" type="password" placeholder="Eski Şifrenizi Giriniz" example="" control={control} />
                 <FloatLabelHook name="passowrd" type="password" placeholder="Yeni Şifreniz" example="" control={control} />
                 <FloatLabelHook name="confirm" type="password" placeholder="Yeni Şifrenizi Tekrar Giriniz" example="" control={control} />
             </div>
            )}
-            <FormFooter />
+          <div className="my-3 mt-5"><FormFooter /></div>
         </AccountLayout>
     )
 }

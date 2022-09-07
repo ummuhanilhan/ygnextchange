@@ -53,3 +53,10 @@
 #signup{}
 #fogotten{}
 #reset{}
+
+
+.change-password{
+    .input{
+        @apply bg-white;
+    }
+}

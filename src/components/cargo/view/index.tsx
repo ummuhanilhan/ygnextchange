@@ -11,14 +11,20 @@ const items = [
     {type:false, vat:true, corporate:true, price:'7.35', currency:'₺', tax:false, fav:false, view:76413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'15 Ton', date:'22.07.2012 - 03.00.2022', load:'Adana', unload:'Ardahan', distance:'3420KM',  },
     {type:false, vat:true, corporate:false, price:'342.875', currency:'₺', tax:true, fav:true, view:8135, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'2 Ton', date:'22.07.2022 - 25.08.2022', load:'Konya', unload:'Diyarakır', distance:'1500KM',  },
     {type:true, vat:false, corporate:true, price:'19.255', currency:'₺', tax:false, fav:true, view:91413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'5 Ton', date:'22.07.2012 - 03.00.2022', load:'Yozgat', unload:'Hatay', distance:'43420KM',  },
+    {type:true, vat:false, corporate:false, price:'93.78', currency:'₺', tax:true, fav:true, view:18413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'55 Ton', date:'22.07.2012 - 03.00.2022', load:'İstanbul', unload:'Çanakkale', distance:'53420KM',  },
 ]
 
-export const View = ({}:any) => {
+export const View = ({wide}:any) => {
 
     return (
-        <div className='view rounded-md bg-yukgetir-lightblue ml-[15.5em]'>
-            <Heading />
-            {items.map((item,i:number)=>(
+        <div className={classNames('view rounded-lg bg-gray-50 h-full',{'ml-[18.8em] p-3':!wide})}>
+            <Heading wide />
+            {[
+            ...items
+            ,...items
+            ,...items
+            ,...items
+            ].map((item,i:number)=>(
                 <Item item={item} key={`cargo-item-${i}`} />
             ))}
             <SimplePagination />
@@ -29,7 +35,7 @@ export const View = ({}:any) => {
 const Item = ({item}:any) => {
 
     return (
-        <div className="cargo-item bg-white p-2 px-4 mb-2 rounded-lg">
+        <div className="cargo-item bg-white px-4 my-3 rounded-lg py-4">
             <div className="flex justify-between">
                 <div className="flex items-start">
                     <div className="tag rounded-lg p-1 px-3 border border-1 
@@ -82,15 +88,15 @@ const Item = ({item}:any) => {
                 <div className='flex items-end'>
                     <div className='view flex flex-col items-center mr-2'><Eye width={15} className='fill-gray-400' />
                      <p className='text-gray-400 text-sm'>{item.view}</p></div>
-                    <div className='heart rounded-md border border-1 border-yukgetir-orange h-[2.2em] w-[2.2em] flex
+                    <div className='heart rounded-md border border-1 border-yukgetir-orange h-[1.85em] w-[1.85em] flex
                         items-center justify-center mr-2 cursor-pointer hover:bg-yukgetir-lightblue'> 
-                        {item.fav ? <HeartFill width={20} className='fill-yukgetir-orange' /> : <Heart width={20} className='fill-yukgetir-orange' />}
+                        {item.fav ? <HeartFill width={15} className='fill-yukgetir-orange' /> : <Heart width={15} className='fill-yukgetir-orange' />}
                      </div>
-                    <div className='button p-2 px-6 bg-yukgetir-orange 
+                    <div className='button py-1 px-6 bg-yukgetir-orange 
                     border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-orange hover:bg-transparent hover:text-yukgetir-orange 
                     text-white cursor-pointer text-sm
                     rounded-md inline-block mr-1'>Detay Gör</div>
-                    <div className='button p-2 px-6 bg-yukgetir-blue 
+                    <div className='button py-1 px-6 bg-yukgetir-blue 
                     border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-blue hover:bg-transparent hover:text-yukgetir-blue 
                     text-white cursor-pointer text-sm
                     rounded-md inline-block ml-1'>Teklif Gönder</div>
@@ -100,11 +106,11 @@ const Item = ({item}:any) => {
     )
 }
 
-export const Heading = () => {
+export const Heading = ({wide}:any) => {
 
     return (
         <div className='heading'>
-            <div className='flex justify-between items-center w-full'>
+            <div className='flex justify-between items-center w-full bg-white py-3 px-2'>
                 <div className='flex items-center justify-center text-base'>
                     <p>Her sayfada</p>
                     <p className='text-yukgetir-orange ml-2 mr-1'>25</p>
@@ -117,7 +123,7 @@ export const Heading = () => {
                     <div><FaChevronRight size={17} className='text-gray-400' /> </div>
                 </div>
             </div>
-            <Selectes />
+            {!wide && <Selectes />}
         </div>
     )
 }
@@ -165,7 +171,7 @@ const selected = [
 export const Selectes = () => {
 
     return (
-        <div className='w-full inline-block'>
+        <div className='w-full inline-block mt-2 mb-1'>
             <ul className=''>
                 {selected.map((item,i:number)=>(
                     <li key={`selected-${i}`} className='flex justify-between items-center cursor-pointer px-3 p-1 mr-2 mt-2 
