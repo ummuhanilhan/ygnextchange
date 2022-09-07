@@ -48,19 +48,30 @@ const Filter = ({}:any) => {
     };
     return (
         <div className="filter bg-yukgetir-lightblue sticky top-4 left-0 h-0 p-1 rounded-md w-[15em]" ref={ref}>
-            <SimpleBar style={{ maxHeight: '85vh',  }} className='pb-4'>
-                <form onSubmit={handleSubmit(onSubmit, onError)}>
-                    <Search control={control} />
-                    <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
-                    <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>
-                    <Location control={control} />
-                    <Dates control={control} />
-                    <Hiring control={control} />
-                    <VehicleType control={control} />
-                    <VehicleFeatures control={control} />
-                    <VehicleOptions control={control} />
-                </form>
-            </SimpleBar>
+                <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col h-[80vh] justify-between'>
+                  <SimpleBar style={{ maxHeight: '65vh',  }} className='pb-4'>
+                        <Search control={control} />
+                        <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
+                        <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>
+                        <Location control={control} />
+                        <Dates control={control} />
+                        <Hiring control={control} />
+                        <VehicleType control={control} />
+                        <VehicleFeatures control={control} />
+                        <VehicleOptions control={control} />
+                    </SimpleBar>
+                    <div className="flex flex-col">
+                        <button type="submit" className='button p-2 px-6 bg-yukgetir-blue 
+                            border border-transparent hover:bg-yukgetir-transparent
+                            hover:border-yukgetir-blue hover:bg-transparent hover:text-yukgetir-blue 
+                            text-white cursor-pointer text-sm mb-2 flex justify-center rounded-md'>Filtrele</button>
+                        <button className='button p-2 px-6 bg-yukgetir-orange 
+                            border border-transparent hover:bg-yukgetir-transparent
+                            hover:border-yukgetir-orange hover:bg-transparent hover:text-yukgetir-orange 
+                            text-white cursor-pointer text-sm flex justify-center rounded-md'>Temizle</button>
+                        
+                    </div>
+                </form>            
         </div>
     )
 }

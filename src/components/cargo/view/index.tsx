@@ -5,12 +5,12 @@ import { FaChevronRight, FaMinusCircle } from "react-icons/fa"
 import { FiArrowLeft, FiArrowRight, FiMinusCircle, FiXCircle } from "react-icons/fi"
 
 const items = [
-    {type:true, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
+    {type:true, vat:false, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
     vehicle:'Tır 13.60 Açık', weight:'27 Ton', date:'22.07.2022 - 25.08.2022', load:'Ankara', unload:'Mersin', 
     distance:'500KM',  },
-    {type:false, corporate:true, price:'7.35', currency:'₺', tax:false, fav:false, view:76413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'15 Ton', date:'22.07.2012 - 03.00.2022', load:'Adana', unload:'Ardahan', distance:'3420KM',  },
-    {type:false, corporate:false, price:'342.875', currency:'₺', tax:true, fav:true, view:8135, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'2 Ton', date:'22.07.2022 - 25.08.2022', load:'Konya', unload:'Diyarakır', distance:'1500KM',  },
-    {type:true, corporate:true, price:'19.255', currency:'₺', tax:false, fav:true, view:91413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'5 Ton', date:'22.07.2012 - 03.00.2022', load:'Yozgat', unload:'Hatay', distance:'43420KM',  },
+    {type:false, vat:true, corporate:true, price:'7.35', currency:'₺', tax:false, fav:false, view:76413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'15 Ton', date:'22.07.2012 - 03.00.2022', load:'Adana', unload:'Ardahan', distance:'3420KM',  },
+    {type:false, vat:true, corporate:false, price:'342.875', currency:'₺', tax:true, fav:true, view:8135, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'2 Ton', date:'22.07.2022 - 25.08.2022', load:'Konya', unload:'Diyarakır', distance:'1500KM',  },
+    {type:true, vat:false, corporate:true, price:'19.255', currency:'₺', tax:false, fav:true, view:91413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'5 Ton', date:'22.07.2012 - 03.00.2022', load:'Yozgat', unload:'Hatay', distance:'43420KM',  },
 ]
 
 export const View = ({}:any) => {
@@ -52,12 +52,12 @@ const Item = ({item}:any) => {
                 </div>
                 <div className='flex items-end flex-col'>
                     <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
-                    {item.tax && <p className='text-gray-300 text-sm'>(KDV Dahil)</p>}
+                    <p className='text-gray-400 text-sm'>({item.vat?'KDV Dahil':'+KDV'})</p>
                 </div>
             </div>
             <div className="flex justify-between mt-[-1em]">
                 <div className={classNames({
-                     'mt-6':!item.tax 
+                     'mt-6-':item.tax 
                 })}>
                     <ul className='mt-1'>
                         <li className='flex items-start'>
@@ -93,7 +93,7 @@ const Item = ({item}:any) => {
                     <div className='button p-2 px-6 bg-yukgetir-blue 
                     border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-blue hover:bg-transparent hover:text-yukgetir-blue 
                     text-white cursor-pointer text-sm
-                    rounded-md inline-block ml-1'>Telif Gönder</div>
+                    rounded-md inline-block ml-1'>Teklif Gönder</div>
                 </div>
             </div>
         </div>
@@ -131,11 +131,11 @@ export const SimplePagination = () => {
                 <div className='flex items-center'>
                     <div className=''><ArrowLeftCircle width={21} className='fill-yukgetir-blue mx-2 cursor-pointer' /></div>
                     <ul className="flex items-center">
-                        <li className="text-yukgetir-blue mx-1 text-lg cursor-pointer">1</li>
-                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">2</li>
-                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">3</li>
-                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">...</li>
-                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">10</li>
+                        <li className="text-yukgetir-blue mx-3 text-lg cursor-pointer">1</li>
+                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">2</li>
+                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">3</li>
+                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">...</li>
+                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">10</li>
                     </ul>
                     <div className=''><ArrowRightCircle width={21} className='fill-yukgetir-blue mx-2 cursor-pointer' /></div>
                 </div>
