@@ -1,5 +1,6 @@
 import { ArrowLeftCircle, ArrowRightCircle, ArrowRightShort, Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
+import React from "react"
 import { FaChevronRight, FaMinusCircle } from "react-icons/fa"
 import { FiArrowLeft, FiArrowRight, FiMinusCircle, FiXCircle } from "react-icons/fi"
 
@@ -67,11 +68,13 @@ const Item = ({item}:any) => {
                             <Clock width={17} className='fill-yukgetir-blue mr-2 mb-1' />
                             <p className="text-yukgetir-blue text-sm mr-2">Boşaltma Zamanı:</p>
                              <p className='text-gray-400 text-sm'>{item.time}</p> </li>
+                    </ul>
+                    <ul className='flex items-start'>
                         <li className='flex items-start'>
                             <Truck width={17} className='fill-yukgetir-blue mr-2 mb-1' />
                             <p className="text-yukgetir-blue text-sm mr-2">Araç Tipi:</p>
                              <p className='text-gray-400 text-sm'>{item.vehicle}</p> </li>
-                        <li className='flex items-start'>
+                        <li className='flex items-start ml-8'>
                             <Capslock width={17} className='fill-yukgetir-blue mr-2 mb-1' />
                              <p className='text-gray-400 text-sm'>{item.weight}</p> </li>
                     </ul>
@@ -122,28 +125,30 @@ export const Heading = () => {
 export const SimplePagination = () => {
 
     return (
-        <div className='simple-pagination flex justify-between bg-white rounded-md py-2 pr-2 my-2 mt-3'>
-            <div></div>
-            <div className='flex items-center'>
-                <div className=''><ArrowLeftCircle width={21} className='fill-yukgetir-blue mx-2' /></div>
-                <ul className="flex items-center">
-                    <li className="text-yukgetir-blue mx-1 text-lg">1</li>
-                    <li className="text-gray-400 mx-1 text-lg">2</li>
-                    <li className="text-gray-400 mx-1 text-lg">3</li>
-                    <li className="text-gray-400 mx-1 text-lg">...</li>
-                    <li className="text-gray-400 mx-1 text-lg">10</li>
-                </ul>
-                <div className=''><ArrowRightCircle width={21} className='fill-yukgetir-blue mx-2' /></div>
-            </div>
-            <div className='flex items-end '>
-                <div className="border border-1 border-yukgetir-blue rounded-md p-1 flex justify-between">
-                    <input type="text" className='px-2 border-none outline-none w-22' />
-                    <div className='bg-yukgetir-blue'>
-                         <ArrowRightShort width={21} className='fill-white' />
+        <React.Fragment>
+            <div className='simple-pagination flex justify-between bg-white rounded-md py-2 pr-2 my-2 mt-3'>
+                <div></div>
+                <div className='flex items-center'>
+                    <div className=''><ArrowLeftCircle width={21} className='fill-yukgetir-blue mx-2 cursor-pointer' /></div>
+                    <ul className="flex items-center">
+                        <li className="text-yukgetir-blue mx-1 text-lg cursor-pointer">1</li>
+                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">2</li>
+                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">3</li>
+                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">...</li>
+                        <li className="text-gray-400 mx-1 text-lg cursor-pointer">10</li>
+                    </ul>
+                    <div className=''><ArrowRightCircle width={21} className='fill-yukgetir-blue mx-2 cursor-pointer' /></div>
+                </div>
+                <div className='flex items-end '>
+                    <div className="border border-1 border-yukgetir-blue rounded-md p-1 flex justify-between">
+                        <input type="number" className='px-2 border-none outline-none w-10' placeholder='' />
+                        <div className='bg-yukgetir-blue cursor-pointer'>
+                            <ArrowRightShort width={21} className='fill-white' />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+      </React.Fragment>
     )
 }
 
