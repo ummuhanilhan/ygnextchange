@@ -26,7 +26,7 @@ export const CargoFilter = () => {
     return (
           <div id="cargoes" className="relative">
               <DoubleFrame>
-                    <Filter />
+                <Filter />
                 <View />
             </DoubleFrame>
             </div>
@@ -54,7 +54,7 @@ const Filter = ({}:any) => {
                 <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col h-[80vh] justify-between 
                 bg-gray-50 p-3 rounded-lg'>
                   <SimpleBar style={{ maxHeight: '65vh',  }} className='pb-1'>
-                        <Search control={control} />
+                        <Search control={control} placeholder='İlan ara...' />
                         <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
                         <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>
                         <Location control={control} />
@@ -81,11 +81,11 @@ const Filter = ({}:any) => {
 }
 
 
-export const Search = ({control}:any) => {
+export const Search = ({control, placeholder}:any) => {
     return(
         <div className="search bg-white py-3 px-2 flex justify-between rounded-md">
             <input type="text" className="bg-transparent h-full border-0 w-full text-gray-500 px-1 outline-none" 
-            placeholder="İlan ara..." />
+            placeholder={placeholder} />
             <FaSearch className="fill-yukgetir-blue mx-1" size={18} />
         </div>
     )

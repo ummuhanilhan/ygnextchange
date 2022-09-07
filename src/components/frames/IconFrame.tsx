@@ -1,3 +1,4 @@
+import classNames from "classnames"
 import React from "react"
 import { FiChevronDown, FiChevronRight } from "react-icons/fi"
 
@@ -14,6 +15,25 @@ export const IconFrameDropdown = ({title, icon, status,setStatus, path}:any) => 
         <div className="centerize flex items-center mb-3 mt-1 justify-start cursor-pointer" onClick={()=>setStatus(!status)}>
             {icon} <p className="pr-2">{title}</p> {!status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
         </div>
+    )
+}
+
+ 
+export const IconFrameCovered = ({children, open, ...rest}:any) => {
+    const [status, setStatus] = React.useState(open||true);
+
+    return(
+        <React.Fragment>
+             <IconFrameDropdown 
+               onClick={()=>setStatus(!status)}
+               {...rest}
+               status={status}
+               setStatus={setStatus}
+            />
+            <div className={classNames({'hidden':!status})}>
+                {children}
+            </div>
+        </React.Fragment>
     )
 }
 
