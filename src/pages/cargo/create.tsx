@@ -1,15 +1,16 @@
+import CargoCreate from "@components/cargo/form";
 import PrivateLayout from "@layouts/PrivateLayout";
 
 
-export const CargoCreate = () => {
+export const CargoCreatePage = () => {
 
     return (
         <div>
-            <h1 className="text-2xl">CargoCreate</h1>
+            <CargoCreate update />
         </div>
     )
 }
 
-CargoCreate.Layout = PrivateLayout;
+CargoCreatePage.Layout = PrivateLayout;
 
-export default CargoCreate;
+export default CargoCreatePage;

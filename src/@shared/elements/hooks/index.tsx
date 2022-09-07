@@ -9,15 +9,14 @@ import { FileUpload } from 'primereact/fileupload';
 import React from "react"
 import { CloudArrowUp } from "@shared/icons"
 import { FiXCircle } from "react-icons/fi"
-import { Switcher } from "../switchers"
-
-
+ 
 export const FloatLabelHook = ({
     control, 
     placeholder,
     name,
     textarea,
     type,
+    disabled,
     ...rest
 }:{ 
     control: Control<any>, 
@@ -26,6 +25,7 @@ export const FloatLabelHook = ({
     textarea?:boolean,
     name:string,
     type:string,
+    disabled?:boolean,
   }) => {
 
     return (
@@ -153,7 +153,34 @@ export const VehicleRadioHook = ({
     )
 } 
 
+export const SwithcherHook = ({
+    control, 
+    name,
+    label,
+    ...rest
+}:any) => {
 
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <Switcher
+                onBlur={onBlur}  
+                onChange={onChange}  
+                value={value}
+                error={error}
+                name={name}
+                {...rest}
+            />
+        )}
+    />
+    )
+} 
 
 const cities = [
     {name: 'İstanbul', code: 'IST'},

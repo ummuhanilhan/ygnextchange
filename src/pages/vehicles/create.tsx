@@ -7,6 +7,7 @@ import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelP
 import React from "react";
 import { TitleFrame, TitleFrameCovered } from "@components/frames/TitleFrame";
 import { FormFooter } from "@pages/account";
+import { Frame } from "@components/frames/MainFrame";
 
 export type SignupValues = {
     brand: object[],
@@ -45,7 +46,8 @@ export const VehicleCreate = () => {
     };
 
      return (
-       <div id="vehicles">
+      <Frame>
+        <form onSubmit={handleSubmit(onSubmit, onError)} id="vehicles">
           <div className="grid grid-cols-2 gap-2 w-full">
               <TitleFrame title="Araç Markası">
                 <MultiSelectHook name="brand" control={control} placeholder="Araç Özellikleri Seçiniz" />                 
@@ -89,7 +91,8 @@ export const VehicleCreate = () => {
 
           </div>
          <FormFooter control={control} label="Araç Bilgilerim'in doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum." />
-       </div>
+       </form>
+      </Frame>
     )
 }
 

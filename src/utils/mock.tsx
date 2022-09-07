@@ -1,4 +1,4 @@
-import { BookmarkStar, ChatLeftText, Envelope, Gear, GeoAlt, Heart, ListCheck, ListStars, MessagePlus, Person, PersonCheck, PinMap, QuestionCircle, ShieldCheck, Smile, TruckFront } from "@yukgetir-icons";
+import { BookmarkStar, Calendar, ChatLeftText, Envelope, Gear, GeoAlt, Heart, ListCheck, ListStars, MessagePlus, MinecartLoaded, Person, PersonCheck, PinMap, QuestionCircle, ShieldCheck, Smile, Truck, TruckFront } from "@yukgetir-icons";
 
 export const menuItems = [
     {
@@ -121,5 +121,10 @@ export const profileTabMenu = [
     {id:3, title:'Adres Listem', icon: <GeoAlt className="menu-icon" />, path:'/account/address' },
     {id:4, title:'Favorilerim', icon: <Heart className="menu-icon" />, path:'/account/favorites' },
     {id:5, title:'Ayarlar', icon: <Gear className="menu-icon" />, path:'/account/settings' },
+]
 
+export const cargoTabMenu = [
+    {id:1, title:'Araç Özellikleri', icon: <Truck className="menu-icon" />, slug:'rent' },  
+    {id:2, title:'Tarih ve Konum', icon: <Calendar className="menu-icon" />, slug:'datetime' },
+    {id:3, title:'Yük Özellikleri', icon: <MinecartLoaded className="menu-icon" />, slug:'payload' },
 ]

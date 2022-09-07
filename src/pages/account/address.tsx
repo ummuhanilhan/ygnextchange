@@ -5,24 +5,35 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IconFrame, IconFrameCovered, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
 import React from "react";
-import { GeoAlt } from "@shared/icons";
+import { GeoAlt, Person } from "@shared/icons";
 import { Search } from "@components/cargo/filter";
-
-export type AddressValues = {
-    password: string,
-    confirm: string,
-    old_password: string,
-};
-
-const initialValues = {
-    password:'',
-    confirm:'',
-    old_password:'',
-}
+import { FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook } from "@shared/elements/hooks";
+import { FormFooter } from ".";
 
 export const Address = () => {
+    return (
+        <AccountLayout>
+            <AddressCreate />
+            <AddressList />
+        </AccountLayout>
+    )
+}
+
+Address.Layout = PrivateLayout;
+
+export default Address;
+
+export type AddressValues = {
+    name: string,
+};
+
+const addressValues = {
+    name:'',
+}
+
+export const AddressCreate = () => {
     const form = useForm<AddressValues>({
-        defaultValues: initialValues,
+        defaultValues: addressValues,
         // resolver: yupResolver(),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
@@ -35,15 +46,51 @@ export const Address = () => {
 
     };
     return (
-        <AccountLayout>
-            <AddressList />
-        </AccountLayout>
+        <React.Fragment>
+            <IconFrameCovered
+                icon={<GeoAlt className="menu-icon" />}
+                title='Adres Detay Bilgileri'
+            >
+                <form onSubmit={handleSubmit(onSubmit, onError)}>
+                    <div className="grid grid-cols-2 gap-2">
+                        <FloatLabelHook name="address" type="text" placeholder="Ankara Şirket Adresim" example="" control={control} />
+                        <FloatLabelHook name="address_search" type="text" placeholder="Mersin Lİmanı" example="" control={control} />
+                    </div>
+                    <div className='grid grid-cols-2 gap-2'>
+                        <div>
+                              <FloatLabelHook name="address_detail" type="text" 
+                              placeholder="Haritadan Seçili Adres Detayları" disabled example="" control={control} />
+                              <div className='grid grid-cols-2 gap-2'>
+                                <MultiSelectHook name="city" control={control} disabeld placeholder="İl Seçiniz"  />                 
+                                <MultiSelectHook name="district" control={control} disabeld placeholder="İlçe Seçiniz"  />    
+                              </div>
+                             <FloatLabelHook name="directions" type="text" placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
+                        </div>
+                        <div className="map">
+
+                        </div>
+                        <div></div>
+                    </div>
+                </form>
+            </IconFrameCovered>
+            <IconFrameCovered
+                icon={<Person className="menu-icon" />}
+                title='Adres İletişim Bilgileri'
+            >
+                <div className="grid grid-cols-3 gap-2 mb-2 change-password">
+                    <FloatLabelHook name="name" type="text" 
+                    placeholder="İsim Soyisim" example="" control={control} />
+                    <FloatLabelPhoneHook name="phone" type="text" 
+                    placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                    <FloatLabelHook name="email" type="text" 
+                    placeholder="Eposta Adresi" example="" control={control} />
+                </div>
+            </IconFrameCovered>
+
+            <FormFooter />
+        </React.Fragment>
     )
 }
-
-Address.Layout = PrivateLayout;
-
-export default Address;
 
 export const AddressList = () => {
 
