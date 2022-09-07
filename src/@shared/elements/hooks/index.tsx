@@ -9,6 +9,7 @@ import { FileUpload } from 'primereact/fileupload';
 import React from "react"
 import { CloudArrowUp } from "@shared/icons"
 import { FiXCircle } from "react-icons/fi"
+import { Switcher } from "../switchers"
 
 
 export const FloatLabelHook = ({
@@ -52,7 +53,6 @@ export const FloatLabelHook = ({
     )
 }
 
-
 export const FloatLabelPhoneHook = ({
     control, 
     placeholder,
@@ -91,7 +91,6 @@ export const FloatLabelPhoneHook = ({
     )
 }
 
-
 export const CheckboxHook = ({
     control, 
     name,
@@ -123,8 +122,6 @@ export const CheckboxHook = ({
     )
 }
 
-
-
 export const VehicleRadioHook = ({
     control, 
     name,
@@ -155,6 +152,7 @@ export const VehicleRadioHook = ({
     />
     )
 } 
+
 
 
 const cities = [
@@ -219,7 +217,6 @@ export const SelectHook = ({
     )
 }
 
-
 export const CalendarHook = ({
     control, 
     name,
@@ -249,9 +246,7 @@ export const CalendarHook = ({
     />
     )
 }
-
-
-
+ 
 export const AvatarHook = ({
     control, 
     name,
@@ -288,7 +283,6 @@ export const AvatarHook = ({
     )
 }
 
-
 export const FileUploadHook = ({
     control, 
     name,
@@ -318,8 +312,6 @@ export const FileUploadHook = ({
     />
     )
 }
-
-
 
 export const MultiTagHook = ({
     control, 

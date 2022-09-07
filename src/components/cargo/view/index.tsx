@@ -147,7 +147,8 @@ export const SimplePagination = () => {
                 </div>
                 <div className='flex items-end '>
                     <div className="border border-1 border-yukgetir-blue rounded-md p-1 flex justify-between">
-                        <input type="number" className='px-2 border-none outline-none w-10' placeholder='' />
+                        <input type="number" className='px-2 border-none outline-none text-center 
+                        text-yukgetir-blue w-12' placeholder='' />
                         <div className='bg-yukgetir-blue cursor-pointer'>
                             <ArrowRightShort width={21} className='fill-white' />
                         </div>
