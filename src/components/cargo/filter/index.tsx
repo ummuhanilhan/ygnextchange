@@ -68,8 +68,8 @@ const Filter = ({}:any) => {
 
 export const Search = ({control}:any) => {
     return(
-        <div className="search bg-white p-1 flex justify-between">
-            <input type="text" className="bg-transparent border-0 w-full text-gray-500 px-1 outline-none" />
+        <div className="search bg-white py-3 px-2 flex justify-between rounded-md">
+            <input type="text" className="bg-transparent h-full border-0 w-full text-gray-500 px-1 outline-none" />
             <FaSearch className="fill-yukgetir-blue mx-1" size={18} />
         </div>
     )

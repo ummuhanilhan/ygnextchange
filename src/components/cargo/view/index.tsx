@@ -1,7 +1,7 @@
-import { Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, Truck } from "@yukgetir-icons"
+import { ArrowLeftCircle, ArrowRightCircle, ArrowRightShort, Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import { FaChevronRight, FaMinusCircle } from "react-icons/fa"
-import { FiMinusCircle, FiXCircle } from "react-icons/fi"
+import { FiArrowLeft, FiArrowRight, FiMinusCircle, FiXCircle } from "react-icons/fi"
 
 const items = [
     {type:true, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
@@ -80,12 +80,16 @@ const Item = ({item}:any) => {
                     <div className='view flex flex-col items-center mr-2'><Eye width={15} className='fill-gray-400' />
                      <p className='text-gray-400 text-sm'>{item.view}</p></div>
                     <div className='heart rounded-md border border-1 border-yukgetir-orange h-[2.2em] w-[2.2em] flex
-                        items-center justify-center mr-2 cursor-pointer'> 
+                        items-center justify-center mr-2 cursor-pointer hover:bg-yukgetir-lightblue'> 
                         {item.fav ? <HeartFill width={20} className='fill-yukgetir-orange' /> : <Heart width={20} className='fill-yukgetir-orange' />}
                      </div>
-                    <div className='button p-2 px-6 bg-yukgetir-orange text-white cursor-pointer text-sm
+                    <div className='button p-2 px-6 bg-yukgetir-orange 
+                    border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-orange hover:bg-transparent hover:text-yukgetir-orange 
+                    text-white cursor-pointer text-sm
                     rounded-md inline-block mr-1'>Detay Gör</div>
-                    <div className='button p-2 px-6 bg-yukgetir-blue text-white cursor-pointer text-sm
+                    <div className='button p-2 px-6 bg-yukgetir-blue 
+                    border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-blue hover:bg-transparent hover:text-yukgetir-blue 
+                    text-white cursor-pointer text-sm
                     rounded-md inline-block ml-1'>Telif Gönder</div>
                 </div>
             </div>
@@ -118,8 +122,27 @@ export const Heading = () => {
 export const SimplePagination = () => {
 
     return (
-        <div className='simple-pagination'>
-
+        <div className='simple-pagination flex justify-between bg-white rounded-md py-2 pr-2 my-2 mt-3'>
+            <div></div>
+            <div className='flex items-center'>
+                <div className=''><ArrowLeftCircle width={21} className='fill-yukgetir-blue mx-2' /></div>
+                <ul className="flex items-center">
+                    <li className="text-yukgetir-blue mx-1 text-lg">1</li>
+                    <li className="text-gray-400 mx-1 text-lg">2</li>
+                    <li className="text-gray-400 mx-1 text-lg">3</li>
+                    <li className="text-gray-400 mx-1 text-lg">...</li>
+                    <li className="text-gray-400 mx-1 text-lg">10</li>
+                </ul>
+                <div className=''><ArrowRightCircle width={21} className='fill-yukgetir-blue mx-2' /></div>
+            </div>
+            <div className='flex items-end '>
+                <div className="border border-1 border-yukgetir-blue rounded-md p-1 flex justify-between">
+                    <input type="text" className='px-2 border-none outline-none w-22' />
+                    <div className='bg-yukgetir-blue'>
+                         <ArrowRightShort width={21} className='fill-white' />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
