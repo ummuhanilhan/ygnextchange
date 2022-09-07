@@ -3,8 +3,6 @@ import { MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 import { CircleFill, CircleHalf } from "@shared/icons";
 import React from "react";
  
- 
-
 export const Rent = ({control}:any) => {
  
     return (
@@ -29,12 +27,11 @@ export const Rent = ({control}:any) => {
                 </TitleFrame>
                         
                 <div className="grid grid-cols-1 w-full">
-                <TitleFrame title="Araç Tipi">
+                    <TitleFrame title="Araç Tipi">
                         <VehicleRadioHook name="type" control={control} />
-                </TitleFrame>
+                    </TitleFrame>
                 </div>
-                {/** <TitleFrame title="Araç Tipi"></TitleFrame> **/}
-                <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-2 gap-2'>
                     <TitleFrame title="Araç Özellikleri">
                         <MultiSelectHook name="feature" control={control} placeholder="Araç Özellikleri Seçiniz" />                 
                     </TitleFrame>

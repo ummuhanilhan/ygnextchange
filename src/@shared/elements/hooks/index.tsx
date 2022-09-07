@@ -9,6 +9,7 @@ import { FileUpload } from 'primereact/fileupload';
 import React from "react"
 import { CloudArrowUp } from "@shared/icons"
 import { FiXCircle } from "react-icons/fi"
+import { Toggle } from "../switchers"
  
 export const FloatLabelHook = ({
     control, 
@@ -169,7 +170,7 @@ export const SwithcherHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <Switcher
+            <Toggle
                 onBlur={onBlur}  
                 onChange={onChange}  
                 value={value}
