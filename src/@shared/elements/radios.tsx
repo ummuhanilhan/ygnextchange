@@ -18,7 +18,8 @@ export const VehicleRadio = ({
                 <li 
                     onClick={()=>onChange(item.title.toLocaleLowerCase())}
                     className={classNames(
-                        'text-md mx-1',
+                        'text-md mx-1 p-3 bg-white cursor-pointer flex  items-center justify-center flex-col',
+                        'border-2 rounded-md border-transparent text-gray-400',
                         {'active': !value ? ++i==1 : (value==item.title.toLocaleLowerCase())}
                     )}                
                     key={`vehicle-${i}`}
@@ -29,10 +30,10 @@ export const VehicleRadio = ({
 }
 
 export const vehicleMenu = [
-    {title:'Dorse', icon: <Trailer className="vehicle-icon" />  },
-    {title:'Frigofirik', icon: <Refrigerated className="vehicle-icon" />  },
-    {title:'Kamyon', icon: <Truck className="vehicle-icon" />  },
-    {title:'Kırkayak', icon: <Svg18Wheeler className="vehicle-icon" />  },
-    {title:'Romork', icon: <Tractortrailer className="vehicle-icon" />  },
-    {title:'Tır', icon: <Semitruck className="vehicle-icon" />  },
+    {title:'Dorse', icon: <Trailer className="vehicle-icon fill-yukgetir-gray" />  },
+    {title:'Frigofirik', icon: <Refrigerated className="vehicle-icon fill-yukgetir-gray" />  },
+    {title:'Kamyon', icon: <Truck className="vehicle-icon fill-yukgetir-gray" />  },
+    {title:'Kırkayak', icon: <Svg18Wheeler className="vehicle-icon fill-yukgetir-gray" />  },
+    {title:'Romork', icon: <Tractortrailer className="vehicle-icon fill-yukgetir-gray" />  },
+    {title:'Tır', icon: <Semitruck className="vehicle-icon fill-yukgetir-gray" />  },
 ]

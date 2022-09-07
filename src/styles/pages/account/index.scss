@@ -16,3 +16,24 @@
 
    
 }
+
+
+#account{
+  
+
+   
+}
+
+.tabs{
+    .active{
+        @apply border-b-4 border-b-yukgetir-blue ;
+    }
+
+    .menu-icon{
+        @apply 
+        fill-yukgetir-blue 
+        h-6
+        mr-2
+        ;
+    }
+}

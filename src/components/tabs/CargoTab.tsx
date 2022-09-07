@@ -1,3 +1,4 @@
+import { CargoRoute } from "@layouts/CargoLayout"
 import { cargoTabMenu } from "@utils/mock"
 import classNames from "classnames"
 import { useRouter } from "next/router"
@@ -8,12 +9,12 @@ export const CargoTab = ({selected, setSelected, change}:any) => {
 
     const router = useRouter();
     return (
-        <ul className="grid grid-cols-5 gap-3 cargo-tab">
+        <ul className="grid grid-cols-3 gap-3 cargo-tab tabs">
             {cargoTabMenu.map((item:any, i:number)=>(
                 <li 
                 key={`cargo-menu-${i}`} 
-                className={classNames({active:(router.pathname == item.path) },`
-                text-md flex flex-center items-center border border-transparent border-b-4 bg-white p-3 rounded-md
+                className={classNames({active:(selected == CargoRoute[item.slug]) },`
+                text-md flex flex-center items-center border border-transparent border-b-2 bg-white p-3 rounded-md
                 cursor-pointer mb-3
                 `)} 
                 onMouseDown={(e:any)=>{
@@ -22,7 +23,6 @@ export const CargoTab = ({selected, setSelected, change}:any) => {
                 }}
                 onClick={()=>{
                     setSelected(item.id)
-                    router.push(item.path,  undefined, { shallow: true })
                 }} >
                     {item.icon}
                     {item.title}

@@ -1,9 +1,15 @@
-import { TitleFrame } from "@components/frames/TitleFrame";
-import { MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormFooter } from "@pages/account";
- 
+import { Frame } from "@components/frames/MainFrame";
+import Rent from "./rent";
+import { CargoTab } from "@components/tabs/CargoTab";
+import { CargoLayout, CargoRoute } from "@layouts/CargoLayout";
+import classNames from "classnames";
+import Payload from "./payload";
+import Datetime from "./datetime";
+
 export type CargoValues = {
     name: string,
 };
@@ -13,6 +19,7 @@ const initialValues = {
 }
 
 export const CargoCreate = ({update}:any) => {
+    const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<CargoValues>({
         defaultValues: initialValues,
         // resolver: yupResolver(),
@@ -26,32 +33,35 @@ export const CargoCreate = ({update}:any) => {
         console.log(errors)
 
     };
-    return (
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <TitleFrame title="Araç Markası">
-             </TitleFrame>
-                       
-            <div className="grid grid-cols-1 w-full">
-            <TitleFrame title="Araç Tipi">
-                    <VehicleRadioHook name="type" control={control} />
-            </TitleFrame>
-            </div>
-            {/** <TitleFrame title="Araç Tipi"></TitleFrame> **/}
-            <div className='grid grid-cols-2'>
-                <TitleFrame title="Araç Özellikleri">
-                    <MultiSelectHook name="brand" control={control} placeholder="Araç Özellikleri Seçiniz" />                 
-                </TitleFrame>
-                <TitleFrame title="Donanım Seçenekleri">
-                    <MultiSelectHook name="brand" control={control} placeholder="Yükünüze Uygun Ek Donanım Özellikleri Seçiniz" />                 
-                </TitleFrame>
-            </div>
 
-            <FormFooter />
-        </form>
+    return (
+        <CargoLayout 
+            selected={selected}
+            setSelected={setSelected}
+        >
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
+                <div className={classNames({'hidden': CargoRoute.rent!=selected})}>
+                    <Rent control={control} />
+                </div>
+                <div className={classNames({'hidden': CargoRoute.datetime!=selected})}>
+                    <Datetime control={control} />
+                </div>
+                <div className={classNames({'hidden': CargoRoute.payload!=selected})}>
+                    <Payload control={control} />
+                </div>
+                
+                <div className="w-full flex justify-end mt-3">
+                    <div className="bg-yukgetir-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
+                    <div className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
+                    onClick={()=>{
+                        selected< 3 && setSelected(selected+1)
+                    }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
+                </div>
+                
+            </form>
+        </CargoLayout>
     )
 }
 
 
 export default CargoCreate;
-
-

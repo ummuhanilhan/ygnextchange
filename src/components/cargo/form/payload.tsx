@@ -1,7 +1,7 @@
 
 
 
-export const Payload = () => {
+export const Payload = ({control}:any) => {
 
     return (
         <div>

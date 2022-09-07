@@ -4,46 +4,7 @@
         @apply bg-white border-0 outline-none shadow-none; 
     }
 
-    .vehicle-icons{
-        @apply
-            mt-4
-            grid 
-            grid-cols-6
-            gap-4
-        ;
-        > li{
-            @apply
-                p-3 
-                bg-white
-                cursor-pointer
-                flex 
-                items-center
-                justify-center
-                flex-col
-                border-2
-                rounded-md
-                border-transparent
-                text-gray-400
-            ; 
-            svg{
-                @apply fill-yukgetir-gray;
-            }
-            &.active{
-                @apply
-                    text-yukgetir-blue
-                    border-yukgetir-blue
-                ;
-                svg{
-                    @apply fill-yukgetir-blue;
-                }
-            }
-        }
-        .vehicle-icon{
-            @apply
-             h-6
-            ;
-        }
-    }
+    
 }
 
 .p-mutliselect{
@@ -51,7 +12,44 @@
 }
 
 
-
-
-
+.vehicle-icons{
+    @apply
+        mt-4
+        grid 
+        grid-cols-6
+        gap-4
+    ;
+    > li{
+        @apply
+            p-3 
+            bg-white
+            cursor-pointer
+            flex 
+            items-center
+            justify-center
+            flex-col
+            border-2
+            rounded-md
+            border-transparent
+            text-gray-400
+        ; 
+        svg{
+            @apply fill-yukgetir-gray;
+        }
+        &.active{
+            @apply
+                text-yukgetir-blue
+                border-yukgetir-blue
+            ;
+            svg{
+                @apply fill-yukgetir-blue;
+            }
+        }
+    }
+    .vehicle-icon{
+        @apply
+         h-6
+        ;
+    }
+}
 

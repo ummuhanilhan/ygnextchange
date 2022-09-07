@@ -245,8 +245,8 @@ export const FormFooter = ({control, label, check}:any) => {
                 </div>
             )}
             <div className="w-full flex justify-end">
-                <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
-                <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>
+                <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md cursor-pointer">Vazgeç</button>
+                <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer">Güncelle</button>
             </div>
         </React.Fragment>
     )
