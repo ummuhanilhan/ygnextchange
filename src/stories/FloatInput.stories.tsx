@@ -5,7 +5,7 @@ import { FloatInput } from './FloatInput';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Inputs/FloatInput',
+  title: 'Inputs/Floating Label',
   component: FloatInput,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
@@ -16,29 +16,36 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof FloatInput> = (args) => <FloatInput {...args} />;
 
-export const Primary = Template.bind({});
+export const Sizes = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  primary: true,
-  label: 'FloatInput',
-  type:'text',
+Sizes.args = {
   name:'name',
-  placeholder:'',
-  example:'',
-  value:'',
-  textarea:'',
+  placeholder:'Kullanıcı Adı',
   onChange:()=>{}
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  primary: false,
-  label: 'FloatInput',
-  type:'text',
+
+export const Borders = Template.bind({});
+Borders.args = {
   name:'name',
-  placeholder:'',
-  example:'',
-  value:'',
-  textarea:'',
+  border:true,
+  placeholder:'Kullanıcı Adı',
   onChange:()=>{}
-}; 
+};
+
+
+export const Verify = Template.bind({});
+Verify.args = {
+  name:'name',
+  verification:true,
+  placeholder:'Kullanıcı Adı',
+  onChange:()=>{}
+};
+
+export const Appendless = Template.bind({});
+Appendless.args = {
+  name:'name',
+  appendix:false,
+  placeholder:'Kullanıcı Adı',
+  onChange:()=>{}
+};

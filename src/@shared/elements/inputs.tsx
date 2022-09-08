@@ -1,4 +1,4 @@
-import { ArrowClockwise, Eye, EyeSlash, Share, ShieldLock, XCircle } from "@yukgetir-icons"
+import { ArrowClockwise, CheckCircle, Eye, EyeSlash, Share, ShieldLock, XCircle } from "@yukgetir-icons"
 import React from "react"
 import TR from '@public/assets/flags/tr.svg'
 import classnames from "classnames";
@@ -6,18 +6,85 @@ import rawCountries from "@utils/dummy/rawCountries";
 import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 
+export interface FloatInputProps {
+  /**
+   * FloatInput placeholder
+   */
+   value: string;
+   /**
+    * Input contents
+    */
+   placeholder: string;
+   /**
+   * Unique input name
+   */
+   name: string;
+   /**
+   * What background color to use
+   */
+   backgroundColor?: string;
+   /**
+   * Verification icon
+   */
+   verified?: boolean;
+   /**
+   * How large should the FloatInput be?
+   */
+  size?: 'small' | 'medium' | 'large';
+  /**
+   * Click handler
+  */
+  onChange: (value:string) => Function;
+  /**
+   * Optional click handler
+   */
+  onClick?: (callback:Function) => Function;
+  /**
+   * Optional blur handler
+  */
+  onBlur?: () => void;
+  /**
+   * Error Message
+  */
+  error?: string;
+  /**
+   * Input type 
+  */
+  type?: string;
+  /**
+   * Optional border
+  */
+  border?: boolean;
+  /**
+   * append icons 
+  */
+  apendix?: boolean;
+  /**
+   * Show users to valid types. It will be shown in when clicked
+   * If leave empty it's do nothing
+  */
+  example?: string;
+  /**
+   * Options
+  */
+  className?: string;
+}
+
+
 export const FloatingLabelInput = ({ 
+   size,
    type,
    name,
    placeholder,
-   example='',
    value,
-   textarea,
+   example='',
+   border,
    className,
    onChange,
    onBlur,
+   backgroundColor,
    error 
-}:any) => {
+}:FloatInputProps) => {
     const [active, setActive] = React.useState(false);
     const [hide, setHide] = React.useState(true);
   
@@ -27,18 +94,24 @@ export const FloatingLabelInput = ({
     }
   
     return (
-      <div className={classnames({'error': error}, 'w-full', className)}>
+      <div className={classnames(
+        'w-full floatinglabel-input', 
+        className,
+        size,
+        {'error': error},
+      )}>
           <div className="input relative border-none rounded-md bg-white- w-full mb-1- h-[4rem] border-gray-300 border-opacity-25">
             <input  
-              className={[
-                "outline-none w-full h-full border border-gray-300 rounded bg-transparent text-[1.03rem] pr-10 transition-all duration-200 ease-in-out p-2",
-                value || active ? "pt-6 text-gray-500" : "pt-2"
-              ].join(" ")}
+              className={classNames(
+                {'border border-gray-300':border},
+                "outline-none w-full h-full rounded bg-transparent text-[1.03rem] pr-10 transition-all duration-200 ease-in-out p-2",
+                value || active ? "pt-6 text-gray-500" : "pt-2",
+                )}
               id={name}
               value={value}
               placeholder={!value&& active ?  ( example ? example : 'Boş bırakılamaz'
                ) : ''}
-              type={type=='password'? (!hide?'text':type) : type }
+              type={type=='password'? (!hide?'text':(type||'text')) : (type||'text') }
               onTouchMove={handleActivation}
               onChange={handleActivation}
             />
@@ -49,18 +122,18 @@ export const FloatingLabelInput = ({
               ].join(" ")}
               htmlFor={name}
             >
-              {placeholder}
+              {placeholder} 
             </label>
-          <InputAppend 
-              type={type}
-              color={!!error?'fill-red-500':'fill-gray-500'}
-              hide={hide}
-              value={value}
-              onChange={onChange}
-              active={active}
-              setActive={setActive}
-              toggle={()=>setHide(!hide)}
-          />
+              <InputAppend 
+                  type={type}
+                  color={!!error?'fill-red-500':'fill-gray-500'}
+                  hide={hide}
+                  value={value}
+                  onChange={onChange}
+                  active={active}
+                  setActive={setActive}
+                  toggle={()=>setHide(!hide)}
+              />
           </div>
           {false && error && (
             <p className="mb-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">Oh, snapp!</span> Some error message. </p>
@@ -70,10 +143,10 @@ export const FloatingLabelInput = ({
 }
 
 export const FloatingLabelPhone = ({ 
+  size,
   type,
   name,
   placeholder,
-  example='',
   value,
   onChange,
   onBlur,
@@ -97,9 +170,12 @@ export const FloatingLabelPhone = ({
   } 
 
   return (
-    <div className={classnames({
-      'error': error
-    }, 'w-full')}>
+    <div className={classnames(
+      'w-full floatinglabel-phone',
+      {'error': error},
+       size
+       )}
+      >
         <div className="relative border rounded bg-white-
          mb-1- h-[55px] border-gray-500 border-opacity-25">
           {active && (
@@ -113,12 +189,12 @@ export const FloatingLabelPhone = ({
               </div>
             )}
           <input  
-            className={[
+            className={classNames(
               "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
               value || active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
               active && code.countryCode?.length > 2 ? 'pl-[4.5rem]' : '',
               active && code.countryCode?.length == 4 ? 'pl-[4.8rem]' : '',
-            ].join(" ")}
+            )}
             id={name}
             value={value}
             type="text"
@@ -158,39 +234,44 @@ export const FloatingLabelPhone = ({
 const InputAppend = ({type, value, onChange, color, hide, toggle, active, setActive}:any) =>{
 
     return (
-      <div className="pl-2 cursor-pointer">
-          {type=='password' && (
-            hide ? <EyeSlash className={[
-              "icon h-4  icon-gray absolute right-4",
-              color,
-              active ? "top-[1.15rem]" : "top-[1.15rem]"
-          ].join(' ')}  onClick={toggle} /> :
-          <Eye className={[
-              "icon h-4 icon-gray absolute right-4",
-              color,
-              active ? "top-[1.15rem]" : "top-[1.15rem]"
-          ].join(' ')} onClick={toggle} />
-          )}
-          {!value && type!='password' && (
-            <ArrowClockwise
-            onClick={()=>setActive(!active)} 
-            className={[
-              "icon h-4 icon-gray absolute right-4",
-              color,
-              active ? "top-[1.15rem]" : "top-[1.15rem]"
-          ].join(' ')} />
-          )}
-           {value && type!='password' && (
-            <XCircle 
-              onClick={()=>{onChange(''); setActive(false);}}  
-              className={[
-                "icon h-4 icon-gray absolute right-4",
-                color,
-                active ? "top-[1.15rem]" : "top-[1.15rem]"
+      <React.Fragment> 
+          <div className="pl-2 cursor-pointer">
+            <div className='verification absolute right-10 top-4 mt-1'>
+                <CheckCircle width='15' className='fill-yukgetir-green' /> 
+            </div>
+              {type=='password' && (
+                hide ? <EyeSlash className={[
+                  "icon h-4  icon-gray absolute right-4",
+                  color,
+                  active ? "top-[1.15rem]" : "top-[1.15rem]"
+              ].join(' ')}  onClick={toggle} /> :
+              <Eye className={[
+                  "icon h-4 icon-gray absolute right-4",
+                  color,
+                  active ? "top-[1.15rem]" : "top-[1.15rem]"
+              ].join(' ')} onClick={toggle} />
+              )}
+              {!value && type!='password' && (
+                <ArrowClockwise
+                onClick={()=>setActive(!active)} 
+                className={[
+                  "icon h-4 icon-gray absolute right-4",
+                  color,
+                  active ? "top-[1.15rem]" : "top-[1.15rem]"
               ].join(' ')} />
-          )}
-          
-      </div>
+              )}
+              {value && type!='password' && (
+                <XCircle 
+                  onClick={()=>{onChange(''); setActive(false);}}  
+                  className={[
+                    "icon h-4 icon-gray absolute right-4",
+                    color,
+                    active ? "top-[1.15rem]" : "top-[1.15rem]"
+                  ].join(' ')} />
+              )}
+          </div>
+      </React.Fragment>
+ 
     )
   }
 
