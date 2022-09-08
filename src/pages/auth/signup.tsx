@@ -61,11 +61,11 @@ export const Signup = () =>{
                     <h3 className="text-base mt-2 mb-12">Üye ol</h3>
                     <ul className="w-full flex justify-between gap-2 mb-4">
                         <li className={classnames('p-3 flex pl-4 cursor-pointer w-full rounded-md border text-sm', {
-                            'border-yukgetir-blue bg-yukgetir-blue text-white': type,
+                            'border-yg-blue bg-yg-blue text-white': type,
                             ' bg-white  border-gray-300 text-gray-500': !type
                         } )} onClick={change}>Bireysel Üyelik</li>
                         <li className={classnames('p-3 flex pl-4 cursor-pointer w-full rounded-md border text-sm', {
-                            'border-yukgetir-blue bg-yukgetir-blue text-white': !type,
+                            'border-yg-blue bg-yg-blue text-white': !type,
                             ' bg-white  border-gray-300 text-gray-500': type
                         } )} onClick={change}>Kurumsal üyelik</li>
                     </ul>
@@ -133,7 +133,7 @@ export const Signup = () =>{
                             </div>
                             <p className="mx-1">Apple ile</p>
                         </button>
-                        <button type="submit" className="w-full cursor-pointer bg-yukgetir-blue mt-2- px-20- p-3-
+                        <button type="submit" className="w-full cursor-pointer bg-yg-blue mt-2- px-20- p-3-
                             px-5 py-2.5 col-span-2
                              text-sm text-white text-center rounded-md ">
                             Eposta ile üye ol

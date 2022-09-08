@@ -296,11 +296,11 @@ export const AvatarHook = ({
                         name={value}
                         url="./upload"  
                         accept="image/*" 
-                        className="w-full py-[.2rem] border-none text-yukgetir-orange"
+                        className="w-full py-[.2rem] border-none text-yg-orange"
                         mode="basic"
                     />
                     <div className="bg-white">
-                        <CloudArrowUp className="absolute right-3 top-[1.1rem] bg-white fill-yukgetir-orange" height={17} />
+                        <CloudArrowUp className="absolute right-3 top-[1.1rem] bg-white fill-yg-orange" height={17} />
                     </div>
                 </div>
                 <div className="btn p-2 bg-white rounded-md ml-2 w-14 h-14 flex items-center justify-center cursor-pointer"><FiXCircle className="text-xl text-gray-400" width={35} /></div>                 
@@ -331,10 +331,10 @@ export const FileUploadHook = ({
                     name={value}
                     url="./upload"  
                     accept="image/*" 
-                    className="w-full py-[.2rem] border-none text-yukgetir-orange"
+                    className="w-full py-[.2rem] border-none text-yg-orange"
                     mode="basic"
                 />
-                <CloudArrowUp className="absolute right-2 top-[.9rem] fill-yukgetir-orange" height={25} />
+                <CloudArrowUp className="absolute right-2 top-[.9rem] fill-yg-orange" height={25} />
             </div>
         )}
     />

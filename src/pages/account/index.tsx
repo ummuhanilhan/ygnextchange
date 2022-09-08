@@ -127,9 +127,9 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                       <IconFrame icon={<TextareaResize className="menu-icon" />} title="Üyelik Tipi" />
                       <div 
                         onClick={()=>setCorporate(!corporate)}
-                        className="type border border-yukgetir-blue rounded-md p-2 py-4 w-full cursor-pointer"
+                        className="type border border-yg-blue rounded-md p-2 py-4 w-full cursor-pointer"
                         >
-                            <p className="text-yukgetir-blue">{corporate ? 'Kurumsal':'Bireysel'} Üyelik</p>
+                            <p className="text-yg-blue">{corporate ? 'Kurumsal':'Bireysel'} Üyelik</p>
                       </div>
                         
                     </div>
@@ -245,8 +245,8 @@ export const FormFooter = ({control, label, check}:any) => {
                 </div>
             )}
             <div className="w-full flex justify-end">
-                <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md cursor-pointer">Vazgeç</button>
-                <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer">Güncelle</button>
+                <button className="bg-yg-orange p-3 px-12 text-white rounded-md cursor-pointer">Vazgeç</button>
+                <button type="submit" className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer">Güncelle</button>
             </div>
         </React.Fragment>
     )

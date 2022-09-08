@@ -142,8 +142,8 @@ export const Corporate = ({control}:any) => {
                     </div>
                     <div>
                       <IconFrame icon={<TextareaResize className="menu-icon" />} title="Üyelik Tipi" />
-                      <div className="type border border-yukgetir-blue rounded-md p-2 py-4 w-full cursor-pointer">
-                            <p className="text-yukgetir-blue">Kurumsal Üyelik</p>
+                      <div className="type border border-yg-blue rounded-md p-2 py-4 w-full cursor-pointer">
+                            <p className="text-yg-blue">Kurumsal Üyelik</p>
                       </div>
                         
                     </div>
@@ -239,8 +239,8 @@ export const FormFooter = ({control, label}:any) => {
                 <CheckboxHook name="accept" label={label} control={control} />
             </div>
             <div className="w-full flex justify-end">
-                <button className="bg-yukgetir-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
-                <button type="submit" className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>
+                <button className="bg-yg-orange p-3 px-12 text-white rounded-md">Vazgeç</button>
+                <button type="submit" className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md">Güncelle</button>
             </div>
         </React.Fragment>
     )

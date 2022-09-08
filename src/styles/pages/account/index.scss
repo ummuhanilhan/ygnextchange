@@ -3,14 +3,14 @@
 #account{
     .menu-icon{
         @apply 
-        fill-yukgetir-blue 
+        fill-yg-blue 
         h-6
         mr-2
         ;
     }
     .profile-tab{
         .active{
-            @apply border-b-4 border-b-yukgetir-blue ;
+            @apply border-b-4 border-b-yg-blue ;
         }
     }
 
@@ -26,12 +26,12 @@
 
 .tabs{
     .active{
-        @apply border-b-4 border-b-yukgetir-blue ;
+        @apply border-b-4 border-b-yg-blue ;
     }
 
     .menu-icon{
         @apply 
-        fill-yukgetir-blue 
+        fill-yg-blue 
         h-6
         mr-2
         ;

@@ -46,10 +46,10 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
                 <ul className="footer">
                     <li className="justify-center">
                         <BoxArrowRight className="menu-icon" />
-                        <p className="text-yukgetir-gray">Çıkış Yap</p>
+                        <p className="text-yg-gray">Çıkış Yap</p>
                     </li>
                 </ul>
-                <p className="text-yukgetir-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinvoa Bilişim A.Ş.</p>
+                <p className="text-yg-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinvoa Bilişim A.Ş.</p>
             </div>  
     )
 }

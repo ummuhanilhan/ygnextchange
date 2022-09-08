@@ -13,14 +13,14 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        yukgetir:{
+        yg:{
           lightblue: '#F6F8FB',
           blue: '#0069B4',
           orange: '#F39200',
           gray: '#868A9A',
           green: '#1DBF73',
         },
-         fontSize: {
+         size: {
           'smallest': '.8rem',
           'small': '.9rem',
           'normal': '1rem',

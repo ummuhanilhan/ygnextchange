@@ -34,8 +34,8 @@ Borders.args = {
 };
 
 
-export const Verify = Template.bind({});
-Verify.args = {
+export const Verification = Template.bind({});
+Verification.args = {
   name:'name',
   verification:true,
   placeholder:'Kullanıcı Adı',

@@ -45,9 +45,9 @@ export const AddressBox = () => {
 
 
             <div className="w-full flex justify-end mt">
-                <div className="bg-yukgetir-orange p-2 px-4 text-white rounded-md  
+                <div className="bg-yg-orange p-2 px-4 text-white rounded-md  
                 cursor-pointer text-sm">Yeni Adres Ekle</div>
-                <div className="bg-yukgetir-blue p-2 px-4 ml-2 text-white rounded-md 
+                <div className="bg-yg-blue p-2 px-4 ml-2 text-white rounded-md 
                 cursor-pointer text-sm" >Adres Seç</div>
             </div>
 

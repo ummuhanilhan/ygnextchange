@@ -32,13 +32,13 @@
             px-12
             cursor-pointer
             hover:bg-slate-100
-            bg-yukgetir-lightblue;
+            bg-yg-lightblue;
             &.active{
-                @apply border-l-8 border-yukgetir-blue ;
+                @apply border-l-8 border-yg-blue ;
             }
             .menu-icon{
                 @apply 
-                fill-yukgetir-blue 
+                fill-yg-blue 
                 h-5 mr-2;
             }
             p{
@@ -59,11 +59,11 @@
             cursor-pointer
             hover:bg-slate-100
             text-[1.07rem]
-            bg-yukgetir-lightblue;
+            bg-yg-lightblue;
             ;
             .menu-icon{
                 @apply 
-                fill-yukgetir-gray 
+                fill-yg-gray 
                 h-5 mr-2;
             }
             p{

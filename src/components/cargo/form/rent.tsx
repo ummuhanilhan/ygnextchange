@@ -9,18 +9,18 @@ export const Rent = ({control}:any) => {
             <React.Fragment>
                     <TitleFrame title="Araç Markası">
                     <div className='grid grid-cols-2 gap-2'>
-                        <div className='bg-white border border-1 border-yukgetir-blue py-3 rounded-md w-full text-center 
+                        <div className='bg-white border border-1 border-yg-blue py-3 rounded-md w-full text-center 
                         flex justify-center items-center cursor-pointer'>
                             <div className='flex items-center'>
-                                <CircleFill width={17} className='fill-yukgetir-blue' />
-                                <p className='ml-2 text-yukgetir-blue'>Komple</p>
+                                <CircleFill width={17} className='fill-yg-blue' />
+                                <p className='ml-2 text-yg-blue'>Komple</p>
                             </div>
                         </div>
                         <div className='bg-white border border-1 border-transparent py-3 rounded-md w-full text-center justify 
                         flex-center items-center cursor-pointer'>
                             <div className='flex items-center'>
-                                <CircleHalf width={17} className='fill-yukgetir-gray' />
-                                <p className='ml-2 text-yukgetir-gray'>Parsiyel</p>
+                                <CircleHalf width={17} className='fill-yg-gray' />
+                                <p className='ml-2 text-yg-gray'>Parsiyel</p>
                             </div>
                         </div>
                     </div>

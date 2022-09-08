@@ -68,10 +68,12 @@ export interface FloatInputProps {
    * Options
   */
   className?: string;
+  test?: string;
 }
 
 
 export const FloatingLabelInput = ({ 
+   test,
    size,
    type,
    name,
@@ -130,6 +132,7 @@ export const FloatingLabelInput = ({
                   hide={hide}
                   value={value}
                   onChange={onChange}
+                  test={test}
                   active={active}
                   setActive={setActive}
                   toggle={()=>setHide(!hide)}
@@ -231,13 +234,14 @@ export const FloatingLabelPhone = ({
  * @param type
  * @returns callback
  */
-const InputAppend = ({type, value, onChange, color, hide, toggle, active, setActive}:any) =>{
+const InputAppend = ({test, type, value, onChange, color, hide, toggle, active, setActive}:any) =>{
 
     return (
       <React.Fragment> 
           <div className="pl-2 cursor-pointer">
             <div className='verification absolute right-10 top-4 mt-1'>
-                <CheckCircle width='15' className='fill-yukgetir-green' /> 
+                {!test && <CheckCircle width='15' className='fill-yg-green' /> }
+                {test && <p className='text-yg-green text-sm'>Doğrulandı</p> }
             </div>
               {type=='password' && (
                 hide ? <EyeSlash className={[

@@ -14,7 +14,7 @@
 
         li{
             @extend .flex-center;
-            @apply bg-yukgetir-lightblue p-4
+            @apply bg-yg-lightblue p-4
             rounded-md
             px-10
             my-1
@@ -42,11 +42,11 @@
 
     .menu-icon{
         @apply 
-        fill-yukgetir-blue 
+        fill-yg-blue 
         h-6
         ;
         &.orange{
-            @apply fill-yukgetir-orange; 
+            @apply fill-yg-orange; 
         }
     }
 }

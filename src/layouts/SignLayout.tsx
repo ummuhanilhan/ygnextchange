@@ -17,7 +17,7 @@ export const SignLayout = ({children}:DefaultState) => {
                 {children}
             </div>
             <div className="introduce w-full h-auto lg:h-screen
-            bg-yukgetir-blue flex flex-col-reverse lg:flex-col 
+            bg-yg-blue flex flex-col-reverse lg:flex-col 
             items-center justify-end lg:justify-center ">
                 <Truck className="truck lg:ml-[-5em] 2xl:ml-[-13em] mb-2 object-contain "  />    
                 <div className="text-right w-full flex justify-end">

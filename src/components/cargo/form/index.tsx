@@ -51,8 +51,8 @@ export const CargoCreate = ({update}:any) => {
                 </div>
                 
                 <div className="w-full flex justify-end mt-3">
-                    <div className="bg-yukgetir-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
-                    <div className="bg-yukgetir-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
+                    <div className="bg-yg-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
+                    <div className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
                     onClick={()=>{
                         selected< 3 && setSelected(selected+1)
                     }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>

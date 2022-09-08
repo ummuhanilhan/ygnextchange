@@ -65,13 +65,13 @@ const Filter = ({}:any) => {
                         <VehicleOptions control={control} />
                     </SimpleBar>
                     <div className="flex flex-col">
-                        <button type="submit" className='button p-2 px-6 bg-yukgetir-blue 
-                            border border-transparent hover:bg-yukgetir-transparent
-                            hover:border-yukgetir-blue hover:bg-transparent hover:text-yukgetir-blue 
+                        <button type="submit" className='button p-2 px-6 bg-yg-blue 
+                            border border-transparent hover:bg-yg-transparent
+                            hover:border-yg-blue hover:bg-transparent hover:text-yg-blue 
                             text-white cursor-pointer text-sm mb-2 flex justify-center rounded-md'>Filtrele</button>
-                        <button className='button p-2 px-6 bg-yukgetir-orange 
-                            border border-transparent hover:bg-yukgetir-transparent
-                            hover:border-yukgetir-orange hover:bg-transparent hover:text-yukgetir-orange 
+                        <button className='button p-2 px-6 bg-yg-orange 
+                            border border-transparent hover:bg-yg-transparent
+                            hover:border-yg-orange hover:bg-transparent hover:text-yg-orange 
                             text-white cursor-pointer text-sm flex justify-center rounded-md'>Temizle</button>
                         
                     </div>
@@ -86,7 +86,7 @@ export const Search = ({control, placeholder}:any) => {
         <div className="search bg-white py-3 px-2 flex justify-between rounded-md">
             <input type="text" className="bg-transparent h-full border-0 w-full text-gray-500 px-1 outline-none" 
             placeholder={placeholder} />
-            <FaSearch className="fill-yukgetir-blue mx-1" size={18} />
+            <FaSearch className="fill-yg-blue mx-1" size={18} />
         </div>
     )
 }
@@ -98,7 +98,7 @@ export const Location = ({control}:any) => {
             <IconDropdown 
             status={status}
             setStatus={setStatus} 
-            icon={<PinMap className="fill-yukgetir-blue" width={19} />} title="Konum" />
+            icon={<PinMap className="fill-yg-blue" width={19} />} title="Konum" />
 
             <div className={classNames({hidden:!status})}>
                 <MultiSelectHook name="load" control={control} placeholder="Yükleme yeri"  />                 
@@ -115,7 +115,7 @@ export const Dates = ({control}:any) => {
             <IconDropdown 
              status={status}
              setStatus={setStatus} 
-            icon={<Calendar className="fill-yukgetir-blue" width={19} />} title="Tarih" />
+            icon={<Calendar className="fill-yg-blue" width={19} />} title="Tarih" />
             <div className={classNames({hidden:!status})}>
 
             </div>
@@ -130,7 +130,7 @@ export const Hiring = ({control}:any) => {
             <IconDropdown 
              status={status}
              setStatus={setStatus} 
-            icon={<CircleHalf className="fill-yukgetir-blue" width={15} />} title="Kiralama Tipi" />
+            icon={<CircleHalf className="fill-yg-blue" width={15} />} title="Kiralama Tipi" />
             <div className={classNames({hidden:!status})}>
 
             </div>
@@ -145,7 +145,7 @@ export const VehicleType = ({control}:any) => {
             <IconDropdown 
              status={status}
              setStatus={setStatus} 
-            icon={<Truck className="fill-yukgetir-blue" width={19} />} title="Araç Tipi" />
+            icon={<Truck className="fill-yg-blue" width={19} />} title="Araç Tipi" />
             <div className={classNames({hidden:!status})}>
                 <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
             </div>
@@ -160,7 +160,7 @@ export const VehicleFeatures = ({control}:any) => {
             <IconDropdown 
              status={status}
              setStatus={setStatus} 
-            icon={<FilePlus className="fill-yukgetir-blue" width={19} />} title="Araç Özellikleri" />
+            icon={<FilePlus className="fill-yg-blue" width={19} />} title="Araç Özellikleri" />
             <div className={classNames({hidden:!status})}>
                 <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
             </div>
@@ -175,7 +175,7 @@ export const VehicleOptions = ({control}:any) => {
             <IconDropdown 
              status={status}
              setStatus={setStatus} 
-            icon={<FileText className="fill-yukgetir-blue" width={19} />} title="Donanım Özellikleri" />
+            icon={<FileText className="fill-yg-blue" width={19} />} title="Donanım Özellikleri" />
             <div className={classNames({hidden:!status})}>
                  <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
             </div>
@@ -190,7 +190,7 @@ export const RangePrice = ({control}:any) => {
             <IconDropdown 
              status={status}
              setStatus={setStatus} 
-            icon={<Cash className="fill-yukgetir-blue" width={21} />} title="Fiyat Aralığı" />
+            icon={<Cash className="fill-yg-blue" width={21} />} title="Fiyat Aralığı" />
             <div className={classNames({hidden:!status})}>
                  <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
             </div>

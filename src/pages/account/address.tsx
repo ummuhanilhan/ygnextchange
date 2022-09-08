@@ -102,21 +102,21 @@ export const AddressList = () => {
             >
                 <div className='grid grid-cols-2 gap-2 mb-4'>
                      <Search placeholder='Adres Başlığı Ara' />
-                     <p className='button bg-yukgetir-blue py-2 px-10 flex justify-center text-sm
+                     <p className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
                      items-center text-white rounded-md cursor-pointer'>Yeni Adres Ekle</p>
                 </div>
                 <ul className='grid grid-cols-3 gap-3'>
                    {Array.from(Array(5)).map((item,i:number)=>(
                      <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
-                        <h5 className='text-yukgetir-blue text-sm font-medium'>Adres Başlığı</h5>
+                        <h5 className='text-yg-blue text-sm font-medium'>Adres Başlığı</h5>
                         <p className='text-gray-900 text-sm'>Karaduvar, Mersin Limanı, 33020 - Merkez...</p>
                         <p className='text-gray-400 text-sm'>Sercan İzci - +90 543 522 12 13</p>
                         <div className='flex justify-end w-full mt-2'>
-                            <p className='bg-yukgetir-orange text-sm mr-1 text-white flex items-center 
-                            hover:bg-transparent hover:text-yukgetir-orange border border-1 border-transparent hover:border-yukgetir-orange
+                            <p className='bg-yg-orange text-sm mr-1 text-white flex items-center 
+                            hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange
                             px-4 py-1 rounded-md cursor-pointer'>Sil</p>
-                            <p className='bg-yukgetir-blue text-sm ml-1 text-white flex items-center 
-                            hover:bg-transparent hover:text-yukgetir-blue border border-1 border-transparent hover:border-yukgetir-blue
+                            <p className='bg-yg-blue text-sm ml-1 text-white flex items-center 
+                            hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
                             px-4 py-1 rounded-md cursor-pointer'>Düzenle</p>
                         </div>
                     </li>

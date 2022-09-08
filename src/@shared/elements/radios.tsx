@@ -30,10 +30,10 @@ export const VehicleRadio = ({
 }
 
 export const vehicleMenu = [
-    {title:'Dorse', icon: <Trailer className="vehicle-icon fill-yukgetir-gray" />  },
-    {title:'Frigofirik', icon: <Refrigerated className="vehicle-icon fill-yukgetir-gray" />  },
-    {title:'Kamyon', icon: <Truck className="vehicle-icon fill-yukgetir-gray" />  },
-    {title:'Kırkayak', icon: <Svg18Wheeler className="vehicle-icon fill-yukgetir-gray" />  },
-    {title:'Romork', icon: <Tractortrailer className="vehicle-icon fill-yukgetir-gray" />  },
-    {title:'Tır', icon: <Semitruck className="vehicle-icon fill-yukgetir-gray" />  },
+    {title:'Dorse', icon: <Trailer className="vehicle-icon fill-yg-gray" />  },
+    {title:'Frigofirik', icon: <Refrigerated className="vehicle-icon fill-yg-gray" />  },
+    {title:'Kamyon', icon: <Truck className="vehicle-icon fill-yg-gray" />  },
+    {title:'Kırkayak', icon: <Svg18Wheeler className="vehicle-icon fill-yg-gray" />  },
+    {title:'Romork', icon: <Tractortrailer className="vehicle-icon fill-yg-gray" />  },
+    {title:'Tır', icon: <Semitruck className="vehicle-icon fill-yg-gray" />  },
 ]

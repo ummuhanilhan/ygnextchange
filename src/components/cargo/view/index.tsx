@@ -39,20 +39,20 @@ const Item = ({item}:any) => {
             <div className="flex justify-between">
                 <div className="flex items-start">
                     <div className="tag rounded-lg p-1 px-3 border border-1 
-                    border-yukgetir-blue m-r2 flex items-start w-max"> 
-                        <People className='fill-yukgetir-blue' width={20} /> 
-                        <p className='text-yukgetir-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
+                    border-yg-blue m-r2 flex items-start w-max"> 
+                        <People className='fill-yg-blue' width={20} /> 
+                        <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
                     </div>
                     <div className="flex items-start justify-center">
-                        <Geo width={20} className='fill-yukgetir-blue ml-1' />
+                        <Geo width={20} className='fill-yg-blue ml-1' />
                         <p className='text-gray-500 pl-1'>Ankara</p>
-                        <ChevronDoubleRight width={20} className='fill-yukgetir-orange mt-[.1rem]' />
+                        <ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' />
                         <p className='text-gray-500 px-1'>Mersin</p>
                         <Forward width={20} />
                         <p className="ml-1 mr-3">{item.distance}</p>
                         {item.type ? 
-                        <CircleFill width={15} className='fill-yukgetir-blue mt-[.25rem] ml-1' /> : 
-                        <CircleHalf width={15} className='fill-yukgetir-blue mt-[.25rem] ml-1' />}
+                        <CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml-1' /> : 
+                        <CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml-1' />}
                         <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
                     </div>
                 </div>
@@ -67,37 +67,37 @@ const Item = ({item}:any) => {
                 })}>
                     <ul className='mt-1'>
                         <li className='flex items-start'>
-                            <Calendar width={17} className='fill-yukgetir-blue mr-2 mb-1' />
-                            <p className="text-yukgetir-blue text-sm mr-2">Yükleme Tarihi:</p>
+                            <Calendar width={17} className='fill-yg-blue mr-2 mb-1' />
+                            <p className="text-yg-blue text-sm mr-2">Yükleme Tarihi:</p>
                              <p className='text-gray-400 text-sm'>{item.date}</p> </li>
                         <li className='flex items-start'>
-                            <Clock width={17} className='fill-yukgetir-blue mr-2 mb-1' />
-                            <p className="text-yukgetir-blue text-sm mr-2">Boşaltma Zamanı:</p>
+                            <Clock width={17} className='fill-yg-blue mr-2 mb-1' />
+                            <p className="text-yg-blue text-sm mr-2">Boşaltma Zamanı:</p>
                              <p className='text-gray-400 text-sm'>{item.time}</p> </li>
                     </ul>
                     <ul className='flex items-start'>
                         <li className='flex items-start'>
-                            <Truck width={17} className='fill-yukgetir-blue mr-2 mb-1' />
-                            <p className="text-yukgetir-blue text-sm mr-2">Araç Tipi:</p>
+                            <Truck width={17} className='fill-yg-blue mr-2 mb-1' />
+                            <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
                              <p className='text-gray-400 text-sm'>{item.vehicle}</p> </li>
                         <li className='flex items-start ml-8'>
-                            <Capslock width={17} className='fill-yukgetir-blue mr-2 mb-1' />
+                            <Capslock width={17} className='fill-yg-blue mr-2 mb-1' />
                              <p className='text-gray-400 text-sm'>{item.weight}</p> </li>
                     </ul>
                 </div>
                 <div className='flex items-end'>
                     <div className='view flex flex-col items-center mr-2'><Eye width={15} className='fill-gray-400' />
                      <p className='text-gray-400 text-sm'>{item.view}</p></div>
-                    <div className='heart rounded-md border border-1 border-yukgetir-orange h-[1.85em] w-[1.85em] flex
-                        items-center justify-center mr-2 cursor-pointer hover:bg-yukgetir-lightblue'> 
-                        {item.fav ? <HeartFill width={15} className='fill-yukgetir-orange' /> : <Heart width={15} className='fill-yukgetir-orange' />}
+                    <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
+                        items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
+                        {item.fav ? <HeartFill width={15} className='fill-yg-orange' /> : <Heart width={15} className='fill-yg-orange' />}
                      </div>
-                    <div className='button py-1 px-6 bg-yukgetir-orange 
-                    border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-orange hover:bg-transparent hover:text-yukgetir-orange 
+                    <div className='button py-1 px-6 bg-yg-orange 
+                    border border-transparent hover:bg-yg-transparent hover:border-yg-orange hover:bg-transparent hover:text-yg-orange 
                     text-white cursor-pointer text-sm
                     rounded-md inline-block mr-1'>Detay Gör</div>
-                    <div className='button py-1 px-6 bg-yukgetir-blue 
-                    border border-transparent hover:bg-yukgetir-transparent hover:border-yukgetir-blue hover:bg-transparent hover:text-yukgetir-blue 
+                    <div className='button py-1 px-6 bg-yg-blue 
+                    border border-transparent hover:bg-yg-transparent hover:border-yg-blue hover:bg-transparent hover:text-yg-blue 
                     text-white cursor-pointer text-sm
                     rounded-md inline-block ml-1'>Teklif Gönder</div>
                 </div>
@@ -113,13 +113,13 @@ export const Heading = ({wide}:any) => {
             <div className='flex justify-between items-center w-full bg-white py-3 px-2'>
                 <div className='flex items-center justify-center text-base'>
                     <p>Her sayfada</p>
-                    <p className='text-yukgetir-orange ml-2 mr-1'>25</p>
+                    <p className='text-yg-orange ml-2 mr-1'>25</p>
                     <div><FaChevronRight size={17} className='text-gray-400' /></div>
                     <p>İlan göster</p>
                 </div>
                 <div className='flex items-center'>
                     <p>Sıralama:</p>
-                    <p className="text-yukgetir-orange mx-2">Yeniden Eskiye</p>
+                    <p className="text-yg-orange mx-2">Yeniden Eskiye</p>
                     <div><FaChevronRight size={17} className='text-gray-400' /> </div>
                 </div>
             </div>
@@ -135,21 +135,21 @@ export const SimplePagination = () => {
             <div className='simple-pagination flex justify-between bg-white rounded-md py-2 pr-2 my-2 mt-3'>
                 <div></div>
                 <div className='flex items-center'>
-                    <div className=''><ArrowLeftCircle width={21} className='fill-yukgetir-blue mx-2 cursor-pointer' /></div>
+                    <div className=''><ArrowLeftCircle width={21} className='fill-yg-blue mx-2 cursor-pointer' /></div>
                     <ul className="flex items-center">
-                        <li className="text-yukgetir-blue mx-3 text-lg cursor-pointer">1</li>
+                        <li className="text-yg-blue mx-3 text-lg cursor-pointer">1</li>
                         <li className="text-gray-400 mx-3 text-lg cursor-pointer">2</li>
                         <li className="text-gray-400 mx-3 text-lg cursor-pointer">3</li>
                         <li className="text-gray-400 mx-3 text-lg cursor-pointer">...</li>
                         <li className="text-gray-400 mx-3 text-lg cursor-pointer">10</li>
                     </ul>
-                    <div className=''><ArrowRightCircle width={21} className='fill-yukgetir-blue mx-2 cursor-pointer' /></div>
+                    <div className=''><ArrowRightCircle width={21} className='fill-yg-blue mx-2 cursor-pointer' /></div>
                 </div>
                 <div className='flex items-end '>
-                    <div className="border border-1 border-yukgetir-blue rounded-md p-1 flex justify-between">
+                    <div className="border border-1 border-yg-blue rounded-md p-1 flex justify-between">
                         <input type="number" className='px-2 border-none outline-none text-center 
-                        text-yukgetir-blue w-12' placeholder='' />
-                        <div className='bg-yukgetir-blue cursor-pointer'>
+                        text-yg-blue w-12' placeholder='' />
+                        <div className='bg-yg-blue cursor-pointer'>
                             <ArrowRightShort width={21} className='fill-white' />
                         </div>
                     </div>

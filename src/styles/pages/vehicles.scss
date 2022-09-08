@@ -34,15 +34,15 @@
             text-gray-400
         ; 
         svg{
-            @apply fill-yukgetir-gray;
+            @apply fill-yg-gray;
         }
         &.active{
             @apply
-                text-yukgetir-blue
-                border-yukgetir-blue
+                text-yg-blue
+                border-yg-blue
             ;
             svg{
-                @apply fill-yukgetir-blue;
+                @apply fill-yg-blue;
             }
         }
     }

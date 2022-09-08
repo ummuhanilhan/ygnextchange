@@ -24,6 +24,7 @@ export const FloatInput = ({
         <FloatingLabelInput
         {...props}
           className='w-72 bg-white'
+          test={true}
           value={value}
           size='medium'
           onChange={(e:string)=>setValue(e)}
@@ -54,5 +55,5 @@ export const FloatInput = ({
         />
    
       </div>
-      
+
  */

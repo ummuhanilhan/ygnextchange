@@ -10,7 +10,7 @@
   .storybook-button--primary {
     color: white;
     background-color: #1ea7fd;
-    @apply bg-yukgetir-orange ;
+    @apply bg-yg-orange ;
   }
   .storybook-button--secondary {
     color: #333;
@@ -19,7 +19,7 @@
   }
   .storybook-button--small {
     font-size: 12px;
-    @apply bg-yukgetir-orange text-7xl;
+    @apply bg-yg-orange text-7xl;
     padding: 10px 16px;
   }
   .storybook-button--medium {
