@@ -13,6 +13,7 @@ export const FloatingLabelInput = ({
    example='',
    value,
    textarea,
+   className,
    onChange,
    onBlur,
    error 
@@ -26,7 +27,7 @@ export const FloatingLabelInput = ({
     }
   
     return (
-      <div className={classnames({'error': error}, 'w-full')}>
+      <div className={classnames({'error': error}, 'w-full', className)}>
           <div className="input relative border-none rounded-md bg-white- w-full mb-1- h-[4rem] border-gray-300 border-opacity-25">
             <input  
               className={[

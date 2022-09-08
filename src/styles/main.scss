@@ -2,8 +2,7 @@
 @import 'variables';
 @import 'globals';
 @layer components {
-    @import 'flags/flags';
-    @import 'flags/high-res-flags';
+    @import 'flags';
     @import 'pages/auth';
     @import 'pages/account/index';
     @import 'pages/account/profile';

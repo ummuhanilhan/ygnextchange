@@ -45,11 +45,12 @@ function useDimensions({
     const ref = useCallback((node:any) => {
         setNode(node);
     }, []);
-
+    
+    /* eslint-disable */
     useEffect(() => {
         if (node) {
-            const measure = () =>
-                window.requestAnimationFrame(() =>
+            const measure = async () =>
+                await window.requestAnimationFrame(() =>
                     setDimensions(getDimensionObject(node))
                 );
             measure();

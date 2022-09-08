@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
  * Hook that alerts clicks outside of the passed ref
  */
 function useOutside(ref:any, cb:Function) {
+  /* eslint-disable */
   useEffect(() => {
     /**
      * Alert if clicked on outside of element
