@@ -1,5 +1,5 @@
 import { ArrowClockwise, CheckCircle, Eye, EyeSlash, Share, ShieldLock, XCircle } from "@yukgetir-icons"
-import React from "react"
+import React, { createRef, useRef } from "react"
 import TR from '@public/assets/flags/tr.svg'
 import classnames from "classnames";
 import rawCountries from "@utils/dummy/rawCountries";
@@ -9,71 +9,73 @@ import classNames from "classnames";
 export interface FloatInputProps {
   /**
    * FloatInput placeholder
-   */
-   value: string;
-   /**
+  */
+    value: string;
+  /**
     * Input contents
-    */
-   placeholder: string;
-   /**
-   * Unique input name
-   */
-   name: string;
-   /**
+  */
+    placeholder: string;
+  /**
+   * Unique input name+
+  */
+    name: string;
+  /**
    * What background color to use
-   */
-   backgroundColor?: string;
-   /**
-   * Verification icon
-   */
-   verified?: boolean;
+  */
+     backgroundColor?: string;
+  /**
+   * verification icon will be shown
+  */
+     verified?: boolean;
+  /**
+   * shows verification status
+  */
+    verifiable?: boolean;
    /**
    * How large should the FloatInput be?
    */
-  size?: 'small' | 'medium' | 'large';
+    size?: 'small' | 'medium' | 'large';
   /**
    * Click handler
   */
-  onChange: (value:string) => Function;
+   onChange: (value:string) => Function;
   /**
    * Optional click handler
    */
-  onClick?: (callback:Function) => Function;
+   onClick?: (callback:Function) => Function;
   /**
    * Optional blur handler
   */
-  onBlur?: () => void;
+    onBlur?: () => void;
   /**
    * Error Message
   */
-  error?: string;
+    error?: string;
   /**
    * Input type 
   */
-  type?: string;
+   type?: string;
   /**
    * Optional border
   */
-  border?: boolean;
+    border?: boolean;
   /**
    * append icons 
   */
-  apendix?: boolean;
+   apendix?: boolean;
   /**
    * Show users to valid types. It will be shown in when clicked
    * If leave empty it's do nothing
   */
-  example?: string;
+    example?: string;
   /**
    * Options
   */
-  className?: string;
-  test?: string;
+    className?: string;
 }
 
 
 export const FloatingLabelInput = ({ 
-   test,
    size,
    type,
    name,
@@ -89,28 +91,48 @@ export const FloatingLabelInput = ({
 }:FloatInputProps) => {
     const [active, setActive] = React.useState(false);
     const [hide, setHide] = React.useState(true);
+    const inputRef = createRef<HTMLInputElement>();
   
     function handleActivation(e:any) {
       setActive(!!e.target.value);
       onChange(e.target.value);
     }
-  
+    function handleLabel(e:any) {
+      const node = inputRef.current;
+      node && node.focus()
+    }
+
+    React.useEffect(()=>{
+      if(value)
+        setActive(true)
+      else
+        setActive(false)
+    },[value])
+
+
+    const isActive = value || active;
     return (
       <div className={classnames(
-        'w-full floatinglabel-input', 
+        'w-full floatinglabel-input h-[4rem]  overflow-hidden border-box', 
         className,
-        size,
+        size||'medium',
+       backgroundColor||'bg-white',
         {'error': error},
       )}>
-          <div className="input relative border-none rounded-md bg-white- w-full mb-1- h-[4rem] border-gray-300 border-opacity-25">
+          <div className={classNames(
+            'input relative border-none rounded-md bg-white- w-full border-box',
+            'mb-1- h-[4rem] border-gray-300 border-opacity-25',
+            {'active':active},
+            {'passive':!active},
+          )}>
             <input  
               className={classNames(
                 {'border border-gray-300':border},
                 "outline-none w-full h-full rounded bg-transparent text-[1.03rem] pr-10 transition-all duration-200 ease-in-out p-2",
-                value || active ? "pt-6 text-gray-500" : "pt-2",
-                )}
+                 )}
               id={name}
               value={value}
+              ref={inputRef}
               placeholder={!value&& active ?  ( example ? example : 'Boş bırakılamaz'
                ) : ''}
               type={type=='password'? (!hide?'text':(type||'text')) : (type||'text') }
@@ -119,9 +141,10 @@ export const FloatingLabelInput = ({
             />
             <label
               className={[
-                "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out ",
-                value || active ? "text-sm font-medium" : "text-[1.03rem] text-gray-500 pt-5"
-              ].join(" ")}
+                "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out",
+               ].join(" ")}
+              onClick={handleLabel}
+              onTouchMove={handleLabel}
               htmlFor={name}
             >
               {placeholder} 
@@ -132,7 +155,6 @@ export const FloatingLabelInput = ({
                   hide={hide}
                   value={value}
                   onChange={onChange}
-                  test={test}
                   active={active}
                   setActive={setActive}
                   toggle={()=>setHide(!hide)}
@@ -145,6 +167,8 @@ export const FloatingLabelInput = ({
     );
 }
 
+
+
 export const FloatingLabelPhone = ({ 
   size,
   type,
@@ -152,21 +176,29 @@ export const FloatingLabelPhone = ({
   placeholder,
   value,
   onChange,
+  className,
   onBlur,
   error }:any) => {
-  const [active, setActive] = React.useState(value);
-  const [hide, setHide] = React.useState(true);
-  const [status, setStatus] = React.useState(false);
-  const [code, setCode] = React.useState<any>({});
+    const [active, setActive] = React.useState(value);
+    const [hide, setHide] = React.useState(true);
+    const [status, setStatus] = React.useState(false);
+    const inputRef = createRef<HTMLInputElement>();
+    const [code, setCode] = React.useState<any>({});
+  
+    function handleActivation(e:any) {
+      setActive(!!e.target.value);
+      onChange(e.target.value);
+    }
+    function handleLabel(e:any) {
+      const node = inputRef.current;
+      node && node.focus();
+    }
+
+    const isActive = value || active;
 
   React.useEffect(()=>{
     setCode({country:'', countryCode:''});
   },[active])
-
-  function handleActivation(e:any) {
-    setActive(!!e.target.value);
-    onChange(e.target.value);
-  }
 
   function handleCode(data:any){
     setCode(data)
@@ -174,27 +206,34 @@ export const FloatingLabelPhone = ({
 
   return (
     <div className={classnames(
-      'w-full floatinglabel-phone',
+      'w-full floatinglabel-phone  h-[4rem] overflow-hidden  border-box',
       {'error': error},
-       size
+       className,
+       size||'medium',
        )}
       >
-        <div className="relative border rounded bg-white-
-         mb-1- h-[55px] border-gray-500 border-opacity-25">
-          {active && (
-              <div className="flex items-center mt-[1.44rem] absolute left-[.5rem] top-[.1rem]">
-                <CountryCodeDropdown 
-                  status={status}
-                  setStatus={setStatus}
-                  handleCode={handleCode}
-                />
-                <p className="font-bold ml-1 text-sm">+{code.countryCode||'90'}</p>
-              </div>
-            )}
+        <div className={classNames(
+          'relative border rounded bg-white- input border-box',
+          'mb-1- h-[55px] border-gray-500 border-opacity-25',
+          {'active':active},
+          {'passive':!active},
+        )}>
+        
+            <div className={classNames(
+              'flex items-center mt-[1.44rem] absolute left-[.5rem] top-[.1rem]',
+              {'hidden':!active}
+            )}>
+              <CountryCodeDropdown 
+                status={status}
+                setStatus={setStatus}
+                handleCode={handleCode}
+              />
+              <p className="font-bold ml-1 text-sm">+{code.countryCode||'90'}</p>
+            </div>
           <input  
             className={classNames(
               "outline-none w-full h-full rounded bg-transparent text-sm pr-10 transition-all duration-200 ease-in-out p-2",
-              value || active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
+            // value || active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
               active && code.countryCode?.length > 2 ? 'pl-[4.5rem]' : '',
               active && code.countryCode?.length == 4 ? 'pl-[4.8rem]' : '',
             )}
@@ -203,13 +242,16 @@ export const FloatingLabelPhone = ({
             type="text"
             onTouchMove={handleActivation}
             onChange={handleActivation}
+            ref={inputRef}
             
           />
           <label
             className={[
               "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out",
-              value || active ? "text-xs font-medium " : "text-sm text-gray-500 pt-4"
+              // value || active ? "text-xs font-medium " : "text-sm text-gray-500 pt-4"
             ].join(" ")}
+            onClick={handleLabel}
+            onTouchMove={handleLabel}
             htmlFor={name}
           >
             {placeholder}
@@ -238,21 +280,21 @@ const InputAppend = ({test, type, value, onChange, color, hide, toggle, active, 
 
     return (
       <React.Fragment> 
-          <div className="pl-2 cursor-pointer">
-            <div className='verification absolute right-10 top-4 mt-1'>
-                {!test && <CheckCircle width='15' className='fill-yg-green' /> }
-                {test && <p className='text-yg-green text-sm'>Doğrulandı</p> }
+          <div className="pl-2 cursor-pointer bg-lime-500 h-full flex items-center justify-center">
+            <div className='verification absolute right-10 top-[30%]'>
+                {false && <CheckCircle width='15' className='fill-yg-green' /> }
+                {true && <p className='text-yg-green text-sm'>Doğrulandı</p> }
             </div>
               {type=='password' && (
                 hide ? <EyeSlash className={[
                   "icon h-4  icon-gray absolute right-4",
                   color,
-                  active ? "top-[1.15rem]" : "top-[1.15rem]"
+                  active ? "top-[30%]" : "top-[30%]"
               ].join(' ')}  onClick={toggle} /> :
               <Eye className={[
                   "icon h-4 icon-gray absolute right-4",
                   color,
-                  active ? "top-[1.15rem]" : "top-[1.15rem]"
+                  active ? "top-[30%]" : "top-[30%]"
               ].join(' ')} onClick={toggle} />
               )}
               {!value && type!='password' && (
@@ -261,7 +303,7 @@ const InputAppend = ({test, type, value, onChange, color, hide, toggle, active, 
                 className={[
                   "icon h-4 icon-gray absolute right-4",
                   color,
-                  active ? "top-[1.15rem]" : "top-[1.15rem]"
+                  active ? "top-[30%]" : "top-[30%]"
               ].join(' ')} />
               )}
               {value && type!='password' && (
@@ -270,7 +312,7 @@ const InputAppend = ({test, type, value, onChange, color, hide, toggle, active, 
                   className={[
                     "icon h-4 icon-gray absolute right-4",
                     color,
-                    active ? "top-[1.15rem]" : "top-[1.15rem]"
+                    active ? "top-[30%]" : "top-[30%]"
                   ].join(' ')} />
               )}
           </div>

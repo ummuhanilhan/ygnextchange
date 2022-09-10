@@ -1,18 +1,128 @@
 
 
-.floatinglabel-input, .floatinglabel-input{
-    &.large {
-        input, label{
-           @apply text-[1.1rem] ;
+.floatinglabel-input, .floatinglabel-phone{
+    &.medium {
+        .passive{
+            input{
+                @apply pt-2; 
+            }
+            label{
+                @apply text-base text-gray-500 pt-5;
+            }
+        }
+        .active{
+            input{
+                @apply pt-6 text-gray-500; 
+    
+            }
+            label{
+                @apply text-sm font-medium;
+            }
+        }
+      
+    }
+
+    &.small {
+        .passive{
+            input{
+                @apply pt-2; 
+            }
+            label{
+                @apply text-sm text-gray-500 pt-5;
+            }
+        }
+        .active{
+            input{
+                @apply pt-5 text-sm text-gray-500 ; 
+    
+            }
+            label{
+                @apply text-xs font-medium mt-2;
+            }
         }
     }
-    &.small {
-        input, label{
-           @apply text-[.85rem] ;
+    
+
+    &.large {
+        .passive{
+            input{
+                @apply pt-2; 
+            }
+            label{
+                @apply text-lg text-gray-500 pt-5;
+            }
+        }
+        .active{
+            input{
+                @apply pt-6 text-lg text-gray-500; 
+    
+            }
+            label{
+                @apply text-xs font-medium;
+            }
+        }
+    
+    }
+    
+    
+}
+
+.floatinglabel-phone{
+    &.medium{
+        .input{
+            @apply flex items-center justify-center ;
+        }
+
+        .active{
+            input{
+                @apply pt-6 text-gray-500 pl-[3.8rem] ;
+            }
+            label{
+                @apply text-sm font-medium ;
+            }
+        }
+        .passive{
+            input{
+                @apply pt-2 ;
+            }
+            label{
+                @apply text-base text-gray-500 pt-0 pb-0 h-full;
+            }
+        }
+    }
+    &.small{
+        .active{
+            input{
+                @apply pt-6 text-gray-500 pl-[3.8rem] ;
+            }
+            label{
+                @apply text-xs font-medium;
+            }
+        }
+        .passive{
+            input{
+                @apply pt-2 ;
+            }
+            label{
+                @apply text-sm text-gray-500 h-full pt-0 pb-0;
+            }
+        }
+    }
+    &.large{
+        .active{
+            input{
+                @apply pt-2 ;
+            }
+            label{}
+        }
+        .passive{
+            input{}
+            label{
+                @apply pt-0 pb-0 h-full;
+            }
         }
     }
 }
-
 
 .floatinglabel-input{}
 .floatinglabel-phone{}

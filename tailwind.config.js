@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: false,
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
@@ -20,15 +21,15 @@ module.exports = {
           gray: '#868A9A',
           green: '#1DBF73',
         },
-         size: {
-          'smallest': '.8rem',
-          'small': '.9rem',
-          'normal': '1rem',
-          'big': '1.1rem',
-          'bigger': '1.3rem',
-    
-        }
       },
+      fontSize:{
+        'bigger': '1.2rem',
+        'big': '1.1rem',
+        'medium': '1rem',
+        'small': '.9rem',
+        'smallest': '.85rem',
+    
+      }
     },
  
   },
