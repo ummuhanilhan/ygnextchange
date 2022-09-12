@@ -1,11 +1,25 @@
-import { CargoRoute } from "@layouts/CargoLayout"
-import { cargoTabMenu } from "@utils/mock"
+import { CargoRoute, cargoTabMenu } from "@utils/mock"
 import classNames from "classnames"
 import { useRouter } from "next/router"
 import React from "react"
 
+export enum route {
+    'rent' = 1,
+}
 
-export const CargoTab = ({selected, setSelected, change}:any) => {
+export const CargoTab = ({
+    selected, 
+    setSelected, 
+    change, 
+    data, 
+    routes
+}:{
+    selected:string,
+    setSelected:Function,
+    change:Function,
+    data:object[],
+    routes:object[],
+}) => {
 
     const router = useRouter();
     return (

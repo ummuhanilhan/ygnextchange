@@ -128,3 +128,20 @@ export const cargoTabMenu = [
     {id:2, title:'Tarih ve Konum', icon: <Calendar className="menu-icon" />, slug:'datetime' },
     {id:3, title:'Yük Özellikleri', icon: <MinecartLoaded className="menu-icon" />, slug:'payload' },
 ]
+
+export const vehicleTabMenu = [
+    {id:1, title:'Aktif Olan Araçlarım', slug:'active' },  
+    {id:2, title:'İşlem Gereken Araçlarım', slug:'pending' },  
+]
+
+export const offerTabMenu = [
+    {id:1, title:'Sevkiyatta Olanlar', slug:'rent', count:3 },  
+    {id:2, title:'Kabul Edilenler', slug:'rent', count:7 },  
+    {id:3, title:'Beklemede Olanlar', slug:'rent', count:9 },  
+]
+
+export enum VehicleRoute {
+    'rent' = 1,
+    'datetime' = 2,
+    'payload' = 3,
+}

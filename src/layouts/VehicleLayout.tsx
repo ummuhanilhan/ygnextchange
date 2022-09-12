@@ -3,12 +3,6 @@ import { VehicleTab } from "@components/tabs/VehicleTab"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 
-export enum VehicleRoute {
-    'rent' = 1,
-    'datetime' = 2,
-    'payload' = 3,
-}
-
 export const VehicleLayout = ({children, selected, setSelected}:any) => {
     const router = useRouter();
     const {pathname} = router;
