@@ -5,6 +5,7 @@ import classNames from "classnames"
 import React from "react"
 import { FaChevronRight, FaMinusCircle } from "react-icons/fa"
 import { FiArrowLeft, FiArrowRight, FiMinusCircle, FiXCircle } from "react-icons/fi"
+import { CargoItem } from "./cargoItem"
 
 const items = [
     {type:true, vat:false, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
@@ -12,8 +13,8 @@ const items = [
     distance:'500KM',  },
     {type:false, vat:true, corporate:true, price:'7.35', currency:'₺', tax:false, fav:false, view:76413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'15 Ton', date:'22.07.2012 - 03.00.2022', load:'Adana', unload:'Ardahan', distance:'3420KM',  },
     {type:false, vat:true, corporate:false, price:'342.875', currency:'₺', tax:true, fav:true, view:8135, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'2 Ton', date:'22.07.2022 - 25.08.2022', load:'Konya', unload:'Diyarakır', distance:'1500KM',  },
-    {type:true, vat:false, corporate:true, price:'19.255', currency:'₺', tax:false, fav:true, view:91413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'5 Ton', date:'22.07.2012 - 03.00.2022', load:'Yozgat', unload:'Hatay', distance:'43420KM',  },
-    {type:true, vat:false, corporate:false, price:'93.78', currency:'₺', tax:true, fav:true, view:18413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'55 Ton', date:'22.07.2012 - 03.00.2022', load:'İstanbul', unload:'Çanakkale', distance:'53420KM',  },
+    {type:true, vat:false, corporate:true, price:'19.255', currency:'₺', outdated:true, tax:false, fav:true, view:91413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'5 Ton', date:'22.07.2012 - 03.00.2022', load:'Yozgat', unload:'Hatay', distance:'43420KM',  },
+    {type:true, vat:false, corporate:false, price:'93.78', currency:'₺', outdated:true, tax:true, fav:true, view:18413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'55 Ton', date:'22.07.2012 - 03.00.2022', load:'İstanbul', unload:'Çanakkale', distance:'53420KM',  },
 ]
 
 export const View = ({wide, tabs}:any) => {
@@ -24,90 +25,14 @@ export const View = ({wide, tabs}:any) => {
             {tabs && <Tabs /> }
             {[
             ...items
-            ,...items
-            ,...items
-            ,...items
             ].map((item,i:number)=>(
-                <Item item={item} key={`cargo-item-${i}`} />
+                <CargoItem item={item} key={`cargo-item-${i}`} />
             ))}
             <SimplePagination />
         </div>
     )
 }
 
-const Item = ({item}:any) => {
-
-    return (
-        <div className="cargo-item bg-white px-4 my-3 rounded-lg py-4">
-            <div className="flex justify-between">
-                <div className="flex items-start">
-                    <div className="tag rounded-lg p-1 px-3 border border-1 
-                    border-yg-blue m-r2 flex items-start w-max"> 
-                        <People className='fill-yg-blue' width={20} /> 
-                        <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
-                    </div>
-                    <div className="flex items-start justify-center">
-                        <Geo width={20} className='fill-yg-blue ml-1' />
-                        <p className='text-gray-500 pl-1'>Ankara</p>
-                        <ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' />
-                        <p className='text-gray-500 px-1'>Mersin</p>
-                        <Forward width={20} />
-                        <p className="ml-1 mr-3">{item.distance}</p>
-                        {item.type ? 
-                        <CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml-1' /> : 
-                        <CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml-1' />}
-                        <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
-                    </div>
-                </div>
-                <div className='flex items-end flex-col'>
-                    <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
-                    <p className='text-gray-400 text-sm'>({item.vat?'KDV Dahil':'+KDV'})</p>
-                </div>
-            </div>
-            <div className="flex justify-between mt-[-1em]">
-                <div className={classNames({
-                     'mt-6-':item.tax 
-                })}>
-                    <ul className='mt-1'>
-                        <li className='flex items-start'>
-                            <Calendar width={17} className='fill-yg-blue mr-2 mb-1' />
-                            <p className="text-yg-blue text-sm mr-2">Yükleme Tarihi:</p>
-                             <p className='text-gray-400 text-sm'>{item.date}</p> </li>
-                        <li className='flex items-start'>
-                            <Clock width={17} className='fill-yg-blue mr-2 mb-1' />
-                            <p className="text-yg-blue text-sm mr-2">Boşaltma Zamanı:</p>
-                             <p className='text-gray-400 text-sm'>{item.time}</p> </li>
-                    </ul>
-                    <ul className='flex items-start'>
-                        <li className='flex items-start'>
-                            <Truck width={17} className='fill-yg-blue mr-2 mb-1' />
-                            <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
-                             <p className='text-gray-400 text-sm'>{item.vehicle}</p> </li>
-                        <li className='flex items-start ml-8'>
-                            <Capslock width={17} className='fill-yg-blue mr-2 mb-1' />
-                             <p className='text-gray-400 text-sm'>{item.weight}</p> </li>
-                    </ul>
-                </div>
-                <div className='flex items-end'>
-                    <div className='view flex flex-col items-center mr-2'><Eye width={15} className='fill-gray-400' />
-                     <p className='text-gray-400 text-sm'>{item.view}</p></div>
-                    <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
-                        items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
-                        {item.fav ? <HeartFill width={15} className='fill-yg-orange' /> : <Heart width={15} className='fill-yg-orange' />}
-                     </div>
-                    <div className='button py-1 px-6 bg-yg-orange 
-                    border border-transparent hover:bg-yg-transparent hover:border-yg-orange hover:bg-transparent hover:text-yg-orange 
-                    text-white cursor-pointer text-sm
-                    rounded-md inline-block mr-1'>Detay Gör</div>
-                    <div className='button py-1 px-6 bg-yg-blue 
-                    border border-transparent hover:bg-yg-transparent hover:border-yg-blue hover:bg-transparent hover:text-yg-blue 
-                    text-white cursor-pointer text-sm
-                    rounded-md inline-block ml-1'>Teklif Gönder</div>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 export const Heading = ({wide}:any) => {
 
@@ -201,16 +126,18 @@ export const Tabs = () =>{
 
     return (   
         <React.Fragment> 
-            <br />
+           <div className="mt-4">
             <TabLayout
-                type='cargo'
-                selected={String(selected)}
-                setSelected={setSelected}
-                data={cargoTabMenu}
-                routes={CargoRoute}
-            >
-            <div></div>
-            </TabLayout>
+                    type='cargo'
+                    selected={String(selected)}
+                    setSelected={setSelected}
+                    data={cargoTabMenu}
+                    routes={CargoRoute}
+                    numeric
+                >
+                <div></div>
+                </TabLayout>
+           </div>
 
         </React.Fragment>
     )

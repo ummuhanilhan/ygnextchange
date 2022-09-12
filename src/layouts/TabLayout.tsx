@@ -13,16 +13,20 @@ export interface TabProps {
     change?: Function
     pathname?: string
     frame?: boolean
+    numeric?: boolean
 }
 
 export const TabLayout = (props:TabProps) => {
     const router = useRouter();
+    const [selected, setSelected] = React.useState(String(1))
     const {pathname} = router;
     const context = (
-        <div id={props.type}>
+        <div id={props.type} >
             <Tabs 
                 pathname={pathname}
                 {...props}
+                selected={props.numeric?selected:props.selected}
+                setSelected={props.numeric?setSelected:props.setSelected}
             />
             <React.Fragment>
                 {props.children}

@@ -8,7 +8,8 @@ export const Tabs = ({
     setSelected,
     type,
     data,
-    routes
+    routes,
+    numeric
 }:TabProps) => {
 
     const router = useRouter();
@@ -21,7 +22,7 @@ export const Tabs = ({
             {data?.map((item:any, i:number)=>(
                 <li 
                 key={`${type}-menu-${i}`} 
-                className={classNames({active:( selected == String(routes[item.slug]) ) },`
+                className={classNames({active:( selected == (numeric ? item.id : String(routes[item.slug])) ) },`
                 text-md flex flex-center items-center border border-transparent border-b-2 bg-white p-3 rounded-md
                 cursor-pointer mb-3
                 `)} 
