@@ -1,4 +1,5 @@
 import TabLayout from "@layouts/TabLayout"
+import { SimplePagination } from "@shared/paginations"
 import { CargoRoute, cargoTabMenu } from "@utils/mock"
 import { ArrowLeftCircle, ArrowRightCircle, ArrowRightShort, Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
@@ -6,6 +7,7 @@ import React from "react"
 import { FaChevronRight, FaMinusCircle } from "react-icons/fa"
 import { FiArrowLeft, FiArrowRight, FiMinusCircle, FiXCircle } from "react-icons/fi"
 import { CargoItem } from "./cargoItem"
+import { VehicleItem } from "./vehicleItem"
 
 const items = [
     {type:true, vat:false, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
@@ -26,7 +28,7 @@ export const View = ({wide, tabs}:any) => {
             {[
             ...items
             ].map((item,i:number)=>(
-                <CargoItem item={item} key={`cargo-item-${i}`} />
+                <VehicleItem item={item} key={`cargo-item-${i}`} />
             ))}
             <SimplePagination />
         </div>
@@ -55,38 +57,6 @@ export const Heading = ({wide}:any) => {
         </div>
     )
 }
-
-export const SimplePagination = () => {
-
-    return (
-        <React.Fragment>
-            <div className='simple-pagination flex justify-between bg-white rounded-md py-2 pr-2 my-2 mt-3'>
-                <div></div>
-                <div className='flex items-center'>
-                    <div className=''><ArrowLeftCircle width={21} className='fill-yg-blue mx-2 cursor-pointer' /></div>
-                    <ul className="flex items-center">
-                        <li className="text-yg-blue mx-3 text-lg cursor-pointer">1</li>
-                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">2</li>
-                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">3</li>
-                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">...</li>
-                        <li className="text-gray-400 mx-3 text-lg cursor-pointer">10</li>
-                    </ul>
-                    <div className=''><ArrowRightCircle width={21} className='fill-yg-blue mx-2 cursor-pointer' /></div>
-                </div>
-                <div className='flex items-end '>
-                    <div className="border border-1 border-yg-blue rounded-md p-1 flex justify-between">
-                        <input type="number" className='px-2 border-none outline-none text-center 
-                        text-yg-blue w-12' placeholder='' />
-                        <div className='bg-yg-blue cursor-pointer'>
-                            <ArrowRightShort width={21} className='fill-white' />
-                        </div>
-                    </div>
-                </div>
-            </div>
-      </React.Fragment>
-    )
-}
-
 
 const selected = [
     {id:1, title:'Yükleme Yeri: Ankara'},

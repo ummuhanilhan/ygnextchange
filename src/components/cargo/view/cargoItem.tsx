@@ -72,13 +72,13 @@ export const CargoItem = ({item, type='normal'}:any) => {
                     </ul>
                    
                    {/*** SHIPMENT  **/}
-                   {false && (
+                   {true && (
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-yg-green mr-1' /> 
                             Durum: Sevkiyat Devam Ediyor    
                         </p>
                     )}
-                     {false && (
+                     {true && (
                         <p className='text-red-600 flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-red-600 mr-1' /> 
                             Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
@@ -124,10 +124,11 @@ export const Actions = ({item, type, fav}:any) => {
             <Action title='Sil' color='gray' path='#' outline />
             <Action title='Vazgeç' color='gray' path='#' outline />
             <Action title='Kopyala' color='blue' path='#' outline />
-            <Action title='İlan Detayını Gör' color='orange' path='#' />
+            {/** <Action title='İlan Detayını Gör' color='orange' path='#' /> **/}
             <Action title='Detay Gör' color='orange' path='#' />
             <Action title='Teklif Gönder' color='blue' path='#' />
             <Action title='Düzenle' color='blue' path='#' />
+            <Action title='Sevkiyatı Tamamla' color='green' path='#' />
         </div>
     )
 }
