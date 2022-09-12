@@ -5,9 +5,12 @@ import type { NextPage } from 'next'
 import Main from '@containers/Main'
 import PrivateLayout from '@layouts/PrivateLayout'
 import React from 'react'
+import { FloatingLabelInput, FloatingLabelPhone } from '@shared/elements/inputs'
 
 const Home = () => {
-  const paragraph =  <p>
+  const [value, setValue] = React.useState('')
+
+const paragraph =  <p>
   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur eos fugiat odit laborum temporibus explicabo at accusantium aperiam atque impedit. Expedita veniam quod illo consequuntur similique sint, modi nostrum officiis.
   Necessitatibus explicabo distinctio veritatis ipsam magni error sunt consectetur quas eius laudantium debitis nobis expedita, quia aliquam amet nisi corporis laborum delectus, deleniti earum? Impedit nesciunt esse officia placeat culpa.
   Iste suscipit earum unde rem officia quis obcaecati iure modi eos quos nesciunt similique voluptate ab id ad vitae voluptatum, assumenda dolores neque, explicabo commodi minus temporibus? Facilis, est laborum!
@@ -36,6 +39,47 @@ const Home = () => {
 </p>
   return (
     <React.Fragment>
+
+
+  <div className='flex items-start gap-2 m-5'>
+    {/** 
+      <FloatingLabelInput
+        className='w-72 bg-white'
+        value={value}
+        placeholder='Kullanıcı Adı'
+        size='small'
+        onChange={(e:string)=>setValue(e)}
+      />
+     **/}
+  </div>
+
+  <div className='flex items-start gap-2 m-5'>
+        <FloatingLabelPhone
+          className='w-72 bg-white'
+          value={value}
+          placeholder='Kullanıcı Adı'
+          size='small'
+          onChange={(e:string)=>setValue(e)}
+        />
+
+        <FloatingLabelPhone
+          className='w-72 bg-white'
+          value={value}
+          placeholder='Kullanıcı Adı'
+          size='medium'
+          onChange={(e:string)=>setValue(e)}
+        />
+
+        <FloatingLabelPhone
+          className='w-72 bg-white'
+          value={value}
+          placeholder='Kullanıcı Adı'
+          size='large'
+          onChange={(e:string)=>setValue(e)}
+        />
+  </div>
+
+
       {paragraph}
     </React.Fragment>
   )

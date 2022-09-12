@@ -25,7 +25,9 @@ export const FloatInput = ({
             size='small'
           onChange={(e:string)=>setValue(e)}
         />
-        <FloatingLabelInput
+
+        {/**
+         <FloatingLabelInput
         {...props}
           className='w-72 bg-white'
             border={border}
@@ -43,14 +45,9 @@ export const FloatInput = ({
             size='large'
             onChange={(e:string)=>setValue(e)}
         />
-          <FloatingLabelInput
-         {...props}
-          className='w-72 bg-white'
-          value={value}
-            border={border}
-            size=''
-          onChange={(e:string)=>setValue(e)}
-        />
+           
+         */}
+
       </div>
 
        <div className='flex items-start gap-2 mt-4 h-screen'>
@@ -63,7 +60,8 @@ export const FloatInput = ({
             size='small'
           onChange={(e:string)=>setValue(e)}
         />
-        <FloatingLabelPhone
+
+<FloatingLabelPhone
         {...props}
           className='w-80 bg-white'
             border={border}
@@ -80,14 +78,6 @@ export const FloatInput = ({
             value={value}
             size='large'
             onChange={(e:string)=>setValue(e)}
-        />
-          <FloatingLabelPhone
-         {...props}
-          className='w-80 bg-white'
-          value={value}
-            border={border}
-            size=''
-          onChange={(e:string)=>setValue(e)}
         />
       </div>
 
