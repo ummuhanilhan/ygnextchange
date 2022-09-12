@@ -5,7 +5,7 @@ import { FormFooter } from "@pages/account";
 import { Frame } from "@components/frames/MainFrame";
 import Rent from "./rent";
 import { CargoTab } from "@components/tabs/CargoTab";
-import { CargoLayout, CargoRoute } from "@layouts/CargoLayout";
+import { CargoLayout, CargoCreateRoute } from "@layouts/CargoLayout";
 import classNames from "classnames";
 import Payload from "./payload";
 import Datetime from "./datetime";
@@ -40,13 +40,13 @@ export const CargoCreate = ({update}:any) => {
             setSelected={setSelected}
         >
             <form onSubmit={handleSubmit(onSubmit, onError)}>
-                <div className={classNames({'hidden': CargoRoute.rent!=selected})}>
+                <div className={classNames({'hidden': CargoCreateRoute.rent!=selected})}>
                     <Rent control={control} />
                 </div>
-                <div className={classNames({'hidden': CargoRoute.datetime!=selected})}>
+                <div className={classNames({'hidden': CargoCreateRoute.datetime!=selected})}>
                     <Datetime control={control} />
                 </div>
-                <div className={classNames({'hidden': CargoRoute.payload!=selected})}>
+                <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
                     <Payload control={control} />
                 </div>
                 

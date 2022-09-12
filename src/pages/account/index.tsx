@@ -1,5 +1,5 @@
 import React from "react";
-import { AccountLayout, AccountRoute, AccountType } from "@layouts/AccountLayouts";
+import { AccountLayout } from "@layouts/AccountLayouts";
 import PrivateLayout from "@layouts/PrivateLayout";
 import { CardImage, CloudArrowUp, CreditCard2Front, HeartPulse, People, Person, TextareaResize } from "@shared/icons";
 import { FiChevronDown, FiChevronRight, FiXCircle } from "react-icons/fi";
@@ -10,6 +10,7 @@ import { profileSchema } from "@utils/validations/account";
 import classNames from "classnames";
 import { IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
+import { AccountRoute } from "@utils/mock";
 
 export type SignupValues = {
     name: string,
@@ -72,7 +73,7 @@ export const Account = () => {
             <form onSubmit={handleSubmit(onSubmit, onError)}
             className="flex items-center justify-start flex-col h-full informations" id="profile">
                 <ProfileInformation control={control} setSelected={setSelected} selected={selected} />
-                <div className={classNames(' w-full',{'hidden':selected!=AccountType.ChangePassword})} ></div>
+                <div className={classNames(' w-full',{'hidden-':selected!=AccountRoute.ChangePassword})} ></div>
             </form>
         </AccountLayout>
     )
@@ -86,7 +87,7 @@ export default Account;
 export const ProfileInformation = ({control, selected, setSelected}:any) =>{
     const [type, setType] = React.useState(true)
     return(
-        <div className={classNames('w-full',{'hidden':selected!=AccountType.Profile})} >
+        <div className={classNames('w-full',{'hidden-':selected!=AccountRoute.ChangePassword })} >
             <ul className='w-full'>
                 <Corporate control={control} corporate={type} setCorporate={setType} />
                 <DriverLicense control={control} />

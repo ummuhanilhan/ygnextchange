@@ -1,3 +1,5 @@
+import TabLayout from "@layouts/TabLayout"
+import { CargoRoute, cargoTabMenu } from "@utils/mock"
 import { ArrowLeftCircle, ArrowRightCircle, ArrowRightShort, Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import React from "react"
@@ -14,11 +16,12 @@ const items = [
     {type:true, vat:false, corporate:false, price:'93.78', currency:'₺', tax:true, fav:true, view:18413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'55 Ton', date:'22.07.2012 - 03.00.2022', load:'İstanbul', unload:'Çanakkale', distance:'53420KM',  },
 ]
 
-export const View = ({wide}:any) => {
+export const View = ({wide, tabs}:any) => {
 
     return (
         <div className={classNames('view rounded-lg bg-gray-50 h-full',{'ml-[18.8em] p-3':!wide})}>
             <Heading wide />
+            {tabs && <Tabs /> }
             {[
             ...items
             ,...items
@@ -189,5 +192,26 @@ export const Selectes = () => {
             </ul>
 
         </div>
+    )
+}
+ 
+
+export const Tabs = () =>{
+    const [selected, setSelected] = React.useState(1);
+
+    return (   
+        <React.Fragment> 
+            <br />
+            <TabLayout
+                type='cargo'
+                selected={String(selected)}
+                setSelected={setSelected}
+                data={cargoTabMenu}
+                routes={CargoRoute}
+            >
+            <div></div>
+            </TabLayout>
+
+        </React.Fragment>
     )
 }

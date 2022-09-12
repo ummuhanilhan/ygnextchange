@@ -9,28 +9,29 @@ export interface TabProps {
     selected:string,
     setSelected:Function,
     data:object[],
-    routes:object[],
+    routes:object,
     change?: Function
     pathname?: string
+    frame?: boolean
 }
 
 export const TabLayout = (props:TabProps) => {
     const router = useRouter();
     const {pathname} = router;
-    return (
-        <Frame>
-            <div id={props.type}>
-                <Tabs 
-                    pathname={pathname}
-                    {...props}
-                />
-                <React.Fragment>
-                    {props.children}
-                </React.Fragment>
-            </div>
-        </Frame>
-
+    const context = (
+        <div id={props.type}>
+            <Tabs 
+                pathname={pathname}
+                {...props}
+            />
+            <React.Fragment>
+                {props.children}
+            </React.Fragment>
+        </div>
     )
+    return props.frame ? (
+        <Frame>{context}</Frame>
+    ) : context;
 }
 
 export default TabLayout;

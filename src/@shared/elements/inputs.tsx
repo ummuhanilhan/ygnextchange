@@ -175,7 +175,7 @@ export const FloatingLabelPhone = ({
   onBlur,
   error }:any) => {
     const [value, setValue] = React.useState('')
-    const onChange = (val) => setValue(val)
+    const onChange = (val:string) => setValue(val)
     const [active, setActive] = React.useState(value);
     const [hide, setHide] = React.useState(true);
     const [status, setStatus] = React.useState(false);

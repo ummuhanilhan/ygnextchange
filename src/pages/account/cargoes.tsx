@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IconFrame } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
 import React from "react";
+import { View } from "@components/cargo/view";
+import { CargoRoute } from "@utils/mock";
 
 export type CargoValues = {
     password: string,
@@ -34,7 +36,7 @@ export const Cargoes = () => {
     };
     return (
         <AccountLayout>
-            <h1 className="text-2xl">Cargoes</h1>
+            <View wide  tabs />
         </AccountLayout>
     )
 }

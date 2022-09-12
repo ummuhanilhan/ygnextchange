@@ -6,7 +6,7 @@ import React from "react";
 
 
 export const Vehicle = () => {
-    const [selected, setSelected] = React.useState(1);
+    const [selected, setSelected] = React.useState(String(1));
     
     return (
         <React.Fragment>
@@ -17,7 +17,7 @@ export const Vehicle = () => {
                 routes={VehicleRoute}
                 type='vehicle'
             >
-                    <div className={classNames({'hidden': 1 !=selected})}>
+                    <div className={classNames({'hidden': 1 != parseInt(selected) })}>
 
                     </div>
             </TabLayout>

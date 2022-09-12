@@ -123,10 +123,15 @@ export const profileTabMenu = [
     {id:5, title:'Ayarlar', icon: <Gear className="menu-icon" />, path:'/account/settings' },
 ]
 
-export const cargoTabMenu = [
+export const cargoCreateTabMenu = [
     {id:1, title:'Araç Özellikleri', icon: <Truck className="menu-icon" />, slug:'rent' },  
     {id:2, title:'Tarih ve Konum', icon: <Calendar className="menu-icon" />, slug:'datetime' },
     {id:3, title:'Yük Özellikleri', icon: <MinecartLoaded className="menu-icon" />, slug:'payload' },
+]
+
+export const cargoTabMenu = [
+    {id:3, title:'Aktif Olan İlanlarım', slug:'active' },
+    {id:3, title:'Süresi Geçen İlanlarım', slug:'outdated' },
 ]
 
 export const vehicleTabMenu = [
@@ -135,13 +140,51 @@ export const vehicleTabMenu = [
 ]
 
 export const offerTabMenu = [
-    {id:1, title:'Sevkiyatta Olanlar', slug:'rent', count:3 },  
-    {id:2, title:'Kabul Edilenler', slug:'rent', count:7 },  
-    {id:3, title:'Beklemede Olanlar', slug:'rent', count:9 },  
+    {id:1, title:'Sevkiyatta Olanlar', slug:'inshipment', count:3 },  
+    {id:2, title:'Kabul Edilenler', slug:'accepted', count:7 },  
+    {id:3, title:'Beklemede Olanlar', slug:'pending', count:9 },  
 ]
-
-export enum VehicleRoute {
+export enum CargoCreateRoute {
     'rent' = 1,
     'datetime' = 2,
     'payload' = 3,
+    Rent= 1,
+    Datetime = 2,
+    Payload = 3,
+}
+
+export enum CargoRoute {
+    'active' = 1,
+    'outdated' = 2,
+    Active = 1,
+    Outdated = 2,
+}
+
+export enum AccountRoute {
+    'profile' = 1,
+    'change-password' = 2,
+    'address' = 3,
+    'favorites' = 4,
+    'settings' = 5,
+    Profile = 1,
+    ChangePassword = 2,
+    Address = 3,
+    Favorites = 4,
+    Settings = 5,
+}
+
+export enum VehicleRoute {
+    'active' = 1,
+    'passive' = 2,
+    Active = 1,
+    Passive = 1,
+}
+
+export enum OfferRoute {
+    'inshipment' = 1,
+    'accepted' = 2,
+    'pending' = 3,
+    InShipment = 1,
+    Accepted = 2,
+    Pending = 3,
 }
