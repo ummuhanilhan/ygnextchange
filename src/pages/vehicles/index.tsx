@@ -1,3 +1,6 @@
+import { Heading } from "@components/cargo/heading";
+import { FilterHeading } from "@components/cargo/heading/filter";
+import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
 import TabLayout from "@layouts/TabLayout";
 import { VehicleRoute, vehicleTabMenu } from "@utils/mock";
@@ -9,7 +12,8 @@ export const Vehicle = () => {
     const [selected, setSelected] = React.useState(String(1));
     
     return (
-        <React.Fragment>
+        <Frame>
+            <FilterHeading />
             <TabLayout 
                 selected={selected}
                 setSelected={setSelected}
@@ -17,12 +21,13 @@ export const Vehicle = () => {
                 routes={VehicleRoute}
                 type='vehicle'
             >
+               <React.Fragment>
                     <div className={classNames({'hidden': VehicleRoute.active != parseInt(selected) })}>1test1</div>
                     <div className={classNames({'hidden': VehicleRoute.passive != parseInt(selected) })}>2test2</div>
-
+               </React.Fragment>
             </TabLayout>
             
-        </React.Fragment>
+        </Frame>
     )
 }
 

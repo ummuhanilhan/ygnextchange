@@ -20,7 +20,7 @@ export const Heading = ({wide}:any) => {
                     <div><FaChevronRight size={17} className='text-gray-400' /> </div>
                 </div>
             </div>
-            {!wide && <Selectes />}
+            {wide && <Selectes />}
         </div>
     )
 }
