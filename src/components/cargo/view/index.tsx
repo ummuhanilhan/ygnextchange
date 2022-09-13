@@ -1,13 +1,11 @@
 import TabLayout from "@layouts/TabLayout"
 import { SimplePagination } from "@shared/paginations"
 import { CargoRoute, cargoTabMenu } from "@utils/mock"
-import { ArrowLeftCircle, ArrowRightCircle, ArrowRightShort, Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import React from "react"
-import { FaChevronRight, FaMinusCircle } from "react-icons/fa"
-import { FiArrowLeft, FiArrowRight, FiMinusCircle, FiXCircle } from "react-icons/fi"
+import {  FiMinusCircle, FiXCircle } from "react-icons/fi"
+import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
-import { VehicleItem } from "./vehicleItem"
 
 const items = [
     {type:true, vat:false, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
@@ -23,40 +21,18 @@ export const View = ({wide, tabs}:any) => {
 
     return (
         <div className={classNames('view rounded-lg bg-gray-50 h-full',{'ml-[18.8em] p-3':!wide})}>
-            <Heading wide />
+            <Heading  />
             {tabs && <Tabs /> }
             {[
             ...items
             ].map((item,i:number)=>(
-                <VehicleItem item={item} key={`cargo-item-${i}`} />
+                <CargoItem item={item} key={`cargo-item-${i}`} />
             ))}
             <SimplePagination />
         </div>
     )
 }
 
-
-export const Heading = ({wide}:any) => {
-
-    return (
-        <div className='heading'>
-            <div className='flex justify-between items-center w-full bg-white py-3 px-2'>
-                <div className='flex items-center justify-center text-base'>
-                    <p>Her sayfada</p>
-                    <p className='text-yg-orange ml-2 mr-1'>25</p>
-                    <div><FaChevronRight size={17} className='text-gray-400' /></div>
-                    <p>İlan göster</p>
-                </div>
-                <div className='flex items-center'>
-                    <p>Sıralama:</p>
-                    <p className="text-yg-orange mx-2">Yeniden Eskiye</p>
-                    <div><FaChevronRight size={17} className='text-gray-400' /> </div>
-                </div>
-            </div>
-            {!wide && <Selectes />}
-        </div>
-    )
-}
 
 const selected = [
     {id:1, title:'Yükleme Yeri: Ankara'},

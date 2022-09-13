@@ -3,6 +3,7 @@ import { Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, 
 import classNames from "classnames"
 import { FaMapPin } from "react-icons/fa"
 import { FiInfo } from "react-icons/fi"
+import { Actions } from "./Actions"
 
 export const CargoItem = ({item, type='normal'}:any) => {
 
@@ -71,22 +72,22 @@ export const CargoItem = ({item, type='normal'}:any) => {
                              <p className='text-gray-400 text-sm'>{item.weight}</p> </li>
                     </ul>
                    
-                   {/*** SHIPMENT  **/}
-                   {true && (
+                    {/*** SHIPMENT  **/}
+                    {true && (
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-yg-green mr-1' /> 
                             Durum: Sevkiyat Devam Ediyor    
                         </p>
                     )}
-                     {true && (
+                     {false && (
                         <p className='text-red-600 flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-red-600 mr-1' /> 
                             Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
                         </p>
                     )}
-                      {true && (
+                    {false && (
                         <p className='flex items-center justify-start text-sm'>  
-                            <FiInfo size={17} className=' mr-1' /> 
+                            <FiInfo size={17} className='mr-1' /> 
                             Durum: Sevkiyat Tamamlandı    
                         </p>
                     )}
@@ -98,55 +99,3 @@ export const CargoItem = ({item, type='normal'}:any) => {
     )
 }
 
-
-
-
-export const Actions = ({item, type, fav}:any) => {
-
-    const faved = (
-        <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
-                items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
-                {item.fav ? <HeartFill width={15} className='fill-yg-orange' /> : <Heart width={15} className='fill-yg-orange' />}
-        </div>
-    )
-        
-    const viewed = (
-        <div className='view flex flex-col items-center mr-2'>
-            <Eye width={15} className='fill-gray-400' />
-            <p className='text-gray-400 text-sm'>{item.view}</p>
-        </div>
-    )
-
-    return (
-        <div className='flex items-end'>
-            {viewed}
-            {faved}
-            <Action title='Sil' color='gray' path='#' outline />
-            <Action title='Vazgeç' color='gray' path='#' outline />
-            <Action title='Kopyala' color='blue' path='#' outline />
-            {/** <Action title='İlan Detayını Gör' color='orange' path='#' /> **/}
-            <Action title='Detay Gör' color='orange' path='#' />
-            <Action title='Teklif Gönder' color='blue' path='#' />
-            <Action title='Düzenle' color='blue' path='#' />
-            <Action title='Sevkiyatı Tamamla' color='green' path='#' />
-        </div>
-    )
-}
-
-
-export const Action = ({path, color, title, outline}:any) => {
- 
-    return !outline? (
-        <a href={path} className={classNames(
-            `button py-1 px-5 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
-            `bg-yg-${color} text-white`,
-            `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-        )}>{title}</a>
-    ):(
-        <a href={path} className={classNames(
-            `button py-1 px-3 border cursor-pointer text-sm rounded-md inline-block ml-1`,
-            `bg-transparent text-yg-${color} border-yg-${color}`,
-            `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-        )}>{title}</a>
-    )
-}

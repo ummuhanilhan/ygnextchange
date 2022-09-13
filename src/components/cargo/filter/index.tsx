@@ -24,12 +24,12 @@ const initialValues = {
 export const CargoFilter = () => {
 
     return (
-          <div id="cargoes" className="relative">
-              <DoubleFrame>
+        <div id="cargoes" className="relative">
+            <DoubleFrame>
                 <Filter />
                 <View />
             </DoubleFrame>
-            </div>
+        </div>
     )
 }
 

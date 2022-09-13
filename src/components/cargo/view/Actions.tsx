@@ -23,12 +23,13 @@ export const Actions = ({item, type, fav}:any) => {
         <div className='flex items-end'>
             {viewed}
             {faved}
-            <Action title='Sil' color='gray' path='#' outline />
-            <Action title='Vazgeç' color='gray' path='#' outline />
-            <Action title='Kopyala' color='blue' path='#' outline />
+       
             <Action title='Detay Gör' color='orange' path='#' />
             <Action title='Teklif Gönder' color='blue' path='#' />
              {/**
+            <Action title='Sil' color='gray' path='#' outline />
+            <Action title='Vazgeç' color='gray' path='#' outline />
+            <Action title='Kopyala' color='blue' path='#' outline />
             <Action title='Düzenle' color='blue' path='#' />
             <Action title='İlan Detayını Gör' color='orange' path='#' />
             <Action title='Sevkiyatı Tamamla' color='green' path='#' />

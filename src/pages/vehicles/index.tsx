@@ -17,9 +17,9 @@ export const Vehicle = () => {
                 routes={VehicleRoute}
                 type='vehicle'
             >
-                    <div className={classNames({'hidden': 1 != parseInt(selected) })}>
+                    <div className={classNames({'hidden': VehicleRoute.active != parseInt(selected) })}>1test1</div>
+                    <div className={classNames({'hidden': VehicleRoute.passive != parseInt(selected) })}>2test2</div>
 
-                    </div>
             </TabLayout>
             
         </React.Fragment>

@@ -130,8 +130,8 @@ export const cargoCreateTabMenu = [
 ]
 
 export const cargoTabMenu = [
-    {id:3, title:'Aktif Olan İlanlarım', slug:'active' },
-    {id:3, title:'Süresi Geçen İlanlarım', slug:'outdated' },
+    {id:1, title:'Aktif Olan İlanlarım', slug:'active' },
+    {id:2, title:'Süresi Geçen İlanlarım', slug:'outdated' },
 ]
 
 export const vehicleTabMenu = [

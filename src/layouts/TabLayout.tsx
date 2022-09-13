@@ -21,7 +21,7 @@ export const TabLayout = (props:TabProps) => {
     const [selected, setSelected] = React.useState(String(1))
     const {pathname} = router;
     const context = (
-        <div id={props.type} >
+        <div id={props.type} className='my-4'>
             <Tabs 
                 pathname={pathname}
                 {...props}
