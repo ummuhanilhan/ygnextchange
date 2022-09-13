@@ -29,7 +29,7 @@ export const TabLayout = (props:TabProps) => {
                 setSelected={props.numeric?setSelected:props.setSelected}
             />
             <React.Fragment>
-                {props.children}
+                {props.children} 
             </React.Fragment>
         </div>
     )

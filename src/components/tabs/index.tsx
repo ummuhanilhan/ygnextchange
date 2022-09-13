@@ -34,7 +34,7 @@ export const Tabs = ({
                     setSelected(item.id)
                 }} >
                     {item.icon}
-                    {item.title}
+                    {item.title} {item.count && `(${item.count})` }
                 </li>
             ))}
         </ul>

@@ -25,12 +25,12 @@ export const VehicleItem = ({item, type='normal'}:any) => {
                             <p className='ml-1'> Araç No: 25959 </p>
                         </li>
                         <li className="flex flex-start mx-1 ml-2 text-sm">
-                            <ChevronRightClosed width={9} className='fill-yg-blue' />
+                            <ChevronRightClosed width={8} className='fill-yg-blue' />
                             <b className='ml-1 text-yg-blue fond-medium'> Araç Markası: </b> 
                             <p className='text-gray ml-1'>Scania</p>
                         </li>
                         <li className="flex flex-start mx-1 ml-2 text-sm">
-                            <ChevronRightClosed width={9} className='fill-yg-blue' />
+                            <ChevronRightClosed width={8} className='fill-yg-blue' />
                             <b className='ml-1 text-yg-blue fond-medium'> Araç Modeli: </b> 
                             <p className='text-gray ml-1'>500S</p>
                         </li>
@@ -43,17 +43,17 @@ export const VehicleItem = ({item, type='normal'}:any) => {
                 })}>
                     <ul className='mt-1'>
                         <li className='flex items-start'>
-                            <ChevronRightClosed width={9} className='fill-yg-blue mr-2 mb-1' />
+                            <ChevronRightClosed width={8} className='fill-yg-blue mr-2' />
                              <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
                              <p className='text-gray-400 text-sm'>Dorse</p> 
                         </li>
                         <li className='flex items-start'>
-                            <ChevronRightClosed width={9} className='fill-yg-blue mr-2 mb-1' />
+                            <ChevronRightClosed width={8} className='fill-yg-blue mr-2' />
                              <p className="text-yg-blue text-sm mr-2">Araç Özelliklei:</p>
                              <p className='text-gray-400 text-sm'>10 Teker Kamyon Kapalı, 10 Teker Kamyon Açık</p> 
                         </li>
                         <li className='flex items-start'>
-                            <ChevronRightClosed width={9} className='fill-yg-blue mr-2 mb-1' />
+                            <ChevronRightClosed width={8} className='fill-yg-blue mr-2' />
                              <p className="text-yg-blue text-sm mr-2">Donanım Özellikleri:</p>
                              <p className='text-gray-400 text-sm'>Adr, Isı Kontrolü</p> 
                         </li>

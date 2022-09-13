@@ -1,9 +1,10 @@
 import { Heading } from "@components/cargo/heading";
 import { FilterHeading } from "@components/cargo/heading/filter";
+import { VehicleItem } from "@components/cargo/view/vehicleItem";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
 import TabLayout from "@layouts/TabLayout";
-import { VehicleRoute, vehicleTabMenu } from "@utils/mock";
+import { items, menuItems, VehicleRoute, vehicleTabMenu } from "@utils/mock";
 import classNames from "classnames";
 import React from "react";
 
@@ -13,7 +14,7 @@ export const Vehicle = () => {
     
     return (
         <Frame>
-            <FilterHeading />
+            <Heading />
             <TabLayout 
                 selected={selected}
                 setSelected={setSelected}
@@ -22,8 +23,19 @@ export const Vehicle = () => {
                 type='vehicle'
             >
                <React.Fragment>
-                    <div className={classNames({'hidden': VehicleRoute.active != parseInt(selected) })}>1test1</div>
-                    <div className={classNames({'hidden': VehicleRoute.passive != parseInt(selected) })}>2test2</div>
+
+                    <div className={classNames({'hidden': VehicleRoute.active != parseInt(selected) })}>
+                        {items.map((item,i:number)=>(
+                            <VehicleItem item={item} key={`vehiclle-active-${i}`} />
+                        ))}
+                    </div>
+
+                    <div className={classNames({'hidden': VehicleRoute.passive != parseInt(selected) })}>
+                        {items.filter((f,i)=>i<2).map((item,i:number)=>(
+                            <VehicleItem item={item} key={`vehiclle-pending-${i}`} />
+                        ))}
+                    </div>
+
                </React.Fragment>
             </TabLayout>
             
