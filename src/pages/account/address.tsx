@@ -6,9 +6,9 @@ import { IconFrame, IconFrameCovered, IconFrameDropdown } from "@components/fram
 import { useRouter } from 'next/router'
 import React from "react";
 import { GeoAlt, Person } from "@shared/icons";
-import { Search } from "@components/cargo/filter";
 import { FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook } from "@shared/elements/hooks";
 import { FormFooter } from ".";
+import { Search } from "@shared/elements/searches";
 
 export const Address = () => {
     return (
