@@ -189,6 +189,37 @@ export enum OfferRoute {
     Pending = 3,
 }
 
+const pendingOut = [ 
+    { title:'Beklemede olanlar', slug:'pending'},
+    { title:'İlan Sahibi Tarafından Görülenler', slug:'viewed'},
+    { title:'Kabul Edilmeyenler', slug:'rejected'},
+    { title:'İlan Süresi Geçenler', slug:'outdated'},
+    { title:'Tümünü Gör', slug:'all'},
+];
+const acceptedOut = [
+    { title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+];
+
+const inShipmentOut = [
+    { title:'Sevkiyatı  Devam Edenler', slug:'inshipment'},
+    { title:'Teslimat Onayı Bekleyenler', slug:'pending'},
+    { title:'Sevkiyatı Tamamlananlar', slug:'complated'},
+    { title:'Tümünü Göster', slug:'all'},
+];
+
+const pendingIn = [
+    { title:'Teklif Beklenenler', slug:'pending'},
+    { title:'Yanıt Bekleyenler', slug:'pending'},
+    { title:'Tümünü Göster', slug:'all'},
+];
+const acceptedIn = [
+    { title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+];
+
+const inShipmentIn = [
+    //...
+];
+
 export const items = [
     {type:true, vat:false, corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 
     vehicle:'Tır 13.60 Açık', weight:'27 Ton', date:'22.07.2022 - 25.08.2022', load:'Ankara', unload:'Mersin', 
@@ -198,3 +229,4 @@ export const items = [
     {type:true, vat:false, corporate:true, price:'19.255', currency:'₺', outdated:true, tax:false, fav:true, view:91413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'5 Ton', date:'22.07.2012 - 03.00.2022', load:'Yozgat', unload:'Hatay', distance:'43420KM',  },
     {type:true, vat:false, corporate:false, price:'93.78', currency:'₺', outdated:true, tax:true, fav:true, view:18413, time:'1-3 Gün içerisinde', vehicle:'Tır 13.60 Açık', weight:'55 Ton', date:'22.07.2012 - 03.00.2022', load:'İstanbul', unload:'Çanakkale', distance:'53420KM',  },
 ]
+
