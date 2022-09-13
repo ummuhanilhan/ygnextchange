@@ -1,3 +1,4 @@
+import { Dropdown } from "@shared/elements/dropdowns"
 import React from "react"
 import { FaChevronRight } from "react-icons/fa"
 import { Selectes } from "../view"
@@ -14,11 +15,10 @@ export const Heading = ({wide}:any) => {
                     <div><FaChevronRight size={17} className='text-gray-400' /></div>
                     <p>İlan göster</p>
                 </div>
-                <div className='flex items-center'>
-                    <p>Sıralama:</p>
-                    <p className="text-yg-orange mx-2">Yeniden Eskiye</p>
-                    <div><FaChevronRight size={17} className='text-gray-400' /> </div>
-                </div>
+              <Dropdown 
+                title='Sırala' 
+                filters={[]}
+                />
             </div>
             {wide && <Selectes />}
         </div>
