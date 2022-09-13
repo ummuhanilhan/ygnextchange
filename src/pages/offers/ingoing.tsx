@@ -1,12 +1,11 @@
 import PrivateLayout from "@layouts/PrivateLayout";
+import { OfferDummy } from ".";
 
 
 export const OffersIngoing = () => {
 
     return (
-        <div>
-            <h1 className="text-2xl">OffersIngoing</h1>
-        </div>
+        <OfferDummy />
     )
 }
 

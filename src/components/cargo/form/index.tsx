@@ -5,10 +5,11 @@ import { FormFooter } from "@pages/account";
 import { Frame } from "@components/frames/MainFrame";
 import Rent from "./rent";
 import { CargoTab } from "@components/tabs/CargoTab";
-import { CargoLayout, CargoCreateRoute } from "@layouts/CargoLayout";
+import { CargoLayout } from "@layouts/CargoLayout";
 import classNames from "classnames";
 import Payload from "./payload";
 import Datetime from "./datetime";
+import { CargoCreateRoute } from "@utils/mock";
 
 export type CargoValues = {
     name: string,
