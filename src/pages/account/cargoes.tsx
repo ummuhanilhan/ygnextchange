@@ -36,7 +36,7 @@ export const Cargoes = () => {
     };
     return (
         <AccountLayout>
-            <View wide  tabs />
+            <View wide tabs />
         </AccountLayout>
     )
 }

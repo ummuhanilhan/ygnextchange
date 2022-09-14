@@ -3,8 +3,7 @@ import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
 
 
-export const Actions = ({item, type, fav}:any) => {
-
+export const Actions = ({item, actionType, fav}:any) => {
     const faved = (
         <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
                 items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
@@ -20,6 +19,7 @@ export const Actions = ({item, type, fav}:any) => {
     )
 
     const getActions = (value:string) => {
+        console.log(value)
         switch (value) {
             case 'cargoes':
                 return (<>
@@ -28,13 +28,13 @@ export const Actions = ({item, type, fav}:any) => {
 
                  </>)
             break;
-            case 'outgoing-active':
+            case 'outgoing-inshipment':
                 return (<>
                      {viewed}
                      {faved}
-                     <Action title='Vazgeç' color='gray' path='#' />
+                     <Action title='Vazgeç' color='darkgray' path='#' outline />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Sevkiyatı Başlat' color='blue' path='#' />
+                     <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
                  </>)
             break;
             case 'outgoing-accepted':
@@ -52,7 +52,7 @@ export const Actions = ({item, type, fav}:any) => {
                      <Action title='Teklifi Geri Al' color='blue' path='#' />
                  </>)
             break;            
-            case 'ingoing-active':
+            case 'ingoing-inshipment':
                 return (<>
                      {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
@@ -79,8 +79,7 @@ export const Actions = ({item, type, fav}:any) => {
             break;            
             default:
                 return (<>
-                         <Action title='Detay Gör' color='orange' path='#' />
-                         <Action title='Teklif Gönder' color='blue' path='#' />
+                       
                     </>);
             break;
         }
@@ -89,11 +88,12 @@ export const Actions = ({item, type, fav}:any) => {
 
     return (
         <div className='flex items-end'>
-            {viewed}
-            {faved}
-            {getActions(type)}
-      
+          
+            {getActions(actionType)}
              {/**
+             <Action title='Detay Gör' color='orange' path='#' />
+            <Action title='Teklif Gönder' color='blue' path='#' />
+                    
             <Action title='Sil' color='gray' path='#' outline />
             <Action title='Vazgeç' color='gray' path='#' outline />
             <Action title='Kopyala' color='blue' path='#' outline />

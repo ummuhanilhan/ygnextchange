@@ -89,7 +89,7 @@ export const CargoItem = ({item, actionType='' }:any) => {
                     )}
 
                 </div>
-               <Actions item={item} type='normal' />
+               <Actions item={item} actionType={actionType} />
             </div>
         </div>
     )

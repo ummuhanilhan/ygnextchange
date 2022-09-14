@@ -5,7 +5,7 @@ import { OfferDummy } from ".";
 export const OffersIngoing = () => {
 
     return (
-        <OfferDummy />
+        <OfferDummy actionType='ingoing' />
     )
 }
 

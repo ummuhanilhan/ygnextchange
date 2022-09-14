@@ -188,6 +188,14 @@ export enum OfferRoute {
     Accepted = 2,
     Pending = 3,
 }
+export const OfferReverse = {
+    '1': 'inshipment',
+    '2': 'accepted',
+    '3': 'pending',
+}
+
+
+
 
 export const pendingOut = [ 
     { id:1, title:'Beklemede olanlar', slug:'pending'},

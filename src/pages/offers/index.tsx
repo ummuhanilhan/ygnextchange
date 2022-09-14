@@ -3,7 +3,7 @@ import { CargoItem } from "@components/cargo/view/cargoItem";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
 import TabLayout from "@layouts/TabLayout";
-import { items, OfferRoute, offerTabMenu } from "@utils/mock";
+import { items, OfferReverse, OfferRoute, offerTabMenu } from "@utils/mock";
 import classNames from "classnames";
 import React from "react";
 
@@ -23,8 +23,9 @@ export const OfferDummy = ({actionType}:any)=>{
     const dummy = items.map((item,i:number)=>(
         <CargoItem 
             item={item} 
-            key={`vehiclle-active-${i}`}  
-            actionType={actionType} 
+            key={`vehicle-active-${i}`}  
+            // @ts-ignore
+            actionType={`${actionType}-${OfferReverse[selected]}`} 
         />
     ))
     return (
