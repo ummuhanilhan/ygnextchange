@@ -5,20 +5,16 @@ import { FaMapPin } from "react-icons/fa"
 import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
 
-export const CargoItem = ({item, type='normal'}:any) => {
+export const CargoItem = ({item, actionType='' }:any) => {
 
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
-            {'grayscale': item.outdated}
+            {'grayscale': item.progress=='outdated'}
         )}>
             <div className="flex justify-between">
                 <div className="flex items-start">
-                <div className="tag rounded-lg p-1 px-3 border border-1 
-                    border-yg-blue m-r2 flex items-start w-max mr-2"> 
-                        <FaMapPin className='fill-yg-blue' width={20} /> 
-                        <p className='text-yg-blue ml-1 text-sm'>Araç no: 253347</p>
-                    </div>
+
                     <div className="tag rounded-lg p-1 px-3 border border-1 
                     border-yg-blue m-r2 flex items-start w-max"> 
                         <People className='fill-yg-blue' width={20} /> 
@@ -73,19 +69,19 @@ export const CargoItem = ({item, type='normal'}:any) => {
                     </ul>
                    
                     {/*** SHIPMENT  **/}
-                    {true && (
+                    {item.progress == 'active' && (
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-yg-green mr-1' /> 
                             Durum: Sevkiyat Devam Ediyor    
                         </p>
                     )}
-                     {false && (
+                     {item.progress == 'pending' && (
                         <p className='text-red-600 flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-red-600 mr-1' /> 
                             Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
                         </p>
                     )}
-                    {false && (
+                    {item.progress == 'complated' && (
                         <p className='flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='mr-1' /> 
                             Durum: Sevkiyat Tamamlandı    

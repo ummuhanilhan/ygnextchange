@@ -5,7 +5,7 @@ import { OfferDummy } from ".";
 export const OffersOutgoing = () => {
 
     return (
-        <OfferDummy />
+        <OfferDummy type='outgoing' />
     )
 }
 

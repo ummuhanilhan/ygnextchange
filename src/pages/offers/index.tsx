@@ -18,10 +18,14 @@ Offers.Layout = PrivateLayout;
 
 export default Offers;
 
-export const OfferDummy = ()=>{
+export const OfferDummy = ({actionType}:any)=>{
     const [selected, setSelected] = React.useState(String(1));
     const dummy = items.map((item,i:number)=>(
-        <CargoItem item={item} key={`vehiclle-active-${i}`}  />
+        <CargoItem 
+            item={item} 
+            key={`vehiclle-active-${i}`}  
+            actionType={actionType} 
+        />
     ))
     return (
         <Frame>
