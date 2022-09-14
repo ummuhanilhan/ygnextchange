@@ -23,7 +23,7 @@ export const FloatInput = ({
           value={value}
             border={border}
             size='small'
-          onChange={(e:string)=>setValue(e)}
+           onChange={(e:string)=>setValue(e)}
         />
 
         {/**
