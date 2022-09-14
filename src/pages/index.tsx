@@ -41,7 +41,7 @@ const Home = () => {
     <React.Fragment>
 
 
-  <div className='flex items-start gap-2 m-5 hidden'>
+  <div className='flex items-start gap-2 m-5 '>
       <FloatingLabelInput
         className='w-72 bg-white'
         value={value}
@@ -72,18 +72,21 @@ const Home = () => {
 
   <div className='flex items-start gap-2 m-5'>
         <FloatingLabelPhone
-          className='w-72 bg-white'
+          className='w-72 '
           value={value}
           placeholder='Kullanıcı Adı'
           size='small'
+          mini
+          border
           onChange={(e:string)=>setValue(e)}
         />
 
         <FloatingLabelPhone
-          className='w-72 bg-white'
+          className='w-72 '
           value={value}
           placeholder='Kullanıcı Adı'
           size='medium'
+          border
           onChange={(e:string)=>setValue(e)}
         />
 
@@ -92,6 +95,7 @@ const Home = () => {
           value={value}
           placeholder='Kullanıcı Adı'
           size='large'
+          border
           onChange={(e:string)=>setValue(e)}
         />
   </div>
