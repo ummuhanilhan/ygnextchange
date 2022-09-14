@@ -19,7 +19,6 @@ export const Actions = ({item, actionType, fav}:any) => {
     )
 
     const getActions = (value:string) => {
-        console.log(value)
         switch (value) {
             case 'cargoes':
                 return (<>

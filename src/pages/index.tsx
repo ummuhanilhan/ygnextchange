@@ -41,7 +41,7 @@ const Home = () => {
     <React.Fragment>
 
 
-  <div className='flex items-start gap-2 m-5'>
+  <div className='flex items-start gap-2 m-5 hidden'>
       <FloatingLabelInput
         className='w-72 bg-white'
         value={value}
