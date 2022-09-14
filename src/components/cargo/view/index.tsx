@@ -73,7 +73,7 @@ export const Tabs = () =>{
                     numeric
                 >
                 <div></div>
-                </TabLayout>
+            </TabLayout>
            </div>
 
         </React.Fragment>

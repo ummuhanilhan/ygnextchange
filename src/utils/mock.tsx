@@ -189,34 +189,34 @@ export enum OfferRoute {
     Pending = 3,
 }
 
-const pendingOut = [ 
-    { title:'Beklemede olanlar', slug:'pending'},
-    { title:'İlan Sahibi Tarafından Görülenler', slug:'viewed'},
-    { title:'Kabul Edilmeyenler', slug:'rejected'},
-    { title:'İlan Süresi Geçenler', slug:'outdated'},
-    { title:'Tümünü Gör', slug:'all'},
+export const pendingOut = [ 
+    { id:1, title:'Beklemede olanlar', slug:'pending'},
+    { id:2, title:'İlan Sahibi Tarafından Görülenler', slug:'viewed'},
+    { id:3, title:'Kabul Edilmeyenler', slug:'rejected'},
+    { id:4, title:'İlan Süresi Geçenler', slug:'outdated'},
+    { id:5, title:'Tümünü Gör', slug:'all'},
 ];
-const acceptedOut = [
-    { title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
-];
-
-const inShipmentOut = [
-    { title:'Sevkiyatı  Devam Edenler', slug:'inshipment'},
-    { title:'Teslimat Onayı Bekleyenler', slug:'pending'},
-    { title:'Sevkiyatı Tamamlananlar', slug:'complated'},
-    { title:'Tümünü Göster', slug:'all'},
+export const acceptedOut = [
+    { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
 ];
 
-const pendingIn = [
-    { title:'Teklif Beklenenler', slug:'pending'},
-    { title:'Yanıt Bekleyenler', slug:'pending'},
-    { title:'Tümünü Göster', slug:'all'},
-];
-const acceptedIn = [
-    { title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+export const inShipmentOut = [
+    { id:1, title:'Sevkiyatı  Devam Edenler', slug:'inshipment'},
+    { id:2, title:'Teslimat Onayı Bekleyenler', slug:'pending'},
+    { id:3, title:'Sevkiyatı Tamamlananlar', slug:'complated'},
+    { id:4, title:'Tümünü Göster', slug:'all'},
 ];
 
-const inShipmentIn = [
+export const pendingIn = [
+    { id:1, title:'Teklif Beklenenler', slug:'pending'},
+    { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
+    { id:3, title:'Tümünü Göster', slug:'all'},
+];
+export const acceptedIn = [
+    { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+];
+
+export const inShipmentIn = [
     //...
 ];
 

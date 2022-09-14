@@ -1,11 +1,12 @@
 import { Dropdown } from "@shared/elements/dropdowns"
+import { inShipmentOut } from "@utils/mock"
 import React from "react"
 import { FaChevronRight } from "react-icons/fa"
 import { Selectes } from "../view"
 
 
 export const Heading = ({wide}:any) => {
-
+  
     return (
         <div className='heading'>
             <div className='flex justify-between items-center w-full bg-white py-3 px-2'>
@@ -17,8 +18,8 @@ export const Heading = ({wide}:any) => {
                 </div>
               <Dropdown 
                 title='Sırala' 
-                filters={[]}
-                />
+                filters={inShipmentOut}
+                 />
             </div>
             {wide && <Selectes />}
         </div>

@@ -19,13 +19,80 @@ export const Actions = ({item, type, fav}:any) => {
         </div>
     )
 
+    const getActions = (value:string) => {
+        switch (value) {
+            case 'cargoes':
+                return (<>
+                    {viewed}
+                    {faved}
+
+                 </>)
+            break;
+            case 'outgoing-active':
+                return (<>
+                     {viewed}
+                     {faved}
+                     <Action title='Vazgeç' color='gray' path='#' />
+                     <Action title='İlan Detayını Gör' color='orange' path='#' />
+                     <Action title='Sevkiyatı Başlat' color='blue' path='#' />
+                 </>)
+            break;
+            case 'outgoing-accepted':
+                return (<>
+                     {viewed}
+                     {faved}
+                     <Action title='Detay Gör' color='orange' path='#' />
+                     <Action title='Teklif Gönder' color='blue' path='#' />
+                 </>)
+            break;
+            case 'outgoing-pending':
+                return (<>
+                     {viewed}
+                     <Action title='İlan Detayını Gör' color='orange' path='#' />
+                     <Action title='Teklifi Geri Al' color='blue' path='#' />
+                 </>)
+            break;            
+            case 'ingoing-active':
+                return (<>
+                     {viewed}
+                     <Action title='Listeden Kaldır' color='gray' path='#' />
+                     <Action title='İlan Detayını Gör' color='orange' path='#' />
+                     <Action title='Teslimatı Onayla' color='blue' path='#' />
+                 </>)
+            break;
+            case 'ingoing-accepted':
+                return (<>
+                     {viewed}
+                     <Action title='Listeden Kaldır' color='gray' path='#' />
+                     <Action title='İlan Detayını Gör' color='orange' path='#' />
+                     <Action title='Teslimatı Onayla' color='blue' path='#' />
+                 </>)
+            break;
+            case 'ingoing-pending':
+                return (<>
+                    {viewed}
+                     <Action title='Listeden Kaldır' color='gray' path='#' />
+                     <Action title='İlan Detayını Gör' color='orange' path='#' />
+                     <Action title='Teklifleri İncele' color='blue' path='#' />
+
+                 </>)
+            break;            
+            default:
+                return (<>
+                         <Action title='Detay Gör' color='orange' path='#' />
+                         <Action title='Teklif Gönder' color='blue' path='#' />
+                    </>);
+            break;
+        }
+        
+    }
+
     return (
         <div className='flex items-end'>
             {viewed}
             {faved}
-       
-            <Action title='Detay Gör' color='orange' path='#' />
-            <Action title='Teklif Gönder' color='blue' path='#' />
+            {getActions(type)}
+      
              {/**
             <Action title='Sil' color='gray' path='#' outline />
             <Action title='Vazgeç' color='gray' path='#' outline />
