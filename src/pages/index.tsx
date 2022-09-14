@@ -42,15 +42,32 @@ const Home = () => {
 
 
   <div className='flex items-start gap-2 m-5'>
-    {/** 
       <FloatingLabelInput
         className='w-72 bg-white'
         value={value}
         placeholder='Kullanıcı Adı'
         size='small'
+        height='55px'
+        border
         onChange={(e:string)=>setValue(e)}
       />
-     **/}
+      <FloatingLabelInput
+        className='w-72 bg-white'
+        value={value}
+        placeholder='Kullanıcı Adı'
+        size='small'
+        border
+        onChange={(e:string)=>setValue(e)}
+      />
+      <FloatingLabelInput
+        className='w-72 bg-white'
+        value={value}
+        placeholder='Kullanıcı Adı'
+        border
+        size='medium'
+        onChange={(e:string)=>setValue(e)}
+      />
+    
   </div>
 
   <div className='flex items-start gap-2 m-5'>

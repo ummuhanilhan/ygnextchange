@@ -8,7 +8,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { View } from "../view";
-import { MultiSelectHook } from "@shared/elements/hooks";
+import { FloatLabelHook, MultiSelectHook } from "@shared/elements/hooks";
 import classNames from "classnames";
 import Outside from "@utils/useoutside";
 import { DoubleFrame } from "@components/frames/MainFrame";
@@ -93,8 +93,14 @@ export const Location = ({control}:any) => {
             icon={<PinMap className="fill-yg-blue" width={19} />} title="Konum" />
 
             <div className={classNames({hidden:!status})}>
-                <MultiSelectHook name="load" control={control} placeholder="Yükleme yeri"  />                 
-                <MultiSelectHook name="unload" control={control} placeholder="Boşaltma yeri"  />                 
+                <FloatLabelHook name="load" size='small' height='55px'  type="text" placeholder="Yükleme yeri" className='mb-2' control={control} />
+                <FloatLabelHook name="unload" size='small' height='55px'  type="text" placeholder="Boşaltma yeri" className='' control={control} />
+                
+
+                {/** 
+                 <MultiSelectHook name="load" control={control} placeholder="Yükleme yeri"  />                 
+                   <MultiSelectHook name="unload" control={control} placeholder="Boşaltma yeri"  />        
+                 */}         
             </div>
         </React.Fragment>
     )

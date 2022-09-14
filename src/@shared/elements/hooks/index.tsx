@@ -15,8 +15,12 @@ export const FloatLabelHook = ({
     control, 
     placeholder,
     name,
+    border,
+    height,
     textarea,
+    className,
     type,
+    size,
     disabled,
     ...rest
 }:{ 
@@ -26,6 +30,10 @@ export const FloatLabelHook = ({
     textarea?:boolean,
     name:string,
     type:string,
+    border?:boolean,
+    height?:string,
+    size?:'small' | 'medium' | 'large',
+    className?: string,
     disabled?:boolean,
   }) => {
 
@@ -43,9 +51,13 @@ export const FloatLabelHook = ({
                     onChange={onChange} // send value to hook form
                     value={value}
                     placeholder={placeholder}
+                    className={className}
                     type={type}
                     error={error}
                     name={name}
+                    height={height}
+                    border={border}
+                    size={size}
                     // textarea
                     {...rest}
                 />

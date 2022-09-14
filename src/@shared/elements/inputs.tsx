@@ -21,6 +21,10 @@ export interface FloatInputProps {
    */
    name?: string;
    /**
+    * Special height 
+    */
+  height?: string;
+   /**
    * What background color to use
    */
    backgroundColor?: string;
@@ -28,6 +32,10 @@ export interface FloatInputProps {
    * Verification icon
    */
    verified?: boolean;
+  /**
+   * Verification icon status
+   */
+   verifiable?: boolean;
    /**
    * How large should the FloatInput be?
    */
@@ -77,11 +85,14 @@ export const FloatingLabelInput = ({
    size,
    type,
    name,
+   height,
    placeholder,
    value,
    example='',
    border,
    className,
+   verifiable,
+   verified,
    onChange,
    onBlur,
    backgroundColor,
@@ -118,7 +129,9 @@ export const FloatingLabelInput = ({
        {'error': error},
       )}>
           <div className={classNames(
-            'input relative border-none rounded-md w-full mb-1- h-[4rem] border-gray-300 border-opacity-25',
+            'input relative border-none rounded-md w-full mb-1- ',
+             border? 'border-gray-300 border-opacity-25' : 'border-gray-300 border-opacity-00',
+             height ? `h-[${height}]` : 'h-[4rem]',
             {'active':active},
             {'passive':!active},
           )}>
@@ -154,6 +167,8 @@ export const FloatingLabelInput = ({
                   hide={hide}
                   value={value}
                   onChange={onChange}
+                  verifiable={verifiable}
+                  verified={verified}
                   active={active}
                   setActive={setActive}
                   toggle={()=>setHide(!hide)}
@@ -287,17 +302,19 @@ export const FloatingLabelPhone = ({
  * @param type
  * @returns callback
  */
- const InputAppend = ({test, type, value, onChange, color, hide, toggle, active, setActive}:any) =>{
+ const InputAppend = ({test, type, value, onChange, color, hide, toggle, active, setActive, verifiable}:any) =>{
 
   return (
     <React.Fragment> 
         <div className=" cursor-pointer w-22
         absolute top-0 bottom-0
          h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
-          <div className='verification absolute- right-10 top-[30%] mr-2'>
-              {false && <CheckCircle width='15' className='fill-yg-green' /> }
-              {true && <p className='text-yg-green text-sm'>Doğrulandı</p> }
-          </div>
+        {verifiable && (
+            <div className='verification absolute- right-10 top-[30%] mr-2'>
+                {false && <CheckCircle width='15' className='fill-yg-green' /> }
+                {true && <p className='text-yg-green text-sm'>Doğrulandı</p> }
+            </div>
+        )}
             {type=='password' && (
               hide ? <EyeSlash className={[
                 "icon h-4  icon-gray absolute- right-4",

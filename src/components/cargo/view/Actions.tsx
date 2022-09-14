@@ -25,7 +25,8 @@ export const Actions = ({item, actionType, fav}:any) => {
                 return (<>
                     {viewed}
                     {faved}
-
+                    <Action title='Detay Gör' color='orange' path='#' />
+                   <Action title='Teklif Gönder' color='blue' path='#' />
                  </>)
             break;
             case 'outgoing-inshipment':
@@ -107,8 +108,7 @@ export const Actions = ({item, actionType, fav}:any) => {
           
             {getActions(actionType)}
              {/**
-             <Action title='Detay Gör' color='orange' path='#' />
-            <Action title='Teklif Gönder' color='blue' path='#' />
+
                     
             <Action title='Sil' color='gray' path='#' outline />
             <Action title='Vazgeç' color='gray' path='#' outline />
