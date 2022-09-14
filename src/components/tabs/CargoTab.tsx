@@ -12,13 +12,15 @@ export const CargoTab = ({
     setSelected, 
     change, 
     data, 
-    routes
+    routes,
+    name
 }:{
     selected:string,
     setSelected:Function,
-    change:Function,
+    change?:Function,
     data:object[],
     routes:object[],
+    name?:string,
 }) => {
 
     const router = useRouter();

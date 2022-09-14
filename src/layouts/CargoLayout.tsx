@@ -13,6 +13,8 @@ export const CargoLayout = ({children, selected, setSelected}:any) => {
                     selected={selected} 
                     setSelected={setSelected} 
                     name={pathname}
+                    data={[]}
+                    routes={[]}
                 />
                 {children}
             </div>

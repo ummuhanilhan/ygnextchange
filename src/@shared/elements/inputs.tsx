@@ -19,7 +19,7 @@ export interface FloatInputProps {
    /**
    * Unique input name
    */
-   name: string;
+   name?: string;
    /**
    * What background color to use
    */
@@ -35,7 +35,7 @@ export interface FloatInputProps {
   /**
    * Click handler
   */
-  onChange: (value:string) => Function;
+  onChange: (value:string) => Function|void;
   /**
    * Optional click handler
    */
@@ -47,7 +47,7 @@ export interface FloatInputProps {
   /**
    * Error Message
   */
-  error?: string;
+  error?: string|object;
   /**
    * Input type 
   */
@@ -69,6 +69,7 @@ export interface FloatInputProps {
    * Options
   */
   className?: string;
+
 }
 
 
@@ -176,7 +177,7 @@ export const FloatingLabelPhone = ({
   error }:any) => {
     const [value, setValue] = React.useState('')
     const onChange = (val:string) => setValue(val)
-    const [active, setActive] = React.useState(value);
+    const [active, setActive] = React.useState<any>(value);
     const [hide, setHide] = React.useState(true);
     const [status, setStatus] = React.useState(false);
     const inputRef = createRef<HTMLInputElement>();

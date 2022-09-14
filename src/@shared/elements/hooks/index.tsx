@@ -46,7 +46,7 @@ export const FloatLabelHook = ({
                     type={type}
                     error={error}
                     name={name}
-                    textarea
+                    // textarea
                     {...rest}
                 />
             )}
