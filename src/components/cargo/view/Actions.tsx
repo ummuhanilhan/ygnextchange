@@ -77,6 +77,22 @@ export const Actions = ({item, actionType, fav}:any) => {
 
                  </>)
             break;            
+            case 'vehicle-active':
+                return (<>
+                    {viewed}
+                    <Action title='Detay Gör' color='orange' path='#' />
+                   <Action title='Teklif Gönder' color='blue' path='#' />
+
+                 </>)
+            break;            
+            case 'vehicle-pending':
+                return (<>
+                    {viewed}
+                    <Action title='Detay Gör' color='orange' path='#' />
+                    <Action title='Teklif Gönder' color='blue' path='#' />
+                    
+                 </>)
+            break;            
             default:
                 return (<>
                        

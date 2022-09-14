@@ -59,7 +59,7 @@ export const VehicleItem = ({item, type='normal'}:any) => {
                         </li>
                     </ul>
                 </div>
-               <Actions item={item} type='normal' />
+               <Actions item={item} actionType='vehicle-active' />
             </div>
         </div>
     )
