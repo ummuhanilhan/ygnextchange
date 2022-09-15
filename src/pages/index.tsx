@@ -46,7 +46,7 @@ const Home = () => {
         className='w-72 bg-white'
         value={value}
         placeholder='Kullanıcı Adı'
-        size='small'
+        size='mini'
         height='55px'
         border
         onChange={(e:string)=>setValue(e)}
@@ -56,6 +56,7 @@ const Home = () => {
         value={value}
         placeholder='Kullanıcı Adı'
         size='small'
+        height='55px'
         border
         onChange={(e:string)=>setValue(e)}
       />
@@ -63,10 +64,11 @@ const Home = () => {
         className='w-72 bg-white'
         value={value}
         placeholder='Kullanıcı Adı'
-        border
         size='medium'
+        border
         onChange={(e:string)=>setValue(e)}
       />
+  
     
   </div>
 
@@ -80,7 +82,14 @@ const Home = () => {
           border
           onChange={(e:string)=>setValue(e)}
         />
-
+       <FloatingLabelPhone
+          className='w-72 '
+          value={value}
+          placeholder='Kullanıcı Adı'
+          size='small'
+          border
+          onChange={(e:string)=>setValue(e)}
+        />
         <FloatingLabelPhone
           className='w-72 '
           value={value}
@@ -90,14 +99,6 @@ const Home = () => {
           onChange={(e:string)=>setValue(e)}
         />
 
-        <FloatingLabelPhone
-          className='w-72 bg-white'
-          value={value}
-          placeholder='Kullanıcı Adı'
-          size='large'
-          border
-          onChange={(e:string)=>setValue(e)}
-        />
   </div>
 
 
