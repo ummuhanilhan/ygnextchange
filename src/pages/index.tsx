@@ -6,6 +6,7 @@ import Main from '@containers/Main'
 import PrivateLayout from '@layouts/PrivateLayout'
 import React from 'react'
 import { FloatingLabelInput, FloatingLabelPhone } from '@shared/elements/inputs'
+import { FloatingLabelTextarea } from '@shared/elements/textareas'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -42,8 +43,10 @@ const Home = () => {
 
 
       <div className='flex items-start gap-2 m-5 '>
+        <div className='w-full'>
+         <h3 className='tex-md'>Small</h3>
           <FloatingLabelInput
-            className='w-72 bg-white'
+            className=' bg-white'
             value={value}
             placeholder='Kullanıcı Adı'
             size='small'
@@ -51,58 +54,96 @@ const Home = () => {
             border
             onChange={(e:string)=>setValue(e)}
           />
+        </div>
+        <div className='w-full'>
+         <h3 className='tex-md'>Medium</h3>
           <FloatingLabelInput
-            className='w-72 bg-white'
+            className=' bg-white'
             value={value}
-            placeholder='Kullanıcı Adı'
+            placeholder='Şifre'
+            type='password'
             size='medium'
             height='55px'
             border
             onChange={(e:string)=>setValue(e)}
-          />
+          />        
+      </div>
+      <div className='w-full'>   
+        <h3 className='tex-md'>Large</h3>
           <FloatingLabelInput
-            className='w-72 bg-white'
+            className=' bg-white'
             value={value}
-            placeholder='Kullanıcı Adı'
+            placeholder='Eposta Adresi'
+            type='email'
             size='large'
             border
             verified
             verifiable
-            error='err'
             onChange={(e:string)=>setValue(e)}
           />
-      
+      </div>
         
       </div>
 
       <div className='flex items-start gap-2 m-5'>
-            <FloatingLabelPhone
-              className='w-72 '
-              value={value}
-              placeholder='Kullanıcı Adı'
-              size='small'
-              border
-              onChange={(e:string)=>setValue(e)}
-            />
+       <div className='w-full'>
+         <h3 className='tex-md'>Small (55px)</h3>
           <FloatingLabelPhone
-              className='w-72 '
+            className=' '
+            value={value}
+            placeholder='Şirket Telefonu'
+            size='small'
+            border
+            onChange={(e:string)=>setValue(e)}
+          />
+       </div>
+       <div className='w-full'>
+       <h3 className='tex-md'>Medium(64px)</h3>
+          <FloatingLabelPhone
+              className=' '
               value={value}
-              placeholder='Kullanıcı Adı'
+              placeholder='Cep Telefonu'
               size='medium'
+              verifiable
+              success
               border
               onChange={(e:string)=>setValue(e)}
             />
-            <FloatingLabelPhone
-              className='w-72 '
+       </div>
+        <div className='w-full'>
+         <h3 className='tex-md'>Large</h3>
+          <FloatingLabelPhone
+              className=' '
               value={value}
-              placeholder='Kullanıcı Adı'
+              placeholder='Şirket Telefonu'
               size='large'
               border
-              verified
+              error='err'
               verifiable
               onChange={(e:string)=>setValue(e)}
             />
+          </div>
 
+      </div>
+
+      <div className='flex items-start gap-2 m-5 '>
+            <FloatingLabelTextarea
+              className=' '
+              value={value}
+              placeholder='Şirket Adresi'
+              size='medium'
+              onChange={(e:string)=>setValue(e)}
+            />
+            <FloatingLabelTextarea
+              className=' '
+              value={value}
+              placeholder='Şirket Adresi'
+              error='err'
+              border
+              height='10rem'
+              onChange={(e:string)=>setValue(e)}
+            />
+           
       </div>
 
 

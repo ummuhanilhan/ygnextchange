@@ -67,6 +67,23 @@ input:checked + div svg {
 }
 
 
+textarea {
+  resize: none;
+}
+
+textarea::-webkit-scrollbar {
+  width: .5em;
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: #eee;
+}
+
+textarea::-webkit-scrollbar-thumb {
+background-color: lightgray;
+border-radius: 3px;
+}
+
 
 .p-fileupload .p-fileupload-choose {
   @apply text-left bg-white text-yg-orange border-yg-orange w-full #{!important};
