@@ -66,6 +66,9 @@ const Home = () => {
             placeholder='Kullanıcı Adı'
             size='large'
             border
+            verified
+            verifiable
+            error='err'
             onChange={(e:string)=>setValue(e)}
           />
       
@@ -95,6 +98,8 @@ const Home = () => {
               placeholder='Kullanıcı Adı'
               size='large'
               border
+              verified
+              verifiable
               onChange={(e:string)=>setValue(e)}
             />
 

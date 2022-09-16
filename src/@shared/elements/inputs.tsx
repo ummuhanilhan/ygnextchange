@@ -10,76 +10,80 @@ export interface FloatInputProps {
   /**
    * FloatInput placeholder
    */
-   value: string;
+    value: string;
    /**
     * Input contents
     */
-   placeholder: string;
+    placeholder: string;
    /**
    * Unique input name
    */
-   name?: string;
+     name?: string;
    /**
     * Special height 
     */
-   height?: string;
+     height?: string;
    /**
     * Narrow height 
    */
-   mini?: boolean;
+     mini?: boolean;
    /**
    * What background color to use
    */
-   backgroundColor?: string;
+    backgroundColor?: string;
    /**
    * Verification icon
    */
-   verified?: boolean;
+     verified?: boolean;
   /**
    * Verification icon status
    */
-   verifiable?: boolean;
+     verifiable?: boolean;
    /**
    * How large should the FloatInput be?
    */
-  size?: 'mini' | 'small' | 'medium' | 'large';
+     size?: 'mini' | 'small' | 'medium' | 'large';
   /**
    * Click handler
   */
-  onChange: (value:string) => Function|void;
+     onChange: (value:string) => Function|void;
   /**
    * Optional click handler
    */
-  onClick?: (callback:Function) => Function;
+      onClick?: (callback:Function) => Function;
   /**
    * Optional blur handler
   */
-  onBlur?: () => void;
+      onBlur?: () => void;
   /**
    * Error Message
   */
-  error?: string|object;
+     error?: string|object;
+  /**
+   * Success Message
+  */
+     success?: boolean;
   /**
    * Input type 
   */
-  type?: string;
+      type?: string;
   /**
    * Optional border
   */
-  border?: boolean;
+      border?: boolean;
   /**
    * append icons 
   */
-   appendix?: boolean;
+      appendix?: boolean;
   /**
    * Show users to valid types. It will be shown in when clicked
    * If leave empty it's do nothing
   */
-  example?: string;
+      example?: string;
   /**
    * Options
   */
-  className?: string;
+     className?: string;
 
 }
 
@@ -101,7 +105,8 @@ export const FloatingLabelInput = ({
   onBlur,
   appendix,
   backgroundColor,
-  error 
+  error, 
+  success
 }:FloatInputProps) => {
   const [value, setValue] = React.useState('')
   const onChange = (val:string) => setValue(val)
@@ -128,14 +133,15 @@ export const FloatingLabelInput = ({
 
     return (
       <div className={classnames(
-        'w-full floatinglabel-input rounded-md ', 
+        'w-full flashback floatinglabel-input rounded-md ', 
         className,
         size||'medium',
        backgroundColor||'bg-white',
        {'error': error},
+      {'success': success},
       )}>
           <div className={classNames(
-          "relative border rounded-md w-full border-gray-300 border-opacity-25",
+          "input relative border rounded-md w-full",
           'flex items-center justify-end',
             size=='small' && 'h-[55px] ',
             size=='medium' && 'h-[4em]',
@@ -146,8 +152,9 @@ export const FloatingLabelInput = ({
           >
             <input  
               className={classNames(
-                "p-2 pr-10 outline-none w-full h-full border border-gray-300 rounded-md bg-transparent transition-all duration-200 ease-in-out",
+                "p-2 pr-10 outline-none w-full h-full rounded-md bg-transparent transition-all duration-200 ease-in-out",
                 active ? "text-gray-500 " : "",
+                border && 'border-gray-300 border-opacity-25',
                 size=='small' ? (active ? 'pt-6' : 'pt-2') : '',
                 size=='medium' ? (active ? 'pt-7 text-md' : 'pt-2') : '',
                 size=='large' ? (active ? 'pt-6' : 'pt-2') : '',
@@ -184,6 +191,8 @@ export const FloatingLabelInput = ({
               setActive={setActive}
               toggle={()=>setHide(!hide)}
               status={appendix}
+              verifiable={verifiable}
+              verified={verified}
           />
           </div>
           {false && error && (
@@ -202,13 +211,16 @@ export const FloatingLabelPhone = ({
   // onChange,
   onBlur,
   error, 
+  success, 
   mini,
   className,
   backgroundColor,
   border,
   appendix,
+  verified,
+  verifiable,
   height,
- }:any) => {
+ }:FloatInputProps) => {
       const [value, setValue] = React.useState('')
       const onChange = (val:string) => setValue(val)
       const [active, setActive] = React.useState<any>(value);
@@ -247,14 +259,15 @@ export const FloatingLabelPhone = ({
     } 
   return (
     <div className={classnames(
-      'w-full floatinglabel-phone', 
+      'w-full flashback floatinglabel-phone success', 
       className,
       size||'medium',
       backgroundColor||'bg-white',
       {'error': error},
+      {'success': success},
     )}>
         <div className={classNames(
-            "relative border rounded bg-white- w-full",
+            "input relative border rounded bg-white- w-full",
             'flex items-center justify-end',
              size=='small' && 'h-[55px] ',
              size=='medium' && 'h-[4em]',
@@ -293,7 +306,7 @@ export const FloatingLabelPhone = ({
             id={name}
             value={value}
             ref={inputRef}
-            type="text"
+            type="number"
             onTouchMove={handleActivation}
             onChange={handleActivation}
             
@@ -322,6 +335,8 @@ export const FloatingLabelPhone = ({
              setActive={setActive}
              toggle={()=>setHide(!hide)}
              status={appendix}
+             verifiable={verifiable}
+             verified={verified}
         />
         </div>
     </div>
@@ -344,6 +359,7 @@ export const FloatingLabelPhone = ({
   active, 
   setActive, 
   verifiable, 
+  verified, 
   status
 }:any) =>{
 
@@ -355,7 +371,7 @@ export const FloatingLabelPhone = ({
         {verifiable && (
             <div className='verification absolute- right-10 top-[30%] mr-2'>
                 {false && <CheckCircle width='15' className='fill-yg-green' /> }
-                {true && <p className='text-yg-green text-sm'>Doğrulandı</p> }
+                {verified && <p className='text-yg-green text-sm'>Doğrulandı</p> }
             </div>
         )}
             {type=='password' && (

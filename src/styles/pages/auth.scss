@@ -1,17 +1,17 @@
 /** ERROR MESSAGES **/
 
-.auth{
+.flashback{
     @apply w-full flex items-center justify-center h-screen md:h-auto xl:w-screen;
     .button{
         @apply cursor-pointer bg-yg-blue mt-2 text-white p-3 w-full text-center rounded-md text-sm ;
     }
 
-    input{
+    >div{
         @apply bg-white;
     }
 
-    .success{
-        input{
+    &.success{
+        >div{
             @apply
             border
             border-green-600 
@@ -29,8 +29,8 @@
         }
     }
 
-    .error{
-        input{
+    &.error{
+        >div{
             @apply
             border
             border-red-600 
@@ -55,7 +55,7 @@
 #reset{}
 
 .change-password{
-    .input{
+    >div{
         @apply bg-white;
     }
 }
