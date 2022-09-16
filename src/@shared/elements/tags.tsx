@@ -46,7 +46,7 @@ export const FloatingTags = ({
 }:FloatInputProps) => {
     const [value, setValue] = React.useState('')
     const onChange = (val:string) => setValue(val)
-    
+    const scrollRef = useRef<HTMLUListElement>(null)
     const [selected, setSelected] = React.useState([]);
     const [open, setOpen] = React.useState(false);
 
@@ -71,32 +71,38 @@ export const FloatingTags = ({
             {'passive':!open},
           )}
           >
-         
-            {false &&  <label
-                className={classNames(
-                    'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
-                    false ? "font-medium " : " text-gray-500 ",
-                    size=='small' ? (false ? 'text-xs' : 'text-sm pt-4') : '',
-                    size=='medium' ? (false ? 'text-xs pt-3' : 'text-base pt-5') : '',
-                    size=='large' ? (false ? 'text-sm' : 'text-base pt-5') : '',
-                )}
-                htmlFor={name}
+            <div className="flex items-start w-full">
+                
+                {selected.length<=0 &&  <label
+                    className={classNames(
+                        'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
+                        false ? "font-medium " : " text-gray-500 ",
+                        size=='small' ? (false ? 'text-xs' : 'text-sm pt-4') : '',
+                        size=='medium' ? (false ? 'text-xs pt-3' : 'text-base pt-5') : '',
+                        size=='large' ? (false ? 'text-sm' : 'text-base pt-5') : '',
+                    )}
+                    htmlFor={name}
+                    >
+                    {placeholder}
+                </label>}
+                
+                <ul 
+                    ref={scrollRef}
+                    className='flex px-3 items-center'
                 >
-                {placeholder}
-            </label>}
-            
-            <ul className='flex items-start w-full px-3'>
-                <li className='flex items-center mr-1 bg-gray-50 rounded-md p-1 px-2'>
-                    <p className='text-gray-400 pr-1 text-sm'>10 Teker Kamyon Açık</p>
-                    <FiMinusCircle className='text-gray-400' />
-                </li>
-                <li className='flex items-center mr-1 bg-gray-50 rounded-md p-1 px-2'>
-                    <p className='text-gray-400 pr-1 text-sm'>Damperli Kamyon</p>
-                    <FiMinusCircle className='text-gray-400' />
-                </li>
+                   
+                    {selected.map((item:any,i:number)=>(
+                        <li 
+                            key={`selected-${i}`}
+                            className='flex items-center mr-1 bg-gray-50 rounded-md p-1 px-2'>
+                            <p className='text-gray-400 pr-1 text-sm'>{item.value}</p>
+                            <FiMinusCircle className='text-gray-400' />
+                        </li>
+                    ))}
+                    <li className='hidden text-gray-700 text-base'>+5</li>
+                </ul>
 
-            </ul>
-
+            </div>
             <InputAppend 
                 color={!!error?'fill-red-500':'fill-gray-500'}
                 status={open}
@@ -106,11 +112,26 @@ export const FloatingTags = ({
 
             <ul className={classNames(
               'select-dropdown absolute top-16 mt-2 right-0',
-              'bg-white w-full h-auto z-10 rounded-md',
+              'bg-white h-auto z-10 rounded-md w-full',
               'drop-shadow-md overflow-hidden',
               {'hidden':!open}
             )}>
                 <SimpleBar style={{ maxHeight: '200px' }}>
+                <li 
+                    className={classNames(
+                        'px-3 py-1 flex justify-between items-center cursor-pointer hover:bg-gray-50',
+                        false ? 'text-gray-400' : 'text-gray-700'
+                    )}
+                    onClick={()=>{
+                        // @ts-ignore
+                        selected.length<=0 && setSelected(selectItems)
+                        selected.length>0 && setSelected([])
+                    }}
+                >
+                    <p className=''>Hepsini Seç</p>
+                    {false ? <FiMinusCircle className='text-gray-400' /> : <FiPlusCircle className='text-gray-700' />}
+                    
+                </li>
                 {selectItems.map((item:any,i:number)=>{
                     const select = selected.find((s:any)=>s.id===item.id)
 
@@ -122,8 +143,14 @@ export const FloatingTags = ({
                             select ? 'text-gray-400' : 'text-gray-700'
                         )}
                         onClick={()=>{
-                            const newSelected:any = [item, ...selected];
-                            setSelected(newSelected)
+                            // alert(scrollRef.current?.scrollWidth)
+                            if(!select){
+                                const newSelected:any = [item, ...selected];
+                                setSelected(newSelected)
+                            }else{
+                                const newSelected:any = selected.filter((s:any)=>s.id != item.id);
+                                setSelected(newSelected)
+                            }
                         }}
                     >
                         <p className=''>{item.value}</p>
