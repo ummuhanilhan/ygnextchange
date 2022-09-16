@@ -41,65 +41,64 @@ const Home = () => {
     <React.Fragment>
 
 
-  <div className='flex items-start gap-2 m-5 '>
-      <FloatingLabelInput
-        className='w-72 bg-white'
-        value={value}
-        placeholder='Kullanıcı Adı'
-        size='mini'
-        height='55px'
-        border
-        onChange={(e:string)=>setValue(e)}
-      />
-      <FloatingLabelInput
-        className='w-72 bg-white'
-        value={value}
-        placeholder='Kullanıcı Adı'
-        size='small'
-        height='55px'
-        border
-        onChange={(e:string)=>setValue(e)}
-      />
-      <FloatingLabelInput
-        className='w-72 bg-white'
-        value={value}
-        placeholder='Kullanıcı Adı'
-        size='medium'
-        border
-        onChange={(e:string)=>setValue(e)}
-      />
-  
-    
-  </div>
+      <div className='flex items-start gap-2 m-5 '>
+          <FloatingLabelInput
+            className='w-72 bg-white'
+            value={value}
+            placeholder='Kullanıcı Adı'
+            size='small'
+            height='55px'
+            border
+            onChange={(e:string)=>setValue(e)}
+          />
+          <FloatingLabelInput
+            className='w-72 bg-white'
+            value={value}
+            placeholder='Kullanıcı Adı'
+            size='medium'
+            height='55px'
+            border
+            onChange={(e:string)=>setValue(e)}
+          />
+          <FloatingLabelInput
+            className='w-72 bg-white'
+            value={value}
+            placeholder='Kullanıcı Adı'
+            size='large'
+            border
+            onChange={(e:string)=>setValue(e)}
+          />
+      
+        
+      </div>
 
-  <div className='flex items-start gap-2 m-5'>
-        <FloatingLabelPhone
-          className='w-72 '
-          value={value}
-          placeholder='Kullanıcı Adı'
-          size='small'
-          mini
-          border
-          onChange={(e:string)=>setValue(e)}
-        />
-       <FloatingLabelPhone
-          className='w-72 '
-          value={value}
-          placeholder='Kullanıcı Adı'
-          size='small'
-          border
-          onChange={(e:string)=>setValue(e)}
-        />
-        <FloatingLabelPhone
-          className='w-72 '
-          value={value}
-          placeholder='Kullanıcı Adı'
-          size='medium'
-          border
-          onChange={(e:string)=>setValue(e)}
-        />
+      <div className='flex items-start gap-2 m-5'>
+            <FloatingLabelPhone
+              className='w-72 '
+              value={value}
+              placeholder='Kullanıcı Adı'
+              size='small'
+              border
+              onChange={(e:string)=>setValue(e)}
+            />
+          <FloatingLabelPhone
+              className='w-72 '
+              value={value}
+              placeholder='Kullanıcı Adı'
+              size='medium'
+              border
+              onChange={(e:string)=>setValue(e)}
+            />
+            <FloatingLabelPhone
+              className='w-72 '
+              value={value}
+              placeholder='Kullanıcı Adı'
+              size='large'
+              border
+              onChange={(e:string)=>setValue(e)}
+            />
 
-  </div>
+      </div>
 
 
       {paragraph}
