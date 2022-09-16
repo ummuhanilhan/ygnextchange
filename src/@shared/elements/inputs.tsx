@@ -70,7 +70,7 @@ export interface FloatInputProps {
   /**
    * append icons 
   */
-  apendix?: boolean;
+   appendix?: boolean;
   /**
    * Show users to valid types. It will be shown in when clicked
    * If leave empty it's do nothing
@@ -99,6 +99,7 @@ export const FloatingLabelInput = ({
   // value,
   // onChange,
   onBlur,
+  appendix,
   backgroundColor,
   error 
 }:FloatInputProps) => {
@@ -125,11 +126,9 @@ export const FloatingLabelInput = ({
         setActive(false)
     },[value])
 
-
-    const isActive = value || active;
     return (
       <div className={classnames(
-        'w-full floatinglabel-input', 
+        'w-full floatinglabel-input rounded-md ', 
         className,
         size||'medium',
        backgroundColor||'bg-white',
@@ -138,8 +137,6 @@ export const FloatingLabelInput = ({
           <div className={classNames(
           "relative border rounded-md w-full border-gray-300 border-opacity-25",
           'flex items-center justify-end',
-            // !height && 'h-[4em]',
-            // height && `h-[${height}]`,
             size=='small' && 'h-[55px] ',
             size=='medium' && 'h-[4em]',
             size=='large' && 'h-[4em]',
@@ -149,9 +146,8 @@ export const FloatingLabelInput = ({
           >
             <input  
               className={classNames(
-                "p-2 pr-10 outline-none w-full h-full border border-gray-300 rounded bg-transparent transition-all duration-200 ease-in-out",
+                "p-2 pr-10 outline-none w-full h-full border border-gray-300 rounded-md bg-transparent transition-all duration-200 ease-in-out",
                 active ? "text-gray-500 " : "",
-                // size=='mini' || (active ? '' : '') || '',
                 size=='small' ? (active ? 'pt-6' : 'pt-2') : '',
                 size=='medium' ? (active ? 'pt-7 text-md' : 'pt-2') : '',
                 size=='large' ? (active ? 'pt-6' : 'pt-2') : '',
@@ -159,6 +155,7 @@ export const FloatingLabelInput = ({
               )}
               id={name}
               value={value}
+              ref={inputRef}
               type={type=='password'? (!hide?'text':type) : type }
               onTouchMove={handleActivation}
               onChange={handleActivation}
@@ -172,6 +169,8 @@ export const FloatingLabelInput = ({
                 size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
               )}
               htmlFor={name}
+              onClick={handleLabel}
+              onTouchMove={handleLabel}
             >
               {placeholder}
             </label>
@@ -184,6 +183,7 @@ export const FloatingLabelInput = ({
               onChange={onChange}
               setActive={setActive}
               toggle={()=>setHide(!hide)}
+              status={appendix}
           />
           </div>
           {false && error && (
@@ -206,6 +206,7 @@ export const FloatingLabelPhone = ({
   className,
   backgroundColor,
   border,
+  appendix,
   height,
  }:any) => {
       const [value, setValue] = React.useState('')
@@ -222,9 +223,9 @@ export const FloatingLabelPhone = ({
       onChange(e.target.value);
     }
     function handleLabel(e:any) {
-      setOpen(true)
       const node = inputRef.current;
       node && node.focus();
+      setOpen(true)
     }
 
     const isActive = value || active;
@@ -266,7 +267,7 @@ export const FloatingLabelPhone = ({
             <div className={classNames(
               'country-code flex items-center absolute left-[.5rem]',
               size=='small' && 'top-[1.6rem]',
-              size=='medium' && ' top-[1.8rem] ',
+              size=='medium' && ' top-[1.9rem] ',
               size=='large' && ' top-[1.9rem] ',
             )}>
                 <CountryCodeDropdown 
@@ -279,18 +280,19 @@ export const FloatingLabelPhone = ({
           )}
           <input  
             className={classNames(
-              "p-2 pr-10 outline-none w-full h-full rounded bg-transparent transition-all duration-200 ease-in-out",
+              "p-2 pr-10 outline-none rounded-md w-full h-full-md bg-transparent transition-all duration-200 ease-in-out",
               border && 'border-gray-300 border-opacity-25',
-              active ? "text-gray-500 pl-[4rem]" : "",
+              active ? "text-gray-500" : "",
               size=='small' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               size=='medium' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               size=='large' ? (active ? 'text-base pt-6' : 'pt-2') : '',
-              code.countryCode?.length == 3 && 'pl-[4.5rem]',
-              code.countryCode?.length == 4 && 'pl-[4.8rem]'
-
+              {'pl-[4rem]':!code.countryCode?.length&&value},
+              {'pl-[4.5rem]':code.countryCode?.length == 3},
+              {'pl-[4.8rem]':code.countryCode?.length == 4},
             )}
             id={name}
             value={value}
+            ref={inputRef}
             type="text"
             onTouchMove={handleActivation}
             onChange={handleActivation}
@@ -298,13 +300,15 @@ export const FloatingLabelPhone = ({
           />
           <label
             className={classNames(
-              "p-2 absolute top-0 left-0 flex items-center text-opacity-50 transition-all duration-200 ease-in-out",
-              active ? "font-medium" : "text-gray-800",
+              "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
+              active ? "font-medium" : "text-gray-500",
               size=='small' ? (active ? 'text-xs ' : 'text-base pt-4') : '',
               size=='medium' ? (active ? 'text-xs pt-3' : 'pt-5') : '',
               size=='large' ? (active ? 'text-sm' : 'pt-5 ') : '',
             )}
             htmlFor={name}
+            onClick={handleLabel}
+            onTouchMove={handleLabel}
           >
             {placeholder}
            </label>
@@ -317,7 +321,7 @@ export const FloatingLabelPhone = ({
              onChange={onChange}
              setActive={setActive}
              toggle={()=>setHide(!hide)}
-             status={false}
+             status={appendix}
         />
         </div>
     </div>
