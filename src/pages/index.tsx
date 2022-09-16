@@ -7,6 +7,8 @@ import PrivateLayout from '@layouts/PrivateLayout'
 import React from 'react'
 import { FloatingLabelInput, FloatingLabelPhone } from '@shared/elements/inputs'
 import { FloatingLabelTextarea } from '@shared/elements/textareas'
+import { FloatingSelect } from '@shared/elements/selects'
+import { FloatingTags } from '@shared/elements/tags'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -41,6 +43,30 @@ const Home = () => {
   return (
     <React.Fragment>
 
+      <div className='flex items-start gap-2 my-5 '>
+        
+            <div className="w-full">
+              <h3 className='text-md'>Tags</h3>
+              <FloatingTags
+                className=' '
+                value={value}
+                placeholder='Araç Özellikleri'
+                size='medium'
+                onChange={(e:string)=>setValue(e)}
+              />
+            </div>
+            <div className="w-full">
+              <h3 className='text-md'>Selects</h3>
+                <FloatingSelect
+                className=' '
+                value={value}
+                placeholder='Araç Türleri'
+                size='medium'
+                onChange={(e:string)=>setValue(e)}
+              />
+           </div>
+          
+      </div>
 
       <div className='flex items-start gap-2 mb-5 '>
         <div className='w-full'>
@@ -145,6 +171,8 @@ const Home = () => {
             />
            
       </div>
+
+      
 
 
       {paragraph}
