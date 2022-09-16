@@ -59,7 +59,6 @@ export const FloatingLabelTextarea = ({
       )}>
           <div className={classNames(
           "input relative border rounded-md",
-            size=='medium' && '',
             height? `h-[${height}]` : 'h-[8em]',
             {'active':active},
             {'passive':!active},
@@ -72,7 +71,7 @@ export const FloatingLabelTextarea = ({
                 active ? "text-gray-500 " : "",
                 className,
                 border && 'border-gray-300 border-opacity-25',
-                size=='medium' ? (active ? 'pt-5 text-base' : 'pt-2') : '',
+                active ? 'pt-5 text-base' : 'pt-2',
 
               )}
               id={name}
@@ -85,7 +84,7 @@ export const FloatingLabelTextarea = ({
               className={classNames(
                 "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
                 active ? "font-medium " : " text-gray-500 ",
-                size=='medium' ? (active ? 'text-xs pt-2' : 'text-base pt-2') : '',
+                active ? 'text-xs pt-2' : 'text-base pt-2',
               )}
               htmlFor={name}
               onClick={handleLabel}

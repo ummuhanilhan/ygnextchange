@@ -42,7 +42,7 @@ const Home = () => {
     <React.Fragment>
 
 
-      <div className='flex items-start gap-2 m-5 '>
+      <div className='flex items-start gap-2 mb-5 '>
         <div className='w-full'>
          <h3 className='tex-md'>Small</h3>
           <FloatingLabelInput
@@ -85,7 +85,7 @@ const Home = () => {
         
       </div>
 
-      <div className='flex items-start gap-2 m-5'>
+      <div className='flex items-start gap-2 mb-5'>
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
           <FloatingLabelPhone
@@ -126,7 +126,7 @@ const Home = () => {
 
       </div>
 
-      <div className='flex items-start gap-2 m-5 '>
+      <div className='flex items-start gap-2 mb-5 '>
             <FloatingLabelTextarea
               className=' '
               value={value}

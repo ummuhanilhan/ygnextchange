@@ -46,7 +46,7 @@ export interface FloatInputProps {
    /**
    * How large should the FloatInput be?
    */
-     size?: 'mini' | 'small' | 'medium' | 'large';
+     size?: 'small' | 'medium' | 'large';
   /**
    * Click handler
   */
