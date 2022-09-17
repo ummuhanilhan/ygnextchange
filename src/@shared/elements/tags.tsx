@@ -49,7 +49,7 @@ export const FloatingTags = ({
     const scrollRef = useRef<HTMLUListElement>(null)
     const [selected, setSelected] = React.useState([]);
     const [open, setOpen] = React.useState(false);
-
+    const allSelected = selected.length == selectItems.length;
     return (
       <div className={classnames(
       'w-full flashback floatinglabel-selects rounded-md relative', 
@@ -87,7 +87,7 @@ export const FloatingTags = ({
                 
                 <ul 
                     ref={scrollRef}
-                    className='w-[369px] px-3 z-20 overflow-x-hidden
+                    className='w-[89%] px-3 z-20 overflow-x-hidden
                     flex items-start'
                 >
                    
@@ -110,8 +110,6 @@ export const FloatingTags = ({
                         //if(i<2)
                             return el;
                     })}
-                    {selected.length>2 && <li className='absolute 
-                    right-10 top-[1.2rem] text-gray-700 text-base'>+{selected.length-2}</li> }
                 </ul>
 
                 <div className="lay absolute left-0 top-0 right-0 bottom-0" 
@@ -119,6 +117,12 @@ export const FloatingTags = ({
                 ></div>
 
             </div>
+            {selected.length>2 && (
+                <div 
+                onClick={()=>setOpen(!open)}
+                className='absolute right-10 top-[1.1rem] text-gray-700 text-base'>
+                +{selected.length-2}</div>
+            ) }
             <InputAppend 
                 color={!!error?'fill-red-500':'fill-gray-500'}
                 status={open}
@@ -139,13 +143,20 @@ export const FloatingTags = ({
                         false ? 'text-gray-400' : 'text-gray-700'
                     )}
                     onClick={()=>{
-                        // @ts-ignore
-                        selected.length<=0 && setSelected(selectItems)
-                        selected.length>0 && setSelected([])
+                        if(allSelected){
+                            setSelected([])
+                        }else{
+                            // @ts-ignore
+                            setSelected(selectItems)
+                        }
+                        // selected.length<=0 && setSelected(selectItems)
+                        // selected.length>0 && setSelected([])
                     }}
                 >
-                    <p className=''>Hepsini Seç</p>
-                    {false ? <FiMinusCircle className='text-gray-400' /> : <FiPlusCircle className='text-gray-700' />}
+                    <p className={classNames(
+                        allSelected && 'text-gray-400'
+                    )}>{allSelected ? 'Seçilenleri Kaldır': 'Hepsini Seç'}</p>
+                    {allSelected ? <FiMinusCircle className='text-gray-400' /> : <FiPlusCircle className='text-gray-700' />}
                     
                 </li>
                 {selectItems.map((item:any,i:number)=>{
@@ -199,7 +210,7 @@ export const FloatingTags = ({
         <div 
             onClick={onClick}
         className="cursor-pointer w-22
-        absolute top-0 bottom-0
+        absolute top-0 bottom-0 z-30
          h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
       
            {status ? (
