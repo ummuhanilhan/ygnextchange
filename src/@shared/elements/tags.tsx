@@ -62,7 +62,6 @@ export const FloatingTags = ({
           <Outside cb={()=>setOpen(false)} >
 
           <div 
-          onClick={()=>setOpen(!open)}
           className={classNames(
           "select relative border rounded-md w-full cursor-pointer",
           'flex items-center justify-end',
@@ -88,19 +87,32 @@ export const FloatingTags = ({
                 
                 <ul 
                     ref={scrollRef}
-                    className='flex px-3 items-center'
+                    className='flex px-3 items-center z-20'
                 >
                    
-                    {selected.map((item:any,i:number)=>(
-                        <li 
-                            key={`selected-${i}`}
-                            className='flex items-center mr-1 bg-gray-50 rounded-md p-1 px-2'>
-                            <p className='text-gray-400 pr-1 text-sm'>{item.value}</p>
-                            <FiMinusCircle className='text-gray-400' />
-                        </li>
-                    ))}
-                    <li className='hidden text-gray-700 text-base'>+5</li>
+                    {selected.map((item:any,i:number)=>{
+                        const el = (
+                            <li 
+                                key={`selected-${i}`}
+                                className='flex items-center mr-1 bg-gray-50 rounded-md p-1 px-2'>
+                                <p className='text-gray-400 pr-1 text-sm'>{item.value}</p>
+                                <FiMinusCircle
+                                onClick={()=>{
+                                    const newSelected:any = selected.filter((s:any)=>s.id!=item.id)
+                                    setSelected(newSelected)
+                                }}
+                                className='text-gray-400' />
+                            </li>
+                        )
+                        if(i<2)
+                            return el;
+                    })}
+                    {selected.length>2 && <li className='text-gray-700 text-base'>+{selected.length-2}</li> }
                 </ul>
+
+                <div className="lay absolute left-0 top-0 right-0 bottom-0" 
+                onClick={()=>setOpen(!open)}
+                ></div>
 
             </div>
             <InputAppend 
@@ -143,7 +155,7 @@ export const FloatingTags = ({
                             select ? 'text-gray-400' : 'text-gray-700'
                         )}
                         onClick={()=>{
-                            // alert(scrollRef.current?.scrollWidth)
+                            console.log(scrollRef.current?.scrollWidth)
                             if(!select){
                                 const newSelected:any = [item, ...selected];
                                 setSelected(newSelected)
