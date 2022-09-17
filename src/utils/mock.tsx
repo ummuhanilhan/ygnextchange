@@ -248,3 +248,23 @@ export const offers = [
     distance:'500KM',  },
 ]
 
+
+
+export const tagItems = [
+    {id:1, slug:'10truck-open', value:'10 Teker Kamyon Açık', label:''},
+    {id:2, slug:'10truck-close', value:'10 Teker Kamyon Kapalı', label:''},
+    {id:3, slug:'dorse1', value:'Canlı Hayvan Taşıma Dorsesi', label:''},
+    {id:4, slug:'truck1', value:'Damperli Kamyon / Kırkayak', label:''},
+    {id:5, slug:'18wheel1', value:'Isı Kontrollü Kamyon / Kırkayak', label:''},
+    {id:6, slug:'trailertruck1', value:'Konteyner Dorsesi (Kılçık Dorsesi)', label:''},
+    {id:7, slug:'1', value:'B Sınıfı', label:''},
+    {id:8, slug:'2', value:'BE Sınıfı', label:''},
+    {id:9, slug:'3', value:'C1 Sınıfı', label:''},
+]
+
+export const tagItems2 = [
+    {id:7, slug:'1', value:'B Sınıfı', label:''},
+    {id:8, slug:'2', value:'BE Sınıfı', label:''},
+    {id:9, slug:'3', value:'C1 Sınıfı', label:''},
+
+]

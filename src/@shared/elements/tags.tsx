@@ -11,25 +11,6 @@ import { FiMinimize, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 
-export const items = [
-    {id:1, slug:'10truck-open', value:'10 Teker Kamyon Açık', label:''},
-    {id:2, slug:'10truck-close', value:'10 Teker Kamyon Kapalı', label:''},
-    {id:3, slug:'dorse1', value:'Canlı Hayvan Taşıma Dorsesi', label:''},
-    {id:4, slug:'truck1', value:'Damperli Kamyon / Kırkayak', label:''},
-    {id:5, slug:'18wheel1', value:'Isı Kontrollü Kamyon / Kırkayak', label:''},
-    {id:6, slug:'trailertruck1', value:'Konteyner Dorsesi (Kılçık Dorsesi)', label:''},
-    {id:7, slug:'1', value:'B Sınıfı', label:''},
-    {id:8, slug:'2', value:'BE Sınıfı', label:''},
-    {id:9, slug:'3', value:'C1 Sınıfı', label:''},
-
-]
-
-export const items2 = [
-    {id:7, slug:'1', value:'B Sınıfı', label:''},
-    {id:8, slug:'2', value:'BE Sınıfı', label:''},
-    {id:9, slug:'3', value:'C1 Sınıfı', label:''},
-
-]
 
 export const FloatingTags = ({ 
   size,
@@ -46,10 +27,11 @@ export const FloatingTags = ({
   // onChange,
   onBlur,
   appendix,
+  items,
   backgroundColor,
   error, 
   success
-}:FloatInputProps) => {
+}:any) => {
     const [value, setValue] = React.useState('')
     const onChange = (val:string) => setValue(val)
     const scrollRef = useRef<HTMLUListElement>(null)
@@ -81,23 +63,38 @@ export const FloatingTags = ({
           >
             <div className="flex items-start w-full">
                 
-                {selected.length<=0 &&  <label
-                    className={classNames(
-                        'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
-                        false ? "font-medium " : " text-gray-500 ",
-                        size=='small' ? (open || selected.length>0 ? 'text-sm' : 'text-base pt-5') : '',
-                        size=='medium' ? (false ? 'text-xs pt-3' : 'text-base pt-5') : '',
-                        size=='large' ? (false ? 'text-sm' : 'text-base pt-5') : '',
-                    )}
-                    htmlFor={name}
-                    >
-                    {placeholder}
-                </label>}
+                {mini ? (
+                    data.length>0 ? <Wrapper 
+                    open={open}
+                    size={size}
+                    selected={selected}
+                    placeholder={placeholder}
+                    name={name}
+                /> :<Wrapper 
+                    open={open}
+                    size={size}
+                    selected={selected}
+                    placeholder={placeholder}
+                    name={name}
+                /> 
+                ) : (
+                selected.length<=0 && <Wrapper 
+                    open={open}
+                    size={size}
+                    selected={selected}
+                    placeholder={placeholder}
+                    name={name}
+                />
+                )}
+
                 
                 <ul 
                     ref={scrollRef}
-                    className='w-[89%] px-3 z-20 overflow-x-hidden
-                    flex items-start'
+                    className={classNames(
+                        'w-[89%] px-3 z-20 overflow-x-hidden',
+                        'flex items-start',
+                         mini && 'pt-6 pl-1'
+                    )}
                 >
                    
                     {selected.map((item:any,i:number)=>{
@@ -244,3 +241,22 @@ export const FloatingTags = ({
   )
 }
 
+
+
+const Wrapper = ({open,size,selected, placeholder, name}:any) => {
+
+    return(
+        <label
+            className={classNames(
+                'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
+                false ? "font-medium " : " text-gray-500 ",
+                size=='small' ? (open || selected.length>0 ? 'text-sm' : 'text-base pt-5') : '',
+                size=='medium' ? (false ? 'text-xs pt-3' : 'text-base pt-5') : '',
+                size=='large' ? (false ? 'text-sm' : 'text-base pt-5') : '',
+            )}
+            htmlFor={name}
+            >
+            {placeholder}
+        </label>
+    )
+}

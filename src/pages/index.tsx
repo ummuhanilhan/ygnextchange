@@ -9,6 +9,7 @@ import { FloatingLabelInput, FloatingLabelPhone } from '@shared/elements/inputs'
 import { FloatingLabelTextarea } from '@shared/elements/textareas'
 import { FloatingSelect } from '@shared/elements/selects'
 import { FloatingTags } from '@shared/elements/tags'
+import { tagItems, tagItems2 } from '@utils/mock'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -52,16 +53,19 @@ const Home = () => {
                 value={value}
                 placeholder='Araç Özellikleri'
                 size='medium'
+                items={tagItems}
                 onChange={(e:string)=>setValue(e)}
               />
             </div>
             <div className="w-full">
-              <h3 className='text-md'>Selects</h3>
+              <h3 className='text-md'>Tags mini</h3>
                 <FloatingTags
                 className=' '
                 value={value}
                 placeholder='Araç Türleri'
                 size='small'
+                items={tagItems2}
+                mini
                 onChange={(e:string)=>setValue(e)}
               />
            </div>
