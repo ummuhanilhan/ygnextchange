@@ -62,7 +62,7 @@ const Home = () => {
                 <FloatingTags
                 className=' '
                 value={value}
-                placeholder='Araç Türleri'
+                placeholder='Sürücü Belgesi Sınıfı'
                 size='small'
                 items={tagItems2}
                 mini
