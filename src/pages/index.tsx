@@ -61,7 +61,7 @@ const Home = () => {
                 className=' '
                 value={value}
                 placeholder='Araç Türleri'
-                size='medium'
+                size='small'
                 onChange={(e:string)=>setValue(e)}
               />
            </div>

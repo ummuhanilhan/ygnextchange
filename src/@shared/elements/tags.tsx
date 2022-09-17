@@ -11,7 +11,7 @@ import { FiMinimize, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 
-export const selectItems = [
+export const items = [
     {id:1, slug:'10truck-open', value:'10 Teker Kamyon Açık', label:''},
     {id:2, slug:'10truck-close', value:'10 Teker Kamyon Kapalı', label:''},
     {id:3, slug:'dorse1', value:'Canlı Hayvan Taşıma Dorsesi', label:''},
@@ -24,13 +24,19 @@ export const selectItems = [
 
 ]
 
+export const items2 = [
+    {id:7, slug:'1', value:'B Sınıfı', label:''},
+    {id:8, slug:'2', value:'BE Sınıfı', label:''},
+    {id:9, slug:'3', value:'C1 Sınıfı', label:''},
+
+]
+
 export const FloatingTags = ({ 
   size,
   type,
   name,
   height,
   placeholder,
-  example='',
   border,
   className,
   verifiable,
@@ -49,13 +55,13 @@ export const FloatingTags = ({
     const scrollRef = useRef<HTMLUListElement>(null)
     const [selected, setSelected] = React.useState([]);
     const [open, setOpen] = React.useState(false);
-    const allSelected = selected.length == selectItems.length;
+    const [data, setData] = React.useState(items);
+    const allSelected = selected.length == data.length;
     return (
       <div className={classnames(
       'w-full flashback floatinglabel-selects rounded-md relative', 
        className,
        size||'medium',
-       backgroundColor||'bg-white',
        {'error': error},
       {'success': success},
       )}>
@@ -63,9 +69,12 @@ export const FloatingTags = ({
 
           <div 
           className={classNames(
-          "select relative border rounded-md w-full cursor-pointer",
+          "select relative rounded-md w-full cursor-pointer",
+          backgroundColor||'bg-white',
+          true && 'border',
           'flex items-center justify-end',
             size=='medium' && 'h-[4em]',
+            size=='small' && 'h-[4em]',
             {'active':open},
             {'passive':!open},
           )}
@@ -76,7 +85,7 @@ export const FloatingTags = ({
                     className={classNames(
                         'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
                         false ? "font-medium " : " text-gray-500 ",
-                        size=='small' ? (false ? 'text-xs' : 'text-sm pt-4') : '',
+                        size=='small' ? (open || selected.length>0 ? 'text-sm' : 'text-base pt-5') : '',
                         size=='medium' ? (false ? 'text-xs pt-3' : 'text-base pt-5') : '',
                         size=='large' ? (false ? 'text-sm' : 'text-base pt-5') : '',
                     )}
@@ -95,7 +104,7 @@ export const FloatingTags = ({
                         const el = (
                             <li 
                                 key={`selected-${i}`}
-                                className='float-left mr-1 flex items-center bg-gray-50 rounded-md p-1 px-2'>
+                                className='float-left mr-1 z-20 flex items-center bg-gray-50 rounded-md p-1 px-2'>
                                 <p
                                 onClick={()=>setOpen(!open)}
                                 className='w-max text-gray-400 pr-1 text-sm'>{item.value}</p>
@@ -110,6 +119,9 @@ export const FloatingTags = ({
                         //if(i<2)
                             return el;
                     })}
+                     <li className="lay absolute left-0 top-0 right-0 bottom-0" 
+                    onClick={()=>setOpen(!open)}
+                    ></li>
                 </ul>
 
                 <div className="lay absolute left-0 top-0 right-0 bottom-0" 
@@ -121,7 +133,7 @@ export const FloatingTags = ({
                 <div 
                 onClick={()=>setOpen(!open)}
                 className='absolute right-10 top-[1.1rem] text-gray-700 text-base'>
-                +{selected.length-2}</div>
+                {selected.length}</div>
             ) }
             <InputAppend 
                 color={!!error?'fill-red-500':'fill-gray-500'}
@@ -147,19 +159,19 @@ export const FloatingTags = ({
                             setSelected([])
                         }else{
                             // @ts-ignore
-                            setSelected(selectItems)
+                            setSelected(data)
                         }
-                        // selected.length<=0 && setSelected(selectItems)
+                        // selected.length<=0 && setSelected(data)
                         // selected.length>0 && setSelected([])
                     }}
                 >
                     <p className={classNames(
                         allSelected && 'text-gray-400'
-                    )}>{allSelected ? 'Seçilenleri Kaldır': 'Hepsini Seç'}</p>
+                    )}>{allSelected ? 'Seçilenleri Kaldır': `Hepsini Seç`}</p>
                     {allSelected ? <FiMinusCircle className='text-gray-400' /> : <FiPlusCircle className='text-gray-700' />}
                     
                 </li>
-                {selectItems.map((item:any,i:number)=>{
+                {data.map((item:any,i:number)=>{
                     const select = selected.find((s:any)=>s.id===item.id)
 
                     return (
@@ -193,7 +205,6 @@ export const FloatingTags = ({
       </div>
     );
 } 
-
 
 /**
  * Appdendix of input 

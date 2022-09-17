@@ -283,9 +283,9 @@ export const FloatingLabelPhone = ({
         {active && (
             <div className={classNames(
               'country-code flex items-center absolute left-[.5rem]',
-              size=='small' && 'top-[1.6rem]',
-              size=='medium' && ' top-[1.9rem] ',
-              size=='large' && ' top-[1.9rem] ',
+              size=='small' && 'top-[1.5rem]',
+              size=='medium' && ' top-[1.8rem] ',
+              size=='large' && ' top-[1.8rem] ',
             )}>
                 <CountryCodeDropdown 
                   status={status}
