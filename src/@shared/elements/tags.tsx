@@ -87,15 +87,18 @@ export const FloatingTags = ({
                 
                 <ul 
                     ref={scrollRef}
-                    className='flex px-3 items-center z-20'
+                    className='w-[369px] px-3 z-20 overflow-x-hidden
+                    flex items-start'
                 >
                    
                     {selected.map((item:any,i:number)=>{
                         const el = (
                             <li 
                                 key={`selected-${i}`}
-                                className='flex items-center mr-1 bg-gray-50 rounded-md p-1 px-2'>
-                                <p className='text-gray-400 pr-1 text-sm'>{item.value}</p>
+                                className='float-left mr-1 flex items-center bg-gray-50 rounded-md p-1 px-2'>
+                                <p
+                                onClick={()=>setOpen(!open)}
+                                className='w-max text-gray-400 pr-1 text-sm'>{item.value}</p>
                                 <FiMinusCircle
                                 onClick={()=>{
                                     const newSelected:any = selected.filter((s:any)=>s.id!=item.id)
@@ -104,10 +107,11 @@ export const FloatingTags = ({
                                 className='text-gray-400' />
                             </li>
                         )
-                        if(i<2)
+                        //if(i<2)
                             return el;
                     })}
-                    {selected.length>2 && <li className='text-gray-700 text-base'>+{selected.length-2}</li> }
+                    {selected.length>2 && <li className='absolute 
+                    right-10 top-[1.2rem] text-gray-700 text-base'>+{selected.length-2}</li> }
                 </ul>
 
                 <div className="lay absolute left-0 top-0 right-0 bottom-0" 
