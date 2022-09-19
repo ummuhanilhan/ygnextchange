@@ -57,7 +57,7 @@ const Home = () => {
                 />
           </div>
           <div className="w-full">
-              <h3 className='text-md'>Select</h3>
+              <h3 className='text-md'>Select <small>with FloatingLabel</small> </h3>
               <FloatingSelect
                   className=' '
                   value={value}

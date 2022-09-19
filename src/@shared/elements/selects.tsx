@@ -74,7 +74,7 @@ export const FloatingSelect = ({
               />: 
                 <Label 
                   open={open}
-                  size={'size'}
+                  size={size}
                   selected={selected}
                   placeholder={placeholder}
                   name={name}
