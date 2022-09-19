@@ -49,7 +49,7 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
                         <p className="text-yg-gray">Çıkış Yap</p>
                     </li>
                 </ul>
-                <p className="text-yg-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinvoa Bilişim A.Ş.</p>
+                <p className="text-yg-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinova Bilişim A.Ş.</p>
             </div>  
     )
 }

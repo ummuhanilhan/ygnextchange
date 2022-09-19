@@ -7,7 +7,7 @@ import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 import { FloatInputProps } from "./inputs";
 import Outside from "@utils/useoutside";
-import { FiMinimize, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
+import { FiMinimize, FiMinusCircle, FiPlusCircle, FiX } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 
@@ -53,7 +53,7 @@ export const FloatingTags = ({
           className={classNames(
           "select relative rounded-md w-full cursor-pointer",
           backgroundColor||'bg-white',
-          true && 'border',
+          border && 'border',
           'flex items-center justify-end',
             size=='medium' && 'h-[4em]',
             size=='small' && 'h-[4em]',
@@ -64,13 +64,7 @@ export const FloatingTags = ({
             <div className="flex items-start w-full">
                 
                 {mini ? (
-                    data.length>0 ? <Wrapper 
-                    open={open}
-                    size={size}
-                    selected={selected}
-                    placeholder={placeholder}
-                    name={name}
-                /> :<Wrapper 
+                   <Label 
                     open={open}
                     size={size}
                     selected={selected}
@@ -78,7 +72,7 @@ export const FloatingTags = ({
                     name={name}
                 /> 
                 ) : (
-                selected.length<=0 && <Wrapper 
+                selected.length<=0 && <Label 
                     open={open}
                     size={size}
                     selected={selected}
@@ -91,7 +85,7 @@ export const FloatingTags = ({
                 <ul 
                     ref={scrollRef}
                     className={classNames(
-                        'w-[89%] px-3 z-20 overflow-x-hidden',
+                        'w-[87%] px-3 z-20 overflow-x-hidden',
                         'flex items-start',
                          mini && 'pt-6 pl-1'
                     )}
@@ -135,7 +129,7 @@ export const FloatingTags = ({
             <InputAppend 
                 color={!!error?'fill-red-500':'fill-gray-500'}
                 status={open}
-                onClick={()=>setOpen(!open)}
+                setOpen={setOpen}
             />
          </div>
 
@@ -210,25 +204,41 @@ export const FloatingTags = ({
  */
  export const InputAppend = ({
   status,
-  onClick
+  removable,
+  value,
+  setValue,
+  setOpen,
 }:any) =>{
-
+    
   return (
     <React.Fragment> 
         <div 
-            onClick={onClick}
         className="cursor-pointer w-22
-        absolute top-0 bottom-0 z-30
+        absolute top-0 bottom-0 
          h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
-      
+           {value && removable && (
+                <div
+                    onClick={()=>setValue()}
+                >
+                        <FiX
+                            className={classNames(
+                            "icon h-4 top-[30%] icon-gray stroke-gray-700 right-4 mr-1",
+                            )} 
+                        />
+
+                </div>
+           )}
+
            {status ? (
             <ChevronDown
+                onClick={()=>setOpen && setOpen(false)}
                 className={classNames(
                 "icon h-4 top-[30%] icon-gray stroke-slate-500 right-4",
                 )} 
             />
            ):(
             <ChevronRight
+              onClick={()=>setOpen && setOpen(false)}
               className={classNames(
                 "icon h-4 top-[30%] icon-gray stroke-slate-500 right-4",
               )} 
@@ -243,7 +253,7 @@ export const FloatingTags = ({
 
 
 
-const Wrapper = ({open,size,selected, placeholder, name}:any) => {
+const Label = ({open,size,selected, placeholder, name}:any) => {
 
     return(
         <label

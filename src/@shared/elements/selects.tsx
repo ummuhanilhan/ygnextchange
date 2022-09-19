@@ -7,6 +7,9 @@ import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 import { FloatInputProps } from "./inputs";
 import Outside from "@utils/useoutside";
+import SimpleBar from "simplebar-react";
+import 'simplebar-react/dist/simplebar.min.css';
+import { InputAppend } from "./tags";
 
 export const FloatingSelect = ({ 
   size,
@@ -26,13 +29,16 @@ export const FloatingSelect = ({
   appendix,
   backgroundColor,
   error, 
+  items, 
   success
-}:FloatInputProps) => {
+}:any) => {
   const [value, setValue] = React.useState('')
   const onChange = (val:string) => setValue(val)
   
+    const [selected, setSelected] = React.useState(null);
     const [active, setActive] = React.useState(false);
     const [open, setOpen] = React.useState(false);
+    const [data, setData] = React.useState(items);
 
     return (
       <div className={classnames(
@@ -46,100 +52,126 @@ export const FloatingSelect = ({
           <Outside cb={()=>setOpen(false)}>
 
           <div 
-          onClick={()=>{
-            setOpen(!open);
-           
-          }}
+        
           className={classNames(
-          "select relative border rounded-md w-full cursor-pointer",
-          'flex items-center justify-end',
-            size=='small' && 'h-[55px] ',
-            size=='medium' && 'h-[4em]',
-            size=='large' && 'h-[4em]',
+          "select relative rounded-md w-full cursor-pointer",
+          'flex items-center justify-end h-[4em]',
+            border && 'border',
             {'active':active},
             {'passive':!active},
           )}
           >
          
-            <label
-              className={classNames(
-                'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
-                active ? "font-medium " : " text-gray-500 ",
-                size=='small' ? (active ? 'text-xs' : 'text-sm pt-4') : '',
-                size=='medium' ? (active ? 'text-xs pt-3' : 'text-base pt-5') : '',
-                size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
-              )}
-              htmlFor={name}
-            >
-              {placeholder}
-            </label>
+            {!mini  &&
+            (
+              selected ?
+              <Label 
+                  open={open}
+                  size={size}
+                  selected={selected}
+                  placeholder={data.find((f:any)=>f.slug===selected)?.value}
+                  name={name}
+              />: 
+                <Label 
+                  open={open}
+                  size={'size'}
+                  selected={selected}
+                  placeholder={placeholder}
+                  name={name}
+              />
+            )
+            }
+
+
+            {mini && (
+              <React.Fragment>
+                   
+               <Label 
+                  open={open}
+                  size={size}
+                  selected={selected}
+                  placeholder={placeholder}
+                  name={name}
+                />
+                     
+               <Label 
+                  open={open}
+                  size={'medium'}
+                  mini
+                  selected={selected}
+                  placeholder={data.find((f:any)=>f.slug===selected)?.value}
+                  name={name}
+                  color='text-gray-700'
+                />
+                
+              </React.Fragment>
+            )}
+
+            
+            <div className="lay absolute left-0 right-0 bottom-0 top-0" 
+            onClick={()=> setOpen(!open)}></div>
 
             <InputAppend 
-              type={type}
-              active={active}
-              color={!!error?'fill-red-500':'fill-gray-500'}
-              value={value}
-              onChange={onChange}
-              setActive={setActive}
-              status={true}
+               color={!!error?'fill-red-500':'fill-gray-500'}
+               status={open}
+               removable
+               setValue={setSelected}
+               value={selected}
           />
           </div>
 
             <ul className={classNames(
-              'select-dropdown absolute top-16 mt-2 right-0',
-              'bg-white w-full h-32 z-10 rounded-md',
-              'drop-shadow-md',
+              'select-dropdown absolute top-16 mt-1 right-0',
+              'bg-white h-auto z-30 rounded-md w-full',
+              'drop-shadow-md overflow-hidden',
               {'hidden':!open}
             )}>
-                  <li className={classNames('p-2')}></li>
+               
+               <SimpleBar style={{ maxHeight: '200px' }}>
+                {data?.map((item:any,i:number)=>(
+                    <li key={`select-item-${i}`} 
+                    className={classNames(
+                      'px-4 py-1 flex justify-between items-center cursor-pointer hover:bg-gray-50',
+                    )}
+                    onClick={()=>{
+                      setSelected(item.slug)
+                      setOpen(false)
+                    }}
+                  >
+                      <p className={classNames(
+                          selected===item.slug ? 'text-gray-400' : 'text-gray-700'
+                      )}>{item.value}</p>
+                    </li>
+                  ))}
+              </SimpleBar>
+
+
             </ul>
           </Outside>
-    
-          {false && error && (
-            <p className="mb-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">Oh, snapp!</span> Some error message. </p>
-          )}
+      
       </div>
     );
 } 
 
 
-/**
- * Appdendix of input 
- * @param type
- * @returns callback
- */
- export const InputAppend = ({
-  type, 
-  value, 
-  onChange, 
-  color, 
-  hide, 
-  toggle, 
-  active, 
-  setActive, 
-  verifiable, 
-  verified, 
-  status
-}:any) =>{
 
-  return (
-    <React.Fragment> 
-        <div className=" cursor-pointer w-22
-        absolute top-0 bottom-0
-         h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
-      
-           <ChevronDown
-              onClick={()=>setActive(!active)} 
-              className={[
-                "icon h-4 icon-gray absolute- right-4",
-                color,
-                active ? "top-[30%]" : "top-[30%]",
-                {'hidden': !status}
-            ].join(' ')} />
 
-        </div>
-    </React.Fragment>
 
+
+
+const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
+
+  return(
+      <label
+          className={classNames(
+            color ? color : 'text-gray-500 ',
+            'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
+                size=='small' ? (selected ? 'text-sm pt-2' : 'text-base pt-5') : '',
+                size=='medium' ? (selected ? ( mini ? 'text-base pt-7' : 'text-base pt-5') : 'text-base pt-5') : '',
+          )}
+          htmlFor={name}
+          >
+          {placeholder}
+      </label>
   )
 }
-

@@ -58,7 +58,8 @@ export const FloatingLabelTextarea = ({
        {'success': success},
       )}>
           <div className={classNames(
-          "input relative border rounded-md",
+            "input relative rounded-md",
+            border && 'border',
             height? `h-[${height}]` : 'h-[8em]',
             {'active':active},
             {'passive':!active},

@@ -145,7 +145,8 @@ export const FloatingLabelInput = ({
       {'success': success},
       )}>
           <div className={classNames(
-          "input relative border rounded-md w-full",
+          "input relative rounded-md w-full",
+          border && 'border',
           'flex items-center justify-end',
             size=='small' && 'h-[55px] ',
             size=='medium' && 'h-[4em]',
@@ -271,7 +272,8 @@ export const FloatingLabelPhone = ({
       {'success': success},
     )}>
         <div className={classNames(
-            "input relative border rounded bg-white- w-full",
+            "input relative rounded bg-white- w-full",
+            border && 'border',
             'flex items-center justify-end',
              size=='small' && 'h-[55px] ',
              size=='medium' && 'h-[4em]',

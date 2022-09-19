@@ -43,7 +43,33 @@ const Home = () => {
   </p>
   return (
     <React.Fragment>
-
+      <div className='grid grid-cols-2 gap-2 my-5 '>
+          <div className="w-full">
+              <h3 className='text-md'>Select</h3>
+              <FloatingSelect
+                  className=' '
+                  value={value}
+                  placeholder='Araç Markası Seçiniz'
+                  size='medium'
+                  border
+                  items={tagItems}
+                  onChange={(e:string)=>setValue(e)}
+                />
+          </div>
+          <div className="w-full">
+              <h3 className='text-md'>Select</h3>
+              <FloatingSelect
+                  className=' '
+                  value={value}
+                  placeholder='Araç Markası Seçiniz'
+                  size='small'
+                  items={tagItems}
+                  mini
+                  border
+                  onChange={(e:string)=>setValue(e)}
+                />
+          </div>
+      </div>
       <div className='grid grid-cols-2 gap-2 my-5 '>
         
             <div className="w-full">
@@ -54,6 +80,7 @@ const Home = () => {
                 placeholder='Araç Özellikleri'
                 size='medium'
                 items={tagItems}
+                removable
                 onChange={(e:string)=>setValue(e)}
               />
             </div>
@@ -162,6 +189,7 @@ const Home = () => {
               value={value}
               placeholder='Şirket Adresi'
               size='medium'
+              border
               onChange={(e:string)=>setValue(e)}
             />
             <FloatingLabelTextarea
