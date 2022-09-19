@@ -70,7 +70,7 @@ export const FloatingSelect = ({
                   open={open}
                   size={size}
                   selected={selected}
-                  placeholder={data.find((f:any)=>f[id]===selected)?.value}
+                  placeholder={data.find((f:any)=>f[id||'slug']===selected)?.value}
                   name={name}
               />: 
                 <Label 
@@ -135,12 +135,12 @@ export const FloatingSelect = ({
                       'px-4 py-1 flex justify-between items-center cursor-pointer hover:bg-gray-50',
                     )}
                     onClick={()=>{
-                      setSelected(item[id])
+                      setSelected(item[id||'slug'])
                       setOpen(false)
                     }}
                   >
                       <p className={classNames(
-                          selected===item[id] ? 'text-gray-400' : 'text-gray-700'
+                          selected===item[id||'slug'] ? 'text-gray-400' : 'text-gray-700'
                       )}>{item.value}</p>
                     </li>
                   ))}
