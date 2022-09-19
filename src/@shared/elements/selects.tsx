@@ -119,6 +119,7 @@ export const FloatingSelect = ({
                status={open}
                removable
                setValue={setSelected}
+               setOpen={()=>setOpen(!open)}
                value={selected}
           />
           </div>

@@ -123,7 +123,7 @@ export const FloatingTags = ({
             {selected.length>2 && (
                 <div 
                 onClick={()=>setOpen(!open)}
-                className='absolute right-10 top-[1.1rem] text-gray-700 text-base'>
+                className='absolute right-10 top-[1.25rem] text-gray-700 text-base'>
                 {selected.length}</div>
             ) }
             <InputAppend 
