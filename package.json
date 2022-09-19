@@ -32,6 +32,7 @@
     "react-modal": "^3.15.1",
     "sass": "^1.54.5",
     "simplebar-react": "^2.4.1",
+    "slugify": "^1.6.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {

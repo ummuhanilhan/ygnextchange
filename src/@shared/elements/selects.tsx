@@ -31,6 +31,7 @@ export const FloatingSelect = ({
   error, 
   items, 
   id,
+  searchable,
   success
 }:any) => {
   const [value, setValue] = React.useState('')
@@ -40,7 +41,7 @@ export const FloatingSelect = ({
     const [active, setActive] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState(items);
-
+    const [query, setQuery] = React.useState('')
     return (
       <div className={classnames(
       'w-full flashback floatinglabel-selects rounded-md relative', 
@@ -127,9 +128,21 @@ export const FloatingSelect = ({
               'drop-shadow-md overflow-hidden',
               {'hidden':!open}
             )}>
-               
+                <Searcher 
+                  status={searchable}
+                  query={query}
+                  setQuery={setQuery}
+                />
                <SimpleBar style={{ maxHeight: '200px' }}>
-                {data?.map((item:any,i:number)=>(
+                {data
+                .filter((f:any)=>{
+                  const isValue = f.value.toLowerCase().includes(query)
+                  const isLabel = f.label.toLowerCase().includes(query)
+                  const capitalized = f.label.includes(query)
+
+                  return isValue || isLabel||capitalized;
+                })
+                ?.map((item:any,i:number)=>(
                     <li key={`select-item-${i}`} 
                     className={classNames(
                       'px-4 py-1 flex justify-between items-center cursor-pointer hover:bg-gray-50',
@@ -174,5 +187,30 @@ const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
           >
           {placeholder}
       </label>
+  )
+}
+
+const Searcher = ({data, status, query, setQuery}:any) =>{
+
+  return (
+      <div id="dropdownUsers" className={`${status?'':'hidden'} 
+  bg-white rounded shadow dark:bg-gray-700 `}>
+          <div className="p-3">
+              <label htmlFor="input-group-search" className="sr-only">Ara</label>
+              <div className="relative">
+                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
+                </div>
+                <input type="text" id="input-group-search"
+                onChange={(e:any)=>setQuery(e.target.value)}
+                value={query}
+                  className="block p-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg 
+                  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 
+                  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 
+                  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  placeholder='Ara..' />
+              </div>
+          </div>
+    </div>
   )
 }
