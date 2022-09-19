@@ -10,6 +10,7 @@ import Outside from "@utils/useoutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { InputAppend } from "./tags";
+import slugify from "slugify";
 
 export const FloatingSelect = ({ 
   size,
@@ -136,11 +137,12 @@ export const FloatingSelect = ({
                <SimpleBar style={{ maxHeight: '200px' }}>
                 {data
                 .filter((f:any)=>{
-                  const isValue = f.value.toLowerCase().includes(query)
-                  const isLabel = f.label.toLowerCase().includes(query)
+                  const isValue = slugify(f.value, {lower:true}).includes(query)
+                  const isLabel = slugify(f.label, {lower:true}).includes(query)
+                  const capitalizedLetter = f.value.includes(query)
                   const capitalized = f.label.includes(query)
 
-                  return isValue || isLabel||capitalized;
+                  return isValue || isLabel||capitalizedLetter||capitalized;
                 })
                 ?.map((item:any,i:number)=>(
                     <li key={`select-item-${i}`} 
