@@ -138,11 +138,11 @@ export const FloatingSelect = ({
                 {data
                 .filter((f:any)=>{
                   const isValue = slugify(f.value, {lower:true}).includes(query)
+                  const lower = f.value.toLowerCase().includes(query)
                   const isLabel = slugify(f.label, {lower:true}).includes(query)
                   const capitalizedLetter = f.value.includes(query)
                   const capitalized = f.label.includes(query)
-
-                  return isValue || isLabel||capitalizedLetter||capitalized;
+                  return lower || isValue || isLabel||capitalizedLetter||capitalized;
                 })
                 ?.map((item:any,i:number)=>(
                     <li key={`select-item-${i}`} 

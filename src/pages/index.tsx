@@ -52,6 +52,7 @@ const Home = () => {
                   value={value}
                   placeholder='Şehir Seçiniz'
                   size='medium'
+                  id='label'
                   searchable
                   border
                   items={Turkiye}
@@ -67,7 +68,7 @@ const Home = () => {
                   size='medium'
                   id='label'
                   border
-                  items={tagItems}
+                  items={Turkiye}
                   onChange={(e:string)=>setValue(e)}
                 />
           </div>
