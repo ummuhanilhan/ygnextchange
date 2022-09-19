@@ -10,6 +10,7 @@ import { FloatingLabelTextarea } from '@shared/elements/textareas'
 import { FloatingSelect } from '@shared/elements/selects'
 import { FloatingTags } from '@shared/elements/tags'
 import { tagItems, tagItems2 } from '@utils/mock'
+import Turkiye from '@utils/dummy/turkiye.json'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -49,10 +50,11 @@ const Home = () => {
               <FloatingSelect
                   className=' '
                   value={value}
-                  placeholder='Araç Markası Seçiniz'
+                  placeholder='Şehir Seçiniz'
                   size='medium'
+                  id='label'
                   border
-                  items={tagItems}
+                  items={Turkiye}
                   onChange={(e:string)=>setValue(e)}
                 />
           </div>

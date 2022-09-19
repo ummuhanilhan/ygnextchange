@@ -30,6 +30,7 @@ export const FloatingSelect = ({
   backgroundColor,
   error, 
   items, 
+  id,
   success
 }:any) => {
   const [value, setValue] = React.useState('')
@@ -69,7 +70,7 @@ export const FloatingSelect = ({
                   open={open}
                   size={size}
                   selected={selected}
-                  placeholder={data.find((f:any)=>f.slug===selected)?.value}
+                  placeholder={data.find((f:any)=>f[id]===selected)?.value}
                   name={name}
               />: 
                 <Label 
@@ -134,12 +135,12 @@ export const FloatingSelect = ({
                       'px-4 py-1 flex justify-between items-center cursor-pointer hover:bg-gray-50',
                     )}
                     onClick={()=>{
-                      setSelected(item.slug)
+                      setSelected(item[id])
                       setOpen(false)
                     }}
                   >
                       <p className={classNames(
-                          selected===item.slug ? 'text-gray-400' : 'text-gray-700'
+                          selected===item[id] ? 'text-gray-400' : 'text-gray-700'
                       )}>{item.value}</p>
                     </li>
                   ))}
