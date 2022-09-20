@@ -12,6 +12,7 @@ import { FloatingTags } from '@shared/elements/tags'
 import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
 import { Input } from '@shared/elements/groups'
+import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -52,26 +53,26 @@ const Home = () => {
            
         </div>
         <div className="w-full">
-            <h3 className='text-md'>Input</h3>
+            <h3 className='text-md'>Input Appendeds</h3>
             <Input
                 className=' '
                 value={value}
                 placeholder='Hacim - Alan Belirtiniz'
                 size='medium'
                 border
-                items={tagItems2}
+                items={weightUnits}
                 onChange={(e:string)=>setValue(e)}
               />
         </div>
         <div className="w-full">
-            <h3 className='text-md'>Input</h3>
+            <h3 className='text-md'>Input Appended</h3>
             <Input
                 className=' '
                 value={value}
                 placeholder='Ağırlık Belirtiniz'
                 size='medium'
                 border
-                items={tagItems2}
+                items={meterUnits}
                 onChange={(e:string)=>setValue(e)}
               />
         </div>

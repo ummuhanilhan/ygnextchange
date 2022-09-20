@@ -131,9 +131,9 @@ export const Input = ({
           
             <Select
                 value={value}
-                placeholder='KM'
+                placeholder=''
                 id='label'
-                items={weightUnits}
+                items={items}
                 onChange={(e:string)=>setValue(e)}
             />
          </div>
@@ -152,14 +152,14 @@ export const Select = ({
   }:any) => {
     const [value, setValue] = React.useState('')
     const onChange = (val:string) => setValue(val)
-      const [selected, setSelected] = React.useState(null);
+      const [selected, setSelected] = React.useState(items[0][id]);
       const [active, setActive] = React.useState(false);
       const [open, setOpen] = React.useState(false);
       const [data, setData] = React.useState(items);
       return (
         <div className={classnames(
         'w-full flashback floatinglabel-selects rounded-md relative', 
-         'medium w-24',
+         'medium w-20',
          {'error': error},
         {'success': success},
         )}>
