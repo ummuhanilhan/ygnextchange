@@ -1,4 +1,5 @@
 import { FloatLabelHook } from "@shared/elements/hooks"
+import { InputHook } from "@shared/elements/hooks/inputHook"
 
 
 export const TitleFrame = ({children, title}:any) => {
@@ -21,7 +22,16 @@ export const TitleFrame = ({children, title}:any) => {
         <h3 className="text-yg-blue text-lg">{title}</h3>
       </div>
 
-        {!type && type=='text' || <FloatLabelHook name={name} type="text" placeholder={placeholder}  control={control} {...rest} />}
+        {!type && type=='text' || 
+        <InputHook 
+          name={name} 
+          type="text" 
+          placeholder={placeholder} 
+          control={control}
+          {...rest}
+          className=' bg-white'
+          size='medium'
+        />}
     </div>
     )
   }
