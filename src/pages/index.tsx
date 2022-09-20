@@ -49,7 +49,7 @@ const Home = () => {
     <React.Fragment>
       <div className='grid grid-cols-4 gap-2 my-5'>
       <div className='w-full'>
-          <Avatar 
+          <Upload 
             name="avatar" 
             placeholder="Profil Fotoğrafı Ekle"
           />

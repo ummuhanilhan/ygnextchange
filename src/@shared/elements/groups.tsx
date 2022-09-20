@@ -18,8 +18,9 @@ items,
             'bg-white rounded-md h-[4em] pr-4',
             border && 'border'
         )}>
-            <div className="items-center h-full grid grid-cols-4 
-            gap-2 px-2">
+            <div className="items-center 
+            h-full grid grid-cols-4
+            gap-2 px-2 w-full">
             <Bordered 
                 placeholder='Uzunluk'
             />
@@ -30,7 +31,7 @@ items,
                 placeholder='Yükseklik'
             />
         
-            <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
+            <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
                     <Select
                         value={value}
                         placeholder=''
@@ -50,7 +51,7 @@ placeholder
 }:any) => {
 
 return (
-    <div className="relative z-0 w-full pb-0">
+    <div className="relative z-0 w-full pb-0 ">
     <input 
         type="text" 
         id="default_standard" 
