@@ -1,6 +1,8 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
-import { MultiSelectHook } from "@shared/elements/hooks";
+import { MultiSelectHook, SelectHook } from "@shared/elements/hooks/selectHook";
+import { tagItems } from "@utils/mock";
 import React from "react";
+import { InputHook } from "@shared/elements/hooks/inputHook";
 
 
 
@@ -10,20 +12,45 @@ export const Payload = ({control}:any) => {
         <React.Fragment>
             <div className='grid grid-cols-2 gap-2'>
                 <TitleFrame title="Yük Cinsi">
-                    <MultiSelectHook name="p1" control={control} 
-                    placeholder="Yükünüzün Cinsini Yazınız" />
+                    <InputHook
+                        name="p1"
+                        className=' bg-white'
+                        placeholder='Yükünüzün Cinsini Yazınız'
+                        size='medium'
+                        control={control}
+                    />
                 </TitleFrame>
                 <TitleFrame title="Yük Tanımı">
-                <MultiSelectHook name="p2" control={control} 
-                    placeholder="Yükünüzü Kısaca Tanımlayınız" />
+                    <InputHook
+                        name="p2"
+                        className=' bg-white'
+                        placeholder='Yükünüzü Kısaca Tanımlayınız'
+                        size='medium'
+                        control={control}
+                    />
+                
                 </TitleFrame>
                 <TitleFrame title="Yükleme Şekli">
-                    <MultiSelectHook name="p3" control={control} 
-                        placeholder="Yüleme Şeklini Seçiniz" />
+                    <SelectHook 
+                        name="p3" 
+                        control={control} 
+                        placeholder="Yükleme Şeklini Seçiniz" 
+                        className=' '
+                        size='medium'
+                        id='id'
+                        items={tagItems}
+                    />
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Şekli">
-                    <MultiSelectHook name="p4" control={control} 
-                        placeholder="Boşaltma Şekli Seçiniz" />
+                <SelectHook 
+                        name="p4" 
+                        control={control} 
+                        placeholder="Boşaltma Şeklini Seçiniz" 
+                        className=' '
+                        size='medium'
+                        id='id'
+                        items={tagItems}
+                    />
                 </TitleFrame>
             </div>
 

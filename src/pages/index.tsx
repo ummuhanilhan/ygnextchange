@@ -8,7 +8,7 @@ import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
 import { Input, InputGroup } from '@shared/elements/groups'
 import { meterUnits, weightUnits } from '@utils/dummy/definitions'
-import { Avatar, Upload } from '@shared/elements/uploads'
+import {  Upload } from '@shared/elements/uploads'
 
 const Home = () => {
   const [value, setValue] = React.useState('')

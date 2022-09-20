@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { FloatingSelect } from "./selects";
 
+
 export interface FloatInputProps {
   /**
    * FloatInput placeholder
@@ -93,7 +94,7 @@ export interface FloatInputProps {
 
 }
 
-export const FloatingLabelInput = ({ 
+export const FloatingInput = ({ 
   size,
   type,
   name,
@@ -208,7 +209,7 @@ export const FloatingLabelInput = ({
     );
 }
 
-export const FloatingLabelPhone = ({  
+export const FloatingPhone = ({  
   size,
   type,
   name,

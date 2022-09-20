@@ -1,27 +1,19 @@
 import { Controller, Control  } from "react-hook-form"
-import { FloatingLabelInput } from "../inputs"
 import React from "react"
+import { FloatingInput } from "../inputs"
 
 
-export const FloatLabelHook = ({
+export const InputHook = ({
     control, 
-    placeholder,
     name,
-    border,
-    height,
-    textarea,
-    className,
-    type,
-    size,
-    disabled,
     ...rest
 }:{ 
+    name:string,
     control: Control<any>, 
     placeholder:string,
+    type?:string,
     example?:string,
     textarea?:boolean,
-    name:string,
-    type:string,
     border?:boolean,
     height?:string,
     size?:'small' | 'medium' | 'large',
@@ -38,20 +30,10 @@ export const FloatLabelHook = ({
                 fieldState: { isTouched, isDirty, error },
                 formState,
             }) => (
-                <FloatingLabelInput
-                    onBlur={onBlur} // notify when input is touched
-                    onChange={onChange} // send value to hook form
-                    value={value}
-                    placeholder={placeholder}
-                    className={className}
-                    type={type}
-                    error={error}
-                    name={name}
-                    height={height}
-                    border={border}
-                    size={size||'medium'}
-                    // textarea
-                    {...rest}
+                <FloatingInput 
+                   {...rest}
+                   value={value}
+                   onChange={onChange}
                 />
             )}
         />

@@ -1,7 +1,8 @@
 import { Controller } from "react-hook-form"
 import React from "react"
+import { Tag } from "../tags"
 
-export const MultiTagHook = ({
+export const TagHook = ({
     control, 
     name,
     label,
@@ -17,9 +18,11 @@ export const MultiTagHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <div>
-
-            </div>
+            <Tag
+                {...rest}
+                value={value}
+                onChange={onChange}
+            />
         )}
     />
     )

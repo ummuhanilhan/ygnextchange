@@ -1,6 +1,8 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
 import { MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
+import { TagHook } from "@shared/elements/hooks/tagHook";
 import { CircleFill, CircleHalf } from "@shared/icons";
+import { tagItems } from "@utils/mock";
 import React from "react";
  
 export const Rent = ({control}:any) => {
@@ -33,10 +35,26 @@ export const Rent = ({control}:any) => {
                 </div>
                 <div className='grid grid-cols-2 gap-2'>
                     <TitleFrame title="Araç Özellikleri">
-                        <MultiSelectHook name="feature" control={control} placeholder="Araç Özellikleri Seçiniz" />                 
+                        <TagHook
+                            name="feature"
+                            control={control}
+                            placeholder="Araç Özellikleri Seçiniz"
+                            size='medium'
+                            items={tagItems}
+                            rotation='bottom'
+                            removable
+                        />
                     </TitleFrame>
                     <TitleFrame title="Donanım Seçenekleri">
-                        <MultiSelectHook name="options" control={control} placeholder="Yükünüze Uygun Ek Donanım Özellikleri Seçiniz" />                 
+                         <TagHook
+                            name="options"
+                            control={control}
+                            placeholder="Donanım Özellikleri Seçiniz"
+                            size='medium'
+                            items={tagItems}
+                            rotation='bottom'
+                            removable
+                        />
                     </TitleFrame>
                 </div>
             </React.Fragment>

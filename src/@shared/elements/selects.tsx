@@ -3,7 +3,7 @@ import classnames from "classnames";
 import Outside from "@utils/useoutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
-import { InputAppend } from "./tags";
+import { TagAppend } from "./tags";
 import slugify from "slugify";
 import classNames from "classnames";
 
@@ -23,6 +23,7 @@ export const FloatingSelect = ({
   // onChange,
   onBlur,
   appendix,
+  removable,
   backgroundColor,
   error, 
   items, 
@@ -30,8 +31,8 @@ export const FloatingSelect = ({
   searchable,
   success
 }:any) => {
-  const [value, setValue] = React.useState('')
-  const onChange = (val:string) => setValue(val)
+   const [value, setValue] = React.useState('')
+   const onChange = (val:string) => setValue(val)
   
     const [selected, setSelected] = React.useState(null);
     const [active, setActive] = React.useState(false);
@@ -110,10 +111,10 @@ export const FloatingSelect = ({
             <div className="lay absolute left-0 right-0 bottom-0 top-0" 
             onClick={()=> setOpen(!open)}></div>
 
-            <InputAppend 
+            <TagAppend 
                color={!!error?'fill-red-500':'fill-gray-500'}
                status={open}
-               removable
+               removable={removable}
                setValue={setSelected}
                setOpen={()=>setOpen(!open)}
                value={selected}
@@ -165,7 +166,6 @@ export const FloatingSelect = ({
       </div>
     );
 } 
-
 
 const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
 

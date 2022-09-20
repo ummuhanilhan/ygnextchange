@@ -12,7 +12,7 @@ import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 
 
-export const FloatingTags = ({ 
+export const Tag = ({ 
   size,
   type,
   name,
@@ -30,6 +30,7 @@ export const FloatingTags = ({
   items,
   backgroundColor,
   error, 
+  rotation,
   success
 }:any) => {
     const [value, setValue] = React.useState('')
@@ -64,7 +65,7 @@ export const FloatingTags = ({
             <div className="flex items-start w-full">
                 
                 {mini ? (
-                   <Label 
+                   <TagLabel 
                     open={open}
                     size={size}
                     selected={selected}
@@ -72,7 +73,7 @@ export const FloatingTags = ({
                     name={name}
                 /> 
                 ) : (
-                selected.length<=0 && <Label 
+                selected.length<=0 && <TagLabel 
                     open={open}
                     size={size}
                     selected={selected}
@@ -126,17 +127,18 @@ export const FloatingTags = ({
                 className='absolute right-10 top-[1.25rem] text-gray-700 text-base'>
                 {selected.length}</div>
             ) }
-            <InputAppend 
+            <TagAppend 
                 color={!!error?'fill-red-500':'fill-gray-500'}
                 status={open}
                 setOpen={setOpen}
-            />
+             />
          </div>
 
             <ul className={classNames(
-              'select-dropdown absolute top-16 mt-2 right-0',
+              'select-dropdown absolute mt-2',
               'bg-white h-auto z-10 rounded-md w-full',
-              'drop-shadow-md overflow-hidden',
+              'drop-shadow-md overflow-hidden right-0',
+               rotation ? `${rotation}-16` :'top-16',
               {'hidden':!open}
             )}>
                 <SimpleBar style={{ maxHeight: '200px' }}>
@@ -202,7 +204,7 @@ export const FloatingTags = ({
  * @param type
  * @returns callback
  */
- export const InputAppend = ({
+ export const TagAppend = ({
   status,
   removable,
   value,
@@ -253,7 +255,7 @@ export const FloatingTags = ({
 
 
 
-const Label = ({open,size,selected, placeholder, name}:any) => {
+const TagLabel = ({open,size,selected, placeholder, name}:any) => {
 
     return(
         <label
