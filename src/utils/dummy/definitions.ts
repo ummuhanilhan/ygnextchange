@@ -10,7 +10,7 @@ export const weightUnits = [
   ];
   
   export const currencies = [
-    { label: " TL", value: "try" },
+    { label: "TL", value: "try" },
     { label: "USD (US Dollar)", value: "usd" },
     { label: "EUR (Euro)", value: "eur" },
   ];

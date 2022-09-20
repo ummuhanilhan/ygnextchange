@@ -93,7 +93,6 @@ export interface FloatInputProps {
 
 }
 
-
 export const FloatingLabelInput = ({ 
   size,
   type,
@@ -351,7 +350,6 @@ export const FloatingLabelPhone = ({
   );
 }
 
-
 /**
  * Appdendix of input 
  * @param type
@@ -420,7 +418,7 @@ export const FloatingLabelPhone = ({
   )
 }
 
-    /**
+/**
 * Input group dropdown for select country
 * @param status
 * @returns country code 

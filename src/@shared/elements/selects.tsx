@@ -1,16 +1,11 @@
-import { ArrowClockwise, CheckCircle, ChevronDown, Eye, EyeSlash, Share, ShieldLock, XCircle } from "@yukgetir-icons"
-import React, { createRef, useRef } from "react"
-import TR from '@public/assets/flags/tr.svg'
+import React from "react"
 import classnames from "classnames";
-import rawCountries from "@utils/dummy/rawCountries";
-import tr from "@utils/dummy/countries/tr.json";
-import classNames from "classnames";
-import { FloatInputProps } from "./inputs";
 import Outside from "@utils/useoutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { InputAppend } from "./tags";
 import slugify from "slugify";
+import classNames from "classnames";
 
 export const FloatingSelect = ({ 
   size,

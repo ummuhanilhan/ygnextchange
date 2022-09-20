@@ -1,75 +1,48 @@
 
-import { ArrowClockwise, CheckCircle, ChevronDown, ChevronRight, Eye, EyeSlash, Share, ShieldLock, XCircle } from "@yukgetir-icons"
-import React, { createRef, useRef } from "react"
-import TR from '@public/assets/flags/tr.svg'
+import { ChevronDown, ChevronRight } from "@yukgetir-icons"
+import React from "react"
 import classnames from "classnames";
-import rawCountries from "@utils/dummy/rawCountries";
-import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
-import { FloatingSelect } from "./selects";
 import Outside from "@utils/useoutside";
-import { InputAppend } from "./tags";
-import slugify from "slugify";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
-import { tagItems } from "@utils/mock";
-import { weightUnits } from "@utils/dummy/definitions";
 
-  
-export const Append = ({status, setOpen}:any) => {
-return (
-    <div className=''>
-        {status ? (
-            <ChevronDown
-                onClick={()=>setOpen && setOpen(false)}
-                className={classNames(
-                "icon h-4 top-[30%] icon-gray stroke-slate-500 right-4",
-                )} 
-            />
-            ):(
-            <ChevronRight
-            onClick={()=>setOpen && setOpen(false)}
-            className={classNames(
-                "icon h-4 top-[30%] icon-gray stroke-slate-500 right-4",
-            )} 
-            />
-            )}
-    </div>
-)
-}
-  
 export const InputGroup = ({
 border,
+items,
 }:any) => {
-return (
-    <div className={classNames(
-        'bg-white rounded-md h-[4em]',
-        border && 'border'
-    )}>
-        <div className="items-center h-full grid grid-cols-4 gap-2 px-2">
-        <Bordered 
-            placeholder='Uzunluk'
-        />
-        <Bordered 
-            placeholder='Genişlik'
-        />
-        <Bordered 
-            placeholder='Yükseklik'
-        />
-        <div className='w-72 h-full flex items-center mr-2 border-transparent border-l-[.15rem] border-gray-100'>
-            <label 
-                className='outline-none w-[3.1rem] flex items-center justify-center cursor-pointer'
-            >
-            <p className='text-gray-700 text-sm'>TON</p>
-            </label>
-
-            <FiChevronRight size={21} className='text-gray-600 stroke-2' />
+    const [value, setValue] = React.useState('');
+    return (
+        <div className={classNames(
+            'bg-white rounded-md h-[4em] pr-4',
+            border && 'border'
+        )}>
+            <div className="items-center h-full grid grid-cols-4 
+            gap-2 px-2">
+            <Bordered 
+                placeholder='Uzunluk'
+            />
+            <Bordered 
+                placeholder='Genişlik'
+            />
+            <Bordered 
+                placeholder='Yükseklik'
+            />
+        
+            <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
+                    <Select
+                        value={value}
+                        placeholder=''
+                        id='label'
+                        items={items}
+                        onChange={(e:string)=>setValue(e)}
+                    />
+                </div>
+            </div>
+        
         </div>
-        </div>
-    
-    </div>
-)
+    )
 }
 
 export const Bordered = ({
@@ -77,7 +50,7 @@ placeholder
 }:any) => {
 
 return (
-    <div className="relative z-0 w-full mr-3">
+    <div className="relative z-0 w-full pb-0">
     <input 
         type="text" 
         id="default_standard" 
@@ -102,6 +75,28 @@ return (
 </div>
 )
 } 
+  
+export const Append = ({status, setOpen}:any) => {
+    return (
+        <div className=''>
+            {status ? (
+                <ChevronDown
+                    onClick={()=>setOpen && setOpen(false)}
+                    className={classNames(
+                    "icon h-4 top-[30%] icon-gray stroke-slate-500 right-4",
+                    )} 
+                />
+                ):(
+                <ChevronRight
+                onClick={()=>setOpen && setOpen(false)}
+                className={classNames(
+                    "icon h-4 top-[30%] icon-gray stroke-slate-500 right-4",
+                )} 
+                />
+                )}
+        </div>
+    )
+}
 
 
 
@@ -128,7 +123,6 @@ export const Input = ({
           />
         
          <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
-          
             <Select
                 value={value}
                 placeholder=''
@@ -188,9 +182,7 @@ export const Select = ({
                 placeholder={placeholder}
                 name={name}
             />}
-  
-              <div className="lay absolute left-0 right-0 bottom-0 top-0" 
-              onClick={()=> setOpen(!open)}></div>
+         
               <Appendix 
                  color={!!error?'fill-red-500':'fill-gray-500'}
                  status={open}
@@ -199,6 +191,10 @@ export const Select = ({
                  setOpen={()=>setOpen(!open)}
                  value={selected}
             />
+               
+            <div className="lay absolute left-0 right-0 bottom-0 top-0" 
+            onClick={()=> setOpen(!open)}></div>
+
             </div>
               <ul className={classNames(
                 'select-dropdown absolute top-16 mt-1 right-0',
@@ -229,10 +225,9 @@ export const Select = ({
            </Outside>
         </div>
       );
-  } 
+} 
   
-  
-  const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
+const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
   
     return(
         <label
@@ -246,7 +241,7 @@ export const Select = ({
             {placeholder}
         </label>
     )
-  }
+}
   
   /**
  * Appdendix of input 
@@ -288,5 +283,5 @@ export const Select = ({
       </React.Fragment>
   
     )
-  }
+}
   

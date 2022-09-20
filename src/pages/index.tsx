@@ -11,7 +11,7 @@ import { FloatingSelect } from '@shared/elements/selects'
 import { FloatingTags } from '@shared/elements/tags'
 import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
-import { Input } from '@shared/elements/groups'
+import { Input, InputGroup } from '@shared/elements/groups'
 import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 
 const Home = () => {
@@ -50,7 +50,12 @@ const Home = () => {
         
         <div className="w-full">
             <h3 className='text-md'>Dimensions</h3>
-           
+            <InputGroup
+                border
+                value={value}
+                items={weightUnits}
+                onChange={(e:string)=>setValue(e)}
+              />
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
