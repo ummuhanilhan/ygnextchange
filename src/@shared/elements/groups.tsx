@@ -116,7 +116,7 @@ export const Input = ({
     return (
       <div className={classNames(
           'bg-white rounded-md h-[4em] flex items-center', 
-          'px-3 relative justify-between w-full',
+          'pl-3 relative justify-between w-full',
           border && 'border'
         )}>
           <input 
@@ -127,7 +127,7 @@ export const Input = ({
             dark:text-white peer h-full outline-none" 
           />
         
-         <div className='w-44'>
+         <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
           
             <Select
                 value={value}
@@ -159,7 +159,7 @@ export const Select = ({
       return (
         <div className={classnames(
         'w-full flashback floatinglabel-selects rounded-md relative', 
-         'medium w-20',
+         'medium w-24',
          {'error': error},
         {'success': success},
         )}>
@@ -239,7 +239,7 @@ export const Select = ({
             className={classNames(
               color ? color : 'text-gray-500 ',
               'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
-                  size=='medium' ? (selected ? 'text-base pt-5' : 'text-base pt-4') : '',
+                  size=='medium' ? (selected ? 'text-base pt-4' : 'text-base pt-4') : '',
             )}
             htmlFor={name}
             >
