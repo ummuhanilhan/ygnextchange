@@ -1,8 +1,3 @@
-import { Header } from '@components/header'
-import { Sidebar } from '@components/sidebar'
-import { Apple } from '@yukgetir-icons'
-import type { NextPage } from 'next'
-import Main from '@containers/Main'
 import PrivateLayout from '@layouts/PrivateLayout'
 import React from 'react'
 import { FloatingLabelInput, FloatingLabelPhone } from '@shared/elements/inputs'
@@ -47,10 +42,10 @@ const Home = () => {
   </p>
   return (
     <React.Fragment>
-      <div className='grid grid-cols-4 gap-2 my-5'>
+      <div className='grid grid-cols-4 gap-2 my-5-'>
           <div className="w-full">
-            <h3 className='text-md'>Box</h3>
-            
+            <h3 className='text-md'></h3>
+
           </div>
       </div>
       <div className='grid grid-cols-4 gap-2 my-5'>
@@ -294,10 +289,6 @@ const Home = () => {
            
       </div>
 
-      
-
-
-      {paragraph}
     </React.Fragment>
   )
 }

@@ -13,6 +13,10 @@ import classNames from "classnames";
 import Outside from "@utils/useoutside";
 import { DoubleFrame } from "@components/frames/MainFrame";
 import { Search } from "@shared/elements/searches";
+import { FloatingSelect } from "@shared/elements/selects";
+import Turkiye from '@utils/dummy/turkiye.json'
+import { tagItems } from "@utils/mock";
+import { FloatingTags } from "@shared/elements/tags";
 
 export type FilterValues = {
     name: string,
@@ -85,6 +89,8 @@ const Filter = ({}:any) => {
 
 export const Location = ({control}:any) => {
     const [status, setStatus] = React.useState(false);
+  const [value, setValue] = React.useState('')
+
     return (
         <React.Fragment>
             <IconDropdown 
@@ -93,11 +99,28 @@ export const Location = ({control}:any) => {
             icon={<PinMap className="fill-yg-blue" width={19} />} title="Konum" />
 
             <div className={classNames({hidden:!status})}>
-                <FloatLabelHook name="load" size='small' height='55px'  type="text" placeholder="Yükleme yeri" className='mb-2' control={control} />
-                <FloatLabelHook name="unload" size='small' height='55px'  type="text" placeholder="Boşaltma yeri" className='' control={control} />
-                
+                <FloatingSelect 
+                   value={value}
+                   placeholder='Yükleme Yeri'
+                   className='mb-1'
+                   size='medium'
+                   id='label'
+                   items={Turkiye}
+                   onChange={(e:string)=>setValue(e)}
+              />
+                 <FloatingSelect
+                  value={value}
+                  placeholder='Boşaltma Yeri'
+                  size='medium'
+                  id='label'
+                  items={Turkiye}
+                  onChange={(e:string)=>setValue(e)}
+                />
 
                 {/** 
+                 <FloatLabelHook name="load" size='small' height='55px'  type="text" placeholder="Yükleme yeri" className='mb-2' control={control} />
+                 <FloatLabelHook name="unload" size='small' height='55px'  type="text" placeholder="Boşaltma yeri" className='' control={control} />
+
                  <MultiSelectHook name="load" control={control} placeholder="Yükleme yeri"  />                 
                    <MultiSelectHook name="unload" control={control} placeholder="Boşaltma yeri"  />        
                  */}         
@@ -138,6 +161,7 @@ export const Hiring = ({control}:any) => {
 
 export const VehicleType = ({control}:any) => {
     const [status, setStatus] = React.useState(false);
+    const [value, setValue] = React.useState('');
     return (
         <React.Fragment>
             <IconDropdown 
@@ -145,7 +169,15 @@ export const VehicleType = ({control}:any) => {
              setStatus={setStatus} 
             icon={<Truck className="fill-yg-blue" width={19} />} title="Araç Tipi" />
             <div className={classNames({hidden:!status})}>
-                <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+                <FloatingTags
+                    value={value}
+                    placeholder='Araç Tipi Seçiniz'
+                    size='medium'
+                    items={tagItems}
+                    removable
+                    onChange={(e:string)=>setValue(e)}
+                />
+                {/** <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  /> */}
             </div>
         </React.Fragment>
     )
@@ -153,6 +185,7 @@ export const VehicleType = ({control}:any) => {
 
 export const VehicleFeatures = ({control}:any) => {
     const [status, setStatus] = React.useState(false);
+    const [value, setValue] = React.useState('');
     return (
         <React.Fragment>
             <IconDropdown 
@@ -160,7 +193,15 @@ export const VehicleFeatures = ({control}:any) => {
              setStatus={setStatus} 
             icon={<FilePlus className="fill-yg-blue" width={19} />} title="Araç Özellikleri" />
             <div className={classNames({hidden:!status})}>
-                <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+            <FloatingTags
+                value={value}
+                placeholder='Araç Özellikleri Seçiniz'
+                size='medium'
+                items={tagItems}
+                removable
+                onChange={(e:string)=>setValue(e)}
+              />
+            {/** <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  /> */}
             </div>
         </React.Fragment>
     )
