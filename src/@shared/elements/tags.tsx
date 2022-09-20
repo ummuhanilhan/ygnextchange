@@ -133,7 +133,6 @@ export const Tag = ({
                 setOpen={setOpen}
              />
          </div>
-
             <ul className={classNames(
               'select-dropdown absolute mt-2',
               'bg-white h-auto z-10 rounded-md w-full',
