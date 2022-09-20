@@ -16,8 +16,8 @@ import { Search } from "@shared/elements/searches";
 import { FloatingSelect } from "@shared/elements/selects";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { tagItems } from "@utils/mock";
-import { FloatingTags } from "@shared/elements/tags";
-
+import { Tag } from "@shared/elements/tags";
+ 
 export type FilterValues = {
     name: string,
 };
@@ -169,7 +169,7 @@ export const VehicleType = ({control}:any) => {
              setStatus={setStatus} 
             icon={<Truck className="fill-yg-blue" width={19} />} title="Araç Tipi" />
             <div className={classNames({hidden:!status})}>
-                <FloatingTags
+                <Tag
                     value={value}
                     placeholder='Araç Tipi Seçiniz'
                     size='medium'
@@ -193,7 +193,7 @@ export const VehicleFeatures = ({control}:any) => {
              setStatus={setStatus} 
             icon={<FilePlus className="fill-yg-blue" width={19} />} title="Araç Özellikleri" />
             <div className={classNames({hidden:!status})}>
-            <FloatingTags
+            <Tag
                 value={value}
                 placeholder='Araç Özellikleri Seçiniz'
                 size='medium'

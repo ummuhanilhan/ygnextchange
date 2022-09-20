@@ -95,7 +95,7 @@ export const VehicleCreate = () => {
                     {/** <MultiSelectHook name="b1" control={control} placeholder="Araç Donanımı Seçiniz"  />                   */}
                     </TitleFrame>
 
-                    <TitleFrameCovered title="Araç Sigorta Tarihi" name="a2" placeholder="Araç Sigorta Tarihi Seçiniz"  control={control} /> 
+                    {/** <TitleFrameCovered title="Araç Sigorta Tarihi" name="a2" placeholder="Araç Sigorta Tarihi Seçiniz"  control={control} />  **/}
 
                     <TitleFrame title="Araç Muayene Tarihi">
                     {/**

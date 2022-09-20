@@ -1,7 +1,6 @@
 import { SigninValues } from "@pages/auth/signin"
 import { Controller, useForm, useWatch, Control  } from "react-hook-form"
 import { Checkbox } from "../checkboxes"
-import { FloatingLabelInput, FloatingLabelPhone } from "../inputs"
 import { VehicleRadio } from "../radios"
 import { MultiSelect } from 'primereact/multiselect';
 import { Calendar } from "primereact/calendar"
@@ -11,6 +10,7 @@ import { CloudArrowUp } from "@shared/icons"
 import { FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
+import { FloatingInput, FloatingPhone } from "../inputs";
 
 export const FloatLabelHook = ({
     control, 
@@ -47,7 +47,7 @@ export const FloatLabelHook = ({
                 fieldState: { isTouched, isDirty, error },
                 formState,
             }) => (
-                <FloatingLabelInput
+                <FloatingInput
                     onBlur={onBlur} // notify when input is touched
                     onChange={onChange} // send value to hook form
                     value={value}
@@ -92,7 +92,7 @@ export const FloatLabelPhoneHook = ({
                 fieldState: { isTouched, isDirty, error },
                 formState,
             }) => (
-                <FloatingLabelPhone
+                <FloatingPhone
                     onBlur={onBlur} // notify when input is touched
                     onChange={onChange} // send value to hook form
                     value={value}

@@ -1,6 +1,6 @@
 import { Controller, Control  } from "react-hook-form"
-import {  FloatingLabelPhone } from "../inputs"
 import React from "react"
+import { FloatingLabelPhone } from "../phones";
 
 export const FloatLabelPhoneHook = ({
     control, 

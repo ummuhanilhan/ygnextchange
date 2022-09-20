@@ -1,6 +1,5 @@
 import { SignLayout } from "@layouts/SignLayout";
-import { FloatingLabelInput, FloatingLabelPhone } from "@shared/elements/inputs";
-import { XCircle } from "@shared/icons";
+ import { XCircle } from "@shared/icons";
 import { signupSchema } from "@utils/validations/auth";
 import classnames from "classnames";
 import React from "react";
