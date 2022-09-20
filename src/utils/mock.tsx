@@ -313,3 +313,11 @@ export const feature: any = {
   
 // header excluded pages
 export const excludedPages = ["/cargoes/create", "/cargoes/edit"];
+
+export const cities = [
+    {name: 'İstanbul', code: 'IST'},
+    {name: 'New York', code: 'NY'},
+    {name: 'Rome', code: 'RM'},
+    {name: 'London', code: 'LDN'},
+    {name: 'Paris', code: 'PRS'}
+];

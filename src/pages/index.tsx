@@ -13,6 +13,7 @@ import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
 import { Input, InputGroup } from '@shared/elements/groups'
 import { meterUnits, weightUnits } from '@utils/dummy/definitions'
+import { Avatar, Upload } from '@shared/elements/uploads'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -46,6 +47,34 @@ const Home = () => {
   </p>
   return (
     <React.Fragment>
+      <div className='grid grid-cols-4 gap-2 my-5'>
+      <div className='w-full'>
+          <Avatar 
+            name="avatar" 
+            placeholder="Profil Fotoğrafı Ekle"
+          />
+        </div>
+      <div className='w-full'>
+          <Upload 
+            name="src_file" 
+            placeholder="Src Belgesi"
+            file='file://'  
+          />
+        </div>
+       <div className='w-full'>
+          <Upload 
+            name="driver_file" 
+            placeholder="Psikoteknik Belgesi Ekle (Opsiyonel)"  
+          />
+        </div>
+        <div className='w-full'>
+          <Upload 
+            name="driver_file" 
+            placeholder="Sürücü Belgesi Ekle"  
+            />
+        </div>
+      </div>
+
       <div className='grid grid-cols-3 gap-2 my-5 '>
         
         <div className="w-full">

@@ -10,6 +10,7 @@ import React from "react"
 import { CloudArrowUp } from "@shared/icons"
 import { FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
+import { cities } from "@utils/mock"
  
 export const FloatLabelHook = ({
     control, 
@@ -197,14 +198,6 @@ export const SwithcherHook = ({
     />
     )
 } 
-
-const cities = [
-    {name: 'İstanbul', code: 'IST'},
-    {name: 'New York', code: 'NY'},
-    {name: 'Rome', code: 'RM'},
-    {name: 'London', code: 'LDN'},
-    {name: 'Paris', code: 'PRS'}
-];
 
 export const MultiSelectHook = ({
     control, 
