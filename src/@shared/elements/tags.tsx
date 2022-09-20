@@ -137,7 +137,7 @@ export const Tag = ({
               'select-dropdown absolute mt-2',
               'bg-white h-auto z-10 rounded-md w-full',
               'drop-shadow-md overflow-hidden right-0',
-               rotation ? `${rotation}-16` :'top-16',
+               rotation ?  rotation :'top-16',
               {'hidden':!open}
             )}>
                 <SimpleBar style={{ maxHeight: '200px' }}>

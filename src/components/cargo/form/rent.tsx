@@ -41,7 +41,7 @@ export const Rent = ({control}:any) => {
                             placeholder="Araç Özellikleri Seçiniz"
                             size='medium'
                             items={tagItems}
-                            rotation='bottom'
+                            rotation='bottom-16'
                             removable
                         />
                     </TitleFrame>
@@ -52,7 +52,7 @@ export const Rent = ({control}:any) => {
                             placeholder="Donanım Özellikleri Seçiniz"
                             size='medium'
                             items={tagItems}
-                            rotation='bottom'
+                            rotation='bottom-16'
                             removable
                         />
                     </TitleFrame>
