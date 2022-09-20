@@ -32,7 +32,7 @@ export const Avatar = ({
     )
 }
 
-export const Upload : NextPage = ({
+export const Upload = ({
     name,
     placeholder,
     file,
