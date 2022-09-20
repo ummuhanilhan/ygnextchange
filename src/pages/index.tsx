@@ -15,32 +15,33 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <div className='grid grid-cols-4 gap-2 my-5-'>
-          <div className="w-full">
+      <div className='grid grid-cols-2 gap-2 my-5'>
+         <div className="w-full">
             <h3 className='text-md'></h3>
 
           </div>
-      </div>
-      <div className='grid grid-cols-4 gap-2 my-5'>
-      <div className='w-full'>
-          <Upload 
-            name="avatar" 
-            placeholder="Profil Fotoğrafı Ekle"
-          />
-        </div>
-      <div className='w-full'>
-          <Upload 
-            name="src_file" 
-            placeholder="Src Belgesi"
-            file='file://'  
-          />
-        </div>
-       <div className='w-full'>
+          <div className='w-full'>
           <Upload 
             name="driver_file" 
             placeholder="Psikoteknik Belgesi Ekle (Opsiyonel)"  
           />
         </div>
+      </div>
+      <div className='grid grid-cols-3 gap-2 my-5'>
+       <div className='w-full'>
+          <Upload 
+            name="avatar" 
+            placeholder="Profil Fotoğrafı Ekle"
+          />
+        </div>
+        <div className='w-full'>
+            <Upload 
+              name="src_file" 
+              placeholder="Src Belgesi"
+              file='file://'  
+            />
+        </div>
+     
         <div className='w-full'>
           <Upload 
             name="driver_file" 

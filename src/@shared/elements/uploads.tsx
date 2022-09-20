@@ -5,6 +5,8 @@ import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FiPlus, FiXCircle } from "react-icons/fi";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+
+// TODO: Validation Required
 export const Upload = ({
     name,
     placeholder,
@@ -67,7 +69,9 @@ export const Upload = ({
        bg-white cursor-pointer rounded-md px-4
         text-gray-700 flex items-center
          justify-between">
-        <label className='w-full text-base cursor-pointer flex items-center'>
+        <label className='
+        max-w-[65%] overflow-hidden
+        text-base cursor-pointer flex items-center'>
             <input 
                 name={name}
                 type='file' 
@@ -75,9 +79,9 @@ export const Upload = ({
                 className='hidden' 
                 onChange={onFileUploadChange}
             />
-            <p>{fileName ? fileName.slice(0,10) : placeholder}</p>                    
+            <p className=''>{fileName ? fileName : placeholder}</p>                    
         </label>
-        <div className='flex items-start'>
+        <div className='flex items-start z-10'>
             
            {!fileName && (
              <CloudArrowUp 
@@ -92,10 +96,11 @@ export const Upload = ({
                 <p className='text-yg-green'>Eklendi</p>
                 <div
                     onClick={()=>setFileName('')}
-                ><FiXCircle size={21} className='text-gray-400 mx-2 stroke-[1.3px]' /></div>
+                ><FiXCircle size={21} className='z-10 fill-white text-gray-400 mx-2 stroke-[1.3px]' /></div>
             </React.Fragment>
            )}
         </div>
+        <div onClick={()=>inputRef.current?.click()} className="lay absolute z-0 left-0 right-0 top-0 bottom-0"></div>
         </div>
     )
 }
