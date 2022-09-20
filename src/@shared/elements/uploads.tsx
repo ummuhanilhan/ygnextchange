@@ -1,6 +1,7 @@
 import { CloudArrowUp } from "@shared/icons"
+import { NextPage } from "next";
 import { FileUpload } from 'primereact/fileupload';
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { FiPlus, FiXCircle } from "react-icons/fi";
 
 export const Avatar = ({
@@ -31,17 +32,29 @@ export const Avatar = ({
     )
 }
 
-export const Upload = ({
+export const Upload : NextPage = ({
     name,
     placeholder,
     file,
 }:any) => {
     const [value, setValue] = React.useState('')
 
-    const myUploader = (event:any) => {
-        //event.files == files to upload
-    }
-     
+    const onFileUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log('onChange',e)
+        console.log("From onFileUploadChange");
+    };
+    
+    const onCancelFile = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        console.log('cancel',e)
+        console.log("From onCancelFile");
+    };
+    
+    const onUploadFile = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        console.log('onUpload',e)
+        console.log("From onUploadFile");
+    };
 
     return (
         <div className="relative w-full h-[4em]
@@ -49,10 +62,16 @@ export const Upload = ({
         text-gray-700 flex items-center
          justify-between">
         <label className='w-full text-base cursor-pointer flex items-center'>
-            <input type='file' className='hidden' />
+            <input 
+                name={name}
+                type='file' 
+                className='hidden' 
+                onChange={onFileUploadChange}
+            />
             <p>{placeholder}</p>                    
         </label>
         <div className='flex items-start'>
+            
            {true && (
              <CloudArrowUp 
                 className=" right-3 top-[1.4rem]
