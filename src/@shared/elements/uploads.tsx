@@ -1,60 +1,62 @@
 import { CloudArrowUp } from "@shared/icons"
 import { NextPage } from "next";
 import { FileUpload } from 'primereact/fileupload';
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEvent, useState } from "react";
 import { FiPlus, FiXCircle } from "react-icons/fi";
-
-export const Avatar = ({
-    name,
-    placeholder,
-    ...rest
-}:any) => {
-    const [value, setValue] = React.useState('')
-    return (
-        <div className="flex flex-center justify-center">
-            <div className="relative w-full">
-                <FileUpload  
-                    name={value}
-                    url="./upload"  
-                    accept="image/*" 
-                    className="w-full py-[.2rem] border-none"
-                    mode="basic"
-                />
-                <div className="bg-white">
-                    <CloudArrowUp className="absolute right-3 
-                    top-[1.4rem] bg-white fill-yg-orange" 
-                    height={19} />
-                </div>
-            </div>
-            <div className="btn p-2 bg-white rounded-md ml-2 
-            w-14 h-14 flex items-center justify-center cursor-pointer"><FiXCircle className="text-xl text-gray-400" width={25} /></div>                 
-        </div>
-    )
-}
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export const Upload = ({
     name,
     placeholder,
-    file,
 }:any) => {
+
+    const [file, setFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [value, setValue] = React.useState('')
 
     const onFileUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log('onChange',e)
-        console.log("From onFileUploadChange");
-    };
+        const fileInput = e.target;
     
-    const onCancelFile = (e: ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        console.log('cancel',e)
-        console.log("From onCancelFile");
-    };
+        if (!fileInput.files) {
+          alert("No file was chosen");
+          return;
+        }
     
-    const onUploadFile = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!fileInput.files || fileInput.files.length === 0) {
+          alert("Files list is empty");
+          return;
+        }
+    
+        const file = fileInput.files[0];
+    
+        /** File validation */
+        if (!file.type.startsWith("image")) {
+          alert("Please select a valide image");
+          return;
+        }
+    
+        /** Setting file state */
+        setFile(file); // we will use the file state, to send it later to the server
+        setPreviewUrl(URL.createObjectURL(file)); // we will use this to show the preview of the image
+    
+        /** Reset file input */
+        e.currentTarget.type = "text";
+        e.currentTarget.type = "file";
+      };
+    
+      const onCancelFile = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log('onUpload',e)
-        console.log("From onUploadFile");
-    };
+        if (!previewUrl && !file) {
+          return;
+        }
+        setFile(null);
+        setPreviewUrl(null);
+      };
+    
+      const onUploadFile = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+      };
+
 
     return (
         <div className="relative w-full h-[4em]

@@ -12,6 +12,7 @@ import { FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
  
+
 export const FloatLabelHook = ({
     control, 
     placeholder,
