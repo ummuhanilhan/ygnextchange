@@ -266,5 +266,50 @@ export const tagItems2 = [
     {id:7, slug:'1', value:'B Sınıfı', label:''},
     {id:8, slug:'2', value:'BE Sınıfı', label:''},
     {id:9, slug:'3', value:'C1 Sınıfı', label:''},
-
 ]
+
+export const initial: any = {
+    viewing: 0,
+    rent: {
+      vehicle: "romork",
+      type: "parsiel",
+    },
+    shipping: {},
+    payload: {
+      bargain: true,
+      measurement: {
+        measure: "kg",
+      },
+    },
+    fee: {
+      manual: true,
+      price: {
+        unit: 0.0,
+      },
+    },
+  };
+  
+  
+export const feature: any = {
+    package: null,
+    tonnageRange: null,
+    freightDensity: 0,
+    freightVolume: 0,
+    loadingMeter: 0,
+    porter: false,
+    stow: false,
+    height: 0,
+    weight: 555,
+    volume: 0,
+    length: 0,
+    width: 0,
+    heightUnit: "M",
+    weightUnit: "TON",
+    volumeUnit: "M3",
+    lengthUnit: "M",
+    widthUnit: "M",
+  };
+
+  
+// header excluded pages
+export const excludedPages = ["/cargoes/create", "/cargoes/edit"];

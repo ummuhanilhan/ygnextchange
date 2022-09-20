@@ -58,7 +58,8 @@ export const FloatingSelect = ({
         
           className={classNames(
           "select relative rounded-md w-full cursor-pointer",
-          'flex items-center justify-end h-[4em]',
+          'flex items-center justify-end ',
+            height ? `h-[${height}]` :'h-[4em]',
             border && 'border',
             {'active':active},
             {'passive':!active},
@@ -169,11 +170,6 @@ export const FloatingSelect = ({
       </div>
     );
 } 
-
-
-
-
-
 
 
 const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {

@@ -11,6 +11,7 @@ import { FloatingSelect } from '@shared/elements/selects'
 import { FloatingTags } from '@shared/elements/tags'
 import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
+import { Input } from '@shared/elements/groups'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -44,6 +45,38 @@ const Home = () => {
   </p>
   return (
     <React.Fragment>
+      <div className='grid grid-cols-3 gap-2 my-5 '>
+        
+        <div className="w-full">
+            <h3 className='text-md'>Dimensions</h3>
+           
+        </div>
+        <div className="w-full">
+            <h3 className='text-md'>Input</h3>
+            <Input
+                className=' '
+                value={value}
+                placeholder='Hacim - Alan Belirtiniz'
+                size='medium'
+                border
+                items={tagItems2}
+                onChange={(e:string)=>setValue(e)}
+              />
+        </div>
+        <div className="w-full">
+            <h3 className='text-md'>Input</h3>
+            <Input
+                className=' '
+                value={value}
+                placeholder='Ağırlık Belirtiniz'
+                size='medium'
+                border
+                items={tagItems2}
+                onChange={(e:string)=>setValue(e)}
+              />
+        </div>
+      
+      </div>
       <div className='grid grid-cols-3 gap-2 my-5 '>
       <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
