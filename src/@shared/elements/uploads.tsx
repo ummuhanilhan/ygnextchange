@@ -45,24 +45,25 @@ export const Upload = ({
 
     return (
         <div className="relative w-full h-[4em]
-        bg-white cursor-pointer rounded-md px-4
-         text-gray-700 flex items-center
-          justify-between">
-        <label className='flex items-center'>
+       bg-white cursor-pointer rounded-md px-4
+        text-gray-700 flex items-center
+         justify-between">
+        <label className='w-full text-base cursor-pointer flex items-center'>
             <input type='file' className='hidden' />
-                <p>Src Belgesi</p>                    
+            <p>{placeholder}</p>                    
         </label>
         <div className='flex items-start'>
            {true && (
              <CloudArrowUp 
-             className=" right-3 top-[1.4rem]
-             fill-yg-orange" 
-             height={19} />
+                className=" right-3 top-[1.4rem]
+                fill-yg-orange" 
+                height={19} 
+             />
            )}
            {false && (
             <React.Fragment>
-                 <p className='text-yg-green'>Eklendi</p>
-                  <div><FiXCircle size={21} className='text-gray-400 mx-2 stroke-[1.3px]' /></div>
+                <p className='text-yg-green'>Eklendi</p>
+                <div><FiXCircle size={21} className='text-gray-400 mx-2 stroke-[1.3px]' /></div>
             </React.Fragment>
            )}
         </div>

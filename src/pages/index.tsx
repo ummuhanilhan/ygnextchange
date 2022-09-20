@@ -48,6 +48,12 @@ const Home = () => {
   return (
     <React.Fragment>
       <div className='grid grid-cols-4 gap-2 my-5'>
+          <div className="w-full">
+            <h3 className='text-md'>Box</h3>
+            
+          </div>
+      </div>
+      <div className='grid grid-cols-4 gap-2 my-5'>
       <div className='w-full'>
           <Upload 
             name="avatar" 

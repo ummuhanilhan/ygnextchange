@@ -131,11 +131,12 @@ export const Information = ({control}:any) => {
             <div className={classNames({'hidden':!status})}>
                 <div className="grid grid-cols-3 gap-2">
                     {informations.map((item, i:number)=>(
-                        <div className="readfile bg-white p-2 rounded-md flex justify-between" key={`information-${i}`}>
+                        <div className="mb-2 mr-2 p-5 readfile bg-white cursor-pointer
+                        rounded-md flex justify-between" key={`information-${i}`}>
                             <p className="text-gray-500">{item.title}</p>
-                            <div>
-                                <p>Oku</p>
-                                <BoxArrowRight />
+                            <div className='flex items-start'>
+                                <p className='text-sm'>Oku</p>
+                                <BoxArrowRight width={21} className='fill-yg-orange ml-3' />
                             </div>
                         </div>
                     ))}
