@@ -1,7 +1,7 @@
 import { CloudArrowUp } from "@shared/icons"
 import { NextPage } from "next";
 import { FileUpload } from 'primereact/fileupload';
-import React, { ChangeEvent, MouseEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FiPlus, FiXCircle } from "react-icons/fi";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -10,13 +10,15 @@ export const Upload = ({
     placeholder,
 }:any) => {
 
+    const [fileName, setFileName] = useState('');
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [value, setValue] = React.useState('')
 
     const onFileUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const fileInput = e.target;
-    
+        const fileInput:any = e.target;
+        console.log('file',fileInput.file)
+        console.log('files', fileInput.files)
         if (!fileInput.files) {
           alert("No file was chosen");
           return;
@@ -28,6 +30,7 @@ export const Upload = ({
         }
     
         const file = fileInput.files[0];
+        setFileName(file.name)
     
         /** File validation */
         if (!file.type.startsWith("image")) {
@@ -57,6 +60,7 @@ export const Upload = ({
         e.preventDefault();
       };
 
+      const inputRef = useRef<HTMLInputElement>(null);
 
     return (
         <div className="relative w-full h-[4em]
@@ -67,24 +71,28 @@ export const Upload = ({
             <input 
                 name={name}
                 type='file' 
+                ref={inputRef}
                 className='hidden' 
                 onChange={onFileUploadChange}
             />
-            <p>{placeholder}</p>                    
+            <p>{fileName ? fileName.slice(0,10) : placeholder}</p>                    
         </label>
         <div className='flex items-start'>
             
-           {true && (
+           {!fileName && (
              <CloudArrowUp 
+                onClick={()=>inputRef.current?.click()}
                 className=" right-3 top-[1.4rem]
                 fill-yg-orange" 
                 height={19} 
              />
            )}
-           {false && (
+           {fileName && (
             <React.Fragment>
                 <p className='text-yg-green'>Eklendi</p>
-                <div><FiXCircle size={21} className='text-gray-400 mx-2 stroke-[1.3px]' /></div>
+                <div
+                    onClick={()=>setFileName('')}
+                ><FiXCircle size={21} className='text-gray-400 mx-2 stroke-[1.3px]' /></div>
             </React.Fragment>
            )}
         </div>
