@@ -21,7 +21,7 @@ export const CargoItem = ({item, actionType='' }:any) => {
                         <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
                     </div>
                     <div className="flex items-start justify-center">
-                        <div className="flex flex-start mx-1 ml-2">
+                        <div className="hidden flex flex-start mx-1 ml-2">
                             <PinAngle width={15} />
                             <p className='ml-1'> İlan No: 25959 </p>
                         </div>
