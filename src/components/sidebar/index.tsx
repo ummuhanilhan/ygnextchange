@@ -62,7 +62,7 @@ export const MenuItem = ({item, pathname}:any) => {
             ref={ref}
             className={`${item.path==pathname?`active`:''} text`}
             onClick={()=>{
-                router.push(item.path, undefined, { shallow: true })
+                // router.push(item.path, undefined, { shallow: true })
             }}
             onMouseDown={(e:any)=>{
                 e.preventDefault()
@@ -73,8 +73,10 @@ export const MenuItem = ({item, pathname}:any) => {
                     window.open(item.path, "_blank")       
             }}
         >
-            {item.icon}
-            <p>{item.title}</p>
+            <a href={item.path} className='flex items-start'>
+                {item.icon}
+                <p>{item.title}</p>
+            </a>
         </li>
     )
 }

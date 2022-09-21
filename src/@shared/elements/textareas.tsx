@@ -7,7 +7,7 @@ import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 import { FloatInputProps, InputAppend } from "./inputs";
 
-export const FloatingLabelTextarea = ({ 
+export const Textarea = ({ 
   size,
   type,
   height,
@@ -52,6 +52,7 @@ export const FloatingLabelTextarea = ({
     return (
       <div className={classnames(
         ' floatinglabel-textarea flashback rounded-md ', 
+        className,
         size||'medium',
         backgroundColor||'bg-white',
         {'error': error},
@@ -68,9 +69,8 @@ export const FloatingLabelTextarea = ({
             <textarea  
               className={classNames(
                 'p-2 pr-10 outline-none h-full rounded-md bg-transparent',
-                'transition-all duration-200 ease-in-out',
+                'transition-all duration-200 ease-in-out w-full',
                 active ? "text-gray-500 " : "",
-                className,
                 border && 'border-gray-300 border-opacity-25',
                 active ? 'pt-5 text-base' : 'pt-2',
 

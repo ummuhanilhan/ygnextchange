@@ -11,6 +11,8 @@ import { FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
 import { FloatingInput, FloatingPhone } from "../inputs";
+import { Select } from "../groups";
+import classNames from "classnames";
 
 export const FloatLabelHook = ({
     control, 
@@ -233,6 +235,7 @@ export const SelectHook = ({
     control, 
     name,
     label,
+    size,
     ...rest
 }:any) => {
 
@@ -245,9 +248,12 @@ export const SelectHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <div>
-                
-            </div>
+            <Select 
+               {...rest}
+               size={size||'medium'}
+               value={value}
+               onChange={onChange}
+            />
         )}
     />
     )
@@ -257,6 +263,7 @@ export const CalendarHook = ({
     control, 
     name,
     placeholder,
+    className,
     ...rest
 }:any) => {
     return (
@@ -274,7 +281,7 @@ export const CalendarHook = ({
                     maxDate={new Date()} 
                     value={value} 
                     placeholder={placeholder}
-                    className="w-auto mt-2"
+                    className={classNames('w-auto mt-2', className)}
                     onChange={(e:any) => onChange(e.value)}     
                 />
            </div>

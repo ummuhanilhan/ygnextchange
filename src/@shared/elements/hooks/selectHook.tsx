@@ -2,7 +2,7 @@ import { Controller  } from "react-hook-form"
 import { MultiSelect } from 'primereact/multiselect';
 import React from "react"
 import { cities } from "@utils/mock"
-import { FloatingSelect } from "@shared/elements/selects";
+import { Select } from "@shared/elements/selects";
 
 export const SelectHook = (props:any) => {
 
@@ -15,10 +15,11 @@ export const SelectHook = (props:any) => {
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <FloatingSelect 
+            <Select 
                 {...props} 
                 value={value}
                 setValue={onChange}
+                size={props.size||'medium'}
             />
         )}
     />

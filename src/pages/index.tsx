@@ -1,7 +1,5 @@
 import PrivateLayout from '@layouts/PrivateLayout'
 import React, { useRef, useState } from 'react'
-import { FloatingLabelTextarea } from '@shared/elements/textareas'
-import { FloatingSelect } from '@shared/elements/selects'
 import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
 import { Input, InputGroup } from '@shared/elements/groups'
@@ -11,6 +9,8 @@ import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { Tag } from '@shared/elements/tags'
 import { CalendarBasic } from '@shared/elements/calendar'
 import { FileUpload } from 'primereact/fileupload';
+import { Select } from '@shared/elements/selects'
+import { Textarea } from '@shared/elements/textareas'
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -100,7 +100,7 @@ const Home = () => {
       <div className='grid grid-cols-3 gap-2 my-5 '>
       <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
-              <FloatingSelect
+              <Select
                   className=' '
                   value={value}
                   placeholder='Şehir Seçiniz'
@@ -114,7 +114,7 @@ const Home = () => {
           </div>
           <div className="w-full">
               <h3 className='text-md'>Select</h3>
-              <FloatingSelect
+              <Select
                   className=' '
                   value={value}
                   placeholder='Şehir Seçiniz'
@@ -127,7 +127,7 @@ const Home = () => {
           </div>
           <div className="w-full">
               <h3 className='text-md'>Select <small>with FloatingLabel</small> </h3>
-              <FloatingSelect
+              <Select
                   className=' '
                   value={value}
                   placeholder='Araç Markası Seçiniz'
@@ -253,7 +253,7 @@ const Home = () => {
       </div>
 
       <div className='flex items-start gap-2 mb-5 '>
-            <FloatingLabelTextarea
+            <Textarea
               className=' '
               value={value}
               placeholder='Şirket Adresi'
@@ -261,7 +261,7 @@ const Home = () => {
               border
               onChange={(e:string)=>setValue(e)}
             />
-            <FloatingLabelTextarea
+            <Textarea
               className=' '
               value={value}
               placeholder='Şirket Adresi'

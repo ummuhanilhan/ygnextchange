@@ -6,6 +6,7 @@ import { FloatingInput } from "../inputs"
 export const InputHook = ({
     control, 
     name,
+    size,
     ...rest
 }:{ 
     name:string,
@@ -32,6 +33,7 @@ export const InputHook = ({
             }) => (
                 <FloatingInput 
                    {...rest}
+                   size={size||'medium'}
                    value={value}
                    onChange={onChange}
                 />

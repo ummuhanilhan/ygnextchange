@@ -3,14 +3,19 @@ import { AccountLayout } from "@layouts/AccountLayouts";
 import PrivateLayout from "@layouts/PrivateLayout";
 import { CardImage, CloudArrowUp, CreditCard2Front, HeartPulse, People, Person, TextareaResize } from "@shared/icons";
 import { FiChevronDown, FiChevronRight, FiXCircle } from "react-icons/fi";
-import { AvatarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook } from "@shared/elements/hooks";
+import { AvatarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook } from "@shared/elements/hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@utils/validations/account";
 import classNames from "classnames";
 import { IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
-import { AccountRoute } from "@utils/mock";
+import { AccountRoute, tagItems } from "@utils/mock";
+import { InputHook } from "@shared/elements/hooks/inputHook";
+import { Upload } from "@shared/elements/uploads";
+import { TextareaHook } from "@shared/elements/hooks/textareaHook";
+import { SelectHook } from "@shared/elements/hooks/selectHook";
+import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 
 export type SignupValues = {
     name: string,
@@ -137,25 +142,32 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                 </div>
 
                 <div className='grid grid-cols-2 gap-2 w-full'>
-                    <FloatLabelHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
-                    <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                    <FloatLabelHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
-                    <FloatLabelHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
+                    <InputHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
+                    <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
+                    <InputHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
+                    <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
                     <FloatLabelPhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
                     <FloatLabelPhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                     {/** verified **/}
-                    <FloatLabelHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
-                    <FloatLabelHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
-                    <FloatLabelHook name="authorized" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />
-                    {/** selecbox **/}
-                    <MultiSelectHook name="gender" control={control} placeholder="Cinsiyet Seçiniz"  />                 
-                    <MultiSelectHook name="city" control={control} placeholder="İl Seçiniz"  />                 
-                    <MultiSelectHook name="district" control={control} placeholder="İlçe Seçiniz"  />                 
-
-                    {/** textarea **/}
-                    <FloatLabelHook name="address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
+                    <InputHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
+                    <InputHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
+                    <InputHook name="authorized" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
                 </div>    
-                
+               
+                {/** selecbox **/}
+                <div className='grid grid-cols-2 gap-2'>
+                    <div className="w-ful">
+                        <SelectHook items={tagItems} className='mb-2' name="gender" control={control} placeholder="Cinsiyet Seçiniz"  />                 
+                        <SelectHook items={[]} className='mb-2' name="city" control={control} placeholder="İl Seçiniz"  />                 
+                        <SelectHook items={[]} className='mb-2' name="district" control={control} placeholder="İlçe Seçiniz"  />                 
+                    </div>
+                    <div className="w-full">
+                        <CalendarHook className='mb-2'name="birth" type="text" placeholder="Doğum Tarihi" example="" control={control} />
+                        <TextareaHook className='mt-2'name="address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
+                    </div>
+                </div>
+
+            
             </div>
         </li>
     )
@@ -198,14 +210,14 @@ export const DriverLicense = ({control}:any) => {
             {status&&(
                 <div>
                 <div className="grid grid-cols-2 gap-2">
-                    <FloatLabelHook name="driver" type="text" placeholder="Sürücü Bilgilerim" example="" control={control} />
-                    <MultiSelectHook name="licence_year" control={control} placeholder="Ehliyet Tescil Yılı"  />                 
+                    <InputHook name="driver" type="text" placeholder="Sürücü Bilgilerim" example="" control={control} />
+                    <SelectHook items={[]} name="licence_year" control={control} placeholder="Ehliyet Tescil Yılı"  />                 
                 </div>
     
                 <div className="grid grid-cols-3 gap-2 mt-2">
-                    <FileUploadHook name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
-                    <FileUploadHook name="src_file" control={control} placeholder="Src Belgesi Ekle"  />
-                    <FileUploadHook name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
+                <Upload name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
+                    <Upload name="src_file" control={control} placeholder="Src Belgesi Ekle"  />
+                    <Upload name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
                 </div>
     
             </div>

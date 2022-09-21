@@ -1,10 +1,13 @@
 import { Controller  } from "react-hook-form"
 import { Calendar } from "primereact/calendar"
+import { CalendarBasic } from "../calendar"
+import classNames from "classnames"
  
 export const CalendarHook = ({
     control, 
     name,
     placeholder,
+    className,
     ...rest
 }:any) => {
     return (
@@ -16,16 +19,15 @@ export const CalendarHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-           <div className="bg-white w-full h-[4rem]" >
-             <Calendar 
-                    dateFormat="dd/mm/yy"
-                    maxDate={new Date()} 
-                    value={value} 
-                    placeholder={placeholder}
-                    className="w-auto mt-2"
-                    onChange={(e:any) => onChange(e.value)}     
-                />
-           </div>
+           <CalendarBasic 
+            {...rest}
+            dateFormat="dd/mm/yy"
+            maxDate={new Date()} 
+            value={value} 
+            placeholder={placeholder}
+            className={classNames(className, 'w-auto mt-2' )}
+            onChange={(e:any) => onChange(e.value)}     
+           />
         )}
     />
     )

@@ -7,32 +7,32 @@ import { TagAppend } from "./tags";
 import slugify from "slugify";
 import classNames from "classnames";
 
-export const FloatingSelect = ({ 
+export const Select = ({ 
   size,
-  type,
   name,
   height,
   placeholder,
-  example='',
   border,
   className,
-  verifiable,
-  verified,
   mini,
-  // value,
-  // onChange,
-  onBlur,
-  appendix,
   removable,
   backgroundColor,
   error, 
   items, 
   id,
   searchable,
-  success
+  success,
+  type,
+  example='',
+  verifiable,
+  verified,
+  value,
+  onChange,
+  onBlur,
+  appendix,
 }:any) => {
-   const [value, setValue] = React.useState('')
-   const onChange = (val:string) => setValue(val)
+   // const [value, setValue] = React.useState('')
+   // const onChange = (val:string) => setValue(val)
   
     const [selected, setSelected] = React.useState(null);
     const [active, setActive] = React.useState(false);

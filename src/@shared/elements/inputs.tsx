@@ -6,7 +6,7 @@ import rawCountries from "@utils/dummy/rawCountries";
 import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
-import { FloatingSelect } from "./selects";
+import { Select } from "./selects";
 
 
 export interface FloatInputProps {
@@ -106,16 +106,16 @@ export const FloatingInput = ({
   verifiable,
   verified,
   mini,
-  // value,
-  // onChange,
+  value,
+  onChange,
   onBlur,
   appendix,
   backgroundColor,
   error, 
   success
 }:FloatInputProps) => {
-  const [value, setValue] = React.useState('')
-  const onChange = (val:string) => setValue(val)
+  // const [value, setValue] = React.useState('')
+  // const onChange = (val:string) => setValue(val)
   
     const [active, setActive] = React.useState(false);
     const [hide, setHide] = React.useState(true);
@@ -214,8 +214,8 @@ export const FloatingPhone = ({
   type,
   name,
   placeholder,
-  // value,
-  // onChange,
+  value,
+  onChange,
   onBlur,
   error, 
   success, 
@@ -228,8 +228,8 @@ export const FloatingPhone = ({
   verifiable,
   height,
  }:FloatInputProps) => {
-      const [value, setValue] = React.useState('')
-      const onChange = (val:string) => setValue(val)
+      // const [value, setValue] = React.useState('')
+      // const onChange = (val:string) => setValue(val)
       const [active, setActive] = React.useState<any>(value);
       const [hide, setHide] = React.useState(true);
       const [status, setStatus] = React.useState(false);
