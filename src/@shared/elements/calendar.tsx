@@ -11,7 +11,7 @@ export const CalendarBasic = ({
     ...rest
 }:any) => {
     const calendarRef = useRef<any>(null);
-    const [date, setDate] = React.useState( new Date() );
+    const [date, setDate] = React.useState( null );
      return (
       <div className='relative bg-white rounded-md w-full h-[4em] flex items-center'>
         <Calendar

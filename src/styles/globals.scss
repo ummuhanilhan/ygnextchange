@@ -99,10 +99,14 @@ input[type=number] {
 
 .p-calendar	{
   font-size: .8rem!important;
+  position: relative;
   .p-inputtext	{
     background-color: transparent;
     outline:none;
     box-shadow: none!important;
     border:none;
   }
+}
+.p-datepicker{
+  transform: scale(0.8);
 }
