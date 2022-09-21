@@ -1,5 +1,5 @@
 import PrivateLayout from '@layouts/PrivateLayout'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { FloatingLabelTextarea } from '@shared/elements/textareas'
 import { FloatingSelect } from '@shared/elements/selects'
 import { tagItems, tagItems2 } from '@utils/mock'
@@ -9,6 +9,8 @@ import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 import {  Upload } from '@shared/elements/uploads'
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { Tag } from '@shared/elements/tags'
+import { CalendarBasic } from '@shared/elements/calendar'
+import { FileUpload } from 'primereact/fileupload';
 
 const Home = () => {
   const [value, setValue] = React.useState('')
@@ -18,7 +20,7 @@ const Home = () => {
       <div className='grid grid-cols-2 gap-2 my-5'>
          <div className="w-full">
             <h3 className='text-md'></h3>
-
+            <CalendarBasic />
           </div>
           <div className='w-full'>
           <Upload 
@@ -27,6 +29,14 @@ const Home = () => {
           />
         </div>
       </div>
+
+      <div className='grid grid-cols-3 gap-2 my-5'>
+       <div className='w-full'>
+        
+        
+        </div>
+      </div>
+
       <div className='grid grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
           <Upload 
@@ -270,3 +280,4 @@ const Home = () => {
 Home.Layout = PrivateLayout
 
 export default Home
+
