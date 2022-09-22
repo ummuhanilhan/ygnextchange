@@ -121,7 +121,6 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                 <div className="grid grid-cols-2 gap-2 w-full mb-4">
                   
                     <AvatarHook name="avatar" control={control} placeholder="Profil Fotoğrafı Ekle"  />
-                           
                     
                     <div>
                       <IconFrame icon={<TextareaResize className="menu-icon" />} title="Üyelik Tipi" />

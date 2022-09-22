@@ -9,7 +9,7 @@ export const Heading = ({wide}:any) => {
   
     return (
         <div className='heading'>
-            <div className='flex justify-between items-center w-full bg-white py-3 px-2'>
+            <div className='flex justify-between items-center rounded-md w-full bg-white py-3 px-2'>
                 <div className='flex items-center justify-center text-base'>
                     <p>Her sayfada</p>
                     <p className='text-yg-orange ml-2 mr-1'>25</p>

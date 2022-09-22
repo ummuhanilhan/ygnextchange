@@ -40,13 +40,15 @@ export const Header = ({mobile, setMobile}:any) =>{
                         <Share className="menu-icon" />
                         {/** <p>Davet Et</p> **/}
                     </li>
-                    <li className="relative hover:bg-gray-100 rounded-full mx-1- w-12 h-12 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
+                    <li className="relative- hover:bg-gray-100 rounded-full mx-1- w-12 h-12 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
                     <Outside cb={()=>setBellStatus(false)}>
-                        <Bell className="menu-icon" />
-                        <span className="flex h-3 w-3 absolute top-[.6rem] right-[.6rem]">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                        </span>
+                        <div className='relative'>
+                            <Bell className="menu-icon" />
+                            <span className="flex h-3 w-3 absolute top-[0rem] right-[.4rem]">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                            </span>
+                        </div>
                         <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
                         {/**  <p>Bildiriler</p> **/}
                      </Outside>
@@ -110,6 +112,21 @@ export const NotificationDropdown = ({status, setBellStatus}:any) => {
     return (
         <React.Fragment>
             <div id="dropdownNotification" className={classNames(
+                "absolute right-0 top-[5rem] p-3 z-20 w-80 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
+                {'hidden':!status}
+            )} >
+                test
+            </div>
+        </React.Fragment>
+    )
+}
+
+export const NotificationDropdown2 = ({status, setBellStatus}:any) => {
+    const router = useRouter()
+
+    return (
+        <React.Fragment>
+            <div id="dropdownNotification" className={classNames(
                 "absolute right-0 top-8 z-20 w-80 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
                 {'hidden':!status}
             )} >
@@ -165,3 +182,4 @@ export const NotificationDropdown = ({status, setBellStatus}:any) => {
         </React.Fragment>
     )
 }
+

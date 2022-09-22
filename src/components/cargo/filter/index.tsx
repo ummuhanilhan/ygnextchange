@@ -13,10 +13,10 @@ import classNames from "classnames";
 import Outside from "@utils/useoutside";
 import { DoubleFrame } from "@components/frames/MainFrame";
 import { Search } from "@shared/elements/searches";
-import { FloatingSelect } from "@shared/elements/selects";
-import Turkiye from '@utils/dummy/turkiye.json'
+ import Turkiye from '@utils/dummy/turkiye.json'
 import { tagItems } from "@utils/mock";
 import { Tag } from "@shared/elements/tags";
+import { Select } from "@shared/elements/selects";
  
 export type FilterValues = {
     name: string,
@@ -99,7 +99,7 @@ export const Location = ({control}:any) => {
             icon={<PinMap className="fill-yg-blue" width={19} />} title="Konum" />
 
             <div className={classNames({hidden:!status})}>
-                <FloatingSelect 
+                <Select 
                    value={value}
                    placeholder='Yükleme Yeri'
                    className='mb-1'
@@ -108,7 +108,7 @@ export const Location = ({control}:any) => {
                    items={Turkiye}
                    onChange={(e:string)=>setValue(e)}
               />
-                 <FloatingSelect
+                 <Select
                   value={value}
                   placeholder='Boşaltma Yeri'
                   size='medium'

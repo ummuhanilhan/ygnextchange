@@ -110,3 +110,9 @@ input[type=number] {
 .p-datepicker{
   transform: scale(0.8);
 }
+
+.menu-icon{
+  @apply 
+  fill-yg-blue 
+  h-5 mr-2;
+}
