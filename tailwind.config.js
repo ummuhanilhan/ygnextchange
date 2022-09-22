@@ -15,7 +15,7 @@ module.exports = {
     extend: {
       colors:{
         yg:{
-          lightblue: '#F6F8FB',
+          lightblue: '#f7f6fb',
           blue: '#0069B4',
           orange: '#F39200',
           gray: '#868A9A',

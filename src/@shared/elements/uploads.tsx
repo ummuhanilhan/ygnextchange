@@ -1,9 +1,10 @@
-import { CloudArrowUp } from "@shared/icons"
+import { CardImage, CloudArrowUp } from "@shared/icons"
 import { NextPage } from "next";
 import { FileUpload } from 'primereact/fileupload';
 import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FiPlus, FiXCircle } from "react-icons/fi";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { IconFrame } from "@components/frames/IconFrame";
 
 
 // TODO: Validation Required
@@ -65,12 +66,12 @@ export const Upload = ({
       const inputRef = useRef<HTMLInputElement>(null);
 
     return (
-        <div className="relative w-full h-[4em]
+        <div className="relative w-full h-[55px] 
        bg-white cursor-pointer rounded-md px-4
         text-gray-700 flex items-center
          justify-between">
         <label className='
-        max-w-[65%] overflow-hidden
+         overflow-hidden max-w-[11em]
         text-base cursor-pointer flex items-center'>
             <input 
                 name={name}
@@ -79,7 +80,7 @@ export const Upload = ({
                 className='hidden' 
                 onChange={onFileUploadChange}
             />
-            <p className=''>{fileName ? fileName : placeholder}</p>                    
+            <p className='text-gray-400'>{fileName ? fileName : placeholder}</p>                    
         </label>
         <div className='flex items-start z-10'>
             
@@ -103,4 +104,38 @@ export const Upload = ({
         <div onClick={()=>inputRef.current?.click()} className="lay absolute z-0 left-0 right-0 top-0 bottom-0"></div>
         </div>
     )
+}
+
+
+
+export const Avatar = ({
+  name,
+  placeholder,
+  ...rest
+}:any) => {
+  const [value, setValue] = React.useState('')
+  return (
+    
+    <div className="flex items-start w-full gap-3">
+      <div className="avatar">
+          <img src="/assets/avatar.svg" width="135" />
+      </div>
+      <div className="w-full flex flex-start flex-col">
+          <IconFrame icon={<CardImage className="menu-icon" />} title="Profil Fotoğrafım" />
+
+            <div className="flex flex-center justify-center">
+              <Upload  
+                      name={name}
+                      placeholder={placeholder}
+                  />
+              <div className="btn p-2 bg-white rounded-md ml-2
+              w-14 h-[55px] flex items-center justify-center cursor-pointer">
+                <FiXCircle className="text-xl text-gray-400" width={25} /></div>                 
+          </div>
+          
+            <p className="text-gray-500 italic text-sm mt-1"> JPG & PNG uzantılı dosyalar aizin verilir. (Maks. 500kb) </p>
+        </div>
+    </div>
+      
+  )
 }

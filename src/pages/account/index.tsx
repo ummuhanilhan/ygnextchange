@@ -119,16 +119,10 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
             <div className={classNames({'hidden':!status}, 'w-full')}>
 
                 <div className="grid grid-cols-2 gap-2 w-full mb-4">
-                    <div className="flex items-start w-full gap-3">
-                        <div className="avatar">
-                            <img src="/assets/avatar.svg" width="135" />
-                        </div>
-                        <div className="w-full flex flex-start flex-col">
-                            <IconFrame icon={<CardImage className="menu-icon" />} title="Profil Fotoğrafım" />
-                            <AvatarHook name="avatar" control={control} placeholder="Profil Fotoğrafı Ekle"  />
-                            <p className="text-gray-400 text-sm mt-1"> JPG & PNG uzantılı dosyalar aizin verilir. (Maks. 500kb) </p>
-                        </div>
-                    </div>
+                  
+                    <AvatarHook name="avatar" control={control} placeholder="Profil Fotoğrafı Ekle"  />
+                           
+                    
                     <div>
                       <IconFrame icon={<TextareaResize className="menu-icon" />} title="Üyelik Tipi" />
                       <div 

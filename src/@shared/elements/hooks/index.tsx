@@ -13,6 +13,7 @@ import { cities } from "@utils/mock"
 import { FloatingInput, FloatingPhone } from "../inputs";
 import { Select } from "../groups";
 import classNames from "classnames";
+import { Avatar } from "../uploads";
 
 export const FloatLabelHook = ({
     control, 
@@ -290,37 +291,21 @@ export const CalendarHook = ({
     )
 }
  
-export const AvatarHook = ({
-    control, 
-    name,
-    placeholder,
-    ...rest
-}:any) => {
+export const AvatarHook = (props:any) => {
     return (
         <Controller
-        control={control}
-        name={name}
+        control={props.control}
+        name={props.name}
         render={({
             field: { onChange, onBlur, value, name, ref },
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <div className="flex flex-start">
-                <div className="relative w-full">
-                    <FileUpload  
-                        name={value}
-                        url="./upload"  
-                        accept="image/*" 
-                        className="w-full py-[.2rem] border-none text-yg-orange"
-                        mode="basic"
-                    />
-                    <div className="bg-white">
-                        <CloudArrowUp className="absolute right-3 top-[1.1rem] bg-white fill-yg-orange" height={17} />
-                    </div>
-                </div>
-                <div className="btn p-2 bg-white rounded-md ml-2 w-14 h-14 flex items-center justify-center cursor-pointer"><FiXCircle className="text-xl text-gray-400" width={35} /></div>                 
-            </div>
-
+            <Avatar 
+                {...props}
+                value={value}
+                onChange={onChange}
+            />
         )}
     />
     )
