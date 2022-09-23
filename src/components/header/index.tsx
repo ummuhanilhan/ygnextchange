@@ -4,7 +4,7 @@ import classNames from "classnames"
 import { useRouter } from "next/router"
 import React from "react"
 import { useState } from "react"
-import { NotificationList } from "@components/notification"
+import { NotificationList, NotificationMini } from "@components/notification"
 import { FiMenu } from 'react-icons/fi' 
 
 const profileMenu = [
@@ -112,11 +112,11 @@ export const NotificationDropdown = ({status, setBellStatus}:any) => {
     return (
         <React.Fragment>
             <div id="dropdownNotification" className={classNames(
-                "absolute right-0 top-[5rem] p-3 z-20 w-96 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
+                "notifications-mini absolute right-0 top-[5rem] p-3 z-20 w-96 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
                 {'hidden':!status}
             )} >
 
-           <NotificationList />
+           <NotificationMini />
 
             </div>
         </React.Fragment>

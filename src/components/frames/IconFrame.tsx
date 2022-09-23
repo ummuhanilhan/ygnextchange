@@ -20,6 +20,21 @@ export const IconFrameDropdown = ({title, icon, status,setStatus, path}:any) => 
     )
 }
 
+
+export const TitleFrameDropdown = ({ title, icon, nomargin }:any) => {
+
+    return(
+        <div className={classNames(
+            "centerize flex items-center justify-between w-full",
+            "cursor-pointer text-md mb-2",
+            nomargin ? '' : 'mt-4'
+        )}>
+            {icon} <p className="pr-2 text-black">{title}</p> 
+            <FiChevronDown size={23} className='text-gray-500' />
+        </div>
+    )
+}
+
  
 export const IconFrameCovered = ({children, open, ...rest}:any) => {
     const [status, setStatus] = React.useState(open||true);

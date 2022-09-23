@@ -1,15 +1,19 @@
 import classNames from "classnames";
 import classnames from "classnames";
 
-export const NotificaitonItem = ({item}:any) =>{
+export const NotificaitonItem = ({item,mini}:any) =>{
 
     return(
-        <li className='notify rounded-lg flex items-center my-2 p-3 pl-4 bg-white'>
+        <li className={classNames(
+            'notify rounded-lg border-none flex items-center my-2 pl-4 bg-white',
+            mini ? 'p-1': 'p-3',
+            !item.err && item.read && 'gray',
+        )}>
             <div>
                 <div className={classNames(
                     'icon-circle',
                     item.read ? 'read' : 'unread',
-                    item.err && 'err'
+                    item.err && 'err',
                 )}>
                     {item.icon}
                 </div>

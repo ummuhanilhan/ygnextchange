@@ -25,3 +25,15 @@
     }
     .gray{}
 }
+
+.notifications, .notifications-mini{
+    .gray{
+        .action{
+            @apply text-gray-500;
+        }
+        
+        .message{
+            @apply text-gray-400;
+        }
+    }
+} 

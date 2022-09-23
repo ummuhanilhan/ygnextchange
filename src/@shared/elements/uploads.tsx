@@ -5,11 +5,13 @@ import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FiPlus, FiXCircle } from "react-icons/fi";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { IconFrame } from "@components/frames/IconFrame";
+import classNames from "classnames";
 
 
 // TODO: Validation Required
 export const Upload = ({
     name,
+    height='h-[55px]',
     placeholder,
 }:any) => {
 
@@ -66,10 +68,16 @@ export const Upload = ({
       const inputRef = useRef<HTMLInputElement>(null);
 
     return (
-        <div className="relative w-full h-[55px] 
-       bg-white cursor-pointer rounded-md px-4
-        text-gray-700 flex items-center
-         justify-between">
+        <div className={classNames(
+          `relative w-full  
+          bg-white cursor-pointer rounded-md px-4
+           text-gray-700 flex items-center
+            justify-between`,
+            height
+
+        )}
+         
+         >
         <label className='
          overflow-hidden max-w-[11em]
         text-base cursor-pointer flex items-center'>

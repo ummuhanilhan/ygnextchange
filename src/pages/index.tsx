@@ -25,6 +25,7 @@ const Home = () => {
           <div className='w-full'>
           <Upload 
             name="driver_file" 
+            height='h-full'
             placeholder="Psikoteknik Belgesi Ekle (Opsiyonel)"  
           />
         </div>
@@ -106,6 +107,7 @@ const Home = () => {
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='label'
+                  removable
                   searchable
                   border
                   items={Turkiye}
@@ -120,6 +122,7 @@ const Home = () => {
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='label'
+                  removable
                   border
                   items={Turkiye}
                   onChange={(e:string)=>setValue(e)}
@@ -133,6 +136,7 @@ const Home = () => {
                   placeholder='Araç Markası Seçiniz'
                   size='small'
                   items={tagItems}
+                  removable
                   mini
                   border
                   onChange={(e:string)=>setValue(e)}

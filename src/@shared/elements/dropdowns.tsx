@@ -43,7 +43,7 @@ export const Dropdown = ({
            </div>
             <div className={classNames(
                     'dropdown absolute shadow-xl bg-white', 
-                    'top-[2.5rem] w-72 p-4 right-0 rounded-xl',
+                    'top-[2.5rem] z-30 w-72 p-4 right-0 rounded-xl',
                     {'hidden':!open},
                     dropdwonClass
                 )}
