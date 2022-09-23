@@ -4,6 +4,7 @@ import classNames from "classnames"
 import { useRouter } from "next/router"
 import React from "react"
 import { useState } from "react"
+import { NotificationList } from "@components/notification"
 import { FiMenu } from 'react-icons/fi' 
 
 const profileMenu = [
@@ -49,7 +50,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                             </span>
                         </div>
-                        <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />
+                        { bellStatus && <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />}
                         {/**  <p>Bildiriler</p> **/}
                      </Outside>
                     </li>
@@ -107,15 +108,16 @@ export const Header = ({mobile, setMobile}:any) =>{
 }
 
 export const NotificationDropdown = ({status, setBellStatus}:any) => {
-    const router = useRouter()
-
+ 
     return (
         <React.Fragment>
             <div id="dropdownNotification" className={classNames(
-                "absolute right-0 top-[5rem] p-3 z-20 w-80 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
+                "absolute right-0 top-[5rem] p-3 z-20 w-96 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
                 {'hidden':!status}
             )} >
-                test
+
+           <NotificationList />
+
             </div>
         </React.Fragment>
     )

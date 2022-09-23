@@ -1,11 +1,11 @@
 
 .notify{
-
+    @apply border-none;
     .icon-circle{
         @apply
             border-[1px]
             rounded-full
-            p-3
+            p-2
             flex 
             items-center
             justify-center

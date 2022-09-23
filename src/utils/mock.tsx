@@ -1,4 +1,5 @@
 import { BookmarkStar, Calendar, ChatLeftText, Envelope, Gear, GeoAlt, Heart, ListCheck, ListStars, MessagePlus, MinecartLoaded, Person, PersonCheck, PinMap, QuestionCircle, ShieldCheck, Smile, Truck, TruckFront } from "@yukgetir-icons";
+import { Bell, Check, Doublecheck, Warn } from "@shared/icons";
 
 export const menuItems = [
     {
@@ -321,3 +322,10 @@ export const cities = [
     {name: 'London', code: 'LDN'},
     {name: 'Paris', code: 'PRS'}
 ];
+
+
+export const notificationList = [
+    {id:1, icon:<Check height={13} />, action:'Yeni Yük Eklendi', message:'Adana - Mersin konumu için yeni yük eklendi.', type:'info', read:false},
+    {id:2, icon:<Doublecheck height={15} />, action:'Yeni Yük Eklendi', message:'Adana - Mersin konumu için yeni yük eklendi.', type:'info', read:true},
+    {id:3, icon:<Warn height={20}/>, err:true, action:'Araç Sigorta Gününüz Yaklaştı', message:'06 YKGTR 34 plakalı aracınızın sigortası 16.09.2022 tarihinde bitecektir. Sigortanızı hızla bir şekilde yenilemek için tıklayınız.', type:'err', read:true},
+]
