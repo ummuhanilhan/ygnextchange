@@ -21,7 +21,7 @@
             h-12
             cursor-pointer
             mr-3
-            hover:bg-slate-100
+            hover:bg-gray-100
          }
     }
 
@@ -44,6 +44,8 @@
         @apply 
         fill-yg-blue 
         h-6
+        pr-0
+        mr-0
         ;
         &.orange{
             @apply fill-yg-orange; 

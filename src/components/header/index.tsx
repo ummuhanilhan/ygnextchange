@@ -25,15 +25,15 @@ export const Header = ({mobile, setMobile}:any) =>{
                 "hidden md:block",
                 {hidden: !mobile}
             )}>
-                <li className="flex items-cente" onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
-                    <Packet className="menu-icon orange mr-2" /> <p className="hidden sm:block">Yüküm Var</p> </li>
+                <li className="flex items-center" onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
+                    <Packet className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Yüküm Var</p> </li>
                 <li className={classNames(
                     "flex items-center border-l-[.4rem] border-yg-orange",
                 {hidden: !mobile}
                 )} 
                 onClick={()=>router.push('/vehicles/create', undefined, 
                 { shallow: true })}>
-                    <Truck className="menu-icon orange mr-2" /> <p className="hidden sm:block">Aracım Var</p> </li>
+                    <Truck className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Aracım Var</p> </li>
             </ul>
             <div className="profile ">
                 <ul className="">
@@ -45,7 +45,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                     <Outside cb={()=>setBellStatus(false)}>
                         <div className='relative'>
                             <Bell className="menu-icon" />
-                            <span className="flex h-3 w-3 absolute top-[0rem] right-[.4rem]">
+                            <span className="flex h-3 w-3 absolute top-[0rem] right-[-.1rem]">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                             </span>
