@@ -2,6 +2,7 @@ import { Controller  } from "react-hook-form"
 import { FileUpload } from 'primereact/fileupload';
 import React from "react"
 import { CloudArrowUp } from "@shared/icons"
+import { Upload } from "../uploads";
 
 export const FileUploadHook = ({
     control, 
@@ -18,17 +19,15 @@ export const FileUploadHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <div className="relative w-full">
-                <FileUpload  
-                    name={value}
-                    url="./upload"  
-                    accept="image/*" 
-                    className="w-full py-[.2rem] border-none text-yg-orange"
-                    mode="basic"
-                />
-                <CloudArrowUp className="absolute right-2 top-[.9rem] fill-yg-orange" height={25} />
-            </div>
-        )}
+            <Upload  
+                {...rest}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+                control={control}
+                height="h-[4em]"
+            />
+         )}
     />
     )
 }
