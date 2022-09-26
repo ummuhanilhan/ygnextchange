@@ -17,8 +17,11 @@ export const InputHook = ({
     textarea?:boolean,
     border?:boolean,
     height?:string,
+    verified?: boolean,
+    verifiable?: boolean,
     size?:'small' | 'medium' | 'large',
     className?: string,
+    items?:object[],
     disabled?:boolean,
   }) => {
 

@@ -2,7 +2,7 @@ import { Controller, Control  } from "react-hook-form"
 import React from "react"
 import { FloatingLabelPhone } from "../phones";
 
-export const FloatLabelPhoneHook = ({
+export const PhoneHook = ({
     control, 
     placeholder,
     name,
@@ -11,10 +11,15 @@ export const FloatLabelPhoneHook = ({
     ...rest
 }:{ 
     control: Control<any>, 
-    placeholder:string,
-    example?:string,
     name:string,
-    type:string,
+    type?:string,
+    example?:string,
+    placeholder:string,
+    border?:boolean,
+    verifiable?:boolean,
+    verificiation?:boolean,
+    success?:boolean,
+    error?:string|object|boolean,
     size?: 'small' | 'medium' | 'large';
   }) => {
 

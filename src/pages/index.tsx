@@ -5,17 +5,26 @@ import Turkiye from '@utils/dummy/turkiye.json'
 import { Input, InputGroup } from '@shared/elements/groups'
 import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 import {  Upload } from '@shared/elements/uploads'
-import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { Tag } from '@shared/elements/tags'
 import { CalendarBasic } from '@shared/elements/calendar'
 import { FileUpload } from 'primereact/fileupload';
 import { Select } from '@shared/elements/selects'
 import { Textarea } from '@shared/elements/textareas'
-
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { FileUploadHook } from '@shared/elements/hooks/uploadHook'
+import { InputHook } from '@shared/elements/hooks/inputHook'
+import { PhoneHook } from '@shared/elements/hooks/phoneHook'
+import { TextareaHook } from '@shared/elements/hooks/textareaHook'
+import { TagHook } from '@shared/elements/hooks/tagHook'
+import { SelectHook } from '@shared/elements/hooks/selectHook'
+ 
 const Home = () => {
 
   return (
-    <Forms />
+    <React.Fragment>
+      <Forms />
+      <Elements />
+    </React.Fragment>
   )
 }
 
@@ -24,22 +33,37 @@ Home.Layout = PrivateLayout
 export default Home
 
 
+export const Forms = () => {
+  const form = useForm<any>({
+      defaultValues: {
+        
+      },
+      // resolver: yupResolver(),
+  });
+  const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+  const onSubmit: SubmitHandler<any> = data => {
+      console.log(data)
+      alert(JSON.stringify(data))
+  };
+  const onError = (errors:any) => {
+      console.log(errors)
 
-export const Elements = () => {
-  const [value, setValue] = React.useState('')
+  };
 
   return (
-    <React.Fragment>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <h1 className='text-3xl my-5 font-bold text-yg-orange'>REACT HOOKFORM</h1>
       <div className='grid grid-cols-2 gap-2 my-5'>
          <div className="w-full">
             <h3 className='text-md'></h3>
             <CalendarBasic />
           </div>
           <div className='w-full'>
-          <Upload 
+          <FileUploadHook 
             name="driver_file" 
             height='h-full'
             placeholder="Psikoteknik Belgesi Ekle (Opsiyonel)"  
+            control={control}
           />
         </div>
       </div>
@@ -53,23 +77,26 @@ export const Elements = () => {
 
       <div className='grid grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
-          <Upload 
+          <FileUploadHook 
             name="avatar" 
             placeholder="Profil Fotoğrafı Ekle"
+            control={control}
           />
         </div>
         <div className='w-full'>
-            <Upload 
+            <FileUploadHook
               name="src_file" 
               placeholder="Src Belgesi"
               file='file://'  
+              control={control}
             />
         </div>
      
         <div className='w-full'>
-          <Upload 
+          <FileUploadHook
             name="driver_file" 
             placeholder="Sürücü Belgesi Ekle"  
+            control={control}
             />
         </div>
       </div>
@@ -80,33 +107,31 @@ export const Elements = () => {
             <h3 className='text-md'>Dimensions</h3>
             <InputGroup
                 border
-                value={value}
+                name=''
                 items={weightUnits}
-                onChange={(e:string)=>setValue(e)}
+                control={control}
               />
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
-            <Input
-                className=' '
-                value={value}
+            <InputHook
+                name=''
                 placeholder='Hacim - Alan Belirtiniz'
                 size='medium'
                 border
                 items={weightUnits}
-                onChange={(e:string)=>setValue(e)}
+                control={control}
               />
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appended</h3>
-            <Input
-                className=' '
-                value={value}
+            <InputHook
+                name=''
                 placeholder='Ağırlık Belirtiniz'
                 size='medium'
                 border
                 items={meterUnits}
-                onChange={(e:string)=>setValue(e)}
+                control={control}
               />
         </div>
       
@@ -114,9 +139,8 @@ export const Elements = () => {
       <div className='grid grid-cols-3 gap-2 my-5 '>
       <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
-              <Select
-                  className=' '
-                  value={value}
+              <SelectHook
+                  name=''
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='label'
@@ -124,35 +148,33 @@ export const Elements = () => {
                   searchable
                   border
                   items={Turkiye}
-                  onChange={(e:string)=>setValue(e)}
+                  control={control}
                 />
           </div>
           <div className="w-full">
               <h3 className='text-md'>Select</h3>
-              <Select
-                  className=' '
-                  value={value}
+              <SelectHook
+                  name=''
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='label'
                   removable
                   border
                   items={Turkiye}
-                  onChange={(e:string)=>setValue(e)}
+                  control={control}
                 />
           </div>
           <div className="w-full">
               <h3 className='text-md'>Select <small>with FloatingLabel</small> </h3>
-              <Select
-                  className=' '
-                  value={value}
+              <SelectHook
+                  name=''
                   placeholder='Araç Markası Seçiniz'
                   size='small'
                   items={tagItems}
                   removable
                   mini
                   border
-                  onChange={(e:string)=>setValue(e)}
+                  control={control}
                 />
           </div>
       </div>
@@ -160,26 +182,24 @@ export const Elements = () => {
         
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
-              <Tag
-                className=' '
-                value={value}
+              <TagHook
+                name=''
                 placeholder='Araç Özellikleri'
                 size='medium'
                 items={tagItems}
                 removable
-                onChange={(e:string)=>setValue(e)}
+                control={control}
               />
             </div>
             <div className="w-full">
               <h3 className='text-md'>Tags mini</h3>
-                <Tag
-                className=' '
-                value={value}
+                <TagHook
+                name=''
                 placeholder='Sürücü Belgesi Sınıfı'
                 size='small'
                 items={tagItems2}
                 mini
-                onChange={(e:string)=>setValue(e)}
+                control={control}
               />
            </div>
           
@@ -188,41 +208,41 @@ export const Elements = () => {
       <div className='flex items-start gap-2 mb-5 '>
         <div className='w-full'>
          <h3 className='tex-md'>Small</h3>
-          <FloatingInput
+          <InputHook
             className=' bg-white'
-            value={value}
+            name=''
             placeholder='Kullanıcı Adı'
             size='small'
             height='55px'
             border
-            onChange={(e:string)=>setValue(e)}
+            control={control}
           />
         </div>
         <div className='w-full'>
          <h3 className='tex-md'>Medium</h3>
-          <FloatingInput
+          <InputHook
             className=' bg-white'
-            value={value}
+            name=''
             placeholder='Şifre'
             type='password'
             size='medium'
             height='55px'
             border
-            onChange={(e:string)=>setValue(e)}
+            control={control}
           />        
       </div>
       <div className='w-full'>   
         <h3 className='tex-md'>Large</h3>
-          <FloatingInput
+          <InputHook
             className=' bg-white'
-            value={value}
+            name=''
             placeholder='Eposta Adresi'
             type='email'
             size='large'
             border
             verified
             verifiable
-            onChange={(e:string)=>setValue(e)}
+            control={control}
           />
       </div>
         
@@ -231,76 +251,73 @@ export const Elements = () => {
       <div className='flex items-start gap-2 mb-5'>
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
-          <FloatingPhone
-            className=' '
-            value={value}
+          <PhoneHook
+            name=''
             placeholder='Şirket Telefonu'
             size='small'
             border
-            onChange={(e:string)=>setValue(e)}
+            control={control}
           />
        </div>
        <div className='w-full'>
        <h3 className='tex-md'>Medium(64px)</h3>
-          <FloatingPhone
-              className=' '
-              value={value}
+          <PhoneHook
+              name=''
               placeholder='Cep Telefonu'
               size='medium'
               verifiable
               success
               border
-              onChange={(e:string)=>setValue(e)}
+              control={control}
             />
        </div>
         <div className='w-full'>
          <h3 className='tex-md'>Large</h3>
-          <FloatingPhone
-              className=' '
-              value={value}
+          <PhoneHook
+              name=''
               placeholder='Şirket Telefonu'
               size='large'
               border
               error='err'
               verifiable
-              onChange={(e:string)=>setValue(e)}
+              control={control}
             />
           </div>
 
       </div>
 
       <div className='flex items-start gap-2 mb-5 '>
-            <Textarea
-              className=' '
-              value={value}
+            <TextareaHook
+              name=''
               placeholder='Şirket Adresi'
               size='medium'
               border
-              onChange={(e:string)=>setValue(e)}
+              control={control}
             />
-            <Textarea
-              className=' '
-              value={value}
+            <TextareaHook
+              name=''
               placeholder='Şirket Adresi'
               error='err'
               border
               height='10rem'
-              onChange={(e:string)=>setValue(e)}
+              control={control}
             />
            
       </div>
 
-    </React.Fragment>
+    </form>
   )
 }
 
 
 
-export const Forms = () => {
+export const Elements = () => {
   const [value, setValue] = React.useState('')
 
   return (
     <React.Fragment>
+    <h1 className='text-3xl my-5 font-bold text-yg-orange'>REACT HOOKFORM</h1>
+
       <div className='grid grid-cols-2 gap-2 my-5'>
          <div className="w-full">
             <h3 className='text-md'></h3>
