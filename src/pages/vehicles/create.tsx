@@ -17,8 +17,19 @@ import { FileUploadHook } from "@shared/elements/hooks/uploadHook";
 // import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 
 export type SignupValues = {
-    brand: object[],
+    model: string,
+    brand: string,
+    type:string,
+    plate:string,
+    features:string[],
+    options:string[],
     m_date: Date,
+    model_year: Date,
+    insurance_date: Date,
+    examination_date: Date,
+    casgo_date: Date,
+    k1_file: string,
+    accept:boolean
 };
 
 const initialValues = {
@@ -31,11 +42,10 @@ const initialValues = {
     options:[],
     model:'',
     brand:'',
-    insurance_date:'',
-    examination_date:'',
-    casgo_date:'',
+    insurance_date: new Date(),
+    examination_date: new Date(),
+    casgo_date:new Date(),
     k1_file:'',
-
 }
 
 export enum VehicleType {
@@ -93,6 +103,7 @@ export const VehicleCreate = () => {
                     <CalendarHook 
                         name='model_year' 
                         type="text" 
+                        maxDate={new Date()} 
                         placeholder='Araç Model Yılını Seçiniz' 
                         control={control}
                         className=' bg-white'
