@@ -100,6 +100,7 @@ input[type=number] {
 .p-calendar	{
   font-size: .8rem!important;
   position: relative;
+  z-index:1;
   .p-inputtext	{
     background-color: transparent;
     outline:none;

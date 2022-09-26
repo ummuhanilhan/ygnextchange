@@ -22,9 +22,20 @@ export type SignupValues = {
 };
 
 const initialValues = {
-    brand:[],
     accept:false,
-    m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)")
+    m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)"),
+    type: 'dorse',
+    plate: '34 YKGTR 123',
+    model_year: new Date('20/09/2022'),
+    features:[],
+    options:[],
+    model:'',
+    brand:'',
+    insurance_date:'',
+    examination_date:'',
+    casgo_date:'',
+    k1_file:'',
+
 }
 
 export enum VehicleType {

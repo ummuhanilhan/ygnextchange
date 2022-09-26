@@ -90,7 +90,7 @@ export const Upload = ({
             />
             <p className='text-gray-400'>{fileName ? fileName : placeholder}</p>                    
         </label>
-        <div className='flex items-start z-10'>
+        <div className='flex items-start '>
             
            {!fileName && (
              <CloudArrowUp 
