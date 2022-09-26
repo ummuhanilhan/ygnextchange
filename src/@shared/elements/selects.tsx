@@ -35,7 +35,6 @@ export const Select = ({
    // const onChange = (val:string) => setValue(val)
    const lower = {lower:true};
    const select = (val:string) => {
-    console.log('val:', val)
     return data.find((f:any)=> slugify(String(f[id||'slug']), lower) 
       ===
       slugify(String(val),lower)

@@ -13,12 +13,13 @@ export const Upload = ({
     name,
     height='h-[55px]',
     placeholder,
+    value,
+    onChange,
 }:any) => {
 
     const [fileName, setFileName] = useState('');
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [value, setValue] = React.useState('')
 
     const onFileUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
         const fileInput:any = e.target;
@@ -35,7 +36,8 @@ export const Upload = ({
         }
     
         const file = fileInput.files[0];
-        setFileName(file.name)
+        // setFileName(file.name)
+        onChange(file.name)
     
         /** File validation */
         if (!file.type.startsWith("image")) {
@@ -71,7 +73,7 @@ export const Upload = ({
         <div className={classNames(
           `relative w-full  
           bg-white cursor-pointer rounded-md px-4
-           text-gray-700 flex items-center
+           text-gray-700 flex items-center overflow-hidden
             justify-between`,
             height
 
@@ -88,11 +90,11 @@ export const Upload = ({
                 className='hidden' 
                 onChange={onFileUploadChange}
             />
-            <p className='text-gray-400'>{fileName ? fileName : placeholder}</p>                    
+            <p className='text-gray-400'>{value ? value : placeholder}</p>                    
         </label>
-        <div className='flex items-start '>
+        <div className='flex items-start z-10'>
             
-           {!fileName && (
+           {!value && (
              <CloudArrowUp 
                 onClick={()=>inputRef.current?.click()}
                 className=" right-3 top-[1.4rem]
@@ -100,17 +102,17 @@ export const Upload = ({
                 height={19} 
              />
            )}
-           {fileName && (
+           {value && (
             <React.Fragment>
                 <p className='text-yg-green'>Eklendi</p>
                 <div
-                    onClick={()=>setFileName('')}
+                    onClick={()=>onChange('')}
                 ><FiXCircle size={21} className='z-10 fill-white text-gray-400 mx-2 stroke-[1.3px]' /></div>
             </React.Fragment>
            )}
         </div>
-        <div onClick={()=>inputRef.current?.click()} className="lay absolute z-0 left-0 right-0 top-0 bottom-0"></div>
-        </div>
+        <div onClick={()=>inputRef.current?.click()} className="lay z-0 absolute left-0 right-0 top-0 bottom-0" />
+      </div>
     )
 }
 

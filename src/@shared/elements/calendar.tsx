@@ -6,6 +6,7 @@ export const CalendarBasic = ({
     value,
     onChange,
     children,
+    placeholder,
     onBlur,
     error ,
     ...rest
@@ -15,16 +16,14 @@ export const CalendarBasic = ({
      return (
       <div className='relative bg-white rounded-md w-full h-[4em] flex items-center'>
         <Calendar
+          {...rest}
             inputRef={calendarRef}
             id="basic" 
             value={date} 
             dateFormat="dd/mm/yy"
-            className='z-10 w-28'
-            placeholder='Tarih Seçiniz' 
-            onChange={(e:any) => {
-              onChange(e.value)
-              // setDate(e.value)
-            }} 
+            className='z-10 w-full -w-28'
+            onChange={onChange}
+            placeholder={placeholder||'Tarih Seçiniz'}
         />
         <div 
         onClick={()=>calendarRef?.current?.focus()}

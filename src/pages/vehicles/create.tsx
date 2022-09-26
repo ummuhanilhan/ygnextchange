@@ -36,9 +36,9 @@ export type SignupValues = {
 const initialValues = {
     accept:false,
     m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)"),
-    type: 'dorse',
+    type: 'trailer',
     plate: '34 YKGTR 123',
-    model_year: '20/09/2022',
+    model_year: new Date('25/09/2022'),
     features:[],
     options:[],
     model:'10truck-open',
