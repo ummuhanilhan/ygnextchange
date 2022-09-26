@@ -17,7 +17,6 @@ export const SelectHook = (props:any) => {
         }) => (
             <Select 
                 {...props} 
-                default={props.defaultValue}
                 value={value}
                 id={props.id||'slug'}
                 onChange={onChange}

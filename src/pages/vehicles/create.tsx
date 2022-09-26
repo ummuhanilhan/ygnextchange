@@ -24,11 +24,11 @@ export type SignupValues = {
     plate:string,
     features:string[],
     options:string[],
-    m_date: Date,
-    model_year: Date,
-    insurance_date: Date,
-    examination_date: Date,
-    casgo_date: Date,
+    m_date: Date|string,
+    model_year: Date|string,
+    insurance_date: Date|string,
+    examination_date: Date|string,
+    casgo_date: Date|string,
     k1_file: string,
     accept:boolean
 };
@@ -38,11 +38,11 @@ const initialValues = {
     m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)"),
     type: 'dorse',
     plate: '34 YKGTR 123',
-    model_year: new Date('20/09/2022'),
+    model_year: '20/09/2022',
     features:[],
     options:[],
-    model:'',
-    brand:'',
+    model:'10truck-open',
+    brand:'dorse1',
     insurance_date: new Date(),
     examination_date: new Date(),
     casgo_date:new Date(),
@@ -55,8 +55,8 @@ export enum VehicleType {
     Trailer = 'trailer',
     Wheeler18 = '18wheeler',
     Refrigerated = 'refrigerated',
-    Forklift = 'forklift',
     TractorTrailer = 'tractortrailer',
+    Forklift = 'forklift',
   }
 
 export const VehicleCreate = () => {
@@ -85,7 +85,7 @@ export const VehicleCreate = () => {
                         control={control} 
                         placeholder="Araç Özellikleri Seçiniz" 
                         size='medium'
-                        id='id'
+                        id='slug'
                         items={tagItems}
                     />             
 
@@ -96,8 +96,8 @@ export const VehicleCreate = () => {
                         control={control} 
                         placeholder="Araç Modeli Seçiniz" 
                         size='medium'
-                        id='id'
                         items={tagItems}
+                        
                     />        
                 </TitleFrame>
                 <TitleFrame title="Araç Model Yılını">

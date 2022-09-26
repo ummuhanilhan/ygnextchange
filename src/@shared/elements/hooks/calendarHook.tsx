@@ -22,7 +22,7 @@ export const CalendarHook = ({
            <CalendarBasic 
             {...rest}
             dateFormat="dd/mm/yy"
-            value={new Date()} 
+            value={value} 
             placeholder={placeholder}
             className={classNames(className, 'w-auto mt-2' )}
             onChange={onChange}

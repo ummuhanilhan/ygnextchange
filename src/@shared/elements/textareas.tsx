@@ -18,16 +18,16 @@ export const Textarea = ({
   verifiable,
   verified,
   mini,
-  // value,
-  // onChange,
+  value,
+  onChange,
   onBlur,
   appendix,
   backgroundColor,
   error, 
   success
 }:FloatInputProps) => {
-  const [value, setValue] = React.useState('')
-  const onChange = (val:string) => setValue(val)
+  // const [value, setValue] = React.useState('')
+  // const onChange = (val:string) => setValue(val)
   
     const [active, setActive] = React.useState(false);
     const [hide, setHide] = React.useState(true);
