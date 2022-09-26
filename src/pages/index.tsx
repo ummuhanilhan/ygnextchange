@@ -17,6 +17,7 @@ import { PhoneHook } from '@shared/elements/hooks/phoneHook'
 import { TextareaHook } from '@shared/elements/hooks/textareaHook'
 import { TagHook } from '@shared/elements/hooks/tagHook'
 import { SelectHook } from '@shared/elements/hooks/selectHook'
+import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
  
 const Home = () => {
 
@@ -316,7 +317,7 @@ export const Elements = () => {
 
   return (
     <React.Fragment>
-    <h1 className='text-3xl my-5 font-bold text-yg-orange'>REACT HOOKFORM</h1>
+    <h1 className='text-3xl my-5 font-bold text-yg-blue'>CUSTOM ELEMENTS</h1>
 
       <div className='grid grid-cols-2 gap-2 my-5'>
          <div className="w-full">
