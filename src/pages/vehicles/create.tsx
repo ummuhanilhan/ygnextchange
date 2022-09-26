@@ -38,7 +38,7 @@ const initialValues = {
     m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)"),
     type: 'trailer',
     plate: '34 YKGTR 123',
-    model_year: new Date('25/09/2022'),
+    model_year: new Date(),
     features:[],
     options:[],
     model:'10truck-open',
@@ -46,7 +46,7 @@ const initialValues = {
     insurance_date: new Date(),
     examination_date: new Date(),
     casgo_date:new Date(),
-    k1_file:'',
+    k1_file:'k1_file.pdf',
 }
 
 export enum VehicleType {

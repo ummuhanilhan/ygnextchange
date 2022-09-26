@@ -72,7 +72,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                         <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="avatar" />
                     </button>
                     <div className={classNames(
-                        "z-10 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
+                        "z-40 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
                         {'hidden':!open},
                     )}>
                     <div className=" py-3 px-4 text-sm text-gray-900 dark:text-white">
