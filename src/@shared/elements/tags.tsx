@@ -208,6 +208,7 @@ export const Tag = ({
   removable,
   value,
   setValue,
+  onChange,
   setOpen,
 }:any) =>{
     
@@ -219,7 +220,7 @@ export const Tag = ({
          h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
            {value && removable && (
                 <div
-                    onClick={()=>setValue()}
+                    onClick={()=>{setValue(); onChange && onChange()}}
                 >
                         <FiX
                             className={classNames(

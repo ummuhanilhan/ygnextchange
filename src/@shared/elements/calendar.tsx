@@ -3,15 +3,15 @@ import React, { createRef, useRef, useState } from 'react';
 
 export const CalendarBasic = ({
     name,
-    // value,
-    // onChange,
+    value,
+    onChange,
     children,
     onBlur,
     error ,
     ...rest
 }:any) => {
     const calendarRef = useRef<any>(null);
-    const [date, setDate] = React.useState<Date>();
+    const [date, setDate] = React.useState<Date>(new Date(value));
      return (
       <div className='relative bg-white rounded-md w-full h-[4em] flex items-center'>
         <Calendar
@@ -21,7 +21,10 @@ export const CalendarBasic = ({
             dateFormat="dd/mm/yy"
             className='z-10 w-28'
             placeholder='Tarih Seçiniz' 
-            onChange={(e:any) => setDate(e.value)} 
+            onChange={(e:any) => {
+              onChange(e.value)
+              // setDate(e.value)
+            }} 
         />
         <div 
         onClick={()=>calendarRef?.current?.focus()}

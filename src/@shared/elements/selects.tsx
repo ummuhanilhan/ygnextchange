@@ -33,12 +33,23 @@ export const Select = ({
 }:any) => {
    // const [value, setValue] = React.useState('')
    // const onChange = (val:string) => setValue(val)
-  
-    const [selected, setSelected] = React.useState(null);
-    const [active, setActive] = React.useState(false);
-    const [open, setOpen] = React.useState(false);
-    const [data, setData] = React.useState(items);
-    const [query, setQuery] = React.useState('')
+   const lower = {lower:true};
+   const select = (val:string) => {
+    return data.find((f:any)=> slugify(String(f[id||'slug']), lower) 
+      ===
+      slugify(String(val),lower)
+      )?.value || null;
+   }
+
+   const [active, setActive] = React.useState(false);
+   const [open, setOpen] = React.useState(false);
+   const [data, setData] = React.useState(items);
+   const [query, setQuery] = React.useState('')
+   const [selected, setSelected] = React.useState(
+    value ? select(value) : null
+   );
+
+
     return (
       <div className={classnames(
       'w-full flashback floatinglabel-selects rounded-md relative', 
@@ -69,7 +80,7 @@ export const Select = ({
                   open={open}
                   size={size}
                   selected={selected}
-                  placeholder={data.find((f:any)=>f[id||'slug']===selected)?.value}
+                  placeholder={select(selected)}
                   name={name}
               />: 
                 <Label 
@@ -99,7 +110,7 @@ export const Select = ({
                   size={'medium'}
                   mini
                   selected={selected}
-                  placeholder={data.find((f:any)=>f.slug===selected)?.value}
+                  placeholder={data.find((f:any)=>f.slug===value)?.value}
                   name={name}
                   color='text-gray-700'
                 />
@@ -115,7 +126,7 @@ export const Select = ({
                color={!!error?'fill-red-500':'fill-gray-500'}
                status={open}
                removable={removable}
-               setValue={setSelected}
+               onChange={onChange}
                setOpen={()=>setOpen(!open)}
                value={selected}
           />
@@ -123,7 +134,7 @@ export const Select = ({
 
             <ul className={classNames(
               'select-dropdown absolute top-16 mt-1 right-0',
-              'bg-white h-auto z-40 rounded-md w-full',
+              'bg-white h-auto z-30 rounded-md w-full',
               'drop-shadow-md overflow-hidden',
               {'hidden':!open}
             )}>
@@ -142,21 +153,25 @@ export const Select = ({
                   const capitalized = f.label.includes(query)
                   return lower || isValue || isLabel||capitalizedLetter||capitalized;
                 })
-                ?.map((item:any,i:number)=>(
+                ?.map((item:any,i:number)=>{
+
+                const selectedValue = slugify(String(item[id||'slug']),lower);
+                return (
                     <li key={`select-item-${i}`} 
                     className={classNames(
                       'px-4 py-1 flex justify-between items-center cursor-pointer hover:bg-gray-50',
                     )}
                     onClick={()=>{
-                      setSelected(item[id||'slug'])
+                      setSelected(selectedValue)
+                      onChange(selectedValue)
                       setOpen(false)
                     }}
                   >
                       <p className={classNames(
-                          selected===item[id||'slug'] ? 'text-gray-400' : 'text-gray-700'
+                          selected===selectedValue ? 'text-gray-400' : 'text-gray-700'
                       )}>{item.value}</p>
                     </li>
-                  ))}
+                  )})}
               </SimpleBar>
 
 

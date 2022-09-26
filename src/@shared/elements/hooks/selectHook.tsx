@@ -17,8 +17,10 @@ export const SelectHook = (props:any) => {
         }) => (
             <Select 
                 {...props} 
+                default={props.defaultValue}
                 value={value}
-                setValue={onChange}
+                id={props.id||'slug'}
+                onChange={onChange}
                 size={props.size||'medium'}
             />
         )}

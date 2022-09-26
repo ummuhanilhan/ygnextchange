@@ -19,6 +19,7 @@ import { TagHook } from '@shared/elements/hooks/tagHook'
 import { SelectHook } from '@shared/elements/hooks/selectHook'
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { FormFooter } from './account'
+import { CalendarHook } from '@shared/elements/hooks/calendarHook'
  
 const Home = () => {
 
@@ -38,18 +39,23 @@ export default Home
 export const Forms = () => {
   const form = useForm<any>({
       defaultValues: {
-        driver_file:'',
+        driver_file:'home.webp',
         avatar:'',
-        src_file:'',
-        group1:'', // Dimensions
-        appended1:'', // Hacim - Alan
-        appended2:'', // Ağırlık 
+        src_file:'/src_file92348.pdf',
+        group1: {
+          width:'',
+          height:'',
+          length:'',
+          type:'kg'
+        }, // Dimensions
+        appended1:{}, // Hacim - Alan
+        appended2:{}, // Ağırlık 
         input3:'Tester', // Kullanıcı adı
         input4:'123', // Şifre
         input5:'test@test.com', // Eposta Adresi
-        select1:'istanbul', // Şehir Seçiniz
+        select1:'adana', // Şehir Seçiniz
         select2:'konya', // Şehir Seçiniz
-        select3:'mercedes', // Araç Markası 
+        select3:'10truck-open', // Araç Markası 
         tag1:[], // araç özellikleri array
         tag2:[], // araç donanımları array
         phone1:'05055555555', // business
@@ -57,6 +63,7 @@ export const Forms = () => {
         phone3:'5012345678', // business
         textarea1:'adres buraya yazılacak', // şirket adresi
         textarea2:'adres yeri', // şube adresi
+        date1: new Date(),
 
         
       },
@@ -77,10 +84,15 @@ export const Forms = () => {
       <h1 className='text-3xl my-5 font-bold text-yg-orange'>REACT HOOKFORM</h1>
       <div className='grid grid-cols-2 gap-2 my-5'>
          <div className="w-full">
-            <h3 className='text-md'></h3>
-            <CalendarBasic />
+         <h3 className='text-md'>Calendar</h3>
+            <CalendarHook
+              name='date1'
+              control={control}
+              placeholder='Tarih Bilgisi'
+            />
           </div>
           <div className='w-full'>
+         <h3 className='text-md'>File Upload</h3>
           <FileUploadHook 
             name="driver_file" 
             height='h-full'
@@ -129,7 +141,7 @@ export const Forms = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
-            <InputHook
+            <Input
                 name='appended1'
                 placeholder='Hacim - Alan Belirtiniz'
                 size='medium'
@@ -140,7 +152,7 @@ export const Forms = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appended</h3>
-            <InputHook
+            <Input
                 name='appended'
                 placeholder='Ağırlık Belirtiniz'
                 size='medium'
@@ -158,7 +170,7 @@ export const Forms = () => {
                   name='select1'
                   placeholder='Şehir Seçiniz'
                   size='medium'
-                  id='label'
+                  id='value'
                   removable
                   searchable
                   border
@@ -172,7 +184,7 @@ export const Forms = () => {
                   name='select2'
                   placeholder='Şehir Seçiniz'
                   size='medium'
-                  id='label'
+                  id='value'
                   removable
                   border
                   items={Turkiye}
@@ -330,14 +342,15 @@ export const Elements = () => {
 
   return (
     <React.Fragment>
-    <h1 className='text-3xl my-5 font-bold text-yg-blue'>CUSTOM ELEMENTS</h1>
+    <h1 className='text-3xl my-5 font-bold text-yg-blue'>CUSTOM ELEMENT COMPONENTS</h1>
 
       <div className='grid grid-cols-2 gap-2 my-5'>
          <div className="w-full">
-            <h3 className='text-md'></h3>
+         <h3 className='text-md'>Calendar</h3>
             <CalendarBasic />
           </div>
           <div className='w-full'>
+          <h3 className='text-md'>File Upload</h3>
           <Upload 
             name="driver_file" 
             height='h-full'
