@@ -18,6 +18,7 @@ import { TextareaHook } from '@shared/elements/hooks/textareaHook'
 import { TagHook } from '@shared/elements/hooks/tagHook'
 import { SelectHook } from '@shared/elements/hooks/selectHook'
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
+import { FormFooter } from './account'
  
 const Home = () => {
 
@@ -37,6 +38,26 @@ export default Home
 export const Forms = () => {
   const form = useForm<any>({
       defaultValues: {
+        driver_file:'',
+        avatar:'',
+        src_file:'',
+        group1:'', // Dimensions
+        appended1:'', // Hacim - Alan
+        appended2:'', // Ağırlık 
+        input3:'Tester', // Kullanıcı adı
+        input4:'123', // Şifre
+        input5:'test@test.com', // Eposta Adresi
+        select1:'istanbul', // Şehir Seçiniz
+        select2:'konya', // Şehir Seçiniz
+        select3:'mercedes', // Araç Markası 
+        tag1:[], // araç özellikleri array
+        tag2:[], // araç donanımları array
+        phone1:'05055555555', // business
+        phone2:'5123456789', // home
+        phone3:'5012345678', // business
+        textarea1:'adres buraya yazılacak', // şirket adresi
+        textarea2:'adres yeri', // şube adresi
+
         
       },
       // resolver: yupResolver(),
@@ -66,13 +87,6 @@ export const Forms = () => {
             placeholder="Psikoteknik Belgesi Ekle (Opsiyonel)"  
             control={control}
           />
-        </div>
-      </div>
-
-      <div className='grid grid-cols-3 gap-2 my-5'>
-       <div className='w-full'>
-        
-        
         </div>
       </div>
 
@@ -108,7 +122,7 @@ export const Forms = () => {
             <h3 className='text-md'>Dimensions</h3>
             <InputGroup
                 border
-                name=''
+                name='group1'
                 items={weightUnits}
                 control={control}
               />
@@ -116,7 +130,7 @@ export const Forms = () => {
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
             <InputHook
-                name=''
+                name='appended1'
                 placeholder='Hacim - Alan Belirtiniz'
                 size='medium'
                 border
@@ -127,7 +141,7 @@ export const Forms = () => {
         <div className="w-full">
             <h3 className='text-md'>Input Appended</h3>
             <InputHook
-                name=''
+                name='appended'
                 placeholder='Ağırlık Belirtiniz'
                 size='medium'
                 border
@@ -141,7 +155,7 @@ export const Forms = () => {
       <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
               <SelectHook
-                  name=''
+                  name='select1'
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='label'
@@ -155,7 +169,7 @@ export const Forms = () => {
           <div className="w-full">
               <h3 className='text-md'>Select</h3>
               <SelectHook
-                  name=''
+                  name='select2'
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='label'
@@ -168,7 +182,7 @@ export const Forms = () => {
           <div className="w-full">
               <h3 className='text-md'>Select <small>with FloatingLabel</small> </h3>
               <SelectHook
-                  name=''
+                  name='select3'
                   placeholder='Araç Markası Seçiniz'
                   size='small'
                   items={tagItems}
@@ -184,7 +198,7 @@ export const Forms = () => {
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
               <TagHook
-                name=''
+                name='tag1'
                 placeholder='Araç Özellikleri'
                 size='medium'
                 items={tagItems}
@@ -195,8 +209,8 @@ export const Forms = () => {
             <div className="w-full">
               <h3 className='text-md'>Tags mini</h3>
                 <TagHook
-                name=''
-                placeholder='Sürücü Belgesi Sınıfı'
+                name='tag2'
+                placeholder='Araç donanımları'
                 size='small'
                 items={tagItems2}
                 mini
@@ -211,7 +225,7 @@ export const Forms = () => {
          <h3 className='tex-md'>Small</h3>
           <InputHook
             className=' bg-white'
-            name=''
+            name='input3'
             placeholder='Kullanıcı Adı'
             size='small'
             height='55px'
@@ -223,7 +237,7 @@ export const Forms = () => {
          <h3 className='tex-md'>Medium</h3>
           <InputHook
             className=' bg-white'
-            name=''
+            name='input4'
             placeholder='Şifre'
             type='password'
             size='medium'
@@ -236,7 +250,7 @@ export const Forms = () => {
         <h3 className='tex-md'>Large</h3>
           <InputHook
             className=' bg-white'
-            name=''
+            name='input5'
             placeholder='Eposta Adresi'
             type='email'
             size='large'
@@ -253,7 +267,7 @@ export const Forms = () => {
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
           <PhoneHook
-            name=''
+            name='phone1'
             placeholder='Şirket Telefonu'
             size='small'
             border
@@ -263,7 +277,7 @@ export const Forms = () => {
        <div className='w-full'>
        <h3 className='tex-md'>Medium(64px)</h3>
           <PhoneHook
-              name=''
+              name='phone2'
               placeholder='Cep Telefonu'
               size='medium'
               verifiable
@@ -275,7 +289,7 @@ export const Forms = () => {
         <div className='w-full'>
          <h3 className='tex-md'>Large</h3>
           <PhoneHook
-              name=''
+              name='phone3'
               placeholder='Şirket Telefonu'
               size='large'
               border
@@ -289,15 +303,15 @@ export const Forms = () => {
 
       <div className='flex items-start gap-2 mb-5 '>
             <TextareaHook
-              name=''
+              name='textarea1'
               placeholder='Şirket Adresi'
               size='medium'
               border
               control={control}
             />
             <TextareaHook
-              name=''
-              placeholder='Şirket Adresi'
+              name='textarea2'
+              placeholder='Şube Adresi'
               error='err'
               border
               height='10rem'
@@ -305,7 +319,6 @@ export const Forms = () => {
             />
            
       </div>
-
     </form>
   )
 }

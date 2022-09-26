@@ -1,7 +1,8 @@
 import { Controller, Control  } from "react-hook-form"
 import React from "react"
-import { FloatingLabelPhone } from "../phones";
-
+import { FloatingPhone } from "../inputs";
+import classNames from "classnames";
+ 
 export const PhoneHook = ({
     control, 
     placeholder,
@@ -32,7 +33,8 @@ export const PhoneHook = ({
                 fieldState: { isTouched, isDirty, error },
                 formState,
             }) => (
-                <FloatingLabelPhone
+                <FloatingPhone
+                   {...rest}
                     onBlur={onBlur} // notify when input is touched
                     onChange={onChange} // send value to hook form
                     value={value}
@@ -41,7 +43,6 @@ export const PhoneHook = ({
                     error={error}
                     size={size||'medium'}
                     name={name}
-                    {...rest}
                 />
             )}
         />

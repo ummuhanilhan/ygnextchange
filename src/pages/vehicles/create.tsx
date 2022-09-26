@@ -13,6 +13,7 @@ import { InputHook } from "@shared/elements/hooks/inputHook";
 import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { FileUploadHook } from "@shared/elements/hooks/uploadHook";
+import { FormFooter } from "@pages/account";
 // import { FormFooter } from "@pages/account";
 // import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 
@@ -188,8 +189,11 @@ export const VehicleCreate = () => {
                     </TitleFrame>   
 
             </div>
-                {/** <FormFooter control={control} label="Araç Bilgilerim'in doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum." />                 */}
-
+            <FormFooter 
+                control={control}
+                label='Araç Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum.'
+                check={true}
+            />
         </form>
       </Frame>
     )

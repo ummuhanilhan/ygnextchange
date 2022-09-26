@@ -65,7 +65,7 @@ export interface FloatInputProps {
   /**
    * Error Message
   */
-     error?: string|object;
+     error?: string|object|boolean;
   /**
    * Success Message
   */
@@ -308,6 +308,7 @@ export const FloatingPhone = ({
               size=='medium' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               size=='large' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               {'pl-[4rem]':!code.countryCode?.length&&value},
+              {'pl-[4rem]':code.countryCode?.length == 2},
               {'pl-[4.5rem]':code.countryCode?.length == 3},
               {'pl-[4.8rem]':code.countryCode?.length == 4},
             )}

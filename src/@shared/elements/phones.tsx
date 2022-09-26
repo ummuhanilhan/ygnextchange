@@ -80,6 +80,7 @@ export const FloatingLabelPhone = ({
                 'outline-none w-full h-full rounded bg-transparent text-sm pr-10',
                 'transition-all duration-200 ease-in-out p-2',
                 value || active ? "pt-6 text-gray-500 pl-[3.8rem]" : "pt-2", 
+                active && code.countryCode?.length == 2 ? 'pl-[3.8rem]' : '',
                 active && code.countryCode?.length > 2 ? 'pl-[4.5rem]' : '',
                 active && code.countryCode?.length == 4 ? 'pl-[4.8rem]' : '',
               )}
