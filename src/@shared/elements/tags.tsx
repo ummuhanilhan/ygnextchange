@@ -31,16 +31,25 @@ export const Tag = ({
   backgroundColor,
   error, 
   rotation,
-  success
+  success,
+  id,
 }:any) => {
     const select = (val:string) => {
-        
+        return items.find((f:any)=> f[id||'slug'] === val )
+    }
+    const selections = (vals:string[]) => {
+        let selects:any = []
+        vals?.length>0 && vals?.map((item:any)=>{
+            selects.push(select(item))
+        })
+        return selects || [];
     }
     const scrollRef = useRef<HTMLUListElement>(null)
-    const [selected, setSelected] = React.useState([]);
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState(items);
+    const [selected, setSelected] = React.useState(selections(value));
     const allSelected = selected.length == data.length;
+
     return (
       <div className={classnames(
       'w-full flashback floatinglabel-selects rounded-md relative', 

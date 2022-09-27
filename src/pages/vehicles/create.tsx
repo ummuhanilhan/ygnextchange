@@ -39,8 +39,8 @@ const initialValues = {
     type: 'trailer',
     plate: '34 YKGTR 123',
     model_year: new Date(),
-    features:[],
-    options:[],
+    features:[ '1','10truck-open', '10truck-close', 'truck1', 'dorse1' ],
+    options:[ '1', '2', '3', '10truck-open' ],
     model:'10truck-open',
     brand:'dorse1',
     insurance_date: new Date(),
@@ -123,7 +123,7 @@ export const VehicleCreate = () => {
 
                     <TitleFrame title="Araç Özellikleri">
                         <TagHook
-                            name='feature'
+                            name='features'
                             placeholder='Araç Özellikleri Seçiniz'
                             size='medium'
                             items={tagItems}
