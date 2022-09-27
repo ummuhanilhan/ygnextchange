@@ -1,5 +1,5 @@
 import PrivateLayout from '@layouts/PrivateLayout'
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
 import { Input, InputGroup } from '@shared/elements/groups'
@@ -7,7 +7,6 @@ import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 import {  Upload } from '@shared/elements/uploads'
 import { Tag } from '@shared/elements/tags'
 import { CalendarBasic } from '@shared/elements/calendar'
-import { FileUpload } from 'primereact/fileupload';
 import { Select } from '@shared/elements/selects'
 import { Textarea } from '@shared/elements/textareas'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -18,8 +17,9 @@ import { TextareaHook } from '@shared/elements/hooks/textareaHook'
 import { TagHook } from '@shared/elements/hooks/tagHook'
 import { SelectHook } from '@shared/elements/hooks/selectHook'
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
-import { FormFooter } from './account'
 import { CalendarHook } from '@shared/elements/hooks/calendarHook'
+import { FileUpload } from 'primereact/fileupload';
+import { FormFooter } from './account'
  
 export const Codebase = () => {
 
@@ -40,32 +40,30 @@ export const Forms = () => {
   const form = useForm<any>({
       defaultValues: {
         driver_file:'home.webp',
-        avatar:'',
+        avatar:'/avatar.png',
         src_file:'/src_file92348.pdf',
         group1: {
           width:'',
           height:'',
           length:'',
-          type:'kg'
-        }, // Dimensions
-        appended1:{}, // Hacim - Alan
-        appended2:{}, // Ağırlık 
-        input3:'Tester', // Kullanıcı adı
-        input4:'123', // Şifre
-        input5:'test@test.com', // Eposta Adresi
-        select1:'adana', // Şehir Seçiniz
-        select2:'konya', // Şehir Seçiniz
-        select3:'10truck-open', // Araç Markası 
+          unit:'kg'
+        },
+        appended1:{},
+        appended2:{}, 
+        input3:'Tester',
+        input4:'123',
+        input5:'test@test.com',
+        select1:'adana', 
+        select2:'konya', 
+        select3:'10truck-open', 
         tag1:[ '1','10truck-open', '10truck-close', 'truck1', 'dorse1' ],
         tag2:[ '1', '2', '3', '10truck-open' ],
-        phone1:'05055555555', // business
-        phone2:'5123456789', // home
-        phone3:'5012345678', // business
-        textarea1:'adres buraya yazılacak', // şirket adresi
-        textarea2:'adres yeri', // şube adresi
-        date1: new Date(),
-
-        
+        phone1:'05055555555',
+        phone2:'5123456789',
+        phone3:'5012345678',
+        textarea1:'adres buraya yazılacak',
+        textarea2:'adres yeri',
+        date1: new Date(),        
       },
       // resolver: yupResolver(),
   });
@@ -361,8 +359,6 @@ export const Elements = () => {
 
       <div className='grid grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
-        
-        
         </div>
       </div>
 
@@ -476,25 +472,25 @@ export const Elements = () => {
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
               <Tag
-                className=' '
-                value={value}
-                placeholder='Araç Özellikleri'
-                size='medium'
-                items={tagItems}
-                removable
-                onChange={(e:string)=>setValue(e)}
+                  className=' '
+                  value={value}
+                  placeholder='Araç Özellikleri'
+                  size='medium'
+                  items={tagItems}
+                  removable
+                  onChange={(e:string)=>setValue(e)}
               />
             </div>
             <div className="w-full">
               <h3 className='text-md'>Tags mini</h3>
                 <Tag
-                className=' '
-                value={value}
-                placeholder='Sürücü Belgesi Sınıfı'
-                size='small'
-                items={tagItems2}
-                mini
-                onChange={(e:string)=>setValue(e)}
+                  className=' '
+                  value={value}
+                  placeholder='Sürücü Belgesi Sınıfı'
+                  size='small'
+                  items={tagItems2}
+                  mini
+                  onChange={(e:string)=>setValue(e)}
               />
            </div>
           

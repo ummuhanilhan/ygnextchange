@@ -71,7 +71,6 @@ export const VehicleCreate = () => {
     };
     const onError = (errors:any) => {
         console.log(errors)
-
     };
 
      return (

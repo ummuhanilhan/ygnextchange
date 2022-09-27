@@ -11,34 +11,34 @@ import { FiMinimize, FiMinusCircle, FiPlusCircle, FiX } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 
-
 export const Tag = ({ 
   size,
-  type,
   name,
-  height,
   placeholder,
   border,
   className,
-  verifiable,
-  verified,
   mini,
   value,
   onChange,
-  onBlur,
-  appendix,
   items,
   backgroundColor,
   error, 
   rotation,
   success,
   id,
+  type,
+  height,
+  verifiable,
+  verified,
+  onBlur,
+  appendix,
 }:any) => {
     const select = (val:string) => {
         return items.find((f:any)=> f[id||'slug'] === val )
     }
     const selections = (vals:string[]) => {
         let selects:any = []
+        console.log('typeof vals:',typeof vals);
         vals?.length>0 && vals?.map((slug:any)=>{
             let item = select(slug);
             item && selects.push(item)
@@ -194,7 +194,6 @@ export const Tag = ({
                             select ? 'text-gray-400' : 'text-gray-700'
                         )}
                         onClick={()=>{
-                            console.log(scrollRef.current?.scrollWidth)
                             if(!select){
                                 const newSelected:any = [item, ...selected];
                                 setSelected(newSelected);

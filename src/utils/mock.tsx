@@ -145,6 +145,7 @@ export const offerTabMenu = [
     {id:2, title:'Kabul Edilenler', slug:'accepted', count:7 },  
     {id:3, title:'Beklemede Olanlar', slug:'pending', count:9 },  
 ]
+
 export enum CargoCreateRoute {
     'rent' = 1,
     'datetime' = 2,
@@ -189,14 +190,12 @@ export enum OfferRoute {
     Accepted = 2,
     Pending = 3,
 }
+
 export const OfferReverse = {
     '1': 'inshipment',
     '2': 'accepted',
     '3': 'pending',
 }
-
-
-
 
 export const pendingOut = [ 
     { id:1, title:'Beklemede olanlar', slug:'pending'},
@@ -205,6 +204,7 @@ export const pendingOut = [
     { id:4, title:'İlan Süresi Geçenler', slug:'outdated'},
     { id:5, title:'Tümünü Gör', slug:'all'},
 ];
+
 export const acceptedOut = [
     { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
 ];
@@ -221,6 +221,7 @@ export const pendingIn = [
     { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
     { id:3, title:'Tümünü Göster', slug:'all'},
 ];
+
 export const acceptedIn = [
     { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
 ];
@@ -248,8 +249,6 @@ export const offers = [
     vehicle:'Tır 13.60 Açık', weight:'27 Ton', date:'22.07.2022 - 25.08.2022', load:'Ankara', unload:'Mersin', 
     distance:'500KM',  },
 ]
-
-
 
 export const tagItems = [
     {id:1, slug:'10truck-open', value:'10 Teker Kamyon Açık', label:''},
@@ -288,8 +287,7 @@ export const initial: any = {
         unit: 0.0,
       },
     },
-  };
-  
+};
   
 export const feature: any = {
     package: null,
@@ -309,9 +307,8 @@ export const feature: any = {
     volumeUnit: "M3",
     lengthUnit: "M",
     widthUnit: "M",
-  };
+};
 
-  
 // header excluded pages
 export const excludedPages = ["/cargoes/create", "/cargoes/edit"];
 
@@ -322,7 +319,6 @@ export const cities = [
     {name: 'London', code: 'LDN'},
     {name: 'Paris', code: 'PRS'}
 ];
-
 
 export const notificationList = [
     {id:1, icon:<Check height={13} />, action:'Yeni Yük Eklendi', message:'Adana - Mersin konumu için yeni yük eklendi.', type:'info', read:false},

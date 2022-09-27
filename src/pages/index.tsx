@@ -5,9 +5,7 @@ import Codebase from "./codebase"
 const Home = () => {
 
   return (
-    <React.Fragment>
       <Codebase />
-    </React.Fragment>
   )
 }
 
