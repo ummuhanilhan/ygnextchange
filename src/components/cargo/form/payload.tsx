@@ -56,8 +56,8 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
             </div>
 
-            <div className='grid grid-cols-2 gap-2'>
-                <TitleFrame title="Ağırlık" className='flex-2' >
+            <div className='flex justify-between gap-2'>
+                <TitleFrame title="Ağırlık" className='w-96'>
                     <Input
                         name='weight'
                         placeholder='Ağırlık Belirtiniz'
@@ -67,26 +67,24 @@ export const Payload = ({control}:any) => {
                         control={control}
                     />
                 </TitleFrame>
-                <div>
-                    <TitleFrame title="Ebat">
-                        <div className='grid grid-cols-2 gap-2'>
-                            <Input
-                                name='volume'
-                                placeholder="Hacim - Alan Belirtiniz"
-                                size='medium'
-                                border
-                                items={meterUnits}
-                                control={control}
-                            />
-                            <InputGroup
-                                border
-                                name='group1'
-                                items={weightUnits}
-                                control={control}
-                            />
-                        </div>
-                    </TitleFrame>
-                </div>
+                <TitleFrame title="Ebat" className=''>
+                    <div className='grid grid-cols-2 gap-2'>
+                        <Input
+                            name='volume'
+                            placeholder="Hacim - Alan Belirtiniz"
+                            size='medium'
+                            border
+                            items={meterUnits}
+                            control={control}
+                        />
+                        <InputGroup
+                            border
+                            name='group1'
+                            items={weightUnits}
+                            control={control}
+                        />
+                    </div>
+                </TitleFrame>
             </div>
 
 
