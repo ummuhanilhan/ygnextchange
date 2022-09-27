@@ -23,8 +23,8 @@ export const Tag = ({
   verifiable,
   verified,
   mini,
-  // value,
-  // onChange,
+  value,
+  onChange,
   onBlur,
   appendix,
   items,
@@ -33,8 +33,9 @@ export const Tag = ({
   rotation,
   success
 }:any) => {
-    const [value, setValue] = React.useState('')
-    const onChange = (val:string) => setValue(val)
+    const select = (val:string) => {
+        
+    }
     const scrollRef = useRef<HTMLUListElement>(null)
     const [selected, setSelected] = React.useState([]);
     const [open, setOpen] = React.useState(false);
@@ -135,7 +136,7 @@ export const Tag = ({
          </div>
             <ul className={classNames(
               'select-dropdown absolute mt-2',
-              'bg-white h-auto z-10 rounded-md w-full',
+              'bg-white h-auto z-20 rounded-md w-full',
               'drop-shadow-md overflow-hidden right-0',
                rotation ?  rotation :'top-16',
               {'hidden':!open}
@@ -149,9 +150,11 @@ export const Tag = ({
                     onClick={()=>{
                         if(allSelected){
                             setSelected([])
+                            typeof onChange != undefined && onChange()
                         }else{
                             // @ts-ignore
                             setSelected(data)
+                            // typeof onChange != undefined && onChange(data)
                         }
                         // selected.length<=0 && setSelected(data)
                         // selected.length>0 && setSelected([])
@@ -178,9 +181,11 @@ export const Tag = ({
                             if(!select){
                                 const newSelected:any = [item, ...selected];
                                 setSelected(newSelected)
+                                // typeof onChange != undefined && onChange()
                             }else{
                                 const newSelected:any = selected.filter((s:any)=>s.id != item.id);
                                 setSelected(newSelected)
+                                // typeof onChange != undefined && onChange()
                             }
                         }}
                     >
