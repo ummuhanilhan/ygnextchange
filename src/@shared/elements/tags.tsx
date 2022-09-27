@@ -44,6 +44,13 @@ export const Tag = ({
         })
         return selects || [];
     }
+    const save = (data:string[]) => {
+        let values:string[] = [];
+        if(values.length>0){
+            data.map(d=> values.push(d[id]) )
+        }
+        typeof onChange != undefined && onChange(values)
+    }
     const scrollRef = useRef<HTMLUListElement>(null)
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState(items);
@@ -163,7 +170,7 @@ export const Tag = ({
                         }else{
                             // @ts-ignore
                             setSelected(data)
-                            // typeof onChange != undefined && onChange(data)
+                            save([])
                         }
                         // selected.length<=0 && setSelected(data)
                         // selected.length>0 && setSelected([])
@@ -189,12 +196,12 @@ export const Tag = ({
                             console.log(scrollRef.current?.scrollWidth)
                             if(!select){
                                 const newSelected:any = [item, ...selected];
-                                setSelected(newSelected)
-                                // typeof onChange != undefined && onChange()
+                                setSelected(newSelected);
+                                save(newSelected);
                             }else{
                                 const newSelected:any = selected.filter((s:any)=>s.id != item.id);
-                                setSelected(newSelected)
-                                // typeof onChange != undefined && onChange()
+                                setSelected(newSelected);
+                                save(newSelected);
                             }
                         }}
                     >
