@@ -3,6 +3,8 @@ import { MultiSelectHook, SelectHook } from "@shared/elements/hooks/selectHook";
 import { tagItems } from "@utils/mock";
 import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";
+import { meterUnits, weightUnits } from "@utils/dummy/definitions";
+import { Input, InputGroup } from "@shared/elements/groups";
 
 
 
@@ -55,17 +57,33 @@ export const Payload = ({control}:any) => {
             </div>
 
             <div className='grid grid-cols-2 gap-2'>
-                <TitleFrame title="Ağırlık">
-                    <MultiSelectHook name="p5" control={control} 
-                    placeholder="Ağırlık Belirtiniz" />
+                <TitleFrame title="Ağırlık" className='flex-2' >
+                    <Input
+                        name='weight'
+                        placeholder='Ağırlık Belirtiniz'
+                        size='medium'
+                        border
+                        items={meterUnits}
+                        control={control}
+                    />
                 </TitleFrame>
                 <div>
                     <TitleFrame title="Ebat">
                         <div className='grid grid-cols-2 gap-2'>
-                            <MultiSelectHook name="p6" control={control} 
-                            placeholder="Hacim - Alan Belirtiniz" />
-                                <MultiSelectHook name="rent" control={control} 
-                            placeholder="Uzunluk x Genişlik x Yükseklik" />
+                            <Input
+                                name='volume'
+                                placeholder="Hacim - Alan Belirtiniz"
+                                size='medium'
+                                border
+                                items={meterUnits}
+                                control={control}
+                            />
+                            <InputGroup
+                                border
+                                name='group1'
+                                items={weightUnits}
+                                control={control}
+                            />
                         </div>
                     </TitleFrame>
                 </div>
@@ -74,30 +92,63 @@ export const Payload = ({control}:any) => {
 
             <div className='grid grid-cols-3 gap-2'>
                 <TitleFrame title="Ödeme Şekli">
-                    <MultiSelectHook name="p7" control={control} 
-                    placeholder="Ödeme Şekli Seçiniz" />
+                    <SelectHook 
+                        items={tagItems} 
+                        name="p7" 
+                        control={control} 
+                        placeholder="Ödeme Şekli Seçiniz"
+                    />
                 </TitleFrame>
                 <TitleFrame title="Para Birimi">
-                    <MultiSelectHook name="p8" control={control} 
-                    placeholder="Para Birimi Seçiniz" />
+                    <SelectHook 
+                        items={tagItems} 
+                        name="p8" 
+                        control={control} 
+                        placeholder="Para Birimi Seçiniz"
+                    />
                 </TitleFrame>
                 <TitleFrame title="Kdv Durumu">
-                    <MultiSelectHook name="p9" control={control} 
-                    placeholder="Kdv Durumu Seçiniz" />
+                    <SelectHook 
+                        name="p9" 
+                        control={control} 
+                        items={tagItems} 
+                        placeholder="Kdv Durumu Seçiniz"
+                    />
                 </TitleFrame>
             </div>
 
                 <TitleFrame title="Ücret Hesaplayıcı">
-                    <div className='grid grid-cols-3 gap-2'>
-                            <MultiSelectHook name="p10" control={control} 
-                            placeholder="Ağırlık Giriniz (Ton Cinsinden)" />
-                            <MultiSelectHook name="p11" control={control} 
-                            placeholder="Birim Fiyat Giriniz" />
-                            <MultiSelectHook name="p12" control={control} 
-                            placeholder="Toplam Tutar" />
-                            <div>
-                                
-                            </div>
+                     <div className='grid grid-cols-3 gap-2'>   
+                            <SelectHook 
+                                name="payment.type" 
+                                control={control} 
+                                placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
+                                items={tagItems}
+                                size='medium'
+                                id='id'
+                                disabled
+
+                            />
+                            <SelectHook 
+                                name="payment.price" 
+                                control={control} 
+                                placeholder="Birim Fiyat Giriniz" 
+                                items={tagItems}
+                                size='medium'
+                                id='id'
+                                disabled
+
+                            />
+                            <InputHook 
+                                name="payment.total" 
+                                control={control} 
+                                placeholder="Toplam Tutar" 
+                                items={tagItems}
+                                size='medium'
+                                id='id'
+                                type='number'
+                            />
+                       
                     </div>
                 </TitleFrame>
 

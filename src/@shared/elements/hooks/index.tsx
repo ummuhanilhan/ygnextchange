@@ -173,6 +173,30 @@ export const VehicleRadioHook = ({
     )
 } 
 
+export const VehicleOptionsHook = ({
+    control, 
+    name,
+    label,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <div>
+
+            </div>
+        )}
+    />
+    )
+}
+ 
 export const SwithcherHook = ({
     control, 
     name,

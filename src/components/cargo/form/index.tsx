@@ -13,10 +13,16 @@ import { CargoCreateRoute } from "@utils/mock";
 
 export type CargoValues = {
     name: string,
+    rent: {
+        type: string,
+    },
 };
 
 const initialValues = {
-    name:'',
+    rent:{
+        type:'trailer',
+
+    },
 }
 
 export const CargoCreate = ({update}:any) => {

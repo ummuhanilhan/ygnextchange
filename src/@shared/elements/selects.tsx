@@ -28,11 +28,10 @@ export const Select = ({
   verified,
   value,
   onChange,
+  disabled,
   onBlur,
   appendix,
 }:any) => {
-   // const [value, setValue] = React.useState('')
-   // const onChange = (val:string) => setValue(val)
    const lower = {lower:true};
    const select = (val:string) => {
     return data.find((f:any)=> slugify(String(f[id||'slug']), lower) 
@@ -54,6 +53,7 @@ export const Select = ({
       <div className={classnames(
       'w-full flashback floatinglabel-selects rounded-md relative', 
        className,
+       disabled && 'disabled bg-gray-200',
        size||'medium',
        backgroundColor||'bg-white',
        {'error': error},
@@ -120,16 +120,18 @@ export const Select = ({
 
             
             <div className="lay absolute left-0 right-0 bottom-0 top-0" 
-            onClick={()=> setOpen(!open)}></div>
+            onClick={()=> !disabled && setOpen(!open)}></div>
 
-            <TagAppend 
-               color={!!error?'fill-red-500':'fill-gray-500'}
-               status={open}
-               removable={removable}
-               onChange={onChange}
-               setOpen={()=>setOpen(!open)}
-               value={selected}
-          />
+           {!disabled && (
+             <TagAppend 
+              color={!!error?'fill-red-500':'fill-gray-500'}
+              status={open}
+              removable={removable}
+              onChange={onChange}
+              setOpen={()=>setOpen(!open)}
+              value={selected}
+            />
+           )}
           </div>
 
             <ul className={classNames(

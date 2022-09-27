@@ -12,7 +12,6 @@ export const InputHook = ({
     name:string,
     control: Control<any>, 
     placeholder:string,
-    type?:string,
     example?:string,
     textarea?:boolean,
     border?:boolean,
@@ -23,6 +22,8 @@ export const InputHook = ({
     className?: string,
     items?:object[],
     disabled?:boolean,
+    id?:string,
+    type?:'text' | 'number' | 'email' | 'password',
   }) => {
 
     return (
