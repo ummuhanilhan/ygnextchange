@@ -56,8 +56,8 @@ export const Forms = () => {
         select1:'adana', // Şehir Seçiniz
         select2:'konya', // Şehir Seçiniz
         select3:'10truck-open', // Araç Markası 
-        tag1:[], // araç özellikleri array
-        tag2:[], // araç donanımları array
+        tag1:[ '1','10truck-open', '10truck-close', 'truck1', 'dorse1' ],
+        tag2:[ '1', '2', '3', '10truck-open' ],
         phone1:'05055555555', // business
         phone2:'5123456789', // home
         phone3:'5012345678', // business
