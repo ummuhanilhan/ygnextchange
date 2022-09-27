@@ -73,8 +73,7 @@ export const Forms = () => {
       alert(JSON.stringify(data))
   };
   const onError = (errors:any) => {
-      console.log(errors)
-
+      console.log(errors);
   };
 
   return (

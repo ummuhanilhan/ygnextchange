@@ -9,6 +9,8 @@ import { GeoAlt, Person } from "@shared/icons";
 import { FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook } from "@shared/elements/hooks";
 import { FormFooter } from ".";
 import { Search } from "@shared/elements/searches";
+import Turkiye from '@utils/dummy/turkiye.json'
+import { SelectHook } from "@shared/elements/hooks/selectHook";
 
 export const Address = () => {
     return (
@@ -53,18 +55,38 @@ export const AddressCreate = () => {
             >
                 <form onSubmit={handleSubmit(onSubmit, onError)}>
                     <div className="grid grid-cols-2 gap-2">
-                        <FloatLabelHook name="address" type="text" placeholder="Ankara Şirket Adresim" example="" control={control} />
-                        <FloatLabelHook name="address_search" type="text" placeholder="Mersin Lİmanı" example="" control={control} />
+                        <FloatLabelHook name="address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
+                        <FloatLabelHook name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
                     </div>
                     <div className='grid grid-cols-2 gap-2'>
                         <div>
                               <FloatLabelHook name="address_detail" type="text" 
-                              placeholder="Haritadan Seçili Adres Detayları" disabled example="" control={control} />
+                              placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
                               <div className='grid grid-cols-2 gap-2'>
-                                <MultiSelectHook name="city" control={control} disabeld placeholder="İl Seçiniz"  />                 
-                                <MultiSelectHook name="district" control={control} disabeld placeholder="İlçe Seçiniz"  />    
+                                  <SelectHook
+                                        name='city'
+                                        placeholder='İl Seçiniz'
+                                        size='medium'
+                                        id='value'
+                                        removable
+                                        searchable
+                                        items={Turkiye}
+                                        control={control}
+                                        className='mb-2'
+                                        />
+                                    <SelectHook
+                                        name='district'
+                                        placeholder='İl Seçiniz'
+                                        size='medium'
+                                        id='value'
+                                        removable
+                                        searchable
+                                        items={Turkiye}
+                                        control={control}
+                                        className='mb-2'
+                                    />
                               </div>
-                             <FloatLabelHook name="directions" type="text" placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
+                             <FloatLabelHook name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                         </div>
                         <div className="map">
 
