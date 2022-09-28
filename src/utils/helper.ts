@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";  
 import moment from 'moment'; 
- 
+
+export function toSelectItem(items: any[], id:boolean=false) {
+    return items?.map(m => ({ label: m.name, value: id? m._id : m.slug }))
+};
+
+
 export const randomBinary = (min:number, max:number) => {
     return Math.floor(min + Math.random() * (max + 1 - min)).toString(2);
 }

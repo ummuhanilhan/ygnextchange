@@ -88,9 +88,7 @@ export const AddressCreate = () => {
                               </div>
                              <FloatLabelHook name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                         </div>
-                        <div className="map">
-
-                        </div>
+                        <MapView />
                         <div></div>
                     </div>
                 </form>
@@ -145,6 +143,16 @@ export const AddressList = () => {
                    ))}
                 </ul>
             </IconFrameCovered>
+        </React.Fragment>
+    )
+}
+
+export const MapView = () => {
+    const mapRef = React.useRef(null);
+
+    return (
+        <React.Fragment>
+            <div className="map" ref={mapRef} />
         </React.Fragment>
     )
 }
