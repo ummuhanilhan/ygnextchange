@@ -14,15 +14,21 @@ import { CargoCreateRoute } from "@utils/mock";
 export type CargoValues = {
     name: string,
     rent: {
-        type: string,
+        type: 'parsiel' | 'comple',
+        vehicle: string,
+        features: string[],
+        options: string[],
     },
 };
 
 const initialValues = {
     rent:{
-        type:'trailer',
-
+        
     },
+    'rent.type': 'parsiel',
+    'rent.vehicle': 'trailer',
+    'rent.features':['dorse1'],
+    'rent.options':[String(1),String(2),String(3), String(1)],
 }
 
 export const CargoCreate = ({update}:any) => {
@@ -47,24 +53,24 @@ export const CargoCreate = ({update}:any) => {
             setSelected={setSelected}
         >
             <form onSubmit={handleSubmit(onSubmit, onError)}>
-                <div className={classNames({'hidden': CargoCreateRoute.rent!=selected})}>
-                    <Rent control={control} />
-                </div>
-                <div className={classNames({'hidden': CargoCreateRoute.datetime!=selected})}>
-                    <Datetime control={control} />
-                </div>
-                <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
-                    <Payload control={control} />
-                </div>
                 
-                <div className="w-full flex justify-end mt-3">
-                    <div className="bg-yg-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
-                    <div className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
-                    onClick={()=>{
-                        selected< 3 && setSelected(selected+1)
-                    }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
-                </div>
+                 <div 
+                 className=''
+                 // style={{maxHeight:'55vh'}} className='overflow-hidden overflow-y-auto'
+                 >
+                    <div className={classNames({'hidden': CargoCreateRoute.rent!=selected})}>
+                        <Rent control={control} />
+                    </div>
+                    <div className={classNames({'hidden': CargoCreateRoute.datetime!=selected})}>
+                        <Datetime control={control} />
+                    </div>
+                    <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
+                        <Payload control={control} />
+                    </div>
+                 </div>
                 
+                
+                <Footer selected={selected} setSelected={setSelected} update={update}  />
             </form>
         </CargoLayout>
     )
@@ -72,3 +78,21 @@ export const CargoCreate = ({update}:any) => {
 
 
 export default CargoCreate;
+
+export const Footer = ({
+    selected,
+    setSelected,
+    update
+}:any) => {
+
+    return (
+        <div className="flex justify-end mt-3 
+        -sticky right-3 bottom-3 p-3 ">
+            <div className="bg-yg-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
+            <div className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
+            onClick={()=>{
+                selected< 3 && setSelected(selected+1)
+            }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
+        </div>
+    )
+}

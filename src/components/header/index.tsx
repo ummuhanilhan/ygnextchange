@@ -25,15 +25,21 @@ export const Header = ({mobile, setMobile}:any) =>{
                 "hidden md:block",
                 {hidden: !mobile}
             )}>
-                <li className="flex items-center" onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
-                    <Packet className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Yüküm Var</p> </li>
+                <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
+                    <a href='/cargo/create' className="flex items-center">
+                        <Packet className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Yüküm Var</p>    
+                    </a> 
+                </li>
                 <li className={classNames(
                     "flex items-center border-l-[.4rem] border-yg-orange",
                 {hidden: !mobile}
                 )} 
                 onClick={()=>router.push('/vehicles/create', undefined, 
                 { shallow: true })}>
-                    <Truck className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Aracım Var</p> </li>
+                    <a href='/vehicles/create' className='flex items-start'>
+                        <Truck className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Aracım Var</p> 
+                    </a>
+                </li>
             </ul>
             <div className="profile ">
                 <ul className="">

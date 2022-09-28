@@ -271,7 +271,7 @@ export const tagItems2 = [
 export const initial: any = {
     viewing: 0,
     rent: {
-      vehicle: "romork",
+      vehicle: "trailer",
       type: "parsiel",
     },
     shipping: {},
@@ -288,6 +288,187 @@ export const initial: any = {
       },
     },
 };
+
+
+
+export const item: any = {
+    rent: {
+      vehicle: 4,
+      type: "parsiel",
+      count: 0,
+      features: ["615dbd950bad540e0897b82e"],
+      options: ["61238c46d805fc5832de14e7"],
+    },
+    shipping: {
+      time: "",
+      range: "",
+      load: {
+        place: {
+          geolocation: {},
+          address: {},
+          personal: "",
+          contact: "",
+        },
+      },
+      unload: {},
+      distance: {},
+      duration: {},
+    },
+    payload: {
+      manual: "",
+      type: "", // yük cinsi, türü
+      define: "", // yük tanımı
+      transport: "", // rampa, vinç, elle
+      bargain: "", // pazarlık var mı?
+      price: {
+        unit: "",
+        total: "",
+      },
+    },
+    fee: {
+      type: "peşin",
+      currency: "try",
+      tax: "kdv",
+      measurement: {
+        // ücret bilgileri
+        quantity: "", // tonaj, miktar, nicelik
+        amount: "", // sayısal
+        weight: "", // ağırlık miktarı
+        measure: "", // ağırlık türü
+      },
+      offerPrice: 1,
+      paymethod: "credit",
+      vat: true,
+    },
+  };
+  
+  export const defaultItem: any = {
+    _id: {
+      $oid: "62d778aee8ef39b2070f8ace",
+    },
+    user: {
+      $oid: "62d684f20af2af81b3455a71",
+      name: "Tester Test",
+      phone: "055555555",
+      email: "test@test.com",
+    },
+    privacy: "draft",
+    viewing: 0,
+    rent: {
+      vehicle: "kirkayak",
+      type: "parsiel",
+      features: [
+        "62d4d9d53e2b94b92fc2904f",
+        "62d4d9d53e2b94b92fc29051",
+        "62d4d9d53e2b94b92fc29053",
+        "62d4d9d53e2b94b92fc29052",
+        "62d4d9d53e2b94b92fc29050",
+      ],
+      options: [
+        "62d4d9d53e2b94b92fc2906e",
+        "62d4d9d53e2b94b92fc29070",
+        "62d4d9d53e2b94b92fc29071",
+      ],
+    },
+    shipping: {
+      range: ["2022-07-05T21:00:00.000Z", null],
+      time: "other",
+      "time-custom": "93 sene sonra",
+      load: {
+        geolocation: {
+          lat: 37.94205600840452,
+          lng: 30.85136032104491,
+        },
+        place: {
+          address: "Mahmatlar/Eğirdir/Isparta, Türkiye",
+          street: "",
+        },
+        direction: {
+          city: "isparta",
+          country: {
+            code: "TR",
+            name: "Türkiye",
+          },
+        },
+        contact: {
+          name: "test",
+          phone: "0123 132 13 12",
+        },
+      },
+      unload: {
+        geolocation: {
+          lat: 38.47726887091417,
+          lng: 35.663372039794915,
+        },
+        place: {
+          address:
+            "Akdere, Akdere Tekir Yayla Yolu, 38900 Tomarza/Kayseri, Türkiye",
+          street: "No: Akdere Tekir Yayla Yolu",
+        },
+        direction: {
+          city: "kayseri",
+          country: {
+            code: "TR",
+            name: "Türkiye",
+          },
+        },
+        contact: {
+          name: "tester",
+          phone: "0213 123 12 31",
+        },
+      },
+      distance: {
+        text: "557 KM",
+        value: 557030,
+      },
+      duration: {
+        text: "7 SAAT 6 DAKIKA",
+        value: 25586,
+      },
+    },
+    payload: {
+      bargain: true,
+      measurement: {
+        measure: "ton",
+        weight: "3500",
+      },
+      type: "yük cinsi",
+      define: "yük tanımı",
+      transport: "62d4d9d53e2b94b92fc29003",
+    },
+    fee: {
+      manual: false,
+      price: {
+        unit: 555,
+        tonnage: 35,
+        total: 19425,
+      },
+      paymethod: "credit",
+      currency: "usd",
+      vat: "exclude",
+    },
+    publish: {
+      start: {
+        date: "2022-07-20T03:38:16.322Z",
+        option: "now",
+      },
+      end: {
+        date: "2022-07-27T03:38:16.322Z",
+        option: "10day",
+      },
+    },
+    updated_at: {
+      $date: {
+        $numberLong: "1658288302697",
+      },
+    },
+    created_at: {
+      $date: {
+        $numberLong: "1658288302697",
+      },
+    },
+    __v: 0,
+  };
   
 export const feature: any = {
     package: null,

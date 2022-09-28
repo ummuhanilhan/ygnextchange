@@ -1,22 +1,22 @@
-import { IconDropdown, IconFrame } from "@components/frames/IconFrame"
 import { Calendar, Cash, CircleHalf, FilePlus, FileText, PinMap, Truck } from "@shared/icons"
 import useDimensions from "@utils/useDimensions"
 import React from "react";
-import { FaSearch } from "react-icons/fa"
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { View } from "../view";
-import { FloatLabelHook, MultiSelectHook } from "@shared/elements/hooks";
 import classNames from "classnames";
-import Outside from "@utils/useoutside";
 import { DoubleFrame } from "@components/frames/MainFrame";
 import { Search } from "@shared/elements/searches";
- import Turkiye from '@utils/dummy/turkiye.json'
-import { tagItems } from "@utils/mock";
+import Turkiye from '@utils/dummy/turkiye.json'
+import { initial, tagItems } from "@utils/mock";
 import { Tag } from "@shared/elements/tags";
 import { Select } from "@shared/elements/selects";
+import { IconFrame, IconDropdown } from "@components/frames/IconFrame"
+import { FloatLabelHook, MultiSelectHook } from "@shared/elements/hooks";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Outside from "@utils/useoutside";
+import { FaSearch } from "react-icons/fa"
  
 export type FilterValues = {
     name: string,
@@ -42,7 +42,10 @@ const Filter = ({}:any) => {
     const [ref, { height }]:any = useDimensions();
     const [sync, setSync] = React.useState(false);
     const form = useForm<FilterValues>({
-        defaultValues: initialValues,
+        defaultValues: {
+            ...initial,
+            ...initialValues
+        },
         // resolver: yupResolver(),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
@@ -69,23 +72,11 @@ const Filter = ({}:any) => {
                         <VehicleFeatures control={control} />
                         <VehicleOptions control={control} />
                     </SimpleBar>
-                    <div className="flex flex-col">
-                        <button type="submit" className='button p-2 px-6 bg-yg-blue 
-                            border border-transparent hover:bg-yg-transparent
-                            hover:border-yg-blue hover:bg-transparent hover:text-yg-blue 
-                            text-white cursor-pointer text-sm mb-2 flex justify-center rounded-md'>Filtrele</button>
-                        <button className='button p-2 px-6 bg-yg-orange 
-                            border border-transparent hover:bg-yg-transparent
-                            hover:border-yg-orange hover:bg-transparent hover:text-yg-orange 
-                            text-white cursor-pointer text-sm flex justify-center rounded-md'>Temizle</button>
-                        
-                    </div>
+                    <Footer />
                 </form>            
         </div>
     )
 }
-
-
 
 export const Location = ({control}:any) => {
     const [status, setStatus] = React.useState(false);
@@ -237,3 +228,19 @@ export const RangePrice = ({control}:any) => {
     )
 }
 
+export const Footer = () => {
+
+    return (
+        <div className="flex flex-col">
+            <button type="submit" className='button p-2 px-6 bg-yg-blue 
+                border border-transparent hover:bg-yg-transparent
+                hover:border-yg-blue hover:bg-transparent hover:text-yg-blue 
+                text-white cursor-pointer text-sm mb-2 flex justify-center rounded-md'>Filtrele</button>
+            <button className='button p-2 px-6 bg-yg-orange 
+                border border-transparent hover:bg-yg-transparent
+                hover:border-yg-orange hover:bg-transparent hover:text-yg-orange 
+                text-white cursor-pointer text-sm flex justify-center rounded-md'>Temizle</button>
+            
+        </div>
+    )
+}

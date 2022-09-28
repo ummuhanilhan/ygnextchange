@@ -62,7 +62,6 @@ export const Payload = ({control}:any) => {
                         name='weight'
                         placeholder='Ağırlık Belirtiniz'
                         size='medium'
-                        border
                         items={meterUnits}
                         control={control}
                     />
@@ -73,12 +72,10 @@ export const Payload = ({control}:any) => {
                             name='volume'
                             placeholder="Hacim - Alan Belirtiniz"
                             size='medium'
-                            border
                             items={meterUnits}
                             control={control}
                         />
                         <InputGroup
-                            border
                             name='group1'
                             items={weightUnits}
                             control={control}

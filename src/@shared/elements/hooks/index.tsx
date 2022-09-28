@@ -1,7 +1,7 @@
 import { SigninValues } from "@pages/auth/signin"
 import { Controller, useForm, useWatch, Control  } from "react-hook-form"
 import { Checkbox } from "../checkboxes"
-import { VehicleRadio } from "../radios"
+import { RentRadio, VehicleRadio } from "../radios"
 import { MultiSelect } from 'primereact/multiselect';
 import { Calendar } from "primereact/calendar"
 import { FileUpload } from 'primereact/fileupload';
@@ -173,7 +173,7 @@ export const VehicleRadioHook = ({
     )
 } 
 
-export const VehicleOptionsHook = ({
+export const RentRadioHook = ({
     control, 
     name,
     label,
@@ -189,9 +189,15 @@ export const VehicleOptionsHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <div>
-
-            </div>
+            <RentRadio
+                onBlur={onBlur}  
+                onChange={onChange}  
+                value={value}
+                error={error}
+                name={name}
+                placeholder={label}
+                {...rest}
+            />
         )}
     />
     )
