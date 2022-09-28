@@ -19,6 +19,7 @@ export const SelectHook = (props:any) => {
                 {...props} 
                 value={value}
                 id={props.id||'slug'}
+                label={props.label||'value'}
                 onChange={onChange}
                 size={props.size||'medium'}
             />

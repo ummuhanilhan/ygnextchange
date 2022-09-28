@@ -29,6 +29,12 @@ const initialValues = {
     'rent.vehicle': 'trailer',
     'rent.features':['dorse1'],
     'rent.options':[String(1),String(2),String(3), String(1)],
+    shipping:{
+        range:[
+            '14/05/2020',
+            '19/09/2025'
+        ]
+    }
 }
 
 export const CargoCreate = ({update}:any) => {

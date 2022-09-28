@@ -290,37 +290,6 @@ export const SelectHook = ({
     )
 }
 
-export const CalendarHook = ({
-    control, 
-    name,
-    placeholder,
-    className,
-    ...rest
-}:any) => {
-    return (
-        <Controller
-        control={control}
-        name={name}
-        render={({
-            field: { onChange, onBlur, value, name, ref },
-            fieldState: { isTouched, isDirty, error },
-            formState,
-        }) => (
-           <div className="bg-white w-full h-[4rem]" >
-             <Calendar 
-                    dateFormat="dd/mm/yy"
-                    maxDate={new Date()} 
-                    value={value} 
-                    placeholder={placeholder}
-                    className={classNames('w-auto mt-2', className)}
-                    onChange={(e:any) => onChange(e.value)}     
-                />
-           </div>
-        )}
-    />
-    )
-}
- 
 export const AvatarHook = (props:any) => {
     return (
         <Controller

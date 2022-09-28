@@ -1,6 +1,8 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
-import { MultiSelectHook } from "@shared/elements/hooks";
+import {  MultiSelectHook } from "@shared/elements/hooks";
+import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { SelectHook } from "@shared/elements/hooks/selectHook";
+import { definitions } from "@utils/dummy/definitions";
 import { tagItems } from "@utils/mock";
 import React from "react";
 
@@ -13,25 +15,23 @@ export const Datetime = ({control}:any) => {
 
             <div className='grid grid-cols-2 gap-2'>
                 <TitleFrame title="Yükleme Tarih Aralığı">
-                <SelectHook 
-                        name="range" 
+                <CalendarHook 
+                        name="shipping.range" 
                         control={control} 
                         placeholder="Tarih Aralığı Seçiniz" 
-                        className=' '
-                        size='medium'
-                        id='id'
-                        items={tagItems}
+                        selectionMode='range'
                     />             
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Zamanı">
                     <SelectHook 
-                        name="range" 
+                        name="shipping.time" 
                         control={control} 
                         placeholder="Gün Aralığı Seçiniz" 
                         className=' '
                         size='medium'
-                        id='id'
-                        items={tagItems}
+                        id='_id'
+                        label='name'
+                        items={definitions.unload}
                     />        
                 </TitleFrame>
             </div>

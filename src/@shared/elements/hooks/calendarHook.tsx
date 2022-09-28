@@ -8,6 +8,7 @@ export const CalendarHook = ({
     name,
     placeholder,
     className,
+    selectionMode,
     ...rest
 }:any) => {
     return (
@@ -21,16 +22,15 @@ export const CalendarHook = ({
         }) => (
            <CalendarBasic 
             {...rest}
-            dateFormat="dd/mm/yy"
             value={value} 
+            onChange={onChange}
+            dateFormat="dd/mm/yy"
             placeholder={placeholder}
             className={classNames(className, 'w-auto mt-2' )}
-            onChange={onChange}
-            // onChange={(e:any) => onChange(e.value)}     
-
+            selectionMode={selectionMode}
            />
         )}
     />
     )
 }
- 
+  

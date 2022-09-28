@@ -20,6 +20,7 @@ export const Select = ({
   error, 
   items, 
   id,
+  label,
   searchable,
   success,
   type,
@@ -37,7 +38,7 @@ export const Select = ({
     return data.find((f:any)=> slugify(String(f[id||'slug']), lower) 
       ===
       slugify(String(val),lower)
-      )?.value || null;
+      )[label] || null;
    }
 
    const [active, setActive] = React.useState(false);
@@ -110,7 +111,7 @@ export const Select = ({
                   size={'medium'}
                   mini
                   selected={selected}
-                  placeholder={data.find((f:any)=>f.slug===value)?.value}
+                  placeholder={data.find((f:any)=>f.slug===value)[label]}
                   name={name}
                   color='text-gray-700'
                 />
@@ -148,11 +149,11 @@ export const Select = ({
                <SimpleBar style={{ maxHeight: '200px' }}>
                 {data
                 .filter((f:any)=>{
-                  const isValue = slugify(f.value, {lower:true}).includes(query)
-                  const lower = f.value.toLowerCase().includes(query)
-                  const isLabel = slugify(f.label, {lower:true}).includes(query)
-                  const capitalizedLetter = f.value.includes(query)
-                  const capitalized = f.label.includes(query)
+                  const isValue = slugify(f[label], {lower:true}).includes(query)
+                  const lower = f[label].toLowerCase().includes(query)
+                  const isLabel = slugify(f[label], {lower:true}).includes(query)
+                  const capitalizedLetter = f[label].includes(query)
+                  const capitalized = f[label].includes(query)
                   return lower || isValue || isLabel||capitalizedLetter||capitalized;
                 })
                 ?.map((item:any,i:number)=>{
@@ -165,13 +166,13 @@ export const Select = ({
                     )}
                     onClick={()=>{
                       setSelected(selectedValue)
-                      onChange(selectedValue)
+                      onChange(selectedValue) // or give an  _id if there is not have any slug by the direction
                       setOpen(false)
                     }}
                   >
                       <p className={classNames(
                           selected===selectedValue ? 'text-gray-400' : 'text-gray-700'
-                      )}>{item.value}</p>
+                      )}>{item[label]}</p>
                     </li>
                   )})}
               </SimpleBar>
