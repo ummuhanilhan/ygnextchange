@@ -8,10 +8,10 @@ if(prod) domain = ``;
 const nextConfig = {
   env:{
     domain,
-    mapApiKey:''
+    GOOGLE_MAP_API_KEY:'AIzaSyBHIepTOP0GNZQds-zz28X_vvWQ2W1WvsM'
 
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   webpack(config) {
     config.module.rules.push({
