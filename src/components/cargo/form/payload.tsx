@@ -3,7 +3,7 @@ import { MultiSelectHook, SelectHook } from "@shared/elements/hooks/selectHook";
 import { tagItems } from "@utils/mock";
 import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";
-import { meterUnits, weightUnits } from "@utils/dummy/definitions";
+import { currencies, definitions, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
 import { Input, InputGroup } from "@shared/elements/groups";
 
 
@@ -39,8 +39,9 @@ export const Payload = ({control}:any) => {
                         placeholder="Yükleme Şeklini Seçiniz" 
                         className=' '
                         size='medium'
-                        id='id'
-                        items={tagItems}
+                        id='_id'
+                        label='name'
+                        items={definitions.load}
                     />
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Şekli">
@@ -50,8 +51,9 @@ export const Payload = ({control}:any) => {
                         placeholder="Boşaltma Şeklini Seçiniz" 
                         className=' '
                         size='medium'
-                        id='id'
-                        items={tagItems}
+                        id='_id'
+                        label='name'
+                        items={definitions.unload}
                     />
                 </TitleFrame>
             </div>
@@ -62,7 +64,7 @@ export const Payload = ({control}:any) => {
                         name='weight'
                         placeholder='Ağırlık Belirtiniz'
                         size='medium'
-                        items={meterUnits}
+                        items={weightUnits}
                         control={control}
                     />
                 </TitleFrame>
@@ -88,7 +90,9 @@ export const Payload = ({control}:any) => {
             <div className='grid grid-cols-3 gap-2'>
                 <TitleFrame title="Ödeme Şekli">
                     <SelectHook 
-                        items={tagItems} 
+                        items={paymentMethods}
+                        id="value" 
+                        label="label" 
                         name="p7" 
                         control={control} 
                         placeholder="Ödeme Şekli Seçiniz"
@@ -96,7 +100,9 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Para Birimi">
                     <SelectHook 
-                        items={tagItems} 
+                        items={currencies} 
+                        id="value" 
+                        label="label" 
                         name="p8" 
                         control={control} 
                         placeholder="Para Birimi Seçiniz"
@@ -106,7 +112,9 @@ export const Payload = ({control}:any) => {
                     <SelectHook 
                         name="p9" 
                         control={control} 
-                        items={tagItems} 
+                        items={vatOptions} 
+                        id="value" 
+                        label="label" 
                         placeholder="Kdv Durumu Seçiniz"
                     />
                 </TitleFrame>

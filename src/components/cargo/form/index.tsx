@@ -9,7 +9,7 @@ import { CargoLayout } from "@layouts/CargoLayout";
 import classNames from "classnames";
 import Payload from "./payload";
 import Datetime from "./datetime";
-import { CargoCreateRoute } from "@utils/mock";
+import { CargoCreateRoute, defaultItem } from "@utils/mock";
 
 export type CargoValues = {
     name: string,
@@ -22,13 +22,9 @@ export type CargoValues = {
 };
 
 const initialValues = {
-    rent:{
-        
-    },
+    ...defaultItem,
     'rent.type': 'parsiel',
     'rent.vehicle': 'trailer',
-    'rent.features':['dorse1'],
-    'rent.options':[String(1),String(2),String(3), String(1)],
     shipping:{
         range:[
             '14/05/2020',
@@ -40,7 +36,7 @@ const initialValues = {
 export const CargoCreate = ({update}:any) => {
     const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<CargoValues>({
-        defaultValues: initialValues,
+        defaultValues: initialValues
         // resolver: yupResolver(),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
