@@ -37,7 +37,7 @@ export const Select = ({
    const select = (val:string) => {
     return data.find((f:any)=> slugify(String(f[id||'slug']), lower) 
       ===
-      slugify(String(val),lower)
+      slugify(String(val),lower) || {}
       )[label] || null;
    }
 

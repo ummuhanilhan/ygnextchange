@@ -37,23 +37,22 @@ export const Payload = ({control}:any) => {
                         name="payload.transport" 
                         control={control} 
                         placeholder="Yükleme Şeklini Seçiniz" 
-                        className=' '
                         size='medium'
+                        items={definitions.load}
                         id='_id'
                         label='name'
-                        items={definitions.load}
                     />
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Şekli">
                 <SelectHook 
-                        name="p4" 
+                        name="payload.transport2" 
                         control={control} 
                         placeholder="Boşaltma Şeklini Seçiniz" 
                         className=' '
+                        items={definitions.load}
                         size='medium'
                         id='_id'
                         label='name'
-                        items={definitions.load}
                     />
                 </TitleFrame>
             </div>
