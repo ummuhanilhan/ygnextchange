@@ -14,6 +14,7 @@ import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { initializeGoogleMap } from "@utils/googleMapInitializer";
 import { getPlace } from "@utils/googleViewer";
 import Classic from "@shared/modals/classic";
+import { addresses } from "@utils/mock";
 declare var google:any;
 
 export const Address = () => {
@@ -30,12 +31,30 @@ Address.Layout = PrivateLayout;
 export default Address;
 
 export type AddressValues = {
-    name: string,
-};
-
-const addressValues = {
-    name:'',
+  no:number | string,
+  geolocation: {
+    lat: string | number
+    lng: string | number
+  },
+  place?: {
+    address: string
+    street: string
+  },
+  direction?: {
+    city: string  
+    district: string
+    country: {
+      code:string
+      name:string
+    }
+  },
+  contact?: {
+    phone:string
+    name: string
+  }
 }
+
+const addressValues =  addresses[0]
 
 export const AddressCreate = () => {
     const form = useForm<AddressValues>({
@@ -59,7 +78,7 @@ export const AddressCreate = () => {
             >
                 <form onSubmit={handleSubmit(onSubmit, onError)}>
                     <div className="grid grid-cols-2 gap-2">
-                        <FloatLabelHook name="address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
+                        <FloatLabelHook name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
                         <FloatLabelHook name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
                     </div>
                     <div className='grid grid-cols-2 gap-2'>
@@ -68,7 +87,7 @@ export const AddressCreate = () => {
                               placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
                               <div className='grid grid-cols-2 gap-2'>
                                   <SelectHook
-                                        name='city'
+                                        name='direction.city'
                                         placeholder='İl Seçiniz'
                                         size='medium'
                                         id='value'
@@ -79,7 +98,7 @@ export const AddressCreate = () => {
                                         className='mb-2'
                                         />
                                     <SelectHook
-                                        name='district'
+                                        name='direction.district'
                                         placeholder='İl Seçiniz'
                                         size='medium'
                                         id='value'
@@ -122,6 +141,7 @@ export const AddressList = () => {
     return (
         <React.Fragment>  
           <Classic status={status} close={setStatus} >
+
           </Classic>
 
             <IconFrameCovered

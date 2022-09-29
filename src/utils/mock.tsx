@@ -470,6 +470,83 @@ export const item: any = {
     __v: 0,
   };
   
+  // shipping
+export const direction: any = {
+  direction: {
+    title: "varış",
+    city: "varış",
+    address: "varış",
+    description: "kalkış",
+    buildingInfo: "",
+    country: {
+      code: "TR",
+      name: "Türkiye",
+    },
+    district: "Yeşiloba mah",
+    geolocation: {
+      lat: 36.9835365,
+      lng: 35.2963123,
+    },
+    postalCode: "01000",
+    province: "Adana",
+    route: "Turhan Cemal Beriker Bulvarı",
+    town: "Seyhan",
+    contact: {
+      name: "Tester test",
+      phone: "5055555555",
+    },
+    building: "",
+  },
+};
+
+
+export const addresses = [
+  {
+    no:1,
+    geolocation: {
+        lat: 39.3836044901308,
+        lng: 31.142605304718007
+      },
+      place: {
+        address: "İsimsiz Yol, 26700 Çifteler/Eskişehir, Türkiye",
+        street: "No: İsimsiz Yol"
+      },
+      direction: {
+        city: "Eskişehir",
+        country: {
+          code: "TR",
+          name: "Türkiye"
+        }
+      },
+      contact: {
+        phone: "0234 234 32 43",
+        name: "tester"
+      }
+    },
+   {
+    no:2,
+      geolocation: {
+        lat: 38.149701975775685,
+        lng: 38.10937499999999
+      },
+      place: {
+        address: "Eskiköy, İsimsiz Yol, 44900 Doğanşehir/Malatya, Türkiye",
+        street: "No: İsimsiz Yol"
+      },
+      direction: {
+        city: "Malatya",
+        country: {
+          code: "TR",
+          name: "Türkiye"
+        }
+      },
+      contact: {
+        name: "tester",
+        phone: "0543 535 43 54"
+      }
+    }
+]
+
 export const feature: any = {
     package: null,
     tonnageRange: null,
