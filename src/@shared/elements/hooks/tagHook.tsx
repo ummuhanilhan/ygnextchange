@@ -6,6 +6,7 @@ export const TagHook = ({
     control, 
     name,
     label,
+    id,
     ...rest
 }:any) => {
 
@@ -22,6 +23,8 @@ export const TagHook = ({
                 {...rest}
                 value={value}
                 onChange={onChange}
+                id={id||'slug'}
+                label={label||'value'}
             />
         )}
     />

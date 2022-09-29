@@ -15,6 +15,7 @@ import { initializeGoogleMap } from "@utils/googleMapInitializer";
 import { getPlace } from "@utils/googleViewer";
 import Classic from "@shared/modals/classic";
 import { addresses } from "@utils/mock";
+import { FloatingInput } from "@shared/elements/inputs";
 declare var google:any;
 
 export const Address = () => {
@@ -183,7 +184,6 @@ export const AddressList = () => {
 export const MapView = ({control}:any) => {
     const mapRef = React.useRef(null);
     const [mapMarker, setMapMarker] = React.useState();
-
     React.useEffect(() => {
         const loadMap = () => {
             let marker: any;
@@ -359,16 +359,31 @@ export const MapView = ({control}:any) => {
           }  
         }  
       };
+    
+    const [ value, setValue ] = React.useState('')
 
     return (
         <React.Fragment>
             <div
               id="search-container"
             >
+                {/** 
+
+                 <FloatingInput
+                    name='harita'
+                    type="text"
+                    placeholder="Adres, Yer veya Koordinat Giriniz" 
+                    size='medium'
+                    value={value}
+                    onChange={(e:any)=>setValue(e.value)}
+                  />
+                
+                **/}
                 <input
                     className="w-full rFS rounded-md h-[4em] p-3"
                     placeholder={'Adres, Yer veya Koordinat Giriniz'}
-                />
+                  />
+                  
                <div className='map w-full h-[20vh] my-2 rounded-lg' ref={mapRef} />
 
             </div>

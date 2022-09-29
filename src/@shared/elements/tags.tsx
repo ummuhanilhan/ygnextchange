@@ -26,6 +26,7 @@ export const Tag = ({
   rotation,
   success,
   id,
+  label,
   type,
   height,
   verifiable,
@@ -34,7 +35,7 @@ export const Tag = ({
   appendix,
 }:any) => {
     const select = (val:string) => {
-        return items.find((f:any)=> f[id||'slug'] === val )
+        return items.find((f:any)=> f[id] === val )
     }
     const selections = (vals:string[]) => {
         let selects:any = []
@@ -117,10 +118,10 @@ export const Tag = ({
                                 className='float-left mr-1 z-20 flex items-center bg-gray-50 rounded-md p-1 px-2'>
                                 <p
                                 onClick={()=>setOpen(!open)}
-                                className='w-max text-gray-400 pr-1 text-sm'>{item.value}</p>
+                                className='w-max text-gray-400 pr-1 text-sm'>{item[label]}</p>
                                 <FiMinusCircle
                                 onClick={()=>{
-                                    const newSelected:any = selected.filter((s:any)=>s.id!=item.id)
+                                    const newSelected:any = selected.filter((s:any)=>s[id]!=item[id])
                                     setSelected(newSelected)
                                 }}
                                 className='text-gray-400' />
@@ -184,7 +185,7 @@ export const Tag = ({
                     
                 </li>
                 {data.map((item:any,i:number)=>{
-                    const select = selected.find((s:any)=>s.id===item.id)
+                    const select = selected.find((s:any)=>s[id]===item[id])
 
                     return (
                     <li 
@@ -199,13 +200,13 @@ export const Tag = ({
                                 setSelected(newSelected);
                                 save(newSelected);
                             }else{
-                                const newSelected:any = selected.filter((s:any)=>s.id != item.id);
+                                const newSelected:any = selected.filter((s:any)=>s[id] != item[id]);
                                 setSelected(newSelected);
                                 save(newSelected);
                             }
                         }}
                     >
-                        <p className=''>{item.value}</p>
+                        <p className=''>{item[label]}</p>
                         {select ? <FiMinusCircle className='text-gray-400' /> : <FiPlusCircle className='text-gray-700' />}
                         
                     </li>

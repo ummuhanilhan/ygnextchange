@@ -1,6 +1,7 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
 import { MultiSelectHook, RentRadioHook, VehicleRadioHook } from "@shared/elements/hooks";
 import { TagHook } from "@shared/elements/hooks/tagHook";
+import { definitions } from "@utils/dummy/definitions";
 import { tagItems } from "@utils/mock";
 import classNames from "classnames";
 import React from "react";
@@ -29,9 +30,11 @@ export const Rent = ({control}:any) => {
                             control={control}
                             placeholder="Araç Özellikleri Seçiniz"
                             size='medium'
-                            items={tagItems}
+                            items={definitions.feature}
                             rotation='bottom-16'
                             removable
+                            id="_id"
+                            label="name"
                         />
                     </TitleFrame>
                     <TitleFrame title="Donanım Seçenekleri">
@@ -40,7 +43,9 @@ export const Rent = ({control}:any) => {
                             control={control}
                             placeholder="Donanım Özellikleri Seçiniz"
                             size='medium'
-                            items={tagItems}
+                            id="_id"
+                            label="name"
+                            items={definitions.option}
                             rotation='bottom-16'
                             removable
                         />
