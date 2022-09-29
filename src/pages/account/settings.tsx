@@ -8,6 +8,7 @@ import React from "react";
 import { Bell, BoxArrowRight, FileText, Send } from "@yukgetir-icons";
 import classNames from "classnames";
 import { Toggle } from "@shared/elements/switchers";
+import Classic from "@shared/modals/classic";
 
 export type SettingValues = {
     password: string,
@@ -119,31 +120,43 @@ export const informations = [
 ]
 
 export const Information = ({control}:any) => {
+    const [selected, setSelected] = React.useState('');
+    const [open, setOpen] = React.useState(false);
     const [status, setStatus] = React.useState(true);
     return (
-        <div>
-            <IconFrameDropdown 
-                icon={<FileText className="menu-icon" />}
-                title='Sözleşmeler ve Bilgilendirme Metinleri'
-                status={status}
-                setStatus={setStatus}
-            />
-            <div className={classNames({'hidden':!status})}>
-                <div className="grid grid-cols-3 gap-2">
-                    {informations.map((item, i:number)=>(
-                        <div className="mb-2 mr-2 p-5 readfile bg-white cursor-pointer
-                        rounded-md flex justify-between" key={`information-${i}`}>
-                            <p className="text-gray-500">{item.title}</p>
-                            <div className='flex items-start'>
-                                <p className='text-sm'>Oku</p>
-                                <BoxArrowRight width={21} className='fill-yg-orange ml-3' />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+        <React.Fragment>
+            <Classic status={open} close={()=>setOpen(false)}>
 
-        </div>
+            </Classic>
+            <div>
+                <IconFrameDropdown 
+                    icon={<FileText className="menu-icon" />}
+                    title='Sözleşmeler ve Bilgilendirme Metinleri'
+                    status={status}
+                    setStatus={setStatus}
+                />
+                <div className={classNames({'hidden':!status})}>
+                    <div className="grid grid-cols-3 gap-2">
+                        {informations.map((item, i:number)=>(
+                            <div 
+                            onClick={()=>{
+                                setSelected(item.slug)
+                                setOpen(true)
+                            }}
+                            className="mb-2 mr-2 p-5 readfile bg-white cursor-pointer
+                            rounded-md flex justify-between" key={`information-${i}`}>
+                                <p className="text-gray-500">{item.title}</p>
+                                <div className='flex items-start'>
+                                    <p className='text-sm'>Oku</p>
+                                    <BoxArrowRight width={21} className='fill-yg-orange ml-3' />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+        </React.Fragment>
     )
 }
 

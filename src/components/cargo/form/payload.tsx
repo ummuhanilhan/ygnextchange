@@ -4,7 +4,7 @@ import { tagItems } from "@utils/mock";
 import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";
 import { currencies, definitions, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
-import { Input, InputGroup } from "@shared/elements/groups";
+import { InputAppendHook, InputGroupHook } from "@shared/elements/hooks";
 
 
 
@@ -15,7 +15,7 @@ export const Payload = ({control}:any) => {
             <div className='grid grid-cols-2 gap-2'>
                 <TitleFrame title="Yük Cinsi">
                     <InputHook
-                        name="p1"
+                        name="payload.type"
                         className=' bg-white'
                         placeholder='Yükünüzün Cinsini Yazınız'
                         size='medium'
@@ -24,7 +24,7 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Yük Tanımı">
                     <InputHook
-                        name="p2"
+                        name="payload.define"
                         className=' bg-white'
                         placeholder='Yükünüzü Kısaca Tanımlayınız'
                         size='medium'
@@ -34,7 +34,7 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Yükleme Şekli">
                     <SelectHook 
-                        name="p3" 
+                        name="payload.transport" 
                         control={control} 
                         placeholder="Yükleme Şeklini Seçiniz" 
                         className=' '
@@ -53,15 +53,15 @@ export const Payload = ({control}:any) => {
                         size='medium'
                         id='_id'
                         label='name'
-                        items={definitions.unload}
+                        items={definitions.load}
                     />
                 </TitleFrame>
             </div>
 
             <div className='flex justify-between gap-2'>
                 <TitleFrame title="Ağırlık" className='w-96'>
-                    <Input
-                        name='weight'
+                    <InputAppendHook
+                        name='payload.measurement.weight'
                         placeholder='Ağırlık Belirtiniz'
                         size='medium'
                         items={weightUnits}
@@ -70,14 +70,14 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Ebat" className=''>
                     <div className='grid grid-cols-2 gap-2'>
-                        <Input
+                        <InputAppendHook
                             name='volume'
                             placeholder="Hacim - Alan Belirtiniz"
                             size='medium'
                             items={meterUnits}
                             control={control}
                         />
-                        <InputGroup
+                        <InputGroupHook
                             name='group1'
                             items={weightUnits}
                             control={control}

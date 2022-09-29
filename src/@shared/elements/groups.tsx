@@ -102,7 +102,7 @@ export const Append = ({status, setOpen}:any) => {
 
 
 
-export const Input = ({
+export const InputAppend = ({
     border,
     placeholder,
     error,

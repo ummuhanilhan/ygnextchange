@@ -11,7 +11,7 @@ import { FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
 import { FloatingInput, FloatingPhone } from "../inputs";
-import { Select } from "../groups";
+import { InputAppend, InputGroup, Select } from "../groups";
 import classNames from "classnames";
 import { Avatar } from "../uploads";
 
@@ -202,7 +202,7 @@ export const RentRadioHook = ({
     />
     )
 }
- 
+
 export const SwithcherHook = ({
     control, 
     name,
@@ -359,6 +359,63 @@ export const MultiTagHook = ({
             <div>
 
             </div>
+        )}
+    />
+    )
+}
+
+export const InputGroupHook = ({
+    control, 
+    name,
+    label,
+    items,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <InputGroup
+                {...rest}
+                value={value}
+                onChange={onChange}
+                items={items}
+            />
+        )}
+    />
+    )
+}
+
+
+export const InputAppendHook = ({
+    control, 
+    name,
+    label,
+    items,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+            <InputAppend
+                {...rest}
+                value={value}
+                onChange={onChange}
+                items={items}
+            />
         )}
     />
     )
