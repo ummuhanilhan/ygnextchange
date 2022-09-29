@@ -13,6 +13,7 @@ import Turkiye from '@utils/dummy/turkiye.json'
 import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { initializeGoogleMap } from "@utils/googleMapInitializer";
 import { getPlace } from "@utils/googleViewer";
+import Classic from "@shared/modals/classic";
 declare var google:any;
 
 export const Address = () => {
@@ -116,17 +117,24 @@ export const AddressCreate = () => {
 }
 
 export const AddressList = () => {
+    const [status, setStatus] = React.useState(false);
 
     return (
-        <React.Fragment>
+        <React.Fragment>  
+          <Classic status={status} close={setStatus} >
+          </Classic>
+
             <IconFrameCovered
                 icon={<GeoAlt className="menu-icon" />}
                 title='İletişim Ayarlarım'
             >
                 <div className='grid grid-cols-2 gap-2 mb-4'>
                      <Search placeholder='Adres Başlığı Ara' />
-                     <p className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
-                     items-center text-white rounded-md cursor-pointer'>Yeni Adres Ekle</p>
+                     <p 
+                      className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
+                      items-center text-white rounded-md cursor-pointer'
+                      onClick={()=>setStatus(true)}
+                     >Yeni Adres Ekle</p>
                 </div>
                 <ul className='grid grid-cols-3 gap-3'>
                    {Array.from(Array(5)).map((item,i:number)=>(
