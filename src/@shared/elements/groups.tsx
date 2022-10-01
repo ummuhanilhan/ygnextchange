@@ -147,9 +147,7 @@ export const Select = ({
     id,
     success
   }:any) => {
-    const [value, setValue] = React.useState('')
-    const onChange = (val:string) => setValue(val)
-      const [selected, setSelected] = React.useState(items[0][id]);
+       const [selected, setSelected] = React.useState(items[0][id]);
       const [active, setActive] = React.useState(false);
       const [open, setOpen] = React.useState(false);
       const [data, setData] = React.useState(items);

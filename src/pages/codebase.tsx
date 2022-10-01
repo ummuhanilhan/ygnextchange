@@ -20,6 +20,7 @@ import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { CalendarHook } from '@shared/elements/hooks/calendarHook'
 import { FileUpload } from 'primereact/fileupload';
 import { FormFooter } from './account'
+import { InputAppendHook, InputGroupHook } from '@shared/elements/hooks'
  
 export const Codebase = () => {
 
@@ -129,7 +130,7 @@ export const Forms = () => {
         
         <div className="w-full">
             <h3 className='text-md'>Dimensions</h3>
-            <InputGroup
+            <InputGroupHook
                 border
                 name='group1'
                 items={weightUnits}
@@ -138,7 +139,7 @@ export const Forms = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
-            <InputAppend
+            <InputAppendHook
                 name='appended1'
                 placeholder='Hacim - Alan Belirtiniz'
                 size='medium'
@@ -149,7 +150,7 @@ export const Forms = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appended</h3>
-            <InputAppend
+            <InputAppendHook
                 name='appended'
                 placeholder='Ağırlık Belirtiniz'
                 size='medium'

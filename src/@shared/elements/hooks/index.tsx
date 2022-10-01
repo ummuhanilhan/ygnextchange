@@ -394,61 +394,63 @@ export const BorderedHook = ({
 export const InputGroupHook = ({
     control, 
     name,
-    label,
     items,
     border,
-    ...rest
+    id,
+    label,
+    size,
+    placeholder,
+     ...rest
 }:any) => {
 
     return (
-        <Controller
-        control={control}
-        name={name}
-        render={({
-            field: { onChange, onBlur, value, name, ref },
-            fieldState: { isTouched, isDirty, error },
-            formState,
-        }) => (
-            <div className={classNames(
-                'bg-white rounded-md h-[4em] pr-4',
-                border && 'border'
-            )}>
-                <div className="items-center 
-                h-full grid grid-cols-4
-                gap-2 px-2 w-full">
-                <BorderedHook
-                    placeholder='Uzunluk'
-                    name={`${name}.length`}
+        <div className={classNames(
+            'bg-white rounded-md h-[4em] pr-4',
+            border && 'border'
+        )}>
+            <div className="items-center 
+            h-full grid grid-cols-4
+            gap-2 px-2 w-full">
+            <BorderedHook
+                placeholder='Uzunluk'
+                name={`${name}.length`}
+                control={control} 
+            />
+            <BorderedHook 
+                placeholder='Genişlik'
+                name={`${name}.width`}
+                control={control} 
+            />
+            <BorderedHook 
+                placeholder='Yükseklik'
+                name={`${name}.height`}
+                control={control} 
+            />
+            <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
+                <SelectHook
+                    {...rest}
+                    name={`${name}.weight`}
+                    items={items} 
+                    control={control} 
+                    id={id||'label'}
+                    label={label}
+                    size={size||'medium'}
                 />
-                <BorderedHook 
-                    placeholder='Genişlik'
-                    name={`${name}.width`}
-                />
-                <BorderedHook 
-                    placeholder='Yükseklik'
-                    name={`${name}.height`}
-                />
-                <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
-                    <SelectHook
-                        {...rest}
-                        name={`${name}.weight`}
-                        items={items} 
-                    />
-                </div>
             </div>
-            
         </div>
-        )}
-    />
+        
+      </div>
     )
 }
 
 export const InputAppendHook = ({
     control, 
     name,
+    id,
     label,
     items,
     border,
+    size,
     placeholder,
     ...rest
 }:any) => {
@@ -462,7 +464,7 @@ export const InputAppendHook = ({
             )}>
                 <Controller
                     control={control}
-                    name={name}
+                    name={`${name}.size`}
                     render={({
                         field: { onChange, onBlur, value, name, ref },
                         fieldState: { isTouched, isDirty, error },
@@ -470,7 +472,6 @@ export const InputAppendHook = ({
                     }) => (
                         <input 
                             type="text" 
-                            name={`${name}.size`}
                             placeholder={placeholder} 
                             className="block py-2.5 px-0 w-full text-base 
                             text-gray-900 bg-transparent appearance-none 
@@ -486,10 +487,12 @@ export const InputAppendHook = ({
             <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
                 <SelectHook
                     {...rest}
-                    id='label'
                     name={`${name}.unit`}
-                    items={items}
-                    control={control}
+                    items={items} 
+                    control={control} 
+                    id={id||'label'}
+                    label={label}
+                    size={size||'medium'}
                 />
             </div>
         </div> 
