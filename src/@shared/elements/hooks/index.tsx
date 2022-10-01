@@ -11,7 +11,7 @@ import { FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
 import { FloatingInput, FloatingPhone } from "../inputs";
-import { InputAppend, InputGroup, Select } from "../groups";
+import { Bordered, InputAppend, InputGroup, Select } from "../groups";
 import classNames from "classnames";
 import { Avatar } from "../uploads";
 
@@ -362,13 +362,41 @@ export const MultiTagHook = ({
         )}
     />
     )
-}
+}  
+
+export const BorderedHook = ({
+    control, 
+    name,
+    placeholder,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+        control={control}
+        name={name}
+        render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+        }) => (
+           <Bordered 
+            {...rest}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+           />
+        )}
+    />
+    )
+} 
 
 export const InputGroupHook = ({
     control, 
     name,
     label,
     items,
+    border,
     ...rest
 }:any) => {
 
@@ -381,42 +409,90 @@ export const InputGroupHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <InputGroup
-                {...rest}
-                value={value}
-                onChange={onChange}
-                items={items}
-            />
+            <div className={classNames(
+                'bg-white rounded-md h-[4em] pr-4',
+                border && 'border'
+            )}>
+                <div className="items-center 
+                h-full grid grid-cols-4
+                gap-2 px-2 w-full">
+                <BorderedHook
+                    placeholder='Uzunluk'
+                    name={`${name}.length`}
+                />
+                <BorderedHook 
+                    placeholder='Genişlik'
+                    name={`${name}.width`}
+                />
+                <BorderedHook 
+                    placeholder='Yükseklik'
+                    name={`${name}.height`}
+                />
+                <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
+                    <SelectHook
+                        {...rest}
+                        name={`${name}.weight`}
+                        items={items} 
+                    />
+                </div>
+            </div>
+            
+        </div>
         )}
     />
     )
 }
-
 
 export const InputAppendHook = ({
     control, 
     name,
     label,
     items,
+    border,
+    placeholder,
     ...rest
 }:any) => {
 
     return (
-        <Controller
-        control={control}
-        name={name}
-        render={({
-            field: { onChange, onBlur, value, name, ref },
-            fieldState: { isTouched, isDirty, error },
-            formState,
-        }) => (
-            <InputAppend
-                {...rest}
-                value={value}
-                onChange={onChange}
-                items={items}
-            />
-        )}
-    />
+       <>
+         <div className={classNames(
+          'bg-white rounded-md h-[4em] flex items-center', 
+          'pl-3 relative justify-between w-full',
+          border && 'border'
+            )}>
+                <Controller
+                    control={control}
+                    name={name}
+                    render={({
+                        field: { onChange, onBlur, value, name, ref },
+                        fieldState: { isTouched, isDirty, error },
+                        formState,
+                    }) => (
+                        <input 
+                            type="text" 
+                            name={`${name}.size`}
+                            placeholder={placeholder} 
+                            className="block py-2.5 px-0 w-full text-base 
+                            text-gray-900 bg-transparent appearance-none 
+                            dark:text-white peer h-full outline-none" 
+                            onBlur={onBlur}  
+                            onChange={onChange}  
+                            value={value}
+                        />
+                    )}
+                />
+           
+            
+            <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
+                <SelectHook
+                    {...rest}
+                    id='label'
+                    name={`${name}.unit`}
+                    items={items}
+                    control={control}
+                />
+            </div>
+        </div> 
+       </>
     )
 }
