@@ -340,7 +340,7 @@ export const MapView = ({control}:any) => {
             const data = { 
               geolocation: { lat: pos.lat(), lng: pos.lng() }, 
               direction:{
-                city:(place.cityAlt||place.city)?.toLowerCase()||null,
+                city:(String(place.cityAlt)||String(place.city))?.toLowerCase()||null,
                 country:{
                   code:place.countryCode,
                   name:place.country,

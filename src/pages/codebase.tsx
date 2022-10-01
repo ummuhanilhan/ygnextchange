@@ -2,7 +2,7 @@ import PrivateLayout from '@layouts/PrivateLayout'
 import React from 'react'
 import { tagItems, tagItems2 } from '@utils/mock'
 import Turkiye from '@utils/dummy/turkiye.json'
-import { Input, InputGroup } from '@shared/elements/groups'
+import { InputAppend, InputGroup } from '@shared/elements/groups'
 import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 import {  Upload } from '@shared/elements/uploads'
 import { Tag } from '@shared/elements/tags'
@@ -15,7 +15,7 @@ import { InputHook } from '@shared/elements/hooks/inputHook'
 import { PhoneHook } from '@shared/elements/hooks/phoneHook'
 import { TextareaHook } from '@shared/elements/hooks/textareaHook'
 import { TagHook } from '@shared/elements/hooks/tagHook'
-import { SelectHook } from '@shared/elements/hooks/selectHook'
+import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { CalendarHook } from '@shared/elements/hooks/calendarHook'
 import { FileUpload } from 'primereact/fileupload';
@@ -53,7 +53,7 @@ export const Forms = () => {
         input3:'Tester',
         input4:'123',
         input5:'test@test.com',
-        select1:'adana', 
+        select1:'yozgat', 
         select2:'konya', 
         select3:'10truck-open', 
         tag1:[ '1','10truck-open', '10truck-close', 'truck1', 'dorse1' ],
@@ -138,7 +138,7 @@ export const Forms = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
-            <Input
+            <InputAppend
                 name='appended1'
                 placeholder='Hacim - Alan Belirtiniz'
                 size='medium'
@@ -149,7 +149,7 @@ export const Forms = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appended</h3>
-            <Input
+            <InputAppend
                 name='appended'
                 placeholder='Ağırlık Belirtiniz'
                 size='medium'
@@ -160,21 +160,23 @@ export const Forms = () => {
         </div>
       
       </div>
+  
       <div className='grid grid-cols-3 gap-2 my-5 '>
-      <div className="w-full">
+         <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
-              <SelectHook
-                  name='select1'
-                  placeholder='Şehir Seçiniz'
-                  size='medium'
-                  id='value'
-                  removable
-                  searchable
-                  border
-                  items={Turkiye}
-                  control={control}
+                  <SelectHook
+                    name="select1" 
+                    control={control} 
+                    placeholder='Şehir Seçiniz'
+                    size='medium'
+                    items={Turkiye}
+                    id='label'
+                    label='value'
                 />
           </div>
+
+      {/** 
+       
           <div className="w-full">
               <h3 className='text-md'>Select</h3>
               <SelectHook
@@ -182,6 +184,7 @@ export const Forms = () => {
                   placeholder='Şehir Seçiniz'
                   size='medium'
                   id='value'
+                  label='value'
                   removable
                   border
                   items={Turkiye}
@@ -194,6 +197,8 @@ export const Forms = () => {
                   name='select3'
                   placeholder='Araç Markası Seçiniz'
                   size='small'
+                  id='slug'
+                  label='value'
                   items={tagItems}
                   removable
                   mini
@@ -201,7 +206,9 @@ export const Forms = () => {
                   control={control}
                 />
           </div>
+       */}
       </div>
+
       <div className='grid grid-cols-2 gap-2 my-5 '>
         
             <div className="w-full">
@@ -397,7 +404,7 @@ export const Elements = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appendeds</h3>
-            <Input
+            <InputAppend
                 className=' '
                 value={value}
                 placeholder='Hacim - Alan Belirtiniz'
@@ -409,7 +416,7 @@ export const Elements = () => {
         </div>
         <div className="w-full">
             <h3 className='text-md'>Input Appended</h3>
-            <Input
+            <InputAppend
                 className=' '
                 value={value}
                 placeholder='Ağırlık Belirtiniz'
@@ -421,15 +428,18 @@ export const Elements = () => {
         </div>
       
       </div>
-      <div className='grid grid-cols-3 gap-2 my-5 '>
-      <div className="w-full">
+    
+    {/** 
+        <div className='grid grid-cols-3 gap-2 my-5 '>
+        <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
               <Select
                   className=' '
                   value={value}
                   placeholder='Şehir Seçiniz'
                   size='medium'
-                  id='label'
+                  id='value'
+                  label='value'
                   removable
                   searchable
                   border
@@ -444,7 +454,8 @@ export const Elements = () => {
                   value={value}
                   placeholder='Şehir Seçiniz'
                   size='medium'
-                  id='label'
+                  id='value'
+                  label='value'
                   removable
                   border
                   items={Turkiye}
@@ -458,6 +469,8 @@ export const Elements = () => {
                   value={value}
                   placeholder='Araç Markası Seçiniz'
                   size='small'
+                  id='slug'
+                  label='value'
                   items={tagItems}
                   removable
                   mini
@@ -466,6 +479,8 @@ export const Elements = () => {
                 />
           </div>
       </div>
+     */}
+
       <div className='grid grid-cols-2 gap-2 my-5 '>
         
             <div className="w-full">

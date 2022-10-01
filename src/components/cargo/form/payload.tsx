@@ -5,6 +5,7 @@ import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";
 import { currencies, definitions, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
 import { InputAppendHook, InputGroupHook } from "@shared/elements/hooks";
+import Turkiye from '@utils/dummy/turkiye.json'
 
 
 
@@ -109,13 +110,14 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Kdv Durumu">
                     <SelectHook 
-                        name="p9" 
+                        name="fee.vat" 
                         control={control} 
                         items={vatOptions} 
                         id="value" 
                         label="label" 
                         placeholder="Kdv Durumu Seçiniz"
                     />
+                
                 </TitleFrame>
             </div>
 

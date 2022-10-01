@@ -14,7 +14,8 @@ export const SelectHook = (props:any) => {
             field: { onChange, onBlur, value, name, ref },
             fieldState: { isTouched, isDirty, error },
             formState,
-        }) => (
+        }) => 
+        (
             <Select 
                 {...props} 
                 value={value}
@@ -23,7 +24,8 @@ export const SelectHook = (props:any) => {
                 onChange={onChange}
                 size={props.size||'medium'}
             />
-        )}
+        )
+    }
     />
     )
 }

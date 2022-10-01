@@ -35,7 +35,7 @@ export const Tag = ({
   appendix,
 }:any) => {
     const select = (val:string) => {
-        return items.find((f:any)=> f[id] === val )
+        return items.find((f:any)=> f[id] === val )||null
     }
     const selections = (vals:string[]) => {
         let selects:any = []

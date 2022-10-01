@@ -4,8 +4,8 @@ import Outside from "@utils/useoutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { TagAppend } from "./tags";
-import slugify from "slugify";
 import classNames from "classnames";
+import { slugify } from "@utils/helper";
 
 export const Select = ({ 
   size,
@@ -35,10 +35,14 @@ export const Select = ({
 }:any) => {
    const lower = {lower:true};
    const select = (val:string) => {
-    return data.find((f:any)=> slugify(String(f[id||'slug']), lower) 
-      ===
-      slugify(String(val),lower) || {}
-      )[label] || null;
+  const item = data.find((f:any)=> {
+      return slugify(f[id]) 
+      ==
+      slugify(val) 
+      }
+    )
+    return item ? item[label] : null;
+ 
    }
 
    const [active, setActive] = React.useState(false);
@@ -111,7 +115,7 @@ export const Select = ({
                   size={'medium'}
                   mini
                   selected={selected}
-                  placeholder={data.find((f:any)=>f.slug===value)[label]}
+                  placeholder={data.find((f:any)=>f[id]===value||{})[label]}
                   name={name}
                   color='text-gray-700'
                 />
@@ -149,16 +153,17 @@ export const Select = ({
                <SimpleBar style={{ maxHeight: '200px' }}>
                 {data
                 .filter((f:any)=>{
-                  const isValue = slugify(f[label], {lower:true}).includes(query)
-                  const lower = f[label].toLowerCase().includes(query)
-                  const isLabel = slugify(f[label], {lower:true}).includes(query)
-                  const capitalizedLetter = f[label].includes(query)
-                  const capitalized = f[label].includes(query)
+                  if(!f) return;  
+                  const isValue = slugify(f[label]).includes(query)
+                  const lower = slugify(f[label]).includes(query)
+                  const isLabel = slugify(f[label]).includes(query)
+                  const capitalizedLetter = slugify(f[label]).includes(query)
+                  const capitalized = slugify(f[label]).includes(query)
                   return lower || isValue || isLabel||capitalizedLetter||capitalized;
                 })
                 ?.map((item:any,i:number)=>{
 
-                const selectedValue = slugify(String(item[id||'slug']),lower);
+                const selectedValue = slugify(item[id]);
                 return (
                     <li key={`select-item-${i}`} 
                     className={classNames(
