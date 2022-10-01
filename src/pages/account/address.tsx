@@ -16,7 +16,8 @@ import { getPlace } from "@utils/googleViewer";
 import Classic from "@shared/modals/classic";
 import { addresses } from "@utils/mock";
 import { FloatingInput } from "@shared/elements/inputs";
-declare var google:any;
+import classNames from "classnames";
+ declare var google:any;
 
 export const Address = () => {
     return (
@@ -112,7 +113,7 @@ export const AddressCreate = () => {
                               </div>
                              <FloatLabelHook name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                         </div>
-                        <MapView />
+                        <MapView control={control} />
                         <div></div>
                     </div>
                 </form>
@@ -181,7 +182,7 @@ export const AddressList = () => {
 
 
 
-export const MapView = ({control}:any) => {
+export const MapView = ({control, border}:any) => {
     const mapRef = React.useRef(null);
     const [mapMarker, setMapMarker] = React.useState();
     React.useEffect(() => {
@@ -326,39 +327,39 @@ export const MapView = ({control}:any) => {
           };
     
           initializeGoogleMap(loadMap);
-      }, []);
+    }, []);
   
-      const handleSelected = async () => {
-        // @ts-ignore
-        const pos = mapMarker?.getPosition();
-        
-        if (pos && pos.lat instanceof Function && pos.lng instanceof Function) {
-          if (true) {
+    const handleSelected = async () => {
+      // @ts-ignore
+      const pos = mapMarker?.getPosition();
+      
+      if (pos && pos.lat instanceof Function && pos.lng instanceof Function) {
+        if (true) {
 
-            const place:any = await getPlace(pos.lat(), pos.lng())
-  
-            const data = { 
-              geolocation: { lat: pos.lat(), lng: pos.lng() }, 
-              direction:{
-                city:(String(place.cityAlt)||String(place.city))?.toLowerCase()||null,
-                country:{
-                  code:place.countryCode,
-                  name:place.country,
-                },
-                // zip:'',
-                // province:'',
-                // town:'',
-                // district:'',
-              }          
-            }
-            
-  
-            // console.log('place', place)
-            // console.log(pos.lat(), pos.lng())
-  
-          }  
+          const place:any = await getPlace(pos.lat(), pos.lng())
+
+          const data = { 
+            geolocation: { lat: pos.lat(), lng: pos.lng() }, 
+            direction:{
+              city:(String(place.cityAlt)||String(place.city))?.toLowerCase()||null,
+              country:{
+                code:place.countryCode,
+                name:place.country,
+              },
+              // zip:'',
+              // province:'',
+              // town:'',
+              // district:'',
+            }          
+          }
+          
+
+          // console.log('place', place)
+          // console.log(pos.lat(), pos.lng())
+
         }  
-      };
+      }  
+    };
     
     const [ value, setValue ] = React.useState('')
 
@@ -380,7 +381,10 @@ export const MapView = ({control}:any) => {
                 
                 **/}
                 <input
-                    className="w-full rFS rounded-md h-[4em] p-3"
+                    className={classNames(
+                      'w-full rFS rounded-md h-[4em] p-3',
+                      {'border':border}
+                    )}
                     placeholder={'Adres, Yer veya Koordinat Giriniz'}
                   />
                   
