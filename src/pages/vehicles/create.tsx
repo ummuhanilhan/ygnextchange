@@ -163,6 +163,7 @@ export const VehicleCreate = () => {
                             control={control}
                             className=' bg-white'
                             size='medium'
+                            selectionMode='range'
                         />
                     </TitleFrame>   
 
@@ -175,6 +176,7 @@ export const VehicleCreate = () => {
                             control={control}
                             className=' bg-white'
                             size='medium'
+
                         />
                     </TitleFrame>   
 

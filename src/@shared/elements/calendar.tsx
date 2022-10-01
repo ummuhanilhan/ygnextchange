@@ -10,7 +10,6 @@ export const CalendarBasic = ({
     placeholder,
     onBlur,
     error,
-    selectionMode,
     ...rest
 }:any) => {
     const defaults = (data:any) =>{
@@ -45,7 +44,6 @@ export const CalendarBasic = ({
               
             }}
             placeholder={placeholder||'Tarih Seçiniz'}
-            selectionMode='range'
         />
         <div 
         onClick={()=>calendarRef?.current?.focus()}
