@@ -1,4 +1,4 @@
-- ✅ cargo create buttons
+- ✅ cargo create buttons (skipped)
+- ✅ maps (maybe later, google current dropdown css can changeable)
 - file upload component err
 - responsive
-- maps
