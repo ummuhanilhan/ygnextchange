@@ -269,7 +269,6 @@ export const SelectHook = ({
     size,
     ...rest
 }:any) => {
-
     return (
         <Controller
         control={control}
@@ -429,11 +428,11 @@ export const InputGroupHook = ({
             <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
                 <SelectHook
                     {...rest}
-                    name={`${name}.weight`}
+                    name={`${name}.unit`}
                     items={items} 
                     control={control} 
-                    id={id||'label'}
-                    label={label}
+                    id={id||'value'}
+                    label={label||'label'}
                     size={size||'medium'}
                 />
             </div>
@@ -464,7 +463,7 @@ export const InputAppendHook = ({
             )}>
                 <Controller
                     control={control}
-                    name={`${name}.weight`}
+                    name={`${name}.size`}
                     render={({
                         field: { onChange, onBlur, value, name, ref },
                         fieldState: { isTouched, isDirty, error },
@@ -487,11 +486,11 @@ export const InputAppendHook = ({
             <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
                 <SelectHook
                     {...rest}
-                    name={`${name}.measure`}
+                    name={`${name}.unit`}
                     items={items} 
                     control={control} 
-                    id={id||'label'}
-                    label={label}
+                    id={id||'value'}
+                    label={label||'label'}
                     size={size||'medium'}
                 />
             </div>

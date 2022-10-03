@@ -145,9 +145,11 @@ export const Select = ({
     error, 
     items, 
     id,
-    success
+    success,
+    value, 
+    onChange
   }:any) => {
-       const [selected, setSelected] = React.useState(items[0][id]);
+       const [selected, setSelected] = React.useState(value || items[0][id]);
       const [active, setActive] = React.useState(false);
       const [open, setOpen] = React.useState(false);
       const [data, setData] = React.useState(items);

@@ -25,7 +25,7 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Yük Tanımı">
                     <InputHook
-                        name="payload.define"
+                        name="payload.definition"
                         className=' bg-white'
                         placeholder='Yükünüzü Kısaca Tanımlayınız'
                         size='medium'
@@ -35,7 +35,7 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Yükleme Şekli">
                     <SelectHook 
-                        name="payload.transport" 
+                        name="payload.transport.load" 
                         control={control} 
                         placeholder="Yükleme Şeklini Seçiniz" 
                         size='medium'
@@ -46,7 +46,7 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Şekli">
                 <SelectHook 
-                        name="payload.transport2" 
+                        name="payload.transport.unload" 
                         control={control} 
                         placeholder="Boşaltma Şeklini Seçiniz" 
                         className=' '
@@ -61,7 +61,7 @@ export const Payload = ({control}:any) => {
             <div className='flex justify-between gap-2'>
                 <TitleFrame title="Ağırlık" className='w-96'>
                     <InputAppendHook
-                        name='payload.measurement'
+                        name='payload.weight'
                         placeholder='Ağırlık Belirtiniz'
                         size='medium'
                         items={weightUnits}
@@ -71,14 +71,14 @@ export const Payload = ({control}:any) => {
                 <TitleFrame title="Ebat" className=''>
                     <div className='grid grid-cols-2 gap-2'>
                         <InputAppendHook
-                            name='volume'
+                            name='payload.volume'
                             placeholder="Hacim - Alan Belirtiniz"
                             size='medium'
                             items={meterUnits}
                             control={control}
                         />
                         <InputGroupHook
-                            name='group1'
+                            name='payload.dimensions'
                             items={weightUnits}
                             control={control}
                         />

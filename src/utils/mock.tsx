@@ -431,33 +431,27 @@ export const item: any = {
     payload: {
       bargain: true,
       type: "yük cinsi",
-      define: "yük tanımı",
+      definition: "yük tanımı",
       transport: {
-        load:'62d4d9d53e2b94b92fc29003',
-        unload:'62d4d9d53e2b94b92fc29003',
+        load:'62b14d9d7810ae9b35ea4b09',
+        unload:'62b14d9d7810ae9b35ea4b0d',
       },
       package:null,
       stow:false,
       porter:false,
       weight:{
-        size:'',
-        unit:'m',
-      },
-      length:{
-        size:'',
-        unit:'m',
-      },
-      width:{
-        size:'',
-        unit:'m',
-      },
-      height:{
-        size:'',
-        unit:'m',
+        size:'325.968',
+        unit:'ton',
       },
       volume:{
-        size:'',
-        unit:'m³',
+        size:'77.23',
+        unit:'cm', // ³
+      },
+      dimensions:{
+        length:'259.735',
+        width:'921,33',
+        height:'77,550',
+        unit:'kg',
       },
       tonnage:{
           range:'',
