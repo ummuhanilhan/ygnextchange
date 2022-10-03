@@ -61,7 +61,7 @@ export const Payload = ({control}:any) => {
             <div className='flex justify-between gap-2'>
                 <TitleFrame title="Ağırlık" className='w-96'>
                     <InputAppendHook
-                        name='payload.measurement.weight'
+                        name='payload.measurement'
                         placeholder='Ağırlık Belirtiniz'
                         size='medium'
                         items={weightUnits}
@@ -90,20 +90,20 @@ export const Payload = ({control}:any) => {
             <div className='grid grid-cols-3 gap-2'>
                 <TitleFrame title="Ödeme Şekli">
                     <SelectHook 
+                        name="fee.paymethod" 
                         items={paymentMethods}
                         id="value" 
                         label="label" 
-                        name="p7" 
                         control={control} 
                         placeholder="Ödeme Şekli Seçiniz"
                     />
                 </TitleFrame>
                 <TitleFrame title="Para Birimi">
                     <SelectHook 
+                        name="fee.currency" 
                         items={currencies} 
                         id="value" 
                         label="label" 
-                        name="p8" 
                         control={control} 
                         placeholder="Para Birimi Seçiniz"
                     />

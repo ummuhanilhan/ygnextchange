@@ -1,8 +1,8 @@
 - ✅ cargo create buttons (skipped)
 - ✅ maps (maybe later, google current dropdown css can changeable)
-- calendar variations
+- ✅ calendar variations
+- cargo form updatable & staticProps
++ input errors 
 - file upload component err
 - responsive
-+ input errors 
-- cargo form updatable & staticProps
-- redux impş
+- redux impl

@@ -464,7 +464,7 @@ export const InputAppendHook = ({
             )}>
                 <Controller
                     control={control}
-                    name={`${name}.size`}
+                    name={`${name}.weight`}
                     render={({
                         field: { onChange, onBlur, value, name, ref },
                         fieldState: { isTouched, isDirty, error },
@@ -487,7 +487,7 @@ export const InputAppendHook = ({
             <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
                 <SelectHook
                     {...rest}
-                    name={`${name}.unit`}
+                    name={`${name}.measure`}
                     items={items} 
                     control={control} 
                     id={id||'label'}

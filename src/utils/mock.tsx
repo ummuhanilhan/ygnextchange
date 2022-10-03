@@ -434,6 +434,37 @@ export const item: any = {
         measure: "ton",
         weight: "3500",
       },
+      feature:{
+        package:null,
+        stow:false,
+        porter:false,
+        length:{
+          size:'',
+          unit:'m',
+        },
+        width:{
+          size:'',
+          unit:'m',
+        },
+        height:{
+          size:'',
+          unit:'m',
+        },
+        volume:{
+          size:'',
+          unit:'m³',
+        },
+        tonnage:{
+           range:'',
+        },
+        freight:{
+          density:0,
+          volume:0,
+        },
+        load:{
+          meter:'',
+        }
+      },
       type: "yük cinsi",
       define: "yük tanımı",
       transport: "62d4d9d53e2b94b92fc29003",
@@ -447,7 +478,7 @@ export const item: any = {
       },
       paymethod: "credit",
       currency: "usd",
-      vat: "exclude",
+      vat: 'exclude',
     },
     publish: {
       start: {

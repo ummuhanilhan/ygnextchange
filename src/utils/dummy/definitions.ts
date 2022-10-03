@@ -1,12 +1,12 @@
 
 export const weightUnits = [
-  { label: "KG", value: "KG" },
-  { label: "TON", value: "TON" },
+  { label: "KG", value: "kg" },
+  { label: "TON", value: "ton" },
 ];
 
 export const meterUnits = [
-  { label: "m", value: "M" },
-  { label: "cm", value: "CM" },
+  { label: "m", value: "m" },
+  { label: "cm", value: "cm" },
 ];
 
 export const currencies = [
@@ -24,8 +24,8 @@ export const paymentMethods = [
 ];
 
 export const vatOptions = [
-  { label: "KDV Dahil", value: true },
-  { label: "KDV Hariç", value: false },
+  { label: "KDV Dahil", value: 'include' },
+  { label: "KDV Hariç", value: 'exclude' },
 ];
 
 export const typeOptions = [
@@ -34,9 +34,9 @@ export const typeOptions = [
 ];
 
 export const unloadOptions = [
-  { label: "1 Gün", value: "1 Gün" },
-  { label: "1-3 Gün İçerisinde", value: "1-3 Gün İçerisinde" },
-  { label: "Diğer", value: "Diğer" },
+  { label: "1 Gün", value: "1day" },
+  { label: "1-3 Gün İçerisinde", value: "1-3day" },
+  { label: "Diğer", value: "other" },
 ];
 
 export const startOptions = [
