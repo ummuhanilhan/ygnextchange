@@ -9,8 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { FloatLabelHook } from "@shared/elements/hooks";
 import { MapView } from "@pages/account/address";
-
-
+import classNames from "classnames"; 
 
 export const Datetime = ({control}:any) => {
 
@@ -63,7 +62,21 @@ export const AddressBox = () => {
     return(
        <React.Fragment>
         {/** Create new one  */}
-         <Classic status={newStatus} close={setNew} >
+         <Classic status={newStatus} close={setNew} 
+            styles={{
+                height:'fit-content',
+                left:'20%',
+                right:'20%',
+                borderRadius:'10px',
+                overflow:'visible'
+            }}
+            overlay={{
+                backgroundColor:'rgba(0, 0, 0, 0.8)',
+                WebkitBackdropFilter: 'blur(0)',
+                backdropFilter: 'blur(0)',
+
+            }}
+         >
             <CreateAddressModal />
         </Classic>
         {/** List old records  */}
@@ -73,7 +86,6 @@ export const AddressBox = () => {
         <div className='bg-white p-3 h-32 flex flex-col justify-between'>
 
             <p className='text-gray-400'>Yükün Yükleneceği Konumu Seçiniz</p>
-
 
             <div className="w-full flex justify-end mt">
                 <div className="bg-yg-orange p-2 px-4 text-white rounded-md  
@@ -109,7 +121,8 @@ export const CreateAddressModal = ({className}:any) => {
     };
     return(
         <React.Fragment>
-               <form onSubmit={handleSubmit(onSubmit, onError)} className={className}>
+               <form onSubmit={handleSubmit(onSubmit, onError)} 
+               className={classNames('p-3',className)}>
                     <div className="grid grid-cols-2 gap-2">
                         <FloatLabelHook border name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
                         <FloatLabelHook border name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />

@@ -430,44 +430,45 @@ export const item: any = {
     },
     payload: {
       bargain: true,
-      measurement: {
-        measure: "ton",
-        weight: "3500",
-      },
-      feature:{
-        package:null,
-        stow:false,
-        porter:false,
-        length:{
-          size:'',
-          unit:'m',
-        },
-        width:{
-          size:'',
-          unit:'m',
-        },
-        height:{
-          size:'',
-          unit:'m',
-        },
-        volume:{
-          size:'',
-          unit:'m³',
-        },
-        tonnage:{
-           range:'',
-        },
-        freight:{
-          density:0,
-          volume:0,
-        },
-        load:{
-          meter:'',
-        }
-      },
       type: "yük cinsi",
       define: "yük tanımı",
-      transport: "62d4d9d53e2b94b92fc29003",
+      transport: {
+        load:'62d4d9d53e2b94b92fc29003',
+        unload:'62d4d9d53e2b94b92fc29003',
+      },
+      package:null,
+      stow:false,
+      porter:false,
+      weight:{
+        size:'',
+        unit:'m',
+      },
+      length:{
+        size:'',
+        unit:'m',
+      },
+      width:{
+        size:'',
+        unit:'m',
+      },
+      height:{
+        size:'',
+        unit:'m',
+      },
+      volume:{
+        size:'',
+        unit:'m³',
+      },
+      tonnage:{
+          range:'',
+      },
+      freight:{
+        density:0,
+        volume:0,
+      },
+      load:{
+        meter:'',
+      }
     },
     fee: {
       manual: false,
@@ -581,18 +582,6 @@ export const addresses = [
 ]
 
 export const feature: any = {
-    package: null,
-    tonnageRange: null,
-    freightDensity: 0,
-    freightVolume: 0,
-    loadingMeter: 0,
-    porter: false,
-    stow: false,
-    height: 0,
-    weight: 555,
-    volume: 0,
-    length: 0,
-    width: 0,
     heightUnit: "M",
     weightUnit: "TON",
     volumeUnit: "M3",

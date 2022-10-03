@@ -5,10 +5,11 @@ type props = {
     status?:boolean,
     close:Function,
     title?:string,
+    overlay?:any,
     styles?:any,
     children?:any,
 }
-const Classic = ({status, close, title, styles, children}:props) => {
+const Classic = ({status, close, title, styles, overlay, children}:props) => {
     const closeModal = (e: React.MouseEvent) => {
       e.preventDefault()
       close(false);
@@ -25,6 +26,7 @@ const Classic = ({status, close, title, styles, children}:props) => {
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         WebkitBackdropFilter: 'blur(3px)',
         backdropFilter: 'blur(5px)',
+        ...overlay,
       },
       content: {
         position: 'absolute',
