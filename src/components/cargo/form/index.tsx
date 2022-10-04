@@ -25,12 +25,8 @@ const initialValues = {
     ...defaultItem,
     'rent.type': 'parsiel',
     'rent.vehicle': 'trailer',
-    shipping:{
-        range:[
-            '14/05/2020',
-            '19/09/2025'
-        ]
-    }
+    // 'shipping.range': [ '14/05/2020', '19/09/2025' ],
+   
 }
 
 export const CargoCreate = ({update}:any) => {

@@ -1,7 +1,6 @@
 import moment from 'moment';
 import { Calendar } from 'primereact/calendar';
 import React, { createRef, useRef, useState } from 'react';
-
 export const CalendarBasic = ({
     name,
     value,
@@ -12,18 +11,17 @@ export const CalendarBasic = ({
     error,
     ...rest
 }:any) => {
-    const defaults = (data:any) =>{
-      if(typeof data == 'string') return new Date(data)
-      if(data?.length==1) return [new Date(data[0]) ] 
-      if(data?.length==2) return [new Date(data[0]), new Date(data[1])]
-      if(data?.length>2) //...
+    const defaults = (d:any) =>{
+      if(d && typeof d == 'string') return [format(d) ]
+      if(d && d?.length==1) return [format(d[0]) ] 
+      if(d && d?.length==2) return [format(d[0]), format(d[1])]
+      if(d && d?.length>2) //...
       return undefined; 
-    
     }
-    
     const calendarRef = useRef<any>(null);
-    const [date, setDate] = React.useState<Date | Date[] | undefined>(defaults(value))
-     return (
+    const [date, setDate] = React.useState(defaults(value)) 
+    
+      return (
       <div className='relative bg-white rounded-md w-full h-[4em] flex items-center'>
         <Calendar
             {...rest}
@@ -35,12 +33,13 @@ export const CalendarBasic = ({
             onChange={(e:any)=>{
               const dates = e.target.value;
               const stringified = [
-                dates[0]?.toString(),
-                dates[1]?.toString()
+                moment(dates[0]).format('DD/MM/YYYY'),
+                moment(dates[1]).format('DD/MM/YYYY')
               ];
             
-              setDate(dates)
-              onChange(stringified)
+              setDate(dates) 
+              console.log('str:',stringified)
+              onChange(dates)
               
             }}
             placeholder={placeholder||'Tarih Seçiniz'}
@@ -51,4 +50,9 @@ export const CalendarBasic = ({
       </div>
 
     )
+}
+
+const format = (date:any)=>{
+  if(!date) return;
+  return new Date(moment(date, 'DD-MM-YYYY').format())
 }

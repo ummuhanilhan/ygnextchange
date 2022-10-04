@@ -35,14 +35,13 @@ export const Select = ({
 }:any) => {
    const lower = {lower:true};
    const select = (val:string) => {
-  const item = data.find((f:any)=> {
+      const item = data.find((f:any)=> {
       return slugify(f[id]) 
       ==
       slugify(val) 
       }
     )
     return item ? item[label] : null;
- 
    }
 
    const [active, setActive] = React.useState(false);

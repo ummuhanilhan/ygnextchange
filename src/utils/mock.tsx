@@ -373,8 +373,8 @@ export const item: any = {
       ],
     },
     shipping: {
-      range: ["2022-07-05T21:00:00.000Z", null],
-      time: "other",
+      range:  [ '14/05/2020', '14/05/2025' ],
+      time: "62b14d9d7810ae9b35ea4b27", // other
       "time-custom": "93 sene sonra",
       load: {
         geolocation: {

@@ -30,7 +30,6 @@ export const Datetime = ({control}:any) => {
                         name="shipping.time" 
                         control={control} 
                         placeholder="Gün Aralığı Seçiniz" 
-                        className=' '
                         size='medium'
                         id='_id'
                         label='name'

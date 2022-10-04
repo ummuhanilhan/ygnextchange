@@ -8,8 +8,8 @@ export const SelectHook = (props:any) => {
 
     return (
         <Controller
-        control={props.control}
         name={props.name}
+        control={props.control}
         render={({
             field: { onChange, onBlur, value, name, ref },
             fieldState: { isTouched, isDirty, error },
