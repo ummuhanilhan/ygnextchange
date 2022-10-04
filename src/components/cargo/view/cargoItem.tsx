@@ -12,21 +12,19 @@ export const CargoItem = ({item, actionType='' }:any) => {
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
             {'grayscale': item.progress=='outdated'}
         )}>
-            <div className="flex justify-between">
-                <div className="flex items-start">
+            <div className="flex flex-col lg:flex-row justify-between">
+                <div className="flex flex-col-reverse items-start">
 
                     <div className="tag rounded-lg p-1 px-3 border border-1 
-                    border-yg-blue m-r2 flex items-start w-max"> 
+                    border-yg-blue m-r2 flex flex-col lg:flex-row items-start w-max"> 
                         <People className='fill-yg-blue' width={20} /> 
                         <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
                     </div>
                     <div className="flex items-start justify-center">
-                        <div className="hidden flex flex-start mx-1 ml-2">
+                        <div className="hidden flex flex-col lg:flex-row flex-start mx-1 ml-2">
                             <PinAngle width={15} />
                             <p className='ml-1'> İlan No: 25959 </p>
                         </div>
-                        
-
                         <Geo width={20} className='fill-yg-blue ml-1' />
                         <p className='text-gray-500 pl-1'>Ankara</p>
                         <ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' />
@@ -38,32 +36,34 @@ export const CargoItem = ({item, actionType='' }:any) => {
                         <CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml-1' />}
                         <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
                     </div>
+
                 </div>
+
                 <div className='flex items-end flex-col'>
                     <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
                     <p className='text-gray-400 text-sm'>({item.vat?'KDV Dahil':'+KDV'})</p>
                 </div>
             </div>
-            <div className="flex justify-between mt-[-1em]">
+            <div className="flex flex-col lg:flex-row justify-between mt-[-1em]">
                 <div className={classNames({
                      'mt-6-':item.tax 
                 })}>
-                    <ul className='mt-1'>
-                        <li className='flex items-start'>
+                    <ul className='mt-1 grid grid-cols-2'>
+                        <li className='flex flex-col lg:flex-row items-start'>
                             <Calendar width={17} className='fill-yg-blue mr-2 mb-1' />
                             <p className="text-yg-blue text-sm mr-2">Yükleme Tarihi:</p>
                              <p className='text-gray-400 text-sm'>{item.date}</p> </li>
-                        <li className='flex items-start'>
+                        <li className='flex flex-col lg:flex-row items-start'>
                             <Clock width={17} className='fill-yg-blue mr-2 mb-1' />
                             <p className="text-yg-blue text-sm mr-2">Boşaltma Zamanı:</p>
                              <p className='text-gray-400 text-sm'>{item.time}</p> </li>
                     </ul>
-                    <ul className='flex items-start'>
-                        <li className='flex items-start'>
+                    <ul className='grid grid-cols-2 lg:flex flex-col lg:flex-row items-start'>
+                        <li className='flex flex-col lg:flex-row items-start'>
                             <Truck width={17} className='fill-yg-blue mr-2 mb-1' />
                             <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
                              <p className='text-gray-400 text-sm'>{item.vehicle}</p> </li>
-                        <li className='flex items-start ml-8'>
+                        <li className='flex flex-col lg:flex-row items-start ml-8'>
                             <Capslock width={17} className='fill-yg-blue mr-2 mb-1' />
                              <p className='text-gray-400 text-sm'>{item.weight}</p> </li>
                     </ul>

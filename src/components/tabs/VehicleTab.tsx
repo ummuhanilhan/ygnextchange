@@ -7,7 +7,7 @@ export const VehicleTab = ({selected, setSelected, change}:any) => {
 
     const router = useRouter();
     return (
-        <ul className="grid grid-cols-3 gap-3 vehicle-tab tabs">
+        <ul className="grid grid-cols-1 lg:grid-cols-3 lg:gap-3 vehicle-tab tabs">
             {vehicleTabMenu.map((item:any, i:number)=>(
                 <li 
                 key={`vehicle-menu-${i}`} 

@@ -16,7 +16,7 @@ export const Tabs = ({
     return (
         <ul className={classNames(
             'grid tabs',
-            `grid-cols-${data?.length} gap-${data?.length}`,
+            `grid-cols-1 lg:grid-cols-${data?.length} lg:gap-${data?.length}`,
             `${type}-tab`
         )}>
             {data?.map((item:any, i:number)=>(

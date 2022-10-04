@@ -13,7 +13,7 @@ export const Payload = ({control}:any) => {
 
     return (
         <React.Fragment>
-            <div className='grid grid-cols-2 gap-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                 <TitleFrame title="Yük Cinsi">
                     <InputHook
                         name="payload.type"
@@ -58,8 +58,8 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
             </div>
 
-            <div className='flex justify-between gap-2'>
-                <TitleFrame title="Ağırlık" className='w-96'>
+            <div className='grid grid-cols-1 lg:flex justify-between gap-2'>
+                <TitleFrame title="Ağırlık" className='lg:w-96'>
                     <InputAppendHook
                         name='payload.weight'
                         placeholder='Ağırlık Belirtiniz'
@@ -69,7 +69,7 @@ export const Payload = ({control}:any) => {
                     />
                 </TitleFrame>
                 <TitleFrame title="Ebat" className=''>
-                    <div className='grid grid-cols-2 gap-2'>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                         <InputAppendHook
                             name='payload.volume'
                             placeholder="Hacim - Alan Belirtiniz"
@@ -87,7 +87,7 @@ export const Payload = ({control}:any) => {
             </div>
 
 
-            <div className='grid grid-cols-3 gap-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>
                 <TitleFrame title="Ödeme Şekli">
                     <SelectHook 
                         name="fee.paymethod" 
@@ -122,7 +122,7 @@ export const Payload = ({control}:any) => {
             </div>
 
                 <TitleFrame title="Ücret Hesaplayıcı">
-                     <div className='grid grid-cols-3 gap-2'>   
+                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
                             <SelectHook 
                                 name="payment.type" 
                                 control={control} 

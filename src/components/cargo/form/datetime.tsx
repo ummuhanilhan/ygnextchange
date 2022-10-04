@@ -16,7 +16,7 @@ export const Datetime = ({control}:any) => {
     return (
         <React.Fragment>
 
-            <div className='grid grid-cols-2 gap-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                 <TitleFrame title="Yükleme Tarih Aralığı">
                 <CalendarHook 
                         name="shipping.range" 
@@ -38,7 +38,7 @@ export const Datetime = ({control}:any) => {
                 </TitleFrame>
             </div>
 
-            <div className='grid grid-cols-2 gap-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                 <TitleFrame title="Yükleme Adresi">
                     <AddressBox />
                 </TitleFrame>
@@ -122,15 +122,15 @@ export const CreateAddressModal = ({className}:any) => {
         <React.Fragment>
                <form onSubmit={handleSubmit(onSubmit, onError)} 
                className={classNames('p-3',className)}>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                         <FloatLabelHook border name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
                         <FloatLabelHook border name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
                     </div>
-                    <div className='grid grid-cols-2 gap-2'>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                         <div>
                               <FloatLabelHook border name="address_detail" type="text" 
                               placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
-                              <div className='grid grid-cols-2 gap-2'>
+                              <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                                   <SelectHook
                                         name='direction.city'
                                         placeholder='İl Seçiniz'

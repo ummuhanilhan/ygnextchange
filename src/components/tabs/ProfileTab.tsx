@@ -9,7 +9,7 @@ export const ProfileTab = ({change}:any) => {
 
     const router = useRouter();
     return (
-        <ul className="grid grid-cols-5 gap-3 profile-tab tabs">
+        <ul className="grid grid-cols-1 lg:grid-cols-5 lg:gap-3 profile-tab tabs">
             {profileTabMenu.map((item:any, i:number)=>(
                 <li 
                 key={`profile-menu-${i}`} 

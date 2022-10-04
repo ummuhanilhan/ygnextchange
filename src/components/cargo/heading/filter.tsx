@@ -7,7 +7,7 @@ import { Selectes } from "../view"
 export const FilterHeading = ({wide}:any) => {
 
     return (
-        <div className='heading grid grid-cols-2 gap-4'>
+        <div className='heading grid grid-cols-1 lg:grid-cols-2 gap-4'>
             <Search placeholder='İlan ara...' />
             <Dropdown 
                 className='py-3 px-5'
