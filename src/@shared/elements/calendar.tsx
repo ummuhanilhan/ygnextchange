@@ -36,11 +36,8 @@ export const CalendarBasic = ({
                 moment(dates[0]).format('DD/MM/YYYY'),
                 moment(dates[1]).format('DD/MM/YYYY')
               ];
-            
               setDate(dates) 
-              console.log('str:',stringified)
               onChange(dates)
-              
             }}
             placeholder={placeholder||'Tarih Seçiniz'}
         />

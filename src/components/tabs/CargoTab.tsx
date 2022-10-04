@@ -25,7 +25,8 @@ export const CargoTab = ({
 
     const router = useRouter();
     return (
-        <ul className="grid grid-cols-3 gap-3 cargo-tab tabs">
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3
+         sm:gap-3 cargo-tab tabs">
             {cargoCreateTabMenu.map((item:any, i:number)=>(
                 <li 
                 key={`cargo-menu-${i}`} 

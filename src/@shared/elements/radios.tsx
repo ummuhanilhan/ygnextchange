@@ -23,7 +23,7 @@ export const VehicleRadio = ({
     ...rest
 }:any) =>{
     return(
-        <ul className="w-full vehicle-icons">
+        <ul className="w-full vehicle-icons grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {vehicleMenu.map((item,i:number)=>(
                 <li 
                     onClick={()=>onChange(item.slug.toLocaleLowerCase())}

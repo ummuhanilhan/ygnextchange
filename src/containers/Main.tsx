@@ -12,9 +12,8 @@ export const MainContainer = ({children}:any) => {
       let blur  = mobile ? 'filter blur-sm':''
       let event = mobile ? 'pointer-events-none':''
 
-      
-    return (
-          <div className='h-screen flex items-start '>
+      const content = (
+        <div className='h-screen flex items-start '>
           <Outside cb={()=>setMobile(false)}>
               <div className={classNames(
                   'wrapper fixed h-screen p-4 z-10 lg:translate-x-0 transition ease-in-out delay-100',
@@ -24,7 +23,7 @@ export const MainContainer = ({children}:any) => {
             </div>
           </Outside>
 
-          <div className={classNames(blur, 'lg:ml-[325px] w-screen m-4 lg:blur-0')}>
+          <div className={classNames(blur, 'lg:ml-[325px] w-screen m-0 lg:blur-0')}>
             <Header  
               mobile={mobile}
               setMobile={setMobile}
@@ -35,6 +34,18 @@ export const MainContainer = ({children}:any) => {
           </div>
           {mobile && <div className="overlay"></div> }
         </div>
+      )
+      
+    return (
+       <React.Fragment>
+          <div className='p-4'>
+            <Header  
+              mobile={mobile}
+              setMobile={setMobile}
+            />
+          {children}
+          </div>
+       </React.Fragment>
      )
 }
 

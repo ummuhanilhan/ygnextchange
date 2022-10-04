@@ -37,13 +37,10 @@ export const CargoCreate = ({update}:any) => {
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
-        console.log(data)
-        alert(JSON.stringify(data))
+        console.log(data);
+        alert(JSON.stringify(data));
     };
-    const onError = (errors:any) => {
-        console.log(errors)
-
-    };
+    const onError = (errors:any) => { console.log(errors) };
 
     return (
         <CargoLayout 

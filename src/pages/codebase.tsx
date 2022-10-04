@@ -80,7 +80,7 @@ export const Forms = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <h1 className='text-3xl my-5 font-bold text-yg-orange'>REACT HOOKFORM</h1>
-      <div className='grid grid-cols-2 gap-2 my-5'>
+      <div className='grid sm:grid-cols-2 gap-2 my-5'>
          <div className="w-full">
          <h3 className='text-md'>Calendar</h3>
             <CalendarHook
@@ -100,7 +100,7 @@ export const Forms = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-2 my-5'>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
           <FileUploadHook 
             name="avatar" 
@@ -126,7 +126,7 @@ export const Forms = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-2 my-5 '>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5 '>
         
         <div className="w-full">
             <h3 className='text-md'>Dimensions</h3>
@@ -162,7 +162,7 @@ export const Forms = () => {
       
       </div>
   
-      <div className='grid grid-cols-3 gap-2 my-5 '>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5 '>
          <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
                   <SelectHook
@@ -210,7 +210,7 @@ export const Forms = () => {
        */}
       </div>
 
-      <div className='grid grid-cols-2 gap-2 my-5 '>
+      <div className='-grid sm:grid-cols-2 gap-2 my-5 '>
         
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
@@ -237,7 +237,7 @@ export const Forms = () => {
           
       </div>
 
-      <div className='flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start gap-2 mb-5 '>
         <div className='w-full'>
          <h3 className='tex-md'>Small</h3>
           <InputHook
@@ -280,7 +280,7 @@ export const Forms = () => {
         
       </div>
 
-      <div className='flex items-start gap-2 mb-5'>
+      <div className='-flex items-start gap-2 mb-5'>
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
           <PhoneHook
@@ -318,7 +318,7 @@ export const Forms = () => {
 
       </div>
 
-      <div className='flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start gap-2 mb-5 '>
             <TextareaHook
               name='textarea1'
               placeholder='Şirket Adresi'
@@ -349,7 +349,7 @@ export const Elements = () => {
     <React.Fragment>
     <h1 className='text-3xl my-5 font-bold text-yg-blue'>CUSTOM ELEMENT COMPONENTS</h1>
 
-      <div className='grid grid-cols-2 gap-2 my-5'>
+      <div className='grid sm:grid-cols-2 gap-2 my-5'>
          <div className="w-full">
          <h3 className='text-md'>Calendar</h3>
             <CalendarBasic />
@@ -364,12 +364,12 @@ export const Elements = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-2 my-5'>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-2 my-5'>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
           <Upload 
             name="avatar" 
@@ -392,7 +392,7 @@ export const Elements = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-2 my-5 '>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5 '>
         
         <div className="w-full">
             <h3 className='text-md'>Dimensions</h3>
@@ -431,7 +431,7 @@ export const Elements = () => {
       </div>
     
     {/** 
-        <div className='grid grid-cols-3 gap-2 my-5 '>
+        <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5 '>
         <div className="w-full">
               <h3 className='text-md'>Searchable Select</h3>
               <Select
@@ -482,7 +482,7 @@ export const Elements = () => {
       </div>
      */}
 
-      <div className='grid grid-cols-2 gap-2 my-5 '>
+      <div className='-grid sm:grid-cols-2 gap-2 my-5 '>
         
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
@@ -511,7 +511,7 @@ export const Elements = () => {
           
       </div>
 
-      <div className='flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start gap-2 mb-5 '>
         <div className='w-full'>
          <h3 className='tex-md'>Small</h3>
           <FloatingInput
@@ -554,7 +554,7 @@ export const Elements = () => {
         
       </div>
 
-      <div className='flex items-start gap-2 mb-5'>
+      <div className='-flex items-start gap-2 mb-5'>
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
           <FloatingPhone
@@ -595,7 +595,7 @@ export const Elements = () => {
 
       </div>
 
-      <div className='flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start gap-2 mb-5 '>
             <Textarea
               className=' '
               value={value}
