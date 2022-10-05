@@ -12,61 +12,77 @@ export const CargoItem = ({item, actionType='' }:any) => {
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
             {'grayscale': item.progress=='outdated'}
         )}>
-            <div className="flex flex-col lg:flex-row justify-between">
-                <div className="flex flex-col-reverse items-start">
-
-                    <div className="tag rounded-lg p-1 px-3 border border-1 
-                    border-yg-blue m-r2 flex flex-col lg:flex-row items-start w-max"> 
-                        <People className='fill-yg-blue' width={20} /> 
-                        <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
-                    </div>
-                    <div className="flex items-start justify-center">
-                        <div className="hidden flex flex-col lg:flex-row flex-start mx-1 ml-2">
+            <div className=''>
+                <div className='flex justify-between'>
+                    <div className='grid grid-cols-1'>
+                        
+                        <div className="tag rounded-lg p-1 px-2 border border-1 
+                        border-yg-blue mr-2 flex items-start"> 
+                            <People className='fill-yg-blue' width={20} /> 
+                            <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
+                        </div>
+                        <div className=" flex items-start my-1 mx-1 ml-2">
                             <PinAngle width={15} />
                             <p className='ml-1'> İlan No: 25959 </p>
                         </div>
-                        <Geo width={20} className='fill-yg-blue ml-1' />
-                        <p className='text-gray-500 pl-1'>Ankara</p>
-                        <ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' />
-                        <p className='text-gray-500 px-1'>Mersin</p>
-                        <Forward width={20} />
-                        <p className="ml-1 mr-3">{item.distance}</p>
-                        {item.type ? 
-                        <CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml-1' /> : 
-                        <CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml-1' />}
-                        <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
+
+
+
+                        <div className='flex items-start'>
+                            <div><Geo width={20} className='fill-yg-blue ml-1' /></div>
+                            <p className='text-gray-500 pl-1'>Ankara</p>
+                            <div><ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' /></div>
+                            <p className='text-gray-500 px-1'>Mersin</p>
+                        </div>
+                        <div className='flex items-start --ml-8'>
+                            <div><Forward width={20} /></div>
+                            <p className="ml-1 mr-3">{item.distance}</p>
+                        </div>
+                        <div className="flex items-start">
+                            {item.type ? 
+                            <div><CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml-1' /></div> : 
+                            <div><CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml-1' /></div> }
+                            <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
+                        </div>
+                        
                     </div>
-
-                </div>
-
-                <div className='flex items-end flex-col'>
-                    <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
-                    <p className='text-gray-400 text-sm'>({item.vat?'KDV Dahil':'+KDV'})</p>
-                </div>
+                    <div className='flex items-end flex-col'>
+                        <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
+                        <p className='text-gray-400 text-sm'>({item.vat?'KDV Dahil':'+KDV'})</p>
+                    </div>
+                  </div>
+                
             </div>
-            <div className="flex flex-col lg:flex-row justify-between mt-[-1em]">
+                            
+            <div className="flex flex-col lg:flex-row justify-between --mt-[-1em]">
                 <div className={classNames({
                      'mt-6-':item.tax 
                 })}>
-                    <ul className='mt-1 grid grid-cols-2'>
-                        <li className='flex flex-col lg:flex-row items-start'>
-                            <Calendar width={17} className='fill-yg-blue mr-2 mb-1' />
-                            <p className="text-yg-blue text-sm mr-2">Yükleme Tarihi:</p>
-                             <p className='text-gray-400 text-sm'>{item.date}</p> </li>
-                        <li className='flex flex-col lg:flex-row items-start'>
-                            <Clock width={17} className='fill-yg-blue mr-2 mb-1' />
-                            <p className="text-yg-blue text-sm mr-2">Boşaltma Zamanı:</p>
-                             <p className='text-gray-400 text-sm'>{item.time}</p> </li>
-                    </ul>
-                    <ul className='grid grid-cols-2 lg:flex flex-col lg:flex-row items-start'>
-                        <li className='flex flex-col lg:flex-row items-start'>
-                            <Truck width={17} className='fill-yg-blue mr-2 mb-1' />
-                            <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
-                             <p className='text-gray-400 text-sm'>{item.vehicle}</p> </li>
-                        <li className='flex flex-col lg:flex-row items-start ml-8'>
-                            <Capslock width={17} className='fill-yg-blue mr-2 mb-1' />
-                             <p className='text-gray-400 text-sm'>{item.weight}</p> </li>
-                    </ul>
+                
+                <ul className='mt-1 grid grid-cols-1'>
+                    <li className='flex w-screen mb-1 mt-2'>
+                        <div><Calendar width={17} className='fill-yg-blue mr-2 mb-1' /></div>
+                        <p className="text-yg-blue text-sm mr-2">Yükleme Tarihi:</p>
+                        <p className='text-gray-400 text-sm'>{item.date}</p>
+                     </li>
+                    <li className='flex w-screen mb-1'>
+                        <div> <Clock width={17} className='fill-yg-blue mr-2 mb-1' /></div>
+                        <p className="text-yg-blue text-sm mr-2">Boşaltma Zamanı:</p>
+                        <p className='text-gray-400 text-sm'>{item.time}</p>
+                    </li>  
+                </ul>
+                <ul className='mt-1 grid grid-cols-1'>
+                <li className='flex w-screen mb-1'>
+                    <div> <Truck width={17} className='fill-yg-blue mr-2 mb-1' /></div>
+                    <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
+                    <p className='text-gray-400 text-sm'>{item.vehicle}</p>
+                </li>
+                <li className='flex w-screen mb-1 --ml-8'>
+                    <div> <Capslock width={17} className='fill-yg-blue mr-2 mb-1' /></div>
+                    <p className='text-gray-400 text-sm'>{item.weight}</p>
+                </li>
+                </ul>
+
                    
                     {/*** SHIPMENT  **/}
                     {item.progress == 'active' && (

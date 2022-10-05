@@ -10,9 +10,9 @@ import { CargoItem } from "./cargoItem"
 
 export const View = ({wide, tabs}:any) => {
 
-    return (
-        <div className={classNames('view rounded-lg bg-gray-50 h-full',{'ml-[18.8em] p-3':!wide})}>
-            <Heading wide />
+    return ( // {'ml-[18.8em] p-3':!wide}
+        <div className={classNames('view rounded-lg bg-gray-50 h-full', )}> 
+            {/** <Heading wide />  */}
             {tabs && <Tabs /> }
             {[
             ...items

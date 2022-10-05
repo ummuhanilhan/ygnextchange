@@ -103,7 +103,7 @@ export const Actions = ({item, actionType, fav}:any) => {
     }
 
     return (
-        <div className='flex items-end'>
+        <div className='flex justify-end items-center'>
           
             {getActions(actionType)}
              {/**
@@ -125,13 +125,13 @@ export const Action = ({path, color, title, outline}:any) => {
  
     return !outline? (
         <a href={path} className={classNames(
-            `button py-1 px-5 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
+            `button py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
             `bg-yg-${color} text-white`,
             `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
         )}>{title}</a>
     ):(
         <a href={path} className={classNames(
-            `button py-1 px-3 border cursor-pointer text-sm rounded-md inline-block ml-1`,
+            `button py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
             `bg-transparent text-yg-${color} border-yg-${color}`,
             `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
         )}>{title}</a>

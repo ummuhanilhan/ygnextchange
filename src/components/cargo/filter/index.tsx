@@ -27,13 +27,15 @@ const initialValues = {
 }
 
 export const CargoFilter = () => {
-
+    const content = (
+        <DoubleFrame>
+            <Filter />
+            <View />
+        </DoubleFrame>
+    )
     return (
         <div id="cargoes" className="relative">
-            <DoubleFrame>
-                <Filter />
-                <View />
-            </DoubleFrame>
+            <View />
         </div>
     )
 }
