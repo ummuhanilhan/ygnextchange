@@ -17,7 +17,11 @@ export const View = ({wide, tabs}:any) => {
             {[
             ...items
             ].map((item,i:number)=>(
-                <CargoItem item={item} key={`cargo-item-${i}`} actionType='cargoes' />
+                <CargoItem 
+                    item={item} 
+                    key={`cargo-item-${i}`} 
+                    actionType='cargoes' 
+                />
             ))}
             <SimplePagination />
         </div>

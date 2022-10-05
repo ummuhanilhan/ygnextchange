@@ -38,6 +38,8 @@ export const CalendarBasic = ({
               ];
               setDate(dates) 
               onChange(dates)
+              console.log(dates)
+              console.log(stringified)
             }}
             placeholder={placeholder||'Tarih Seçiniz'}
         />

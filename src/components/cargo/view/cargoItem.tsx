@@ -6,7 +6,6 @@ import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
 
 export const CargoItem = ({item, actionType='' }:any) => {
-
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
@@ -14,19 +13,20 @@ export const CargoItem = ({item, actionType='' }:any) => {
         )}>
             <div className=''>
                 <div className='flex justify-between'>
-                    <div className='grid grid-cols-1'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 
+                    md:grid-cols-4  lg:grid-cols-6'>
                         
-                        <div className="tag rounded-lg p-1 px-2 border border-1 
-                        border-yg-blue mr-2 flex items-start"> 
+                        <div className='tag rounded-lg p-1 px-1 w-fit border border-1 
+                        border-yg-blue flex items-start h-min'> 
                             <People className='fill-yg-blue' width={20} /> 
-                            <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal İlan':'Bireysel İlan'}</p>
+                            <p className='text-yg-blue ml-1 text-sm'>
+                                {item.corporate?'Kurumsal İlan':'Bireysel İlan'}
+                            </p>
                         </div>
-                        <div className=" flex items-start my-1 mx-1 ml-2">
-                            <PinAngle width={15} />
+                        <div className=" flex items-start h-fit justify-center ml-2">
+                            <PinAngle width={17} />
                             <p className='ml-1'> İlan No: 25959 </p>
                         </div>
-
-
 
                         <div className='flex items-start'>
                             <div><Geo width={20} className='fill-yg-blue ml-1' /></div>
@@ -34,30 +34,26 @@ export const CargoItem = ({item, actionType='' }:any) => {
                             <div><ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' /></div>
                             <p className='text-gray-500 px-1'>Mersin</p>
                         </div>
-                        <div className='flex items-start --ml-8'>
-                            <div><Forward width={20} /></div>
-                            <p className="ml-1 mr-3">{item.distance}</p>
-                        </div>
-                        <div className="flex items-start">
+                        
+                        <div className="flex items-start ml-3">  
                             {item.type ? 
-                            <div><CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml-1' /></div> : 
-                            <div><CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml-1' /></div> }
+                            <div><CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml--1' /></div> : 
+                            <div><CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml--1' /></div> }
                             <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
                         </div>
                         
                     </div>
                     <div className='flex items-end flex-col'>
                         <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
-                        <p className='text-gray-400 text-sm'>({item.vat?'KDV Dahil':'+KDV'})</p>
+                        <p className='text-gray-400 text-sm w-max'>({item.vat?'KDV Dahil':'+KDV'})</p>
                     </div>
                   </div>
-                
-            </div>
-                            
+            </div>    
             <div className="flex flex-col lg:flex-row justify-between --mt-[-1em]">
-                <div className={classNames({
-                     'mt-6-':item.tax 
-                })}>
+                <div className={classNames(
+                    'flex-[5]',
+                    {'mt-6-':item.tax }
+                )}>
                 
                 <ul className='mt-1 grid grid-cols-1'>
                     <li className='flex w-screen mb-1 mt-2'>

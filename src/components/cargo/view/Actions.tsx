@@ -103,7 +103,10 @@ export const Actions = ({item, actionType, fav}:any) => {
     }
 
     return (
-        <div className='flex justify-end items-center'>
+        <div className='w-full flex flex-[5] 
+        flex-col xs:flex-row
+        sm:flex-row 
+        justify-end items-end'>
           
             {getActions(actionType)}
              {/**

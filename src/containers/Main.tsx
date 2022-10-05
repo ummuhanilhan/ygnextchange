@@ -38,13 +38,7 @@ export const MainContainer = ({children}:any) => {
       
     return (
        <React.Fragment>
-          <div className='p-4'>
-            <Header  
-              mobile={mobile}
-              setMobile={setMobile}
-            />
-          {children}
-          </div>
+          {content}
        </React.Fragment>
      )
 }
