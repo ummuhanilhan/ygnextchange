@@ -1,3 +1,4 @@
+
 import React from "react"
 import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
@@ -18,109 +19,95 @@ export const Actions = ({item, actionType, fav}:any) => {
         </div>
     )
 
+    const common = `w-full flex flex-[5] 
+    justify-end items-end`
+    const rich = `${common} flex-col xs:flex-row
+    sm:flex-row `
+    const normal = `${common}`
+
     const getActions = (value:string) => {
         switch (value) {
             case 'cargoes':
-                return (<>
+                return (<div className='normal'>
                     {viewed}
                     {faved}
                     <Action title='Detay Gör' color='orange' path='#' />
                    <Action title='Teklif Gönder' color='blue' path='#' />
-                 </>)
+                 </div>)
             break;
             case 'outgoing-inshipment':
-                return (<>
+                return (<div className='rich'>
                      {viewed}
                      {faved}
                      <Action title='Vazgeç' color='darkgray' path='#' outline />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
-                 </>)
+                 </div>)
             break;
             case 'outgoing-accepted':
-                return (<>
+                return (<div className='normal'>
                      {viewed}
                      {faved}
                      <Action title='Detay Gör' color='orange' path='#' />
                      <Action title='Teklif Gönder' color='blue' path='#' />
-                 </>)
+                 </div>)
             break;
             case 'outgoing-pending':
-                return (<>
+                return (<div className='rich'>
                      {viewed}
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifi Geri Al' color='blue' path='#' />
-                 </>)
+                 </div>)
             break;            
             case 'ingoing-inshipment':
-                return (<>
+                return (<div className='rich'>
                      {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
-                 </>)
+                 </div>)
             break;
             case 'ingoing-accepted':
-                return (<>
+                return (<div className='rich'>
                      {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
-                 </>)
+                 </div>)
             break;
             case 'ingoing-pending':
-                return (<>
+                return (<div className='rich'>
                     {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifleri İncele' color='blue' path='#' />
 
-                 </>)
+                 </div>)
             break;            
             case 'vehicle-active':
-                return (<>
+                return (<div className='normal'>
                     {viewed}
                     <Action title='Detay Gör' color='orange' path='#' />
                    <Action title='Teklif Gönder' color='blue' path='#' />
 
-                 </>)
+                 </div>)
             break;            
             case 'vehicle-pending':
-                return (<>
+                return (<div className='normal'>
                     {viewed}
                     <Action title='Detay Gör' color='orange' path='#' />
                     <Action title='Teklif Gönder' color='blue' path='#' />
                     
-                 </>)
+                 </div>)
             break;            
             default:
-                return (<>
-                       
-                    </>);
+                return;
             break;
         }
         
     }
 
-    return (
-        <div className='w-full flex flex-[5] 
-        flex-col xs:flex-row
-        sm:flex-row 
-        justify-end items-end'>
-          
-            {getActions(actionType)}
-             {/**
-
-                    
-            <Action title='Sil' color='gray' path='#' outline />
-            <Action title='Vazgeç' color='gray' path='#' outline />
-            <Action title='Kopyala' color='blue' path='#' outline />
-            <Action title='Düzenle' color='blue' path='#' />
-            <Action title='İlan Detayını Gör' color='orange' path='#' />
-            <Action title='Sevkiyatı Tamamla' color='green' path='#' />
-             **/}
-        </div>
-    )
+    return getActions(actionType)
 }
 
 
@@ -140,3 +127,12 @@ export const Action = ({path, color, title, outline}:any) => {
         )}>{title}</a>
     )
 }
+
+/**
+<Action title='Sil' color='gray' path='#' outline />
+<Action title='Vazgeç' color='gray' path='#' outline />
+<Action title='Kopyala' color='blue' path='#' outline />
+<Action title='Düzenle' color='blue' path='#' />
+<Action title='İlan Detayını Gör' color='orange' path='#' />
+<Action title='Sevkiyatı Tamamla' color='green' path='#' />
+ */

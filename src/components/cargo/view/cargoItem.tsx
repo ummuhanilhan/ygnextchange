@@ -5,7 +5,7 @@ import { FaMapPin } from "react-icons/fa"
 import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
 
-export const CargoItem = ({item, actionType='' }:any) => {
+export const CargoItem = ({item, actionType=''}:any) => {
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
@@ -13,8 +13,8 @@ export const CargoItem = ({item, actionType='' }:any) => {
         )}>
             <div className=''>
                 <div className='flex justify-between'>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 
-                    md:grid-cols-4  lg:grid-cols-6'>
+                    <div className='w-full flex items-start
+                    '>
                         
                         <div className='tag rounded-lg p-1 px-1 w-fit border border-1 
                         border-yg-blue flex items-start h-min'> 
@@ -23,6 +23,7 @@ export const CargoItem = ({item, actionType='' }:any) => {
                                 {item.corporate?'Kurumsal İlan':'Bireysel İlan'}
                             </p>
                         </div>
+                        
                         <div className=" flex items-start h-fit justify-center ml-2">
                             <PinAngle width={17} />
                             <p className='ml-1'> İlan No: 25959 </p>
@@ -51,7 +52,7 @@ export const CargoItem = ({item, actionType='' }:any) => {
             </div>    
             <div className="flex flex-col lg:flex-row justify-between --mt-[-1em]">
                 <div className={classNames(
-                    'flex-[5]',
+                    'flex-[5] md:flex-[3]',
                     {'mt-6-':item.tax }
                 )}>
                 
