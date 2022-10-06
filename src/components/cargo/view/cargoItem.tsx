@@ -60,7 +60,7 @@ export const CargoItem = ({item, actionType=''}:any) => {
             </div>    
             <div className="flex flex-col lg:flex-row justify-between --mt-[-1em]">
                 <div className={classNames(
-                    'flex-[5] md:flex-[3]',
+                    'flex-[5] md:flex-[3] ',
                     {'mt-6-':item.tax }
                 )}>
                 
@@ -110,9 +110,7 @@ export const CargoItem = ({item, actionType=''}:any) => {
                     )}
 
                 </div>
-                <div className="h-auto flex items-end justify-end">
                    <Actions item={item} actionType={actionType} />
-                </div>
             </div>
         </div>
     )

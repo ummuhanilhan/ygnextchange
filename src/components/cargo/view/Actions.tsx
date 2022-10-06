@@ -6,16 +6,20 @@ import classNames from "classnames"
 
 export const Actions = ({item, actionType, fav}:any) => {
     const faved = (
-        <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
-                items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
+        <div className="inline-block">
+            <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
+                    items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
                 {item.fav ? <HeartFill width={15} className='fill-yg-orange' /> : <Heart width={15} className='fill-yg-orange' />}
+            </div>
         </div>
     )
         
     const viewed = (
-        <div className='view flex flex-col items-center mr-2'>
-            <Eye width={15} className='fill-gray-400' />
-            <p className='text-gray-400 text-sm'>{item.view}</p>
+        <div className="inline-block">
+            <div className='view flex flex-col items-center mr-2'>
+                <Eye width={15} className='fill-gray-400' />
+                <p className='text-gray-400 text-sm'>{item.view}</p>
+            </div>
         </div>
     )
 
@@ -112,7 +116,7 @@ export const Actions = ({item, actionType, fav}:any) => {
     }
 
     return (
-        <div className="h-auto flex items-end justify-end">
+        <div className="flex-[5] md:flex-[10] h-auto flex items-end justify-end">
             {getActions(actionType)}
         </div>
     )
