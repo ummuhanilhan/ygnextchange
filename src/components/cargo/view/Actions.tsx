@@ -25,80 +25,84 @@ export const Actions = ({item, actionType, fav}:any) => {
     sm:flex-row `
     const normal = `${common}`
 
+    const Button = ({children, rich}:any) => {
+        return <div className='inline-block float-left'>{children}</div>
+    }
+
     const getActions = (value:string) => {
         switch (value) {
             case 'cargoes':
-                return (<div className='normal'>
+                return (<Button>
                     {viewed}
                     {faved}
                     <Action title='Detay Gör' color='orange' path='#' />
                    <Action title='Teklif Gönder' color='blue' path='#' />
-                 </div>)
+                 </Button>)
             break;
             case 'outgoing-inshipment':
-                return (<div className='rich'>
+                return (<Button rich>
                      {viewed}
                      {faved}
                      <Action title='Vazgeç' color='darkgray' path='#' outline />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
-                 </div>)
+                 </Button>)
             break;
             case 'outgoing-accepted':
-                return (<div className='normal'>
+                return (<Button>
                      {viewed}
                      {faved}
                      <Action title='Detay Gör' color='orange' path='#' />
                      <Action title='Teklif Gönder' color='blue' path='#' />
-                 </div>)
+                 </Button>)
             break;
             case 'outgoing-pending':
-                return (<div className='rich'>
+                return (<Button rich>
                      {viewed}
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifi Geri Al' color='blue' path='#' />
-                 </div>)
+                 </Button>)
             break;            
             case 'ingoing-inshipment':
-                return (<div className='rich'>
+                return (<Button rich>
                      {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
-                 </div>)
+                 </Button>)
             break;
             case 'ingoing-accepted':
-                return (<div className='rich'>
+                return (<Button rich>
                      {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
-                 </div>)
+                 </Button>)
             break;
             case 'ingoing-pending':
-                return (<div className='rich'>
+                return (<Button rich>
                     {viewed}
                      <Action title='Listeden Kaldır' color='gray' path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifleri İncele' color='blue' path='#' />
 
-                 </div>)
+                 </Button>)
             break;            
             case 'vehicle-active':
-                return (<div className='normal'>
+                return (<Button>
                     {viewed}
                     <Action title='Detay Gör' color='orange' path='#' />
                    <Action title='Teklif Gönder' color='blue' path='#' />
 
-                 </div>)
+                 </Button>)
             break;            
             case 'vehicle-pending':
-                return (<div className='normal'>
+                return (<Button>
                     {viewed}
                     <Action title='Detay Gör' color='orange' path='#' />
                     <Action title='Teklif Gönder' color='blue' path='#' />
                     
-                 </div>)
+                 </Button>)
             break;            
             default:
                 return;
@@ -107,7 +111,11 @@ export const Actions = ({item, actionType, fav}:any) => {
         
     }
 
-    return getActions(actionType)
+    return (
+        <div className="h-auto flex items-end justify-end">
+            {getActions(actionType)}
+        </div>
+    )
 }
 
 
@@ -115,14 +123,14 @@ export const Action = ({path, color, title, outline}:any) => {
  
     return !outline? (
         <a href={path} className={classNames(
-            `button py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
-            `bg-yg-${color} text-white`,
+            ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
+            `bg-yg-${color} text-white inline-block float-left h-min w-max`,
             `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
         )}>{title}</a>
     ):(
         <a href={path} className={classNames(
-            `button py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
-            `bg-transparent text-yg-${color} border-yg-${color}`,
+            ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
+            `bg-transparent text-yg-${color} border-yg-${color} inline-block float-left h-min w-max`,
             `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
         )}>{title}</a>
     )
