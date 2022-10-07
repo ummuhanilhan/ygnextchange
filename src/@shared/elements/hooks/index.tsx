@@ -282,6 +282,7 @@ export const SelectHook = ({
                {...rest}
                size={size||'medium'}
                value={value}
+               error={error}
                onChange={onChange}
             />
         )}
@@ -302,6 +303,7 @@ export const AvatarHook = (props:any) => {
             <Avatar 
                 {...props}
                 value={value}
+                error={error}
                 onChange={onChange}
             />
         )}
@@ -486,7 +488,7 @@ export const InputAppendHook = ({
             <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
                 <SelectHook
                     {...rest}
-                    name={`${name}.unit`}
+                     name={`${name}.unit`}
                     items={items} 
                     control={control} 
                     id={id||'value'}

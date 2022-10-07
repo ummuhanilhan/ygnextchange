@@ -20,9 +20,9 @@ export const Private = ({children}: DefaultState) => {
         </div>
     )
     return (
-       <React.Fragment>
-            <Main>{children}</Main>
-       </React.Fragment>
+        <Main className='max-w-[1669px]' >
+            {children}
+        </Main>
     )
 }
 

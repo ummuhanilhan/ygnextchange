@@ -26,11 +26,11 @@ export const Actions = ({item, actionType, fav}:any) => {
     const common = `w-full flex flex-[5] 
     justify-end items-end`
     const rich = `${common} flex-col xs:flex-row
-    sm:flex-row `
+    sm:flex-row-reverse `
     const normal = `${common}`
 
     const Button = ({children, rich}:any) => {
-        return <div className='inline-block float-left'>{children}</div>
+        return <div className='sm:flex'>{children}</div>
     }
 
     const getActions = (value:string) => {
@@ -116,7 +116,7 @@ export const Actions = ({item, actionType, fav}:any) => {
     }
 
     return (
-        <div className="flex-[5] md:flex-[10] h-auto flex items-end justify-end">
+        <div className="flex-[5] sm:flex-[9] md:flex-[5]  h-auto flex items-end justify-end">
             {getActions(actionType)}
         </div>
     )

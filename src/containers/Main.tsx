@@ -5,7 +5,7 @@ import { Sidebar } from '@components/sidebar'
 import classNames from "classnames";
 import Outside from "@utils/useoutside";
 
-export const MainContainer = ({children}:any) => {
+export const MainContainer = ({children, className}:any) => {
     const [mobile, setMobile] = React.useState(false)
         
       let mini  = mobile ? 'translate-x-0':'-translate-x-96'
@@ -13,8 +13,8 @@ export const MainContainer = ({children}:any) => {
       let event = mobile ? 'pointer-events-none':''
 
       const content = (
-        <div className='h-screen flex items-start '>
-          <Outside cb={()=>setMobile(false)}>
+        <div className={classNames('', className)}>
+          <Outside cb={()=>setMobile(false)} className='w-full'>
               <div className={classNames(
                   'wrapper fixed h-screen p-4 z-10 lg:translate-x-0 transition ease-in-out delay-100',
                   mini
@@ -23,7 +23,10 @@ export const MainContainer = ({children}:any) => {
             </div>
           </Outside>
 
-          <div className={classNames(blur, 'lg:ml-[325px] w-screen m-0 lg:blur-0')}>
+          <div className={classNames(blur, 
+            'lg:ml-[325px] m-0 lg:blur-0 w-fill',
+            'pt-4 lg:pr-2'
+            )}>
             <Header  
               mobile={mobile}
               setMobile={setMobile}

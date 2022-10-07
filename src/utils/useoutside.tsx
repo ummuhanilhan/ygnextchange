@@ -30,5 +30,5 @@ export default function Outside(props:any) {
   const wrapperRef = useRef(null);
   useOutside(wrapperRef, props.cb);
 
-  return <div ref={wrapperRef}>{props.children}</div>;
+  return <div ref={wrapperRef} className={props.className}>{props.children}</div>;
 }

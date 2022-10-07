@@ -13,10 +13,12 @@ import { initial, tagItems } from "@utils/mock";
 import { Tag } from "@shared/elements/tags";
 import { Select } from "@shared/elements/selects";
 import { IconFrame, IconDropdown } from "@components/frames/IconFrame"
-import { FloatLabelHook, MultiSelectHook } from "@shared/elements/hooks";
+import { FloatLabelHook } from "@shared/elements/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Outside from "@utils/useoutside";
 import { FaSearch } from "react-icons/fa"
+import { TagHook } from "@shared/elements/hooks/tagHook";
+import { definitions } from "@utils/dummy/definitions";
  
 export type FilterValues = {
     name: string,
@@ -209,7 +211,16 @@ export const VehicleOptions = ({control}:any) => {
              setStatus={setStatus} 
             icon={<FileText className="fill-yg-blue" width={19} />} title="Donanım Özellikleri" />
             <div className={classNames({hidden:!status})}>
-                 <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+                 <TagHook 
+                 name="type" 
+                 control={control} 
+                 placeholder="Araç Tipi Seçiniz" 
+                 size='medium'
+                 id='_id'
+                 label='name'
+                 items={definitions.feature}
+                 rotation='bottom-16'
+                 />                 
             </div>
         </React.Fragment>
     )
@@ -224,7 +235,16 @@ export const RangePrice = ({control}:any) => {
              setStatus={setStatus} 
             icon={<Cash className="fill-yg-blue" width={21} />} title="Fiyat Aralığı" />
             <div className={classNames({hidden:!status})}>
-                 <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  />                 
+                 <TagHook 
+                 name="type" 
+                 control={control} 
+                 placeholder="Araç Tipi Seçiniz" 
+                 size='medium'
+                 id='_id'
+                 label='name'
+                 items={definitions.feature}
+                 rotation='bottom-16'
+                 />                 
             </div>
         </React.Fragment>
     )

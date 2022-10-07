@@ -10,6 +10,7 @@ import Turkiye from '@utils/dummy/turkiye.json'
 import { FloatLabelHook } from "@shared/elements/hooks";
 import { MapView } from "@pages/account/address";
 import classNames from "classnames"; 
+import SimpleBar from "simplebar-react";
 
 export const Datetime = ({control}:any) => {
 
@@ -18,7 +19,7 @@ export const Datetime = ({control}:any) => {
 
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                 <TitleFrame title="Yükleme Tarih Aralığı">
-                <CalendarHook 
+                    <CalendarHook 
                         name="shipping.range" 
                         control={control} 
                         placeholder="Tarih Aralığı Seçiniz" 
@@ -70,7 +71,7 @@ export const AddressBox = () => {
                 overflow:'visible'
             }}
             overlay={{
-                backgroundColor:'rgba(0, 0, 0, 0.8)',
+                backgroundColor:'rgba(0, 0, 0, 0.5)',
                 WebkitBackdropFilter: 'blur(0)',
                 backdropFilter: 'blur(0)',
 
@@ -120,47 +121,52 @@ export const CreateAddressModal = ({className}:any) => {
     };
     return(
         <React.Fragment>
-               <form onSubmit={handleSubmit(onSubmit, onError)} 
-               className={classNames('p-3',className)}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-                        <FloatLabelHook border name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
-                        <FloatLabelHook border name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
-                    </div>
-                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
-                        <div>
-                              <FloatLabelHook border name="address_detail" type="text" 
-                              placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
-                              <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
-                                  <SelectHook
-                                        name='direction.city'
-                                        placeholder='İl Seçiniz'
-                                        size='medium'
-                                        id='value'
-                                        removable
-                                        searchable
-                                        border
-                                        items={Turkiye}
-                                        control={control}
-                                        className='mb-2'
-                                        />
-                                    <SelectHook
-                                        name='direction.district'
-                                        placeholder='İl Seçiniz'
-                                        size='medium'
-                                        id='value'
-                                        removable
-                                        searchable
-                                        border
-                                        items={Turkiye}
-                                        control={control}
-                                        className='mb-2'
-                                    />
-                              </div>
-                             <FloatLabelHook border name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
+            <SimpleBar style={{ maxHeight: '550px',  }} className='pb-1'>
+            </SimpleBar>
+
+            <form onSubmit={handleSubmit(onSubmit, onError)} 
+            className={classNames('p-3',className)}>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                            <FloatLabelHook border name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
+                            <FloatLabelHook border name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
                         </div>
-                        <MapView control={control} border />
-                        <div></div>
-                    </div>
+                        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+                            <div>
+                                <FloatLabelHook border name="address_detail" type="text" 
+                                placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
+                                <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+                                    <SelectHook
+                                            name='direction.city'
+                                            placeholder='İl Seçiniz'
+                                            size='medium'
+                                            id='value'
+                                            removable
+                                            searchable
+                                            border
+                                            items={Turkiye}
+                                            control={control}
+                                            className='mb-2'
+                                            />
+                                        <SelectHook
+                                            name='direction.district'
+                                            placeholder='İl Seçiniz'
+                                            size='medium'
+                                            id='value'
+                                            removable
+                                            searchable
+                                            border
+                                            items={Turkiye}
+                                            control={control}
+                                            className='mb-2'
+                                        />
+                                </div>
+                                <FloatLabelHook border name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
+                            </div>
+                            <MapView control={control} border />
+                            <div></div>
+                        </div>
+                    
                 </form>
         </React.Fragment>
     )

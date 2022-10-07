@@ -57,7 +57,7 @@ export const Signup = () =>{
                 sm:px-24
                 my-6 p-4 rounded-md flex flex-col items-center justify-center">
                     <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
-                    <h3 className="text-base mt-2 mb-12">Üye ol</h3>
+                    <h3 className="text-base mt-2 2">Üye ol</h3>
                     <ul className="w-full flex justify-between gap-2 mb-4">
                         <li className={classnames('p-3 flex pl-4 cursor-pointer w-full rounded-md border text-sm', {
                             'border-yg-blue bg-yg-blue text-white': type,
@@ -69,12 +69,12 @@ export const Signup = () =>{
                         } )} onClick={change}>Kurumsal üyelik</li>
                     </ul>
                     <div className="grid grid-cols-2 gap-2 w-full">
-                        <FloatLabelHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
-                        <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                        <FloatLabelPhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
-                        <FloatLabelHook name="email" type="text" placeholder="Eposta" example="orn: deneme@gmail.com" control={control} />
-                        <FloatLabelHook name="password" type="password" placeholder="Şifre" example="" control={control} />
-                        <FloatLabelHook name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
+                        <FloatLabelHook size='small' className='' name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
+                        <FloatLabelHook size='small' className='' name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
+                        <FloatLabelPhoneHook size='small' name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                        <FloatLabelHook size='small' className='' name="email" type="text" placeholder="Eposta" example="orn: deneme@gmail.com" control={control} />
+                        <FloatLabelHook size='small' className='' name="password" type="password" placeholder="Şifre" example="" control={control} />
+                        <FloatLabelHook size='small' className='' name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
                     </div>
                     <div className="my-4 flex items-start flex-col gap-2 justify-center w-full">
                         <CheckboxHook name="terms" control={control}>

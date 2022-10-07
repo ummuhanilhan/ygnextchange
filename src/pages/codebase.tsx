@@ -6,8 +6,6 @@ import { InputAppend, InputGroup } from '@shared/elements/groups'
 import { meterUnits, weightUnits } from '@utils/dummy/definitions'
 import {  Upload } from '@shared/elements/uploads'
 import { Tag } from '@shared/elements/tags'
-import { CalendarBasic } from '@shared/elements/calendar'
-import { Select } from '@shared/elements/selects'
 import { Textarea } from '@shared/elements/textareas'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FileUploadHook } from '@shared/elements/hooks/uploadHook'
@@ -18,9 +16,10 @@ import { TagHook } from '@shared/elements/hooks/tagHook'
 import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { CalendarHook } from '@shared/elements/hooks/calendarHook'
+import { InputAppendHook, InputGroupHook } from '@shared/elements/hooks'
 import { FileUpload } from 'primereact/fileupload';
 import { FormFooter } from './account'
-import { InputAppendHook, InputGroupHook } from '@shared/elements/hooks'
+import { Select } from '@shared/elements/selects'
  
 export const Codebase = () => {
 
@@ -352,7 +351,7 @@ export const Elements = () => {
       <div className='grid sm:grid-cols-2 gap-2 my-5'>
          <div className="w-full">
          <h3 className='text-md'>Calendar</h3>
-            <CalendarBasic />
+           {/**  <CalendarBasic /> **/}
           </div>
           <div className='w-full'>
           <h3 className='text-md'>File Upload</h3>

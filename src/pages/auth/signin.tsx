@@ -34,9 +34,9 @@ export const Signin = () =>{
                     <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                     <h3 className="text-base mt-2 mb-12">Kullanıcı Girişi</h3>
         
-                    <FloatLabelHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                    <FloatLabelHook name="email" type="text" placeholder="Eposta" example="test@test.com" control={control} />
-                    <FloatLabelHook name="password" type="password" placeholder="Şifre" example="" control={control} />
+                    <FloatLabelHook size='small' className='mb-2' name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
+                    <FloatLabelHook size='small' className='mb-2' name="email" type="text" placeholder="Eposta" example="test@test.com" control={control} />
+                    <FloatLabelHook size='small' className='mb-2' name="password" type="password" placeholder="Şifre" example="" control={control} />
                     
 
                     <div className="flex justify-between w-full my-2">

@@ -112,13 +112,13 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
         <li className="personal flex items-start flex-col"> 
             <div className="centerize cursor-pointer" onClick={()=>setStatus(!status)}>
                 <People className="menu-icon" /> 
-                <p> {corporate ? 'Kurumsal' : 'Kişisel' } Bilgilerim</p>  
+                <p> {corporate ? 'Kurumsal' : 'Kişisel' } Bilgilerim </p>  
                 {!status ? <FiChevronRight size={15} /> : <FiChevronDown size={15} />}    
             </div>
             
             <div className={classNames({'hidden':!status}, 'w-full')}>
 
-                <div className="grid grid-cols-2 gap-2 w-full mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mb-4">
                   
                     <AvatarHook name="avatar" control={control} placeholder="Profil Fotoğrafı Ekle"  />
                     
@@ -134,7 +134,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     </div>
                 </div>
 
-                <div className='grid grid-cols-2 gap-2 w-full'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 w-full'>
                     <InputHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
                     <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                     <InputHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
@@ -148,7 +148,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                 </div>    
                
                 {/** selecbox **/}
-                <div className='grid grid-cols-2 gap-2'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                     <div className="w-ful">
                         <SelectHook items={tagItems} className='mb-2' name="gender" control={control} placeholder="Cinsiyet Seçiniz"  />                 
                         <SelectHook items={[]} className='mb-2' name="city" control={control} placeholder="İl Seçiniz"  />                 
@@ -202,12 +202,12 @@ export const DriverLicense = ({control}:any) => {
             
             {status&&(
                 <div>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <InputHook name="driver" type="text" placeholder="Sürücü Bilgilerim" example="" control={control} />
                     <SelectHook items={[]} name="licence_year" control={control} placeholder="Ehliyet Tescil Yılı"  />                 
                 </div>
     
-                <div className="grid grid-cols-3 gap-2 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
                 <Upload name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
                     <Upload name="src_file" control={control} placeholder="Src Belgesi Ekle"  />
                     <Upload name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
@@ -232,7 +232,7 @@ export const Healthy = ({control}:any) => {
             />
             
             {status&&(
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <FloatLabelHook name="bloodgroup" type="text" placeholder="Kan Grubu" example="" control={control} />
                     <FloatLabelHook name="disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
                 </div>

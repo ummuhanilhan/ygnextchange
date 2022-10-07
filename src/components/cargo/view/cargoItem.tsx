@@ -12,7 +12,7 @@ export const CargoItem = ({item, actionType=''}:any) => {
             {'grayscale': item.progress=='outdated'}
         )}>
             <div className=''>
-                <div className='flex justify-between'>
+                <div className='flex justify-between '>
                     <ul className='w-full -flex items-start
                     '>
                         
@@ -60,7 +60,7 @@ export const CargoItem = ({item, actionType=''}:any) => {
             </div>    
             <div className="flex flex-col lg:flex-row justify-between --mt-[-1em]">
                 <div className={classNames(
-                    'flex-[5] md:flex-[3] ',
+                    'flex-[5] md:flex-[3] sm:mt-[-1.3em]',
                     {'mt-6-':item.tax }
                 )}>
                 

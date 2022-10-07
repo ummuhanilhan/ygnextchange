@@ -79,15 +79,15 @@ export const AddressCreate = () => {
                 title='Adres Detay Bilgileri'
             >
                 <form onSubmit={handleSubmit(onSubmit, onError)}>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <FloatLabelHook name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
                         <FloatLabelHook name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
                     </div>
-                    <div className='grid grid-cols-2 gap-2'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                         <div>
                               <FloatLabelHook name="address_detail" type="text" 
                               placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
-                              <div className='grid grid-cols-2 gap-2'>
+                              <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                                   <SelectHook
                                         name='direction.city'
                                         placeholder='İl Seçiniz'
@@ -122,7 +122,7 @@ export const AddressCreate = () => {
                 icon={<Person className="menu-icon" />}
                 title='Adres İletişim Bilgileri'
             >
-                <div className="grid grid-cols-3 gap-2 mb-2 change-password">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-2 change-password">
                     <FloatLabelHook name="name" type="text" 
                     placeholder="İsim Soyisim" example="" control={control} />
                     <FloatLabelPhoneHook name="phone" type="text" 
@@ -150,7 +150,7 @@ export const AddressList = () => {
                 icon={<GeoAlt className="menu-icon" />}
                 title='İletişim Ayarlarım'
             >
-                <div className='grid grid-cols-2 gap-2 mb-4'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4'>
                      <Search placeholder='Adres Başlığı Ara' />
                      <p 
                       className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
@@ -158,7 +158,7 @@ export const AddressList = () => {
                       onClick={()=>setStatus(true)}
                      >Yeni Adres Ekle</p>
                 </div>
-                <ul className='grid grid-cols-3 gap-3'>
+                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
                    {Array.from(Array(5)).map((item,i:number)=>(
                      <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
                         <h5 className='text-yg-blue text-sm font-medium'>Adres Başlığı</h5>

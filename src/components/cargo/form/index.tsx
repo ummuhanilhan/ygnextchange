@@ -38,7 +38,7 @@ export const CargoCreate = ({update}:any) => {
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
         console.log(data);
-        alert(JSON.stringify(data));
+        console.log(JSON.stringify(data));
     };
     const onError = (errors:any) => { console.log(errors) };
 
@@ -84,10 +84,12 @@ export const Footer = ({
         <div className="flex justify-end mt-3 
         -sticky right-3 bottom-3 p-3 ">
             <div className="bg-yg-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
-            <div className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
+            <button 
+            type='submit'
+            className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
             onClick={()=>{
                 selected< 3 && setSelected(selected+1)
-            }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
+            }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</button>
         </div>
     )
 }

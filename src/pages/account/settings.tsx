@@ -75,9 +75,9 @@ export const Switcher = ({title,label, name, checked, control}:any) => {
     const [value, setValue] = React.useState(checked);
 
     return(
-        <div className='mb-3 bg-white p-2 py-3 flex justify-between items-center rounded-md'>
-            <div className="flex items-start">
-                <h3 className='text-[1.05rem] font-medium w-48'>{title}</h3>
+        <div className='mb-3 bg-white p-2 py-3 flex justify-between items-center rounded-md w-full'>
+            <div className="flex items-start gap-3 xs:gap-0">
+                <h3 className='text-[1.05rem] font-medium xs:w-48'>{title}</h3>
                 <p className="text-gray-400 text-md italic">{label}</p>
             </div>
             <Toggle 
@@ -136,7 +136,7 @@ export const Information = ({control}:any) => {
                     setStatus={setStatus}
                 />
                 <div className={classNames({'hidden':!status})}>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                         {informations.map((item, i:number)=>(
                             <div 
                             onClick={()=>{

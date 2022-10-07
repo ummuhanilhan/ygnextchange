@@ -4,5 +4,7 @@
 - cargo form updatable & staticProps
 + input errors 
 - file upload component err
-- responsive
+- ✅ responsive  
+- small phone label size
 - redux impl
+- item actions

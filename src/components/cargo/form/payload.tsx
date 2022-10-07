@@ -1,5 +1,5 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
-import { MultiSelectHook, SelectHook } from "@shared/elements/hooks/selectHook";
+import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { tagItems } from "@utils/mock";
 import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";

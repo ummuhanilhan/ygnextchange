@@ -373,7 +373,7 @@ export const item: any = {
       ],
     },
     shipping: {
-      range:  [ '14/05/2020', '14/05/2025' ],
+      range:   [new Date("10-01-2021"), new Date("10-05-2021")],
       time: "62b14d9d7810ae9b35ea4b27", // other
       "time-custom": "93 sene sonra",
       load: {

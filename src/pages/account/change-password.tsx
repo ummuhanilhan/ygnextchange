@@ -46,7 +46,7 @@ export const ChangePassword = () => {
                 setStatus={setStatus}
             />
            {status && (
-             <div className="grid grid-cols-3 gap-2 mb-2 change-password">
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-2 change-password">
                 <FloatLabelHook name="old" type="password" placeholder="Eski Şifrenizi Giriniz" example="" control={control} />
                 <FloatLabelHook name="passowrd" type="password" placeholder="Yeni Şifreniz" example="" control={control} />
                 <FloatLabelHook name="confirm" type="password" placeholder="Yeni Şifrenizi Tekrar Giriniz" example="" control={control} />
