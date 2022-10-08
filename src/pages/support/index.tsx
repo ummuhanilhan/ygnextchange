@@ -6,8 +6,9 @@ import { IconFrame } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
 import React from "react";
 import classNames from "classnames";
-import { Bell, Check, Doublecheck, Send, Warn } from "@shared/icons";
+import { Bell, Bidirection, Check, CheckLight, Doublecheck, Refresh, Return, Send, Warn } from "@shared/icons";
 import { Frame } from "@components/frames/MainFrame";
+import { issues } from "@utils/mock";
 
 export type SupportValues = {
     password: string,
@@ -21,12 +22,7 @@ const initialValues = {
     old_password:'',
 }
 
-
-export const messages = [
-    {id:1, icon:<Check height={13} />, action:'Yeni Yük Eklendi', message:'Adana - Mersin konumu için yeni yük eklendi.', type:'info', read:false},
-    {id:2, icon:<Doublecheck height={15} />, action:'Yeni Yük Eklendi', message:'Adana - Mersin konumu için yeni yük eklendi.', type:'info', read:true},
-    {id:3, icon:<Warn height={20}/>, err:true, action:'Araç Sigorta Gününüz Yaklaştı', message:'06 YKGTR 34 plakalı aracınızın sigortası 16.09.2022 tarihinde bitecektir. Sigortanızı hızla bir şekilde yenilemek için tıklayınız.', type:'err', read:true},
-]
+ 
 
 
 export const Support = () => {
@@ -46,7 +42,7 @@ export const Support = () => {
     return (
       <Frame>
         <IconFrame icon={<Send className="menu-icon" />} title="Destek Taleplerim" />
-        {messages.map((item,i:number)=>(
+        {issues.map((item,i:number)=>(
             <SupportItem item={item} key={`notify-${i}`} />
         ))}
       </Frame>
@@ -61,6 +57,42 @@ export default Support;
 
 export const SupportItem = ({item,mini}:any) =>{
 
+    const colorize = () =>{
+        switch (item.status) {
+            case 'answered':
+                return {color:'green', message:'Çözüldü'}
+            break;
+            case 'pending':
+                return {color:'red', message:'Beklemede'}
+            break;
+            case 'inspecting':
+                return {color:'red', message:'İncelemede'}
+            break;
+            case 'solved':
+                return {color:'gray', message:'Çözüldü'}
+            break;
+        }
+    }
+    
+    
+    const message = () => {
+        const colorized:any = colorize()
+        const color = colorized.color;
+        const text = color && `text-${color}-700`;
+        const fill = color && `fill-${color}-700`;
+        const border = color && `border-${color}-700`;
+
+        return (
+            <div className='flex items-center'> 
+                <div className={classNames(`border-[1px] w-4 h-4 flex items-center justify-center rounded-full`, border)}>
+                    <Warn height={10} className={classNames(fill)} />
+                </div>
+                <p className={classNames(text,'text-sm ')}>
+                    Durum: {colorized.message} {colorized.color}</p> 
+            </div> 
+        )
+    }
+
     return(
         <li className={classNames(
             'notify rounded-lg border-none flex justify-between items-end my-2 pl-4 bg-white',
@@ -74,7 +106,10 @@ export const SupportItem = ({item,mini}:any) =>{
                         item.read ? 'read' : 'unread',
                         item.err && 'err',
                     )}>
-                        {item.icon}
+                       {item.status=='answered' && <Return height={20} /> }
+                       {item.status=='solved' && <Bidirection height={20} />}
+                       {item.status=='inspecting' && <Refresh height={20}/>}
+                       {item.status=='pending' && <CheckLight height={20}/>}
                     </div>
                 </div>
                 <div className={classNames(
@@ -85,8 +120,9 @@ export const SupportItem = ({item,mini}:any) =>{
                         'action font-semibold',
                         item.err ? 'text-[#e30a17]' : 'text-yg-blue'
                     )}
-                    >{item.action}</h3>
-                    <p className='message'>{item.message}</p>
+                    >{item.title}</h3>
+                    <p className='message'>{item.body}</p>
+                    {message()}
                 </div>
            </div>
             <div>
