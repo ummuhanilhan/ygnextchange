@@ -30,15 +30,13 @@
     }
 
     &.error{
-        >div{
-            @apply
-            border
-            border-red-600 
-            text-red-500
-            dark:bg-gray-700 dark:border-red-500 appearance-none dark:text-white dark:focus:border-red-500 
-            focus:outline-none focus:ring-0 focus:border-red-600  
-            ;
-        }
+        @apply
+        border
+        border-red-600 
+        text-red-500
+        dark:bg-gray-700 dark:border-red-500 appearance-none dark:text-white dark:focus:border-red-500 
+        focus:outline-none focus:ring-0 focus:border-red-600  
+        ;
 
         label{
             @apply 
@@ -58,4 +56,14 @@
     >div{
         @apply bg-white;
     }
+}
+
+
+.p-invalid{
+    *{
+    @apply 
+    text-red-600
+    ;
+   }
+  
 }

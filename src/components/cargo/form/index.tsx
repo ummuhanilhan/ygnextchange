@@ -10,6 +10,8 @@ import classNames from "classnames";
 import Payload from "./payload";
 import Datetime from "./datetime";
 import { CargoCreateRoute, defaultItem } from "@utils/mock";
+import { joiResolver } from '@hookform/resolvers/joi';
+import { cargoSchema } from "@utils/validations/cargo";
 
 export type CargoValues = {
     name: string,
@@ -22,7 +24,7 @@ export type CargoValues = {
 };
 
 const initialValues = {
-    ...defaultItem,
+   // ...defaultItem,
     'rent.type': 'parsiel',
     'rent.vehicle': 'trailer',
     // 'shipping.range': [ '14/05/2020', '19/09/2025' ],
@@ -32,8 +34,8 @@ const initialValues = {
 export const CargoCreate = ({update}:any) => {
     const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<CargoValues>({
-        defaultValues: initialValues
-        // resolver: yupResolver(),
+        defaultValues: initialValues,
+       resolver: joiResolver(cargoSchema),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
@@ -81,15 +83,16 @@ export const Footer = ({
 }:any) => {
 
     return (
-        <div className="flex justify-end mt-3 
-        -sticky right-3 bottom-3 p-3 ">
-            <div className="bg-yg-orange p-3 px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
+        <div className="grid grid-cols-1 
+        sm:flex sm:justify-end mt-3 
+        -sticky right-3 bottom-3 sm:p-3  ">
+            <div className="bg-yg-orange p-3 text-center px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
             <button 
             type='submit'
-            className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer" 
+            className="bg-yg-blue p-3 px-12 mt-2 sm:mt-0 sm:ml-2 text-white rounded-md cursor-pointer" 
             onClick={()=>{
                 selected< 3 && setSelected(selected+1)
             }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</button>
         </div>
     )
-}
+} 

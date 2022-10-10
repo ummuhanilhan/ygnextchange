@@ -7,6 +7,7 @@ export const InputHook = ({
     control, 
     name,
     size,
+    error,
     ...rest
 }:{ 
     name:string,
@@ -19,6 +20,7 @@ export const InputHook = ({
     verified?: boolean,
     verifiable?: boolean,
     size?:'small' | 'medium' | 'large',
+    error?: string|object|object[],
     className?: string,
     items?:object[],
     disabled?:boolean,
@@ -39,6 +41,7 @@ export const InputHook = ({
                    {...rest}
                    size={size||'medium'}
                    value={value}
+                   error={error}
                    onChange={onChange}
                 />
             )}

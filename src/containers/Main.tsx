@@ -24,7 +24,7 @@ export const MainContainer = ({children, className}:any) => {
           </Outside>
 
           <div className={classNames(blur, 
-            'lg:ml-[325px] m-0 lg:blur-0 w-fill',
+            'lg:ml-[325px] m-0 px-4 lg:px-0 lg:blur-0 w-fill',
             'pt-4 lg:pr-2'
             )}>
             <Header  

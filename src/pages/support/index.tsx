@@ -39,6 +39,7 @@ export const Support = () => {
         console.log(errors)
 
     };
+    
     return (
       <Frame>
         <IconFrame icon={<Send className="menu-icon" />} title="Destek Taleplerim" />
@@ -55,12 +56,12 @@ export default Support;
 
 
 
-export const SupportItem = ({item,mini}:any) =>{
+export const SupportItem = ({item, mini}:any) =>{
 
     const colorize = () =>{
         switch (item.status) {
             case 'answered':
-                return {color:'green', message:'Çözüldü'}
+                return {color:'green', message:'Cevap Verildi'}
             break;
             case 'pending':
                 return {color:'red', message:'Beklemede'}
@@ -84,7 +85,7 @@ export const SupportItem = ({item,mini}:any) =>{
 
         return (
             <div className='flex items-center'> 
-                <div className={classNames(`border-[1px] w-4 h-4 flex items-center justify-center rounded-full`, border)}>
+                <div className={classNames(`border-[1.5px] w-4 h-4 flex items-center justify-center rounded-full`, border)}>
                     <Warn height={10} className={classNames(fill)} />
                 </div>
                 <p className={classNames(text,'text-sm ')}>
@@ -92,6 +93,7 @@ export const SupportItem = ({item,mini}:any) =>{
             </div> 
         )
     }
+
 
     return(
         <li className={classNames(

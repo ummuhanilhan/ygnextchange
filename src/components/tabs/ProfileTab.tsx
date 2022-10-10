@@ -9,13 +9,16 @@ export const ProfileTab = ({change}:any) => {
 
     const router = useRouter();
     return (
-        <ul className="grid grid-cols-1 lg:grid-cols-5 lg:gap-3 profile-tab tabs">
+        <ul className="grid grid-cols-1 gap-2
+        lg:grid-cols-3
+        xl:grid-cols-5 xl:gap-3 
+        profile-tab tabs">
             {profileTabMenu.map((item:any, i:number)=>(
                 <li 
                 key={`profile-menu-${i}`} 
                 className={classNames({active:(router.pathname == item.path) },`
                 text-md flex flex-center items-center border border-transparent border-b-4 bg-white p-3 rounded-md
-                cursor-pointer mb-3
+                cursor-pointer xl:mb-3
                 `)} 
                 onMouseDown={(e:any)=>{
                     if(e.button === 1 )

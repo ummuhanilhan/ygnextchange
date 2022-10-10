@@ -61,10 +61,10 @@ export const Tag = ({
 
     return (
       <div className={classnames(
+          {'error': error},
       'w-full flashback floatinglabel-selects rounded-md relative', 
        className,
        size||'medium',
-       {'error': error},
       {'success': success},
       )}>
           <Outside cb={()=>setOpen(false)} >

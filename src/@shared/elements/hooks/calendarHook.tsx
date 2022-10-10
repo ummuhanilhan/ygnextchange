@@ -8,6 +8,7 @@ export const CalendarHook = ({
     placeholder,
     className,
     selectionMode,
+    error,
     ...rest     
 }:any) => {
     return (
@@ -20,7 +21,10 @@ export const CalendarHook = ({
             fieldState: { isTouched, isDirty, error },
             formState,
         }) => (
-            <div className='relative bg-white rounded-md w-full h-[4em] flex items-center'>
+            <div className={classNames(
+                'relative bg-white rounded-md w-full h-[4em] flex items-center',
+                {'border border-red-600':error}
+            )}>
         <Calendar
             id={field.name}
             {...rest}
