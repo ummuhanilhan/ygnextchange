@@ -15,7 +15,7 @@ export const menuItems = [
     {
         title:'İlanlarım',
         icon: <ListCheck className="menu-icon" />,
-        path:'/account/cargoes'
+        path:'/cargoes'
     },
     {
         title:'Araçlarım',
