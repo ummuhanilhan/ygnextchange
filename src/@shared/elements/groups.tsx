@@ -11,6 +11,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 export const InputGroup = ({
 border,
 items,
+error,
 }:any) => {
     const [value, setValue] = React.useState('');
     return (
@@ -31,7 +32,7 @@ items,
                 placeholder='Yükseklik'
             />
         
-            <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
+            <div className='pl-3- pr-3 border-transparent border-l-[1px] border-gray-100'>
                     <Select
                         value={value}
                         placeholder=''
@@ -49,7 +50,8 @@ items,
 export const Bordered = ({
   value,
   onChange,
-  placeholder
+  placeholder,
+  error
 }:any) => {
 
 return (
@@ -57,11 +59,14 @@ return (
         <input 
             type="text" 
             id="default_standard" 
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 
-            bg-transparent border-0 border-b-[1px] border-gray-300
-            appearance-none dark:text-white dark:border-gray-600 
-            dark:focus:border-blue-500 focus:outline-none focus:ring-0 
-            focus:border-blue-600 peer" 
+            className={classNames(
+              `block py-2.5 px-0 w-full text-sm text-gray-900 
+              bg-transparent border-0 border-b-[1px] border-gray-300
+              appearance-none dark:text-white dark:border-gray-600 
+              dark:focus:border-blue-500 focus:outline-none focus:ring-0 
+              focus:border-blue-600 peer`,
+              {'border-red-500':error}
+            )}
             placeholder=" " 
             value={value}
             onChange={onChange}
@@ -142,11 +147,11 @@ export const Select = ({
     name,
     placeholder,
     border,
-    error, 
     items, 
     id,
     success,
     value, 
+    error,
     onChange
   }:any) => {
        const [selected, setSelected] = React.useState(value || items[0][id]);
@@ -215,6 +220,7 @@ export const Select = ({
                       )}
                       onClick={()=>{
                         setSelected(item[id||'slug'])
+                        onChange!=undefined && onChange(item[id||'slug'])
                         setOpen(false)
                       }}
                     >

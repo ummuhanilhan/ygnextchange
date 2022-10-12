@@ -386,6 +386,7 @@ export const BorderedHook = ({
             value={value}
             onChange={onChange}
             placeholder={placeholder}
+            error={error}
            />
         )}
     />
@@ -401,13 +402,16 @@ export const InputGroupHook = ({
     label,
     size,
     placeholder,
+    error,
      ...rest
 }:any) => {
 
     return (
+
         <div className={classNames(
             'bg-white rounded-md h-[4em] pr-4',
-            border && 'border'
+            border && 'border',
+            {'border border-red-500': error},
         )}>
             <div className="items-center 
             h-full grid grid-cols-4
@@ -438,9 +442,9 @@ export const InputGroupHook = ({
                     size={size||'medium'}
                 />
             </div>
-        </div>
-        
+        </div>  
       </div>
+
     )
 }
 
@@ -453,50 +457,51 @@ export const InputAppendHook = ({
     border,
     size,
     placeholder,
+    error,
     ...rest
 }:any) => {
 
     return (
-       <>
-         <div className={classNames(
-          'bg-white rounded-md h-[4em] flex items-center', 
-          'pl-3 relative justify-between w-full',
-          border && 'border'
-            )}>
-                <Controller
-                    control={control}
-                    name={`${name}.size`}
-                    render={({
-                        field: { onChange, onBlur, value, name, ref },
-                        fieldState: { isTouched, isDirty, error },
-                        formState,
-                    }) => (
-                        <input 
-                            type="text" 
-                            placeholder={placeholder} 
-                            className="block py-2.5 px-0 w-full text-base 
-                            text-gray-900 bg-transparent appearance-none 
-                            dark:text-white peer h-full outline-none" 
-                            onBlur={onBlur}  
-                            onChange={onChange}  
-                            value={value}
-                        />
-                    )}
+    <Controller
+        control={control}
+        name={`${name}.size`}
+        render={({
+        field: { onChange, onBlur, value, name, ref },
+        fieldState: { isTouched, isDirty, error },
+        formState,
+        }) => (
+            <div className={classNames(
+            'bg-white rounded-md h-[4em] flex items-center', 
+            'pl-3 relative justify-between w-full',
+            border && 'border',
+            {'border border-red-500': error},
+
+                )}>
+
+                <input 
+                    type="text" 
+                    placeholder={placeholder} 
+                    className="block py-2.5 px-0 w-full text-base 
+                    text-gray-900 bg-transparent appearance-none 
+                    dark:text-white peer h-full outline-none" 
+                    onBlur={onBlur}  
+                    onChange={onChange}  
+                    value={value}
                 />
-           
-            
-            <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
-                <SelectHook
-                    {...rest}
-                     name={`${name}.unit`}
-                    items={items} 
-                    control={control} 
-                    id={id||'value'}
-                    label={label||'label'}
-                    size={size||'medium'}
-                />
-            </div>
-        </div> 
-       </>
+                
+                <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
+                    <SelectHook
+                        {...rest}
+                        name={`${name}.unit`}
+                        items={items} 
+                        control={control} 
+                        id={id||'value'}
+                        label={label||'label'}
+                        size={size||'medium'}
+                    />
+                </div>
+            </div> 
+        )}
+    />
     )
 }

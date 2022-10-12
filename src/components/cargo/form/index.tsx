@@ -93,6 +93,7 @@ export const CargoCreate = ({update}:any) => {
                         <Publish control={control} />
                     </SimpleBar>
                 </Classic>
+                <button type='submit' className='button btn'>send</button>
                 <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>

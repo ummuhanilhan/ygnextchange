@@ -69,8 +69,8 @@ export const shipping = Joi.object({
 
 
 const measure = Joi.object({
-  size: Joi.string(),
-  unit: Joi.string(),
+  size: Joi.string().required(),
+  unit: Joi.string().required(),
 })
 
 // cargo
@@ -85,13 +85,13 @@ export const payload = Joi.object({
   }),
   weight: measure,
   capacity: measure,
-  volume: measure,
+  volume: measure.required(),
   dimensions: Joi.object({
-      length:Joi.string(),
-      width:Joi.string(),
-      height:Joi.string(),
-      unit:Joi.string(),
-  }),
+      length:Joi.string().required(),
+      width:Joi.string().required(),
+      height:Joi.string().required(),
+      unit:Joi.string().required(),
+  }).required(),
   tonnage:{
       range:Joi.string(),
   },
