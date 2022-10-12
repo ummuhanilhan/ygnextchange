@@ -35,9 +35,7 @@ export const Cargoes = () => {
 
     };
     return (
-        <AccountLayout>
-            <View wide tabs />
-        </AccountLayout>
+        <View wide tabs type='mycargoes' />
     )
 }
 

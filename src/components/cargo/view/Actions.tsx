@@ -40,7 +40,26 @@ export const Actions = ({item, actionType, status, fav}:any) => {
                     {viewed}
                     {faved}
                     <Action title='Detay Gör' color='orange' path='#' />
+                    <Action title='Teklif Gönder' color='blue' path='#' />
+
+                 </Button>)
+            break;
+            case 'favorites':
+                return (<Button>
+                    {viewed}
+                    {faved}
+                    <Action title='Detay Gör' color='orange' path='#' />
                    <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />
+                 </Button>)
+            break;
+            case 'mycargoes':
+                return (<Button>
+                    {viewed}
+                     <Action title='Sil' color='gray' outline path='#' />
+                     <Action title='Kopyala' color='blue' outline path='#' />
+                     <Action title='Tarih Güncelle' color='orange' outline path='#' />
+                    <Action title='Düzenle' color='blue'disabled={!status}  path='#' />
+                    <Action title='Detay Gör' color='orange' path='#' />
                  </Button>)
             break;
             case 'outgoing-inshipment':
@@ -95,8 +114,10 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             case 'vehicle-active':
                 return (<Button>
                     {viewed}
-                    <Action title='İlan detayını gör' color='orange' path='#' />
-                   <Action title='Sevkiyatı Başlat' color='blue' path='#' />
+                    <Action title='Sil' color='gray' outline path='#' />
+                    <Action title='Kopyala' color='blue' outline path='#' />
+                   <Action title='Düzenle' color='blue' path='#' />
+                    <Action title='Detay gör' color='orange' path='#' />
 
                  </Button>)
             break;            
@@ -106,7 +127,14 @@ export const Actions = ({item, actionType, status, fav}:any) => {
                     <Action title='Detay Gör' color='orange' path='#' />
                     <Action title='Teklif Gönder'  color='blue' path='#' />
                  </Button>)
-            break;            
+            break;      
+            case 'ingoing-vehicle-offers':
+                return (<Button>
+                    <Action title='Araç Detayını Gör' color='orange' path='#' />
+                    <Action title='Teklifini Kabul Et' color='blue' path='#' />
+
+                 </Button>)
+            break;      
             default:
                 return;
             break;
@@ -122,24 +150,26 @@ export const Actions = ({item, actionType, status, fav}:any) => {
 
 
 export const Action = ({path, color, title, outline, disabled}:any) => {
-    return !outline? (
-       disabled ?  <a href={path} className={classNames(
+    const disabledItem =  <a href={path} className={classNames(
         ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
         `bg-gray-300 text-white inline-block float-left h-min w-max`
-    )}>{title}</a> :
-    <a href={path} className={classNames(
+    )}>{title}</a>
+
+    const normalItem = <a href={path} className={classNames(
         ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
         `bg-yg-${color} text-white inline-block float-left h-min w-max`,
         `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
     )}>{title}</a>
-    ):(
-        <a href={path} className={classNames(
-            ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
-            `bg-transparent text-yg-${color} border-yg-${color} inline-block float-left h-min w-max`,
-            `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-        )}>{title}</a>
-      
-    )
+
+    const outlinedItem = <a href={path} className={classNames(
+        ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
+        `bg-transparent text-yg-${color} border-yg-${color} inline-block float-left h-min w-max`,
+        `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
+    )}>{title}</a>
+
+    return !outline? (
+       disabled ? disabledItem : normalItem
+    ): outlinedItem
 }
 
 /**

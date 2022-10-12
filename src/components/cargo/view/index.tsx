@@ -8,7 +8,7 @@ import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
 
 
-export const View = ({wide, tabs}:any) => {
+export const View = ({wide, type, tabs}:any) => {
     const [selected, setSelected] = React.useState(1);
 
     return ( // {'ml-[18.8em] p-3':!wide}
@@ -27,7 +27,7 @@ export const View = ({wide, tabs}:any) => {
                 <CargoItem 
                     item={item} 
                     key={`cargo-item-${i}`} 
-                    actionType='cargoes' 
+                    actionType={type} 
                     status={selected===1}  
                 />
             ))}

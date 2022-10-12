@@ -32,12 +32,12 @@ export const CargoFilter = () => {
     const content = (
         <DoubleFrame>
             <Filter />
-            <View />
+            <View type='cargoes' />
         </DoubleFrame>
     )
     return (
         <div id="cargoes" className="relative">
-            <View />
+            <View type='cargoes' />
         </div>
     )
 }

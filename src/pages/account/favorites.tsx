@@ -32,7 +32,7 @@ export const Favorites = () => {
     };
     return (
         <AccountLayout>
-            <View wide />
+            <View wide type='favorites' />
          </AccountLayout>
     )
 }
