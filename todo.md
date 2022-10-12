@@ -1,9 +1,10 @@
 # next
-- redux impl
-- small phone label size at `auth page`
+- ✅ small phone label size at `auth page`
+- ✅ cargo form updatable & staticProps
 - errored groups
-- cargo form updatable & staticProps
 - cargo create publish modal
 - responsive map & modal
+- redux address list
 - file upload component err
-- ✅ bargain vat and oranged frame
+- `api.ts` session out & login modal
+- connect pages to api

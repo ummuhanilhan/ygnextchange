@@ -178,7 +178,7 @@ export const FloatingInput = ({
               className={classNames(
                 "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
                 active ? "font-medium " : " text-gray-500 ",
-                size=='small' ? (active ? 'text-xs' : 'text-sm pt-4') : '',
+                size=='small' ? (active ? 'text-xs' : 'text-sm pt-5') : '',
                 size=='medium' ? (active ? 'text-xs pt-3' : 'text-base pt-5') : '',
                 size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
               )}
@@ -304,7 +304,7 @@ export const FloatingPhone = ({
               "p-2 pr-10 outline-none rounded-md w-full h-full-md bg-transparent transition-all duration-200 ease-in-out",
               border && 'border-gray-300 border-opacity-25',
               active ? "text-gray-500" : "",
-              size=='small' ? (active ? 'text-base pt-6' : 'pt-1') : '',
+              size=='small' ? (active ? 'text-base pt-5' : 'pt-2') : '',
               size=='medium' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               size=='large' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               {'pl-[4rem]':!code.countryCode?.length&&value},
@@ -324,7 +324,7 @@ export const FloatingPhone = ({
             className={classNames(
               "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
               active ? "font-medium" : "text-gray-500",
-              size=='small' ? (active ? 'text-xs ' : 'text-base pt-[.9rem]') : '',
+              size=='small' ? (active ? 'text-xs ' : 'text-sm pt-5') : '',
               size=='medium' ? (active ? 'text-xs pt-3' : 'pt-5') : '',
               size=='large' ? (active ? 'text-sm' : 'pt-5 ') : '',
             )}
