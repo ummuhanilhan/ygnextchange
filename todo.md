@@ -1,14 +1,10 @@
-- cargo form updatable & staticProps
-- file upload component err
-- small phone label size at `auth page`
+# next
+- ✅ item actions
+- offers actions path, viewCount and inspection
 - redux impl
-- item actions
--  errored groups
-
-# done 
-- ✅ validations
-- ✅ cargo create buttons (skipped)
-- ✅ maps (maybe later, google current dropdown css can change)
-- ✅ calendar variations
-+ ✅ input errors 
-- ✅ responsive remained
+- small phone label size at `auth page`
+- errored groups
+- cargo form updatable & staticProps
+- cargo create publish modal
+- responsive map & modal
+- file upload component err

@@ -191,44 +191,47 @@ export enum OfferRoute {
     Pending = 3,
 }
 
-export const OfferReverse = {
+export const OfferReverse:any = {
     '1': 'inshipment',
     '2': 'accepted',
     '3': 'pending',
 }
 
-export const pendingOut = [ 
-    { id:1, title:'Beklemede olanlar', slug:'pending'},
-    { id:2, title:'İlan Sahibi Tarafından Görülenler', slug:'viewed'},
-    { id:3, title:'Kabul Edilmeyenler', slug:'rejected'},
-    { id:4, title:'İlan Süresi Geçenler', slug:'outdated'},
-    { id:5, title:'Tümünü Gör', slug:'all'},
+
+export const inShipmentIn = [
+  { id:1, title:'Sevkiyatı Devam Edenler', slug:'inshipment'},
+];
+
+export const acceptedIn = [
+  { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+];
+
+export const pendingIn = [
+  { id:1, title:'Teklif Beklenenler', slug:'pending'},
+  { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
+  { id:3, title:'Tümünü Göster', slug:'all'},
+];
+
+
+
+export const inShipmentOut = [
+  { id:1, title:'Sevkiyatı Devam Edenler', slug:'inshipment'},
+  { id:2, title:'Teslimat Onayı Bekleyenler', slug:'pending'},
+  { id:3, title:'Sevkiyatı Tamamlananlar', slug:'complated'},
+  { id:4, title:'Tümünü Göster', slug:'all'},
 ];
 
 export const acceptedOut = [
     { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
 ];
 
-export const inShipmentOut = [
-    { id:1, title:'Sevkiyatı  Devam Edenler', slug:'inshipment'},
-    { id:2, title:'Teslimat Onayı Bekleyenler', slug:'pending'},
-    { id:3, title:'Sevkiyatı Tamamlananlar', slug:'complated'},
-    { id:4, title:'Tümünü Göster', slug:'all'},
+export const pendingOut = [ 
+  { id:1, title:'Teklif Beklenenler', slug:'pending'},
+  { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
+  { id:3, title:'Tümünü Göster', slug:'all'},
 ];
 
-export const pendingIn = [
-    { id:1, title:'Teklif Beklenenler', slug:'pending'},
-    { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
-    { id:3, title:'Tümünü Göster', slug:'all'},
-];
 
-export const acceptedIn = [
-    { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
-];
-
-export const inShipmentIn = [
-    //...
-];
 
 export const items = [
     {type:true, vat:false, progress:'active', corporate:false, price:'15.750', currency:'₺', tax:true, fav:true, view:125, time:'1-3 Gün içerisinde', 

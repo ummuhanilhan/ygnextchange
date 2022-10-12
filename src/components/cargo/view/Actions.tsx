@@ -47,7 +47,7 @@ export const Actions = ({item, actionType, fav}:any) => {
                 return (<Button rich>
                      {viewed}
                      {faved}
-                     <Action title='Vazgeç' color='darkgray' path='#' outline />
+                     <Action title='Vazgeç' color='gray' outline path='#' outline />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
                  </Button>)
@@ -56,9 +56,10 @@ export const Actions = ({item, actionType, fav}:any) => {
                 return (<Button>
                      {viewed}
                      {faved}
-                     <Action title='Detay Gör' color='orange' path='#' />
-                     <Action title='Teklif Gönder' color='blue' path='#' />
-                 </Button>)
+                     <Action title='Vazgeç' color='gray' outline path='#' outline />
+                    <Action title='İlan detayını gör' color='orange' path='#' />
+                    <Action title='Sevkiyatı Başlat' color='blue' path='#' />
+               </Button>)
             break;
             case 'outgoing-pending':
                 return (<Button rich>
@@ -70,7 +71,7 @@ export const Actions = ({item, actionType, fav}:any) => {
             case 'ingoing-inshipment':
                 return (<Button rich>
                      {viewed}
-                     <Action title='Listeden Kaldır' color='gray' path='#' />
+                     <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
                  </Button>)
@@ -78,25 +79,26 @@ export const Actions = ({item, actionType, fav}:any) => {
             case 'ingoing-accepted':
                 return (<Button rich>
                      {viewed}
-                     <Action title='Listeden Kaldır' color='gray' path='#' />
+                     <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Teslimatı Onayla' color='blue' path='#' />
+                     <Action title='Diğer Teklifleri İncele (5)' color='blue' path='#' />
+                  
                  </Button>)
             break;
             case 'ingoing-pending':
                 return (<Button rich>
                     {viewed}
-                     <Action title='Listeden Kaldır' color='gray' path='#' />
+                     <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Teklifleri İncele' color='blue' path='#' />
+                     <Action title='Teklifleri İncele (3)' color='blue' path='#' />
 
                  </Button>)
             break;            
             case 'vehicle-active':
                 return (<Button>
                     {viewed}
-                    <Action title='Detay Gör' color='orange' path='#' />
-                   <Action title='Teklif Gönder' color='blue' path='#' />
+                    <Action title='İlan detayını gör' color='orange' path='#' />
+                   <Action title='Sevkiyatı Başlat' color='blue' path='#' />
 
                  </Button>)
             break;            
@@ -141,8 +143,8 @@ export const Action = ({path, color, title, outline}:any) => {
 }
 
 /**
-<Action title='Sil' color='gray' path='#' outline />
-<Action title='Vazgeç' color='gray' path='#' outline />
+<Action title='Sil' color='gray' outline path='#' outline />
+<Action title='Vazgeç' color='gray' outline path='#' outline />
 <Action title='Kopyala' color='blue' path='#' outline />
 <Action title='Düzenle' color='blue' path='#' />
 <Action title='İlan Detayını Gör' color='orange' path='#' />

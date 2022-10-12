@@ -30,7 +30,10 @@ export const OfferDummy = ({actionType}:any)=>{
     ))
     return (
         <Frame>
-            <FilterHeading />
+            <FilterHeading 
+                type={actionType}
+                actionType={`${actionType}-${OfferReverse[selected]}`}
+            />
             <TabLayout 
                 selected={selected}
                 setSelected={setSelected}
