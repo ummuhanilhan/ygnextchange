@@ -1,3 +1,4 @@
+import classNames from "classnames"
 
 
 export const Frame = ({children}:any) => {
@@ -12,10 +13,10 @@ export const Frame = ({children}:any) => {
   }
 
   
-export const DoubleFrame = ({children}:any) => {
+export const DoubleFrame = ({children, className, id}:any) => {
 
   return(
-    <div className="frame bg-white p-3 rounded-md mt-3">
+    <div id={id} className={classNames('frame bg-white p-3 rounded-md mt-3', className)}>
       {children}
   </div>
   )

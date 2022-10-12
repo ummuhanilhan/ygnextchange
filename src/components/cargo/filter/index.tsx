@@ -30,16 +30,17 @@ const initialValues = {
 
 export const CargoFilter = () => {
     const content = (
-        <DoubleFrame>
+        <DoubleFrame  id="cargoes" className="relative">
             <Filter />
             <View type='cargoes' />
         </DoubleFrame>
+ 
     )
-    return (
-        <div id="cargoes" className="relative">
-            <View type='cargoes' />
-        </div>
-    )
+    const single = <div id="cargoes" className="relative">
+            <Filter />
+        <View type='cargoes' />
+    </div>
+    return content;
 }
 
 const Filter = ({}:any) => {
@@ -62,8 +63,10 @@ const Filter = ({}:any) => {
 
     };
     return (
-        <div className="filter bg-gray-50 sticky top-4 left-0 h-0 rounded-md w-[18em]" ref={ref}>
-                <form onSubmit={handleSubmit(onSubmit, onError)} className='flex flex-col h-[80vh] justify-between 
+        <div className="filter bg-gray-50 z-30 sticky 
+         top-4 left-0 h-0 rounded-md w-[18em]" ref={ref}>
+                <form onSubmit={handleSubmit(onSubmit, onError)} 
+                className='flex flex-col h-[80vh]- justify-between 
                 bg-gray-50 p-3 rounded-lg'>
                   <SimpleBar style={{ maxHeight: '65vh',  }} className='pb-1'>
                         <Search control={control} placeholder='İlan ara...' />

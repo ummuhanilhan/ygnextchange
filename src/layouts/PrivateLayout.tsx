@@ -19,11 +19,13 @@ export const Private = ({children}: DefaultState) => {
             </div>
         </div>
     )
-    return (
+
+    const basic = (
         <Main className='max-w-[1669px]' >
             {children}
         </Main>
     )
+    return content;
 }
 
 export default Private;

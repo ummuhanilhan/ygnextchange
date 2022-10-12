@@ -11,9 +11,12 @@ import { CargoItem } from "./cargoItem"
 export const View = ({wide, type, tabs}:any) => {
     const [selected, setSelected] = React.useState(1);
 
-    return ( // {'ml-[18.8em] p-3':!wide}
-        <div className={classNames('view mt-4 rounded-lg bg-gray-50 h-full', )}> 
-            {/** <Heading wide />  */}
+    return ( 
+        <div className={classNames('view mt-4- rounded-lg',
+        'bg-gray-50 h-full',  
+        {'ml-[18.8em] p-3':!wide}
+         )}> 
+            <Heading wide />
             {
                 tabs &&
                 <Tabs 
