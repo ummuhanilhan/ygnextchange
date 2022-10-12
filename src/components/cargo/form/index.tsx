@@ -12,6 +12,9 @@ import Datetime from "./datetime";
 import { CargoCreateRoute, defaultItem, initial } from "@utils/mock";
 import { joiResolver } from '@hookform/resolvers/joi';
 import { cargoSchema } from "@utils/validations/cargo";
+import Classic from "@shared/modals/classic";
+import SimpleBar from "simplebar-react";
+import { Publish } from "./publish";
 
 export type CargoValues = {
     name: string,
@@ -33,6 +36,7 @@ const initialValues = {
 }
 
 export const CargoCreate = ({update}:any) => {
+    const [open, setOpen] = React.useState(false)
     const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<any>({
         defaultValues: initialValues,
@@ -67,8 +71,29 @@ export const CargoCreate = ({update}:any) => {
                     </div>
                  </div>
                 
-                
-                <Footer selected={selected} setSelected={setSelected} update={update}  />
+                <Classic 
+                    status={open} 
+                    close={()=>setOpen(!open)}
+                    styles={{
+                        height:'fit-content',
+                        top:'15%',
+                        left:'20%',
+                        right:'20%',
+                        borderRadius:'10px',
+                        overflow:'visible'
+                    }}
+                    overlay={{
+                        backgroundColor:'rgba(0, 0, 0, 0.5)',
+                        WebkitBackdropFilter: 'blur(0)',
+                        backdropFilter: 'blur(0)',
+        
+                    }}
+                >
+                    <SimpleBar style={{ maxHeight: '350px' }}>
+                        <Publish control={control} />
+                    </SimpleBar>
+                </Classic>
+                <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>
     )
@@ -80,7 +105,8 @@ export default CargoCreate;
 export const Footer = ({
     selected,
     setSelected,
-    update
+    update,
+    setOpen
 }:any) => {
 
     return (
@@ -88,12 +114,12 @@ export const Footer = ({
         sm:flex sm:justify-end mt-3 
         -sticky right-3 bottom-3 sm:p-3  ">
             <div className="bg-yg-orange p-3 text-center px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
-            <button 
-            type='submit'
+            <div 
             className="bg-yg-blue p-3 px-12 mt-2 sm:mt-0 sm:ml-2 text-white rounded-md cursor-pointer" 
             onClick={()=>{
                 selected< 3 && setSelected(selected+1)
-            }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</button>
+                selected>=3 && setOpen && setOpen(true)
+            }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
         </div>
     )
 } 

@@ -1,3 +1,4 @@
+import classNames from "classnames"
 
 export const Checkbox = ({
     name,
@@ -6,13 +7,14 @@ export const Checkbox = ({
     label,
     children,
     onBlur,
-    error ,
+    error,
+    className,
     ...rest
 }:any) => {
 
     return (
     
-    <div className="flex items-center justify-center"  >
+    <div className={classNames('flex items-center justify-center', className)}  >
         <input type="checkbox" 
         id={name} name="confirmation" 
         onClick={()=>onChange(!value)} 

@@ -5,3 +5,5 @@
 - ✅ calendar variations
 + ✅ input errors 
 - ✅ responsive remained
+- ✅ item actions
+- ✅ offers actions path, viewCount and inspection

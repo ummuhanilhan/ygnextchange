@@ -6,6 +6,7 @@ import { InputHook } from "@shared/elements/hooks/inputHook";
 import { currencies, definitions, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
 import { InputAppendHook, InputGroupHook } from "@shared/elements/hooks";
 import Turkiye from '@utils/dummy/turkiye.json'
+import { CheckboxHook } from "@shared/elements/hooks/checkboxHook";
 
 
 
@@ -121,7 +122,7 @@ export const Payload = ({control}:any) => {
                 </TitleFrame>
             </div>
 
-                <TitleFrame title="Ücret Hesaplayıcı">
+                <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
                      <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
                             <SelectHook 
                                 name="payment.type" 
@@ -155,6 +156,13 @@ export const Payload = ({control}:any) => {
                        
                     </div>
                 </TitleFrame>
+                <div className='flex justify-between'>
+                    <div></div>
+                    <div className='flex items-start mt-5'>
+                        <CheckboxHook name='payload.bargain' label='Fiyat görüşülür' control={control} className='mr-6' />
+                        <CheckboxHook name='payload.amount' label='Yalnızca tutar belirteceğim' control={control} checked />
+                    </div>
+                </div>
 
 
 

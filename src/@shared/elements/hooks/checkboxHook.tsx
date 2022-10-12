@@ -8,6 +8,7 @@ export const CheckboxHook = ({
     control, 
     name,
     label,
+    className,
     ...rest
 }:any) => {
 
@@ -27,6 +28,7 @@ export const CheckboxHook = ({
                     error={error}
                     name={name}
                     label={label}
+                    className={className}
                     children={label}
                     {...rest}
                 />
