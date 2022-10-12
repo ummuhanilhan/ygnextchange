@@ -9,11 +9,18 @@ import { CargoItem } from "./cargoItem"
 
 
 export const View = ({wide, tabs}:any) => {
+    const [selected, setSelected] = React.useState(1);
 
     return ( // {'ml-[18.8em] p-3':!wide}
-        <div className={classNames('view rounded-lg bg-gray-50 h-full', )}> 
+        <div className={classNames('view mt-4 rounded-lg bg-gray-50 h-full', )}> 
             {/** <Heading wide />  */}
-            {tabs && <Tabs /> }
+            {
+                tabs &&
+                <Tabs 
+                    selected={selected}
+                    setSelected={setSelected}
+                />
+            }
             {[
             ...items
             ].map((item,i:number)=>(
@@ -21,6 +28,7 @@ export const View = ({wide, tabs}:any) => {
                     item={item} 
                     key={`cargo-item-${i}`} 
                     actionType='cargoes' 
+                    status={selected===1}  
                 />
             ))}
             <SimplePagination />
@@ -62,12 +70,11 @@ export const Selectes = () => {
 }
  
 
-export const Tabs = () =>{
-    const [selected, setSelected] = React.useState(1);
+export const Tabs = ({selected, setSelected}:any) =>{
 
     return (   
         <React.Fragment> 
-           <div className="mt-4">
+           <div className="mt-0">
             <TabLayout
                     type='cargo'
                     selected={String(selected)}

@@ -5,11 +5,11 @@ import { FaMapPin } from "react-icons/fa"
 import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
 
-export const CargoItem = ({item, actionType=''}:any) => {
+export const CargoItem = ({item, actionType='', status}:any) => {
   console.log(actionType)
     return (
         <div className={classNames(
-            'cargo-item bg-white px-4 my-3 rounded-lg py-4',
+            'cargo-item bg-white px-4 mb-3 rounded-lg py-4',
             {'grayscale': item.progress=='outdated'}
         )}>
             <div className=''>
@@ -28,9 +28,9 @@ export const CargoItem = ({item, actionType=''}:any) => {
                        </li>
                         
                        <li className='inline-block float-left'>
-                            <div className=" flex items-start h-fit justify-center ml-2">
-                                <PinAngle width={17} />
-                                <p className='ml-1'> İlan No: 25959 </p>
+                            <div className=" flex items-start mt-1 h-fit justify-center ml-2">
+                                <PinAngle width={15} />
+                                <p className='ml-1 text-sm '> İlan No: 25959 </p>
                             </div>
                        </li>
 
@@ -111,7 +111,7 @@ export const CargoItem = ({item, actionType=''}:any) => {
                     )}
 
                 </div>
-                   <Actions item={item} actionType={actionType} />
+                   <Actions item={item} actionType={actionType} status={status} />
             </div>
         </div>
     )

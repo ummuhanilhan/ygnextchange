@@ -18,7 +18,7 @@ export const ProfileTab = ({change}:any) => {
                 key={`profile-menu-${i}`} 
                 className={classNames({active:(router.pathname == item.path) },`
                 text-md flex flex-center items-center border border-transparent border-b-4 bg-white p-3 rounded-md
-                cursor-pointer xl:mb-3
+                cursor-pointer xl:mb-0
                 `)} 
                 onMouseDown={(e:any)=>{
                     if(e.button === 1 )

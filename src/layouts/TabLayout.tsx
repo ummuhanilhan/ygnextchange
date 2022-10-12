@@ -17,11 +17,12 @@ export interface TabProps {
 }
 
 export const TabLayout = (props:TabProps) => {
+    const {selected, setSelected} = props;
     const router = useRouter();
-    const [selected, setSelected] = React.useState(String(1))
+    // const [selected, setSelected] = React.useState(String(1))
     const {pathname} = router;
     const context = (
-        <div id={props.type} className='my-4'>
+        <div id={props.type} className=''>
             <Tabs 
                 pathname={pathname}
                 {...props}

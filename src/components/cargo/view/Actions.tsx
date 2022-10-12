@@ -4,7 +4,7 @@ import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
 
 
-export const Actions = ({item, actionType, fav}:any) => {
+export const Actions = ({item, actionType, status, fav}:any) => {
     const faved = (
         <div className="inline-block">
             <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
@@ -13,7 +13,7 @@ export const Actions = ({item, actionType, fav}:any) => {
             </div>
         </div>
     )
-        
+
     const viewed = (
         <div className="inline-block">
             <div className='view flex flex-col items-center mr-2'>
@@ -33,21 +33,21 @@ export const Actions = ({item, actionType, fav}:any) => {
         return <div className='sm:flex'>{children}</div>
     }
 
-    const getActions = (value:string) => {
+    const getActions = (value:string, item:any, status:boolean) => {
         switch (value) {
             case 'cargoes':
                 return (<Button>
                     {viewed}
                     {faved}
                     <Action title='Detay Gör' color='orange' path='#' />
-                   <Action title='Teklif Gönder' color='blue' path='#' />
+                   <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />
                  </Button>)
             break;
             case 'outgoing-inshipment':
                 return (<Button rich>
                      {viewed}
                      {faved}
-                     <Action title='Vazgeç' color='gray' outline path='#' outline />
+                     <Action title='Vazgeç' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
                  </Button>)
@@ -56,7 +56,7 @@ export const Actions = ({item, actionType, fav}:any) => {
                 return (<Button>
                      {viewed}
                      {faved}
-                     <Action title='Vazgeç' color='gray' outline path='#' outline />
+                     <Action title='Vazgeç' color='gray' outline path='#' />
                     <Action title='İlan detayını gör' color='orange' path='#' />
                     <Action title='Sevkiyatı Başlat' color='blue' path='#' />
                </Button>)
@@ -82,7 +82,6 @@ export const Actions = ({item, actionType, fav}:any) => {
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Diğer Teklifleri İncele (5)' color='blue' path='#' />
-                  
                  </Button>)
             break;
             case 'ingoing-pending':
@@ -91,7 +90,6 @@ export const Actions = ({item, actionType, fav}:any) => {
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifleri İncele (3)' color='blue' path='#' />
-
                  </Button>)
             break;            
             case 'vehicle-active':
@@ -106,39 +104,41 @@ export const Actions = ({item, actionType, fav}:any) => {
                 return (<Button>
                     {viewed}
                     <Action title='Detay Gör' color='orange' path='#' />
-                    <Action title='Teklif Gönder' color='blue' path='#' />
-                    
+                    <Action title='Teklif Gönder'  color='blue' path='#' />
                  </Button>)
             break;            
             default:
                 return;
             break;
-        }
-        
+        }  
     }
 
     return (
         <div className="flex-[5] sm:flex-[9] md:flex-[5]  h-auto flex items-end justify-end">
-            {getActions(actionType)}
+            {getActions(actionType, item, status)}
         </div>
     )
 }
 
 
-export const Action = ({path, color, title, outline}:any) => {
- 
+export const Action = ({path, color, title, outline, disabled}:any) => {
     return !outline? (
-        <a href={path} className={classNames(
-            ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
-            `bg-yg-${color} text-white inline-block float-left h-min w-max`,
-            `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-        )}>{title}</a>
+       disabled ?  <a href={path} className={classNames(
+        ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
+        `bg-gray-300 text-white inline-block float-left h-min w-max`
+    )}>{title}</a> :
+    <a href={path} className={classNames(
+        ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
+        `bg-yg-${color} text-white inline-block float-left h-min w-max`,
+        `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
+    )}>{title}</a>
     ):(
         <a href={path} className={classNames(
             ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
             `bg-transparent text-yg-${color} border-yg-${color} inline-block float-left h-min w-max`,
             `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
         )}>{title}</a>
+      
     )
 }
 

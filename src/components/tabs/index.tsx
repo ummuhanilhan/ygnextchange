@@ -15,8 +15,9 @@ export const Tabs = ({
     const router = useRouter();
     return (
         <ul className={classNames(
-            'grid tabs',
-            `grid-cols-1 lg:grid-cols-${data?.length} lg:gap-${data?.length}`,
+            'grid tabs my-4',
+            `grid-cols-1 lg:grid-cols-${data?.length} gap-3
+            lg:gap-${data?.length}`,
             `${type}-tab`
         )}>
             {data?.map((item:any, i:number)=>(
@@ -24,7 +25,7 @@ export const Tabs = ({
                 key={`${type}-menu-${i}`} 
                 className={classNames({active: selected == item.id },`
                 text-md flex flex-center items-center border border-transparent border-b-2 bg-white p-3 rounded-md
-                cursor-pointer mb-3
+                cursor-pointer mb-3-
                 `)} 
                 onMouseDown={(e:any)=>{
                     if(e.button === 1 )
