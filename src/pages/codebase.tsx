@@ -209,7 +209,7 @@ export const Forms = () => {
        */}
       </div>
 
-      <div className='-grid sm:grid-cols-2 gap-2 my-5 '>
+      <div className='-grid sm:grid-cols-2 md:grid md:grid-cols-3 gap-2 my-5 '>
         
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
@@ -236,7 +236,7 @@ export const Forms = () => {
           
       </div>
 
-      <div className='-flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start md:grid md:grid-cols-3 gap-2 mb-5 '>
         <div className='w-full'>
          <h3 className='tex-md'>Small</h3>
           <InputHook
@@ -279,7 +279,7 @@ export const Forms = () => {
         
       </div>
 
-      <div className='-flex items-start gap-2 mb-5'>
+      <div className='-flex items-start md:grid md:grid-cols-3 gap-2 mb-5'>
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
           <PhoneHook
@@ -317,7 +317,7 @@ export const Forms = () => {
 
       </div>
 
-      <div className='-flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start md:grid md:grid-cols-2 gap-2 mb-5 '>
             <TextareaHook
               name='textarea1'
               placeholder='Şirket Adresi'
@@ -391,7 +391,7 @@ export const Elements = () => {
         </div>
       </div>
 
-      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5 '>
+      <div className='grid sm:grid-cols-2 gap-2 my-5 '>
         
         <div className="w-full">
             <h3 className='text-md'>Dimensions</h3>
@@ -481,7 +481,7 @@ export const Elements = () => {
       </div>
      */}
 
-      <div className='-grid sm:grid-cols-2 gap-2 my-5 '>
+      <div className='-grid sm:grid-cols-2 md:grid md:grid-cols-3 gap-2 my-5 '>
         
             <div className="w-full">
               <h3 className='text-md'>Tags</h3>
@@ -510,7 +510,7 @@ export const Elements = () => {
           
       </div>
 
-      <div className='-flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start md:grid md:grid-cols-3 gap-2 mb-5 '>
         <div className='w-full'>
          <h3 className='tex-md'>Small</h3>
           <FloatingInput
@@ -553,7 +553,7 @@ export const Elements = () => {
         
       </div>
 
-      <div className='-flex items-start gap-2 mb-5'>
+      <div className='-flex items-start md:grid md:grid-cols-3 gap-2 mb-5'>
        <div className='w-full'>
          <h3 className='tex-md'>Small (55px)</h3>
           <FloatingPhone
@@ -594,7 +594,7 @@ export const Elements = () => {
 
       </div>
 
-      <div className='-flex items-start gap-2 mb-5 '>
+      <div className='-flex items-start gap-2 md:grid md:grid-cols-2 mb-5 '>
             <Textarea
               className=' '
               value={value}
