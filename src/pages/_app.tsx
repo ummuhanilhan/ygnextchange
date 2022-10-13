@@ -4,7 +4,9 @@ import { AppInitialProps, AppProps } from 'next/app'
 import PrimeReact, { addLocale, locale } from 'primereact/api';
 import Head from 'next/head';
 import { primeOptions } from '@utils/mock';
-
+import { Provider } from 'react-redux'
+import { store } from 'stores/store';
+ 
 PrimeReact.ripple = true;
 
 addLocale('tr', primeOptions);
@@ -28,9 +30,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 const App = (props: AppProps) => {
 
   return (
+    <Provider store={store}>
         <MyApp {...props} />
+    </Provider>
   )
 }
 
-export default App
+
+export default App;
 

@@ -635,3 +635,71 @@ export const issues = [
   {title:'İlan Ekleme Sorunu', body:'Merhaba, yeni ilan eklerken sorun yaşıyorum', status:'inspecting' },
   {title:'İlan Ekleme Sorunu', body:'Merhaba, yeni ilan eklerken sorun yaşıyorum', status:'solved' },
 ];
+
+export const addressList:any = [
+ {
+    geolocation:{
+        lat:40.788855,
+        lng:30.40595399999999,
+    },
+    contact:{
+        name:'Tester Test',
+        phone:'0505 555 55 55',
+        type:'office',
+        country:'TR',
+        code:'90',
+        verify:false,
+    },
+    place:{
+        title:'',
+        description:'',
+        address:'',
+        street:'Adapazarı, Karaosman, 54100 Adapazarı/Sakarya, Türkiye',
+    },
+    direction:{
+        city:'sakarya',
+        country:{
+            name:'',
+            code:'',
+            zip:'',
+            district:'',
+            province:'',
+            town:'',
+        },
+    },
+ },
+ {
+  geolocation:{
+      lat:40.788855,
+      lng:30.40595399999999,
+  },
+  contact:{
+      name:'Tester Test',
+      phone:'0505 555 55 55',
+      type:'office',
+      country:'TR',
+      code:'90',
+      verify:false,
+  },
+  place:{
+      title:'',
+      description:'',
+      address:'',
+      street:'Karaduvar, Mersin Limanı, 33020 - Merkez...',
+  },
+  direction:{
+      city:'sakarya',
+      country:{
+          name:'',
+          code:'',
+          zip:'',
+          district:'',
+          province:'',
+          town:'',
+      },
+  },
+}
+
+ 
+ 
+]

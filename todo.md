@@ -1,5 +1,5 @@
 # next
-- redux address list
+- ✅ redux address list
 - cargo create publish modal
 - filter sticky feature is broken
 - file upload component err

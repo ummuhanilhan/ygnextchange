@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import api from '@utils/api'
+import { addressList } from '@utils/mock'
 import { CoreState } from 'stores/store'
 import { JwtState, LoadingState } from '../types'
 
 const initialState : any = {
-  addresses: [],
+  addresses: addressList,
   address: {},
   loading: LoadingState.IDLE,
   error: undefined,

@@ -20,6 +20,8 @@ import classNames from "classnames";
 import { FiX } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
+import { useSelector } from "react-redux";
+import { selectAddress } from "stores/slices/addressSlice";
 
 declare var google:any;
 
@@ -70,7 +72,6 @@ export type AddressValues = {
 }
 
 const addressValues =  addresses[0]
- 
 
 export const Communication = () =>{
   const form = useForm<AddressValues>({
@@ -103,8 +104,8 @@ export const Communication = () =>{
   )
 }
 
+export const AddressCreate = ({border=false, footer, type}:any) => {
 
-export const AddressCreate = ({border=false, footer}:any) => {
     const form = useForm<AddressValues>({
         defaultValues: addressValues,
         // resolver: yupResolver(),
@@ -156,7 +157,7 @@ export const AddressCreate = ({border=false, footer}:any) => {
                       </div>
                       <FloatLabelHook name="directions" type="text" border={border} className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                 </div>
-                <MapView control={control} border={border} />
+                <MapView control={control} id={type} border={border} />
                                  
             </div>
             {footer}
@@ -168,6 +169,17 @@ export const AddressCreate = ({border=false, footer}:any) => {
 
 export const AddressList = () => {
     const [status, setStatus] = React.useState(false);
+    const {addresses} = useSelector(selectAddress)
+
+    const footer = <div className="flex justify-end w-full  mb-4">
+        <div 
+        className="bg-yg-orange p-3 text-center px-12 text-white rounded-md
+        cursor-pointer">Vazgeç</div>
+        <div
+        className="bg-yg-blue p-3 px-12 sm:mt-0 sm:ml-2 text-white rounded-md 
+        cursor-pointer" 
+        onClick={()=>{}}>Ekle</div>
+    </div>
 
     return (
         <React.Fragment>  
@@ -192,17 +204,10 @@ export const AddressList = () => {
             }}
           >
             <SimpleBar style={{ maxHeight: '95vh' }}>
-                <AddressCreate border footer={()=>(
-                     <div className="flex justify-end w-full  mb-4">
-                        <div 
-                        className="bg-yg-orange p-3 text-center px-12 text-white rounded-md
-                        cursor-pointer">Vazgeç</div>
-                        <div
-                        className="bg-yg-blue p-3 px-12 sm:mt-0 sm:ml-2 text-white rounded-md 
-                        cursor-pointer" 
-                        onClick={()=>{}}>Ekle</div>
-                    </div>
-                )} />
+                <AddressCreate border  
+                  type='modal'
+                  footer={footer}
+                />
             </SimpleBar>
           </Classic>
 
@@ -219,11 +224,11 @@ export const AddressList = () => {
                      >Yeni Adres Ekle</p>
                 </div>
                 <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-                   {Array.from(Array(5)).map((item,i:number)=>(
+                   {addresses.map((item:any,i:number)=>( // Array.from(Array(5))
                      <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
                         <h5 className='text-yg-blue text-sm font-medium'>Adres Başlığı</h5>
-                        <p className='text-gray-900 text-sm'>Karaduvar, Mersin Limanı, 33020 - Merkez...</p>
-                        <p className='text-gray-400 text-sm'>Sercan İzci - +90 543 522 12 13</p>
+                        <p className='text-gray-900 text-sm'>{item.place.street}</p>
+                        <p className='text-gray-400 text-sm'>{item.contact.name} - +{item.contact.code} {item.contact.phone}</p>
                         <div className='flex justify-end w-full mt-2'>
                             <p className='bg-yg-orange text-sm mr-1 text-white flex items-center 
                             hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange
@@ -240,9 +245,7 @@ export const AddressList = () => {
     )
 }
 
-
-
-export const MapView = ({control, border}:any) => {
+export const MapView = ({control, border, id}:any) => {
     const mapRef = React.useRef(null);
     const [mapMarker, setMapMarker] = React.useState();
     React.useEffect(() => {
@@ -268,8 +271,9 @@ export const MapView = ({control, border}:any) => {
       
             google.maps.event.addListener(map, "click", (e: any) => onMapClick(e));
       
+            const name = `#search-container-${id} input`;
             const searchInput = document.querySelector(
-              "#search-container input"
+              name
             ) as HTMLInputElement;
       
             const autocomplete = new google.maps.places.Autocomplete(searchInput);
@@ -292,6 +296,8 @@ export const MapView = ({control, border}:any) => {
                 map.setZoom(16);
                 zoomOk = true;
               }
+
+              console.log('--->', lat, lng)
       
               setMapMarker(marker);
             };
@@ -304,9 +310,15 @@ export const MapView = ({control, border}:any) => {
                 const addressType = item.types[0];
                 const value = item.long_name as string;
       
+                console.log(addresses);
+                console.log(item);
+                console.log(value);
+                console.log(place);
+
                 switch (addressType) {
                   case "route":
                     // setRoute(value);
+
                   case "street_number":
                     // setBuildingInfo(!value.toLowerCase().startsWith("no") ? `No: ${value}` : value );
                     break;
@@ -357,6 +369,7 @@ export const MapView = ({control, border}:any) => {
                   }
                 );
               }
+
             };
       
             const onPlaceChanged = () => {
@@ -426,7 +439,7 @@ export const MapView = ({control, border}:any) => {
     return (
         <React.Fragment>
             <div
-              id="search-container"
+              id={`search-container-${id}`}
             >
                 {/** 
 
@@ -455,7 +468,6 @@ export const MapView = ({control, border}:any) => {
         </React.Fragment>
     )
 }
-
 
 export const Location = ({
     addressType
