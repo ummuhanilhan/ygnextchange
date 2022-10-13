@@ -8,7 +8,6 @@ export function slugify(value:string='', options={}) {
 };
 
 
-
 export function toSelectItem(items: any[], id:boolean=false) {
     return items?.map(m => ({ label: m.name, value: id? m._id : m.slug }))
 };

@@ -104,7 +104,7 @@ export const Communication = () =>{
 }
 
 
-export const AddressCreate = ({border=false}:any) => {
+export const AddressCreate = ({border=false, footer}:any) => {
     const form = useForm<AddressValues>({
         defaultValues: addressValues,
         // resolver: yupResolver(),
@@ -120,45 +120,47 @@ export const AddressCreate = ({border=false}:any) => {
     };
     return (
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
-                        <FloatLabelHook name="address_search" border={border} type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
-                    </div>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-                        <div>
-                              <FloatLabelHook name="address_detail" border={border} type="text" 
-                              placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
-                              <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-                                  <SelectHook
-                                        name='direction.city'
-                                        placeholder='İl Seçiniz'
-                                        size='medium'
-                                        id='value'
-                                        removable
-                                        searchable
-                                        items={Turkiye}
-                                        control={control}
-                                        className='mb-2'
-                                        border={border}
-                                        />
-                                    <SelectHook
-                                        name='direction.district'
-                                        placeholder='İl Seçiniz'
-                                        size='medium'
-                                        id='value'
-                                        removable
-                                        searchable
-                                        items={Turkiye}
-                                        control={control}
-                                        border={border}
-                                        className='mb-2'
-                                    />
-                              </div>
-                             <FloatLabelHook name="directions" type="text" border={border} className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
-                        </div>
-                        <MapView control={control} border={border} />
-                        <div></div>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
+                <FloatLabelHook name="address_search" border={border} type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
+            </div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+                <div>
+                      <FloatLabelHook name="address_detail" border={border} type="text" 
+                      placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
+                      <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+                          <SelectHook
+                                name='direction.city'
+                                placeholder='İl Seçiniz'
+                                size='medium'
+                                id='value'
+                                removable
+                                searchable
+                                items={Turkiye}
+                                control={control}
+                                className='mb-2'
+                                border={border}
+                                />
+                            <SelectHook
+                                name='direction.district'
+                                placeholder='İl Seçiniz'
+                                size='medium'
+                                id='value'
+                                removable
+                                searchable
+                                items={Turkiye}
+                                control={control}
+                                border={border}
+                                className='mb-2'
+                            />
+                      </div>
+                      <FloatLabelHook name="directions" type="text" border={border} className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
+                </div>
+                <MapView control={control} border={border} />
+                                 
+            </div>
+            {footer}
+              
       </form>
       
     )
@@ -190,7 +192,17 @@ export const AddressList = () => {
             }}
           >
             <SimpleBar style={{ maxHeight: '95vh' }}>
-                <AddressCreate border />
+                <AddressCreate border footer={()=>(
+                     <div className="flex justify-end w-full  mb-4">
+                        <div 
+                        className="bg-yg-orange p-3 text-center px-12 text-white rounded-md
+                        cursor-pointer">Vazgeç</div>
+                        <div
+                        className="bg-yg-blue p-3 px-12 sm:mt-0 sm:ml-2 text-white rounded-md 
+                        cursor-pointer" 
+                        onClick={()=>{}}>Ekle</div>
+                    </div>
+                )} />
             </SimpleBar>
           </Classic>
 
