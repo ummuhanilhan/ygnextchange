@@ -3,4 +3,5 @@
 - cargo create publish modal
 - file upload component err
 - `api.ts` session out & login modal
-- connect pages to api
+- get connect pages to api
+- filter sticky feature is broken

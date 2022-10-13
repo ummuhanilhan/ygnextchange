@@ -1,5 +1,6 @@
 import useDimensions from '@utils/useDimensions';
 import React from 'react'
+import { FiX } from 'react-icons/fi';
 import Modal from 'react-modal';
 
 type props = {
@@ -9,8 +10,11 @@ type props = {
     overlay?:any,
     styles?:any,
     children?:any,
+    header?:any,
+    className?:string,
 }
-const Classic = ({status, close, title, styles, overlay, children}:props) => {
+
+const Classic = ({status, close, title, styles, overlay, children, header, className}:props) => {
     const [ref, { width }]:any = useDimensions();
 
     React.useEffect(()=>{
@@ -59,11 +63,27 @@ const Classic = ({status, close, title, styles, overlay, children}:props) => {
             ariaHideApp={false}
             isOpen={status||false}
         >
+          <div 
+            className={className}
+          >
+          {header && header}
           {children}
+          </div>
         </Modal>
       
     )
 }
 export default Classic
 
+export const ModalHeader = () => {
+  
+  return (
+      <div className='flex justify-between w-full'>
+        <div></div>
+        <div><FiX size={15} /></div>
+      </div>
+  )
+}
+
+export const ModalFooter = () => {}
 

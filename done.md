@@ -12,4 +12,4 @@
 - ✅ responsive remained
 - ✅ item actions
 - ✅ offers actions path, viewCount and inspection
-- ✅redux boilerplate impl
+- ✅ redux boilerplate impl

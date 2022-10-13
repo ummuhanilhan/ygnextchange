@@ -2,7 +2,7 @@ import PrivateLayout from "@layouts/PrivateLayout";
 import { AccountLayout } from "@layouts/AccountLayouts";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IconFrame, IconFrameCovered, IconFrameDropdown } from "@components/frames/IconFrame";
+import { IconFrameCovered, IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
 import React from "react";
 import { GeoAlt, Person } from "@shared/icons";
@@ -13,16 +13,29 @@ import Turkiye from '@utils/dummy/turkiye.json'
 import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { initializeGoogleMap } from "@utils/googleMapInitializer";
 import { getPlace } from "@utils/googleViewer";
-import Classic from "@shared/modals/classic";
+import Classic, { ModalHeader } from "@shared/modals/classic";
 import { addresses } from "@utils/mock";
 import { FloatingInput } from "@shared/elements/inputs";
 import classNames from "classnames";
- declare var google:any;
+import { FiX } from "react-icons/fi";
+import SimpleBar from "simplebar-react";
+import 'simplebar-react/dist/simplebar.min.css';
+
+declare var google:any;
 
 export const Address = () => {
     return (
         <AccountLayout>
-            <AddressCreate />
+             <React.Fragment>
+                <IconFrameCovered
+                    icon={<GeoAlt className="menu-icon" />}
+                    title='Adres Detay Bilgileri'
+                >
+                    <AddressCreate />
+                </IconFrameCovered>
+                <Communication />
+                <FormFooter />
+            </React.Fragment>
             <AddressList />
         </AccountLayout>
     )
@@ -57,8 +70,41 @@ export type AddressValues = {
 }
 
 const addressValues =  addresses[0]
+ 
 
-export const AddressCreate = () => {
+export const Communication = () =>{
+  const form = useForm<AddressValues>({
+      defaultValues: addressValues,
+      // resolver: yupResolver(),
+  });
+  const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+  const onSubmit: SubmitHandler<AddressValues> = data => {
+      console.log(data)
+      alert(JSON.stringify(data))
+  };
+  const onError = (errors:any) => {
+      console.log(errors)
+
+  };
+  return (
+     <IconFrameCovered
+              icon={<Person className="menu-icon" />}
+              title='Adres İletişim Bilgileri'
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-2 change-password">
+                <FloatLabelHook name="name" type="text" 
+                placeholder="İsim Soyisim" example="" control={control} />
+                <FloatLabelPhoneHook name="phone" type="text" 
+                placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                <FloatLabelHook name="email" type="text" 
+                placeholder="Eposta Adresi" example="" control={control} />
+            </div>
+        </IconFrameCovered>
+  )
+}
+
+
+export const AddressCreate = ({border=false}:any) => {
     const form = useForm<AddressValues>({
         defaultValues: addressValues,
         // resolver: yupResolver(),
@@ -73,19 +119,14 @@ export const AddressCreate = () => {
 
     };
     return (
-        <React.Fragment>
-            <IconFrameCovered
-                icon={<GeoAlt className="menu-icon" />}
-                title='Adres Detay Bilgileri'
-            >
-                <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <FloatLabelHook name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
-                        <FloatLabelHook name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
+                        <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
+                        <FloatLabelHook name="address_search" border={border} type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                         <div>
-                              <FloatLabelHook name="address_detail" type="text" 
+                              <FloatLabelHook name="address_detail" border={border} type="text" 
                               placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
                               <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                                   <SelectHook
@@ -98,6 +139,7 @@ export const AddressCreate = () => {
                                         items={Turkiye}
                                         control={control}
                                         className='mb-2'
+                                        border={border}
                                         />
                                     <SelectHook
                                         name='direction.district'
@@ -108,32 +150,17 @@ export const AddressCreate = () => {
                                         searchable
                                         items={Turkiye}
                                         control={control}
+                                        border={border}
                                         className='mb-2'
                                     />
                               </div>
-                             <FloatLabelHook name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
+                             <FloatLabelHook name="directions" type="text" border={border} className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                         </div>
-                        <MapView control={control} />
+                        <MapView control={control} border={border} />
                         <div></div>
                     </div>
-                </form>
-            </IconFrameCovered>
-            <IconFrameCovered
-                icon={<Person className="menu-icon" />}
-                title='Adres İletişim Bilgileri'
-            >
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mb-2 change-password">
-                    <FloatLabelHook name="name" type="text" 
-                    placeholder="İsim Soyisim" example="" control={control} />
-                    <FloatLabelPhoneHook name="phone" type="text" 
-                    placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
-                    <FloatLabelHook name="email" type="text" 
-                    placeholder="Eposta Adresi" example="" control={control} />
-                </div>
-            </IconFrameCovered>
-
-            <FormFooter />
-        </React.Fragment>
+      </form>
+      
     )
 }
 
@@ -142,8 +169,29 @@ export const AddressList = () => {
 
     return (
         <React.Fragment>  
-          <Classic status={status} close={setStatus} >
+          <Classic 
+            status={status} 
+            close={setStatus} 
+            className='pt-4'
+            header={ModalHeader}
+            styles={{
+                height:'fit-content',
+                top:'15%',
+                left:'20%',
+                right:'20%',
+                borderRadius:'10px',
+                overflow:'visible'
+            }}
+            overlay={{
+                backgroundColor:'rgba(0, 0, 0, 0.5)',
+                WebkitBackdropFilter: 'blur(0)',
+                backdropFilter: 'blur(0)',
 
+            }}
+          >
+            <SimpleBar style={{ maxHeight: '95vh' }}>
+                <AddressCreate border />
+            </SimpleBar>
           </Classic>
 
             <IconFrameCovered
