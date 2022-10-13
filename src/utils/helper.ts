@@ -26,16 +26,15 @@ export const getRandomInt = (min:number, max:number) => {
  
 export const generateRandomNDigits = (n:number) => {
     return Math.floor(Math.random() * (9 * (Math.pow(10, n)))) + (Math.pow(10, n));
-}
-    
+} 
 
 export const updateItemById = (data:any, item:any, code:string) => {
     let list = [...data];
     const index = list.findIndex(l=>l.code==code)
     list.splice(index,1,item)
     return list;
- }
-
+ } 
+ 
 export function isNumber(data:any) {
     return (typeof data === 'number' && !isNaN(data));
 }

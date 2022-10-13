@@ -4,7 +4,7 @@ import React from "react"
 import classnames from "classnames";
 import classNames from "classnames";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
-import Outside from "@utils/useoutside";
+import Outside from "@utils/useOutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 

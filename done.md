@@ -1,4 +1,8 @@
 # done 
+- ✅ small phone label size at `auth page`
+- ✅ cargo form updatable & staticProps
+- ✅ errored groups
+- ✅ responsive modal & map
 - ✅ bargain vat and oranged frame
 - ✅ validations
 - ✅ cargo create buttons (skipped)

@@ -1,10 +1,6 @@
 # next
-- ✅ small phone label size at `auth page`
-- ✅ cargo form updatable & staticProps
-- ✅ errored groups
-- cargo create publish modal
-- responsive modal & map
 - redux address list
+- cargo create publish modal
 - file upload component err
 - `api.ts` session out & login modal
 - connect pages to api

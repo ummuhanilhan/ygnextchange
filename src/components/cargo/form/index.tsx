@@ -8,7 +8,7 @@ import { CargoTab } from "@components/tabs/CargoTab";
 import { CargoLayout } from "@layouts/CargoLayout";
 import classNames from "classnames";
 import Payload from "./payload";
-import Datetime from "./datetime";
+import Shipping from "./shipping";
 import { CargoCreateRoute, defaultItem, initial } from "@utils/mock";
 import { joiResolver } from '@hookform/resolvers/joi';
 import { cargoSchema } from "@utils/validations/cargo";
@@ -63,8 +63,8 @@ export const CargoCreate = ({update}:any) => {
                     <div className={classNames({'hidden': CargoCreateRoute.rent!=selected})}>
                         <Rent control={control} />
                     </div>
-                    <div className={classNames({'hidden': CargoCreateRoute.datetime!=selected})}>
-                        <Datetime control={control} />
+                    <div className={classNames({'hidden': CargoCreateRoute.shipping!=selected})}>
+                        <Shipping control={control} />
                     </div>
                     <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
                         <Payload control={control} />

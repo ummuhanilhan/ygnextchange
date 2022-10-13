@@ -149,6 +149,7 @@ export const offerTabMenu = [
 export enum CargoCreateRoute {
     'rent' = 1,
     'datetime' = 2,
+    'shipping' = 2,
     'payload' = 3,
     Rent= 1,
     Datetime = 2,

@@ -1,4 +1,4 @@
-import Outside from "@utils/useoutside"
+import Outside from "@utils/useOutside"
 import classNames from "classnames"
 import React from "react"
 import { FaChevronDown, FaChevronRight } from "react-icons/fa"

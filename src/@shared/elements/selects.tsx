@@ -1,6 +1,6 @@
 import React from "react"
 import classnames from "classnames";
-import Outside from "@utils/useoutside";
+import Outside from "@utils/useOutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { TagAppend } from "./tags";

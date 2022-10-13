@@ -6,7 +6,7 @@ import rawCountries from "@utils/dummy/rawCountries";
 import tr from "@utils/dummy/countries/tr.json";
 import classNames from "classnames";
 import { FloatInputProps } from "./inputs";
-import Outside from "@utils/useoutside";
+import Outside from "@utils/useOutside";
 import { FiMinimize, FiMinusCircle, FiPlusCircle, FiX } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';

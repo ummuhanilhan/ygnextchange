@@ -1,4 +1,4 @@
-import Outside from "@utils/useoutside"
+import Outside from "@utils/useOutside"
 import { Bell, Heart, Packet, PlusCircle, Share, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import { useRouter } from "next/router"

@@ -48,6 +48,23 @@ a {
   .transitionable{
     @apply transition ease-in-out delay-500;
   }
+
+
+}
+@media only screen and (max-width:900px){
+  .ReactModal__Content {
+    top: 5% !important;
+    left: 7% !important;
+    right:7% !important;
+  }
+}
+
+@media only screen and (max-width:700px){
+  .ReactModal__Content {
+    top: 2% !important;
+    left: 2% !important;
+    right:2% !important;
+  }
 }
 
  
@@ -117,3 +134,4 @@ input[type=number] {
   fill-yg-blue 
   h-5 mr-2;
 }
+

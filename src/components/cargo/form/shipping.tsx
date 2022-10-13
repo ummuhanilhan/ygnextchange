@@ -12,7 +12,7 @@ import { MapView } from "@pages/account/address";
 import classNames from "classnames"; 
 import SimpleBar from "simplebar-react";
 
-export const Datetime = ({control}:any) => {
+export const Shipping = ({control}:any) => {
 
     return (
         <React.Fragment>
@@ -53,7 +53,7 @@ export const Datetime = ({control}:any) => {
 }
 
 
-export default Datetime;
+export default Shipping;
 
 export const AddressBox = () => {
     const [newStatus, setNew] = React.useState(false);

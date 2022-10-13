@@ -1,3 +1,4 @@
+import useDimensions from '@utils/useDimensions';
 import React from 'react'
 import Modal from 'react-modal';
 
@@ -10,6 +11,12 @@ type props = {
     children?:any,
 }
 const Classic = ({status, close, title, styles, overlay, children}:props) => {
+    const [ref, { width }]:any = useDimensions();
+
+    React.useEffect(()=>{
+      console.log('width')
+    },[width])
+
     const closeModal = (e: React.MouseEvent) => {
       e.preventDefault()
       close(false);
