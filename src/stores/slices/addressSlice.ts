@@ -65,7 +65,7 @@ export const addressSlice = createSlice({
         state.message = ''
         state.address = {}
     },
-    setAddresses:(state,action) => {
+    addAddress:(state,action) => {
       state.address = action.payload
       state.addresses = [action.payload, ...state.addresses]
     },
@@ -112,6 +112,6 @@ export const selectAddress = createSelector(
     (state) => state
 )
   
-export const { setAddress, setAddresses, clear, update } = addressSlice.actions
+export const { setAddress, addAddress, clear, update } = addressSlice.actions
 
 export default addressSlice.reducer

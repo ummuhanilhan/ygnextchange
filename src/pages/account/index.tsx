@@ -241,7 +241,7 @@ export const Healthy = ({control}:any) => {
     )
 }
 
-export const FormFooter = ({control, label, check}:any) => {
+export const FormFooter = ({control, label, check, cb}:any) => {
 
     return (
         <React.Fragment>

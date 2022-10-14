@@ -21,11 +21,14 @@ import { FiX } from "react-icons/fi";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useSelector } from "react-redux";
-import { selectAddress } from "stores/slices/addressSlice";
+import { addAddress, selectAddress } from "stores/slices/addressSlice";
+import { useAppDispatch } from "stores/store";
 
 declare var google:any;
 
 export const Address = () => {
+    const [address, setAddress] = React.useState({})
+    console.log('addressaddressaddressaddress', address)
     return (
         <AccountLayout>
              <React.Fragment>
@@ -105,9 +108,9 @@ export const Communication = () =>{
 }
 
 export const AddressCreate = ({border=false, footer, type}:any) => {
-
+ 
     const form = useForm<AddressValues>({
-        defaultValues: addressValues,
+        defaultValues: {} //addressValues,
         // resolver: yupResolver(),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
@@ -117,19 +120,16 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
     };
     const onError = (errors:any) => {
         console.log(errors)
-
     };
+
+
     return (
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
-           
+      <form onSubmit={handleSubmit(onSubmit, onError)}>           
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                 <div>
-            
                      {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}
-                     <FloatLabelHook name="address_search" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
-     
-            
-                      <FloatLabelHook name="address_detail" border={border} type="text" disabled
+                      <FloatLabelHook name="search" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
+                      <FloatLabelHook name="address" border={border} type="text" disabled
                       placeholder="Haritadan Seçili Adres Detayları" className='mb-2' example="" control={control} />
                       <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                           <SelectHook
@@ -161,12 +161,12 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
                       </div>
                       <FloatLabelHook name="directions" type="text" border={border} className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                 </div>
-
-                <MapView control={control} id={type} border={border} />
-
+                <MapView 
+                  control={control} 
+                  id={type} 
+                  border={border} 
+                />
             </div>
-            
-
             {footer}
               
       </form>
@@ -175,8 +175,10 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
 }
 
 export const AddressList = () => {
+    const [address, setAddress] = React.useState({});
     const [status, setStatus] = React.useState(false);
     const {addresses} = useSelector(selectAddress)
+    const dispatch = useAppDispatch();
 
     const footer = <div className="flex justify-end w-full  mb-4">
         <div 
@@ -185,7 +187,9 @@ export const AddressList = () => {
         <div
         className="bg-yg-blue p-3 px-12 sm:mt-0 sm:ml-2 text-white rounded-md 
         cursor-pointer" 
-        onClick={()=>{}}>Ekle</div>
+        onClick={()=>{
+           dispatch(addAddress(address));
+        }}>Ekle</div>
     </div>
 
     return (
@@ -234,8 +238,8 @@ export const AddressList = () => {
                    {addresses.map((item:any,i:number)=>( // Array.from(Array(5))
                      <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
                         <h5 className='text-yg-blue text-sm font-medium'>Adres Başlığı</h5>
-                        <p className='text-gray-900 text-sm'>{item.place.street}</p>
-                        <p className='text-gray-400 text-sm'>{item.contact.name} - +{item.contact.code} {item.contact.phone}</p>
+                        <p className='text-gray-900 text-sm'>{item.place?.street}</p>
+                        <p className='text-gray-400 text-sm'>{item.contact?.name} - +{item.contact?.code} {item.contact?.phone}</p>
                         <div className='flex justify-end w-full mt-2'>
                             <p className='bg-yg-orange text-sm mr-1 text-white flex items-center 
                             hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange
@@ -345,7 +349,6 @@ export const MapView = ({control, border, id}:any) => {
                   obj.place.address_short = item.short_name;
                 }
 
-                console.log('obj:',obj);
 
                 const addressType = item.types[0];
                 const value = item.long_name as string;
@@ -419,6 +422,8 @@ export const MapView = ({control, border, id}:any) => {
               }
       
               if (place) setPlaceToForm(place);
+              
+
             };
       
             /**

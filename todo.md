@@ -1,6 +1,7 @@
 # next
 - ✅ redux address list
-- cargo create publish modal
 - filter sticky feature is broken
+- cargo create publish modal
 - file upload component err
 - `api.ts` session out & login modal
+
