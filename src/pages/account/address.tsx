@@ -14,7 +14,7 @@ import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { initializeGoogleMap } from "@utils/googleMapInitializer";
 import { getPlace } from "@utils/googleViewer";
 import Classic, { ModalHeader } from "@shared/modals/classic";
-import { addresses } from "@utils/mock";
+import { addresses, item } from "@utils/mock";
 import { FloatingInput } from "@shared/elements/inputs";
 import classNames from "classnames";
 import { FiX } from "react-icons/fi";
@@ -121,18 +121,20 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
     };
     return (
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
-                <FloatLabelHook name="address_search" border={border} type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
-            </div>
+           
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                 <div>
-                      <FloatLabelHook name="address_detail" border={border} type="text" 
-                      placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
+            
+                     {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}
+                     <FloatLabelHook name="address_search" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
+     
+            
+                      <FloatLabelHook name="address_detail" border={border} type="text" disabled
+                      placeholder="Haritadan Seçili Adres Detayları" className='mb-2' example="" control={control} />
                       <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                           <SelectHook
                                 name='direction.city'
-                                placeholder='İl Seçiniz'
+                                placeholder='İl'
                                 size='medium'
                                 id='value'
                                 removable
@@ -141,10 +143,11 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
                                 control={control}
                                 className='mb-2'
                                 border={border}
+                                disabled
                                 />
                             <SelectHook
                                 name='direction.district'
-                                placeholder='İl Seçiniz'
+                                placeholder='İlçe'
                                 size='medium'
                                 id='value'
                                 removable
@@ -153,13 +156,17 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
                                 control={control}
                                 border={border}
                                 className='mb-2'
+                                disabled
                             />
                       </div>
                       <FloatLabelHook name="directions" type="text" border={border} className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
                 </div>
+
                 <MapView control={control} id={type} border={border} />
-                                 
+
             </div>
+            
+
             {footer}
               
       </form>
@@ -259,7 +266,7 @@ export const MapView = ({control, border, id}:any) => {
             let lng = pin?.lng;
   
             const map = new google.maps.Map(mapRef.current, {
-              zoom: 6,
+              zoom: 5,
               center: new google.maps.LatLng(39.0,36.0),
               mapTypeId: google.maps.MapTypeId.ROADMAP,
               clickableIcons: true,
@@ -270,7 +277,7 @@ export const MapView = ({control, border, id}:any) => {
             });
       
             google.maps.event.addListener(map, "click", (e: any) => onMapClick(e));
-      
+
             const name = `#search-container-${id} input`;
             const searchInput = document.querySelector(
               name
@@ -297,23 +304,51 @@ export const MapView = ({control, border, id}:any) => {
                 zoomOk = true;
               }
 
-              console.log('--->', lat, lng)
-      
+              obj.geolocation.lat = lat;
+              obj.geolocation.lng = lng;
+     
               setMapMarker(marker);
             };
       
+            
+            let obj:any = { geolocation:{}, 
+            place:{}, direction:{country:{}}};
+
             const setPlaceToForm = (place: any) => {
               // setFormattedAddress(place.formatted_address);
               const addresses = (place.address_components as any[]) || [];
+              console.log(addresses)
+        
               for (let i = 0; i < addresses.length; i++) {
                 const item = addresses[i];
+
+        
+
+                if(item.types.includes('country')){
+                  obj.direction.country.name = item.long_name;
+                  obj.direction.country.code = item.short_name;
+                }
+                if(item.types.includes('administrative_area_level_1')){
+                  obj.direction.city = item.long_name;
+                }
+                if(item.types.includes('administrative_area_level_2')){
+                  obj.direction.country.district = item.long_name;
+                }
+                if(item.types.includes('administrative_area_level_4')){
+                  obj.direction.country.province = item.long_name;
+                }
+                if(item.types.includes('postal_code')){
+                  obj.direction.country.zip = item.long_name;
+                }
+                if(item.types.includes('route')){
+                  obj.place.address = item.long_name;
+                  obj.place.address_short = item.short_name;
+                }
+
+                console.log('obj:',obj);
+
                 const addressType = item.types[0];
                 const value = item.long_name as string;
-      
-                console.log(addresses);
-                console.log(item);
-                console.log(value);
-                console.log(place);
 
                 switch (addressType) {
                   case "route":
@@ -461,7 +496,7 @@ export const MapView = ({control, border, id}:any) => {
                     placeholder={'Adres, Yer veya Koordinat Giriniz'}
                   />
                   
-               <div className='map w-full h-[20vh] my-2 rounded-lg' ref={mapRef} />
+               <div className='map w-full h-[32.5vh] my-2 rounded-lg' ref={mapRef} />
 
             </div>
 

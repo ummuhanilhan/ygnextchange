@@ -62,6 +62,7 @@ export const FloatLabelHook = ({
                     height={height}
                     border={border}
                     size={size||'medium'}
+                    disabled={disabled}
                     // textarea
                     {...rest}
                 />

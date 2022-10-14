@@ -102,6 +102,7 @@ export const FloatingInput = ({
   placeholder,
   example='',
   border,
+  disabled,
   className,
   verifiable,
   verified,
@@ -143,6 +144,7 @@ export const FloatingInput = ({
        className,
        size||'medium',
        backgroundColor||'bg-white',
+       {'disabled bg-gray-200': disabled},
        {'error': error},
       {'success': success},
       )}>
@@ -169,6 +171,7 @@ export const FloatingInput = ({
               )}
               id={name}
               value={value}
+              disabled={disabled}
               ref={inputRef}
               type={type=='password'? (!hide?'text':type) : type }
               onTouchMove={handleActivation}
