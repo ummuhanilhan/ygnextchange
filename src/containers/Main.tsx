@@ -25,13 +25,13 @@ export const MainContainer = ({children, className}:any) => {
 
           <div className={classNames(blur, 
             'lg:ml-[325px] m-0 px-4 lg:px-0 lg:blur-0 w-fill',
-            'pt-4 lg:pr-2'
+            'pt-4 lg:pr-2 h-[100vh]',
             )}>
             <Header  
               mobile={mobile}
               setMobile={setMobile}
             />
-            <div className="content mb-14 h-auto">
+            <div className="content mb-14 h-[100vh]">
               {children}
             </div>
           </div>
