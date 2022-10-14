@@ -63,7 +63,7 @@ const Filter = ({}:any) => {
 
     };
     return (
-        <div className="filter bg-gray-50 z-30 sticky 
+        <div className="filter bg-gray-50 z-30 sticky invisible lg:visible
          top-4 left-0 h-0 rounded-md w-[18em]" ref={ref}>
                 <form onSubmit={handleSubmit(onSubmit, onError)} 
                 className='flex flex-col h-[80vh]- justify-between 

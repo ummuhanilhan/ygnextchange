@@ -14,7 +14,7 @@ export const View = ({wide, type, tabs}:any) => {
     return ( 
         <div className={classNames('view mt-4- rounded-lg',
         'bg-gray-50 h-full',  
-        {'ml-[18.8em] p-3':!wide}
+        {'lg:ml-[18.8em] p-3':!wide}
          )}> 
             <Heading wide />
             {
