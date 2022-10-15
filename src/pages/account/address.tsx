@@ -1,10 +1,10 @@
 import PrivateLayout from "@layouts/PrivateLayout";
 import { AccountLayout } from "@layouts/AccountLayouts";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IconFrameCovered, IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { GeoAlt, Person } from "@shared/icons";
 import { FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook } from "@shared/elements/hooks";
 import { FormFooter } from ".";
@@ -23,6 +23,25 @@ import 'simplebar-react/dist/simplebar.min.css';
 import { useSelector } from "react-redux";
 import { addAddress, selectAddress } from "stores/slices/addressSlice";
 import { useAppDispatch } from "stores/store";
+import create, { State } from 'zustand'
+import { slugify } from "@utils/helper";
+
+interface AddressState {
+  addr: any
+  newAddr: (item: any ) => void
+}
+
+const useStore = create<AddressState>()((set) => ({
+  addr: {
+    direction:{
+      country:{},
+    },
+    place:{},
+    contact:{},
+    geolocation:{}
+  },
+  newAddr: (item) => set((state) => ({ addr: item })),
+}))
 
 declare var google:any;
 
@@ -108,9 +127,8 @@ export const Communication = () =>{
 }
 
 export const AddressCreate = ({border=false, footer, type}:any) => {
- 
+
     const form = useForm<AddressValues>({
-        defaultValues: {} //addressValues,
         // resolver: yupResolver(),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
@@ -122,6 +140,22 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
         console.log(errors)
     };
 
+    const addrRef = useRef(useStore.getState().addr)
+    useEffect(() => useStore.subscribe(
+      state => (addrRef.current = state.addr)
+    ), [])
+
+    const addr = addrRef.current;
+
+    React.useEffect(()=>{
+      const direction = addr?.direction;
+      setValue('direction.city', direction?.city );
+      setValue('direction.district', direction?.district );
+      setValue('place.address', addr?.place?.address );
+      console.log('ADDR:', addr, direction?.city, direction?.district, 
+      addr?.place?.address);
+    },[addr])
+
 
     return (
       <form onSubmit={handleSubmit(onSubmit, onError)}>           
@@ -129,7 +163,7 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
                 <div>
                      {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}
                       <FloatLabelHook name="search" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
-                      <FloatLabelHook name="address" border={border} type="text" disabled
+                      <FloatLabelHook name="place.address" border={border} type="text" disabled
                       placeholder="Haritadan Seçili Adres Detayları" className='mb-2' example="" control={control} />
                       <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                           <SelectHook
@@ -259,6 +293,8 @@ export const AddressList = () => {
 export const MapView = ({control, border, id}:any) => {
     const mapRef = React.useRef(null);
     const [mapMarker, setMapMarker] = React.useState();
+    const newAddr = useStore(state => state.newAddr);
+
     React.useEffect(() => {
         const loadMap = () => {
             let marker: any;
@@ -310,7 +346,7 @@ export const MapView = ({control, border, id}:any) => {
 
               obj.geolocation.lat = lat;
               obj.geolocation.lng = lng;
-     
+              
               setMapMarker(marker);
             };
       
@@ -321,7 +357,7 @@ export const MapView = ({control, border, id}:any) => {
             const setPlaceToForm = (place: any) => {
               // setFormattedAddress(place.formatted_address);
               const addresses = (place.address_components as any[]) || [];
-              console.log(addresses)
+              // console.log(addresses)
         
               for (let i = 0; i < addresses.length; i++) {
                 const item = addresses[i];
@@ -333,16 +369,16 @@ export const MapView = ({control, border, id}:any) => {
                   obj.direction.country.code = item.short_name;
                 }
                 if(item.types.includes('administrative_area_level_1')){
-                  obj.direction.city = item.long_name;
+                  obj.direction.city = slugify(item.long_name);
                 }
                 if(item.types.includes('administrative_area_level_2')){
-                  obj.direction.country.district = item.long_name;
+                  obj.direction.district = item.long_name;
                 }
                 if(item.types.includes('administrative_area_level_4')){
-                  obj.direction.country.province = item.long_name;
+                  obj.direction.province = item.long_name;
                 }
                 if(item.types.includes('postal_code')){
-                  obj.direction.country.zip = item.long_name;
+                  obj.direction.zip = item.long_name;
                 }
                 if(item.types.includes('route')){
                   obj.place.address = item.long_name;
@@ -364,6 +400,10 @@ export const MapView = ({control, border, id}:any) => {
                     break;
                 }
               }
+
+              newAddr(obj);
+
+              
               setTimeout(
                 () =>
                   (searchInput.value =

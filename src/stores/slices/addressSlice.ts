@@ -7,6 +7,7 @@ import { JwtState, LoadingState } from '../types'
 const initialState : any = {
   addresses: addressList,
   address: {},
+  addr: {},
   loading: LoadingState.IDLE,
   error: undefined,
   message: '',
@@ -84,6 +85,14 @@ export const addressSlice = createSlice({
       state.addresses = state.addresses.filter((addr:any)=>addr._id != action.payload)
     },
 
+    setAddr:(state,action) => {
+      state.addr = action.payload;
+    },
+
+    clearAddr:(state,action) => {
+      state.addr = {};
+    },
+
   },
   extraReducers:(builder)=>{
    
@@ -108,10 +117,11 @@ export const selectAddress = createSelector(
       error: state.address.error,
       loading: state.address.loading,
       message: state.address.message,
+      addr: state.address.addr,
     }),
     (state) => state
 )
   
-export const { setAddress, addAddress, clear, update } = addressSlice.actions
+export const { setAddress, addAddress, clear, update, setAddr, clearAddr } = addressSlice.actions
 
 export default addressSlice.reducer
