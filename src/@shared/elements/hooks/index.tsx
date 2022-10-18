@@ -77,6 +77,7 @@ export const FloatLabelPhoneHook = ({
     name,
     type,
     size,
+    border,
     ...rest
 }:{ 
     control: Control<any>, 
@@ -84,6 +85,7 @@ export const FloatLabelPhoneHook = ({
     example?:string,
     name:string,
     type:string,
+    border:boolean,
     size?: 'small' | 'medium' | 'large';
   }) => {
 
@@ -104,6 +106,7 @@ export const FloatLabelPhoneHook = ({
                     type={type}
                     error={error}
                     size={size||'medium'}
+                    border={border}
                     name={name}
                     {...rest}
                 />

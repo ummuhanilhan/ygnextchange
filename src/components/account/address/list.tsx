@@ -37,7 +37,7 @@ export const AddressList = () => {
             header={ModalHeader}
             styles={{
                 height:'fit-content',
-                top:'15%',
+                top:'10%',
                 left:'20%',
                 right:'20%',
                 borderRadius:'10px',

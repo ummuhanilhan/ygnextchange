@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectAddress } from "stores/slices/addressSlice";
 import { addresses, item } from "@utils/mock";
 import { MapView } from "@shared/maps";
+import Communication from "./communication";
 
 export type AddressValues = {
     no:number | string,
@@ -30,10 +31,10 @@ export type AddressValues = {
       phone:string
       name: string
     }
-  }
+}
 
 export const addressValues =  addresses[0]
-  
+
 export const AddressCreate = ({border=false, footer, type}:any) => {
 
     const form = useForm<AddressValues>({
@@ -105,12 +106,12 @@ export const AddressCreate = ({border=false, footer, type}:any) => {
                   />
             </div>
 
+            <Communication control={control} border />
 
             
             {footer}
               
-      </form>
-      
+      </form> 
     )
 }
 

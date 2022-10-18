@@ -6,10 +6,26 @@ import { FormFooter } from "@shared/footers";
 import Communication from "./communication";
 import AddressCreate from "./create";
 import { AddressList } from "./list";
- 
+import { useForm, SubmitHandler } from "react-hook-form";
+import { addressValues, AddressValues } from "./create";
+
 export const Address = () => {
-    const [address, setAddress] = React.useState({})
-    console.log('addressaddressaddressaddress', address)
+  const [address, setAddress] = React.useState({}) 
+  
+  const form = useForm<AddressValues>({
+      defaultValues: addressValues,
+      // resolver: yupResolver(),
+  });
+  const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+  const onSubmit: SubmitHandler<AddressValues> = data => {
+      console.log(data)
+      alert(JSON.stringify(data))
+  };
+  const onError = (errors:any) => {
+      console.log(errors)
+
+  };
+  
     return (
         <AccountLayout>
              <React.Fragment>
@@ -19,7 +35,7 @@ export const Address = () => {
                 >
                     <AddressCreate />
                 </IconFrameCovered>
-                <Communication />
+
                 <FormFooter />
             </React.Fragment>
             <AddressList />

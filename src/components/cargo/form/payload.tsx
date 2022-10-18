@@ -145,7 +145,7 @@ export const Payload = ({control}:any) => {
 
                             />
                             <InputHook 
-                                name="payment.total" 
+                                name="fee.total" 
                                 control={control} 
                                 placeholder="Toplam Tutar" 
                                 items={tagItems}
