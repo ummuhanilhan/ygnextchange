@@ -1,7 +1,13 @@
 # next
-- ✅ redux address list
-- ✅filter sticky feature is broken
 - cargo create publish modal
-- file upload component err
+- cargo create shipping tab **AddressBox**
+- file upload component err 
 - `api.ts` session out & login modal
-
+- some responsives and h-[100vh]
+- input err
+- filter form
+- Remain pages
+- logs & ts
+- docs & storybook
+- alignment
+- profile account personal information

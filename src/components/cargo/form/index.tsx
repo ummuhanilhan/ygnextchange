@@ -1,7 +1,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormFooter } from "@pages/account";
+import { FormFooter } from "@components/account";
 import { Frame } from "@components/frames/MainFrame";
 import Rent from "./rent";
 import { CargoTab } from "@components/tabs/CargoTab";
@@ -28,7 +28,7 @@ export type CargoValues = {
 
 const initialValues = {
     ...initial,
-    // ...defaultItem,
+    ...defaultItem,
     'rent.type': 'parsiel',
     'rent.vehicle': 'trailer',
     // 'shipping.range': [ '14/05/2020', '19/09/2025' ],
@@ -80,7 +80,8 @@ export const CargoCreate = ({update}:any) => {
                         left:'20%',
                         right:'20%',
                         borderRadius:'10px',
-                        overflow:'visible'
+                        overflow:'visible',
+                        background:'#f7f6fb',
                     }}
                     overlay={{
                         backgroundColor:'rgba(0, 0, 0, 0.5)',
@@ -89,7 +90,8 @@ export const CargoCreate = ({update}:any) => {
         
                     }}
                 >
-                    <SimpleBar style={{ maxHeight: '350px' }}>
+                    <SimpleBar style={{ maxHeight: '350px' }} >
+                        
                         <Publish control={control} />
                     </SimpleBar>
                 </Classic>

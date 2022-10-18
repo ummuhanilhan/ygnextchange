@@ -47,7 +47,7 @@ const Classic = ({status, close, title, styles, overlay, children, header, class
         bottom: '30px',
         background: '#fff',
         WebkitOverflowScrolling: 'touch',
-        borderRadius: '4px',
+        borderRadius: '14px',
         outline: 'none',
         zIndex: 115,
         padding: '0 15px',

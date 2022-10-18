@@ -125,7 +125,7 @@ export const Payload = ({control}:any) => {
                 <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
                      <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
                             <SelectHook 
-                                name="payment.type" 
+                                name="fee.type" 
                                 control={control} 
                                 placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
                                 items={tagItems}
@@ -135,7 +135,7 @@ export const Payload = ({control}:any) => {
 
                             />
                             <SelectHook 
-                                name="payment.price" 
+                                name="fee.price" 
                                 control={control} 
                                 placeholder="Birim Fiyat Giriniz" 
                                 items={tagItems}

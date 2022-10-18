@@ -120,17 +120,17 @@ export const fee = Joi.object({
     tonnage: Joi.number()
       .when("manual", {
         is: false,
-        then: Joi.number().required(),
+        then: Joi.number() //.required(),
       })
       .optional(),
 
     unit: Joi.number().when("manual", {
       is: false,
-      then: Joi.number().required(),
+      then: Joi.number() // .required(),
     }),
     total: Joi.number().when("manual", {
       is: true,
-      then: Joi.number().required(),
+      then: Joi.number() // .required(),
     }),
   }),
 });

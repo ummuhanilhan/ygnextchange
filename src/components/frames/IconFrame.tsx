@@ -27,7 +27,7 @@ export const TitleFrameDropdown = ({ title, icon, nomargin }:any) => {
         <div className={classNames(
             "centerize flex items-center justify-between w-full",
             "cursor-pointer text-md mb-2",
-            nomargin ? '' : 'mt-4'
+            nomargin ?? 'mt-4'
         )}>
             {icon} <p className="pr-2 text-black">{title}</p> 
             <FiChevronDown size={23} className='text-gray-500' />

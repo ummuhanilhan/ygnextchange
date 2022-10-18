@@ -28,16 +28,33 @@ api.interceptors.response.use(
     (response : AxiosResponse) => {
         return response;
     },
-    async function  (error: AxiosResponse  ) {
+    async function  (error) {
         const originalRequest = error.config;
-        //@ts-ignore
-        if (error.response.status === 401 || error.response.status === 403 && !originalRequest._retry) { // 403
-            //@ts-ignore
-            originalRequest._retry = true;
-            const access_token = await refreshAccessToken();            
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
-            return api(originalRequest);
-          }
+
+        if(originalRequest.url !== "/auth/signin" && error.response){
+            if (error.response.status === 401 && !originalRequest._retry) { // 403
+                originalRequest._retry = true;
+                
+              /** 
+               *   try {
+                    const rs = await api.post("/auth/refreshtoken", {
+                      refreshToken: TokenService.getLocalRefreshToken(),
+                    });
+          
+                    const { accessToken } = rs.data;
+                    TokenService.updateLocalAccessToken(accessToken);
+          
+                    return api(originalRequest);
+                } catch (_error) {
+                    return Promise.reject(_error);
+                }
+               */
+
+                
+            }   
+        }
+
+       
 
         return Promise.reject(error);
     }

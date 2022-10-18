@@ -1,3 +1,4 @@
+import { TitleFrameDropdown } from "@components/frames/IconFrame"
 import { SelectHook } from "@shared/elements/hooks"
 import { CalendarHook } from "@shared/elements/hooks/calendarHook"
 
@@ -6,33 +7,29 @@ export const Publish = ({control}:any) => {
 
     return (
         <div>
-            <h3>Yayına Başlama Tarihi</h3>
+            <TitleFrameDropdown title="Yayına Başlama Tarihi" />
             <div className='grid grid-cols-1 sm:grid-cols-2'>
                 <div>
-                    <SelectHook 
-                        name=''
-                        control={control} 
-                    />
+              
                 </div>
                 <div>
                     <CalendarHook 
                         name=''
                         control={control} 
+                        size='small'
                     />
                 </div>
             </div>
-            <h3>Yayını Bitirme Tarihi</h3>
+            <TitleFrameDropdown title="Yayını Bitirme Tarihi" />
             <div className='grid grid-cols-1 sm:grid-cols-2'>
                 <div>
-                    <SelectHook 
-                        name=''
-                        control={control} 
-                    />
+              
                 </div>
                 <div>
                     <CalendarHook 
                         name=''
                         control={control} 
+                        size='small'
                     />
                 </div>
             </div>

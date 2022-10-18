@@ -1,4 +1,6 @@
 # done 
+- ✅ redux address list
+- ✅filter sticky feature is broken
 - ✅ small phone label size at `auth page`
 - ✅ cargo form updatable & staticProps
 - ✅ errored groups

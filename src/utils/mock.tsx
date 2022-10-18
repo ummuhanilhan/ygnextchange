@@ -661,11 +661,11 @@ export const addressList:any = [
         country:{
             name:'',
             code:'',
-            zip:'',
-            district:'',
-            province:'',
-            town:'',
         },
+        zip:'',
+        district:'',
+        province:'',
+        town:'',
     },
  },
  {

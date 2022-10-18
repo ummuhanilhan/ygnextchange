@@ -1,0 +1,93 @@
+import { IconFrameCovered, IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
+import React from "react";
+import { GeoAlt } from "@shared/icons";
+import { Search } from "@shared/elements/searches";
+import Classic, { ModalHeader } from "@shared/modals/classic";
+import SimpleBar from "simplebar-react";
+import 'simplebar-react/dist/simplebar.min.css';
+import { useSelector } from "react-redux";
+import { addAddress, selectAddress, setAddr } from "stores/slices/addressSlice";
+import { useAppDispatch } from "stores/store"; 
+import AddressCreate from "./create";
+
+export const AddressList = () => {
+    const [address, setAddress] = React.useState({});
+    const [status, setStatus] = React.useState(false);
+    const {addresses} = useSelector(selectAddress)
+    const dispatch = useAppDispatch();
+
+    const footer = <div className="flex justify-end w-full  mb-4">
+        <div 
+        className="bg-yg-orange p-3 text-center px-12 text-white rounded-md
+        cursor-pointer">Vazgeç</div>
+        <div
+        className="bg-yg-blue p-3 px-12 sm:mt-0 sm:ml-2 text-white rounded-md 
+        cursor-pointer" 
+        onClick={()=>{
+           dispatch(addAddress(address));
+        }}>Ekle</div>
+    </div>
+
+    return (
+        <React.Fragment>  
+          <Classic 
+            status={status} 
+            close={setStatus} 
+            className='pt-4'
+            header={ModalHeader}
+            styles={{
+                height:'fit-content',
+                top:'15%',
+                left:'20%',
+                right:'20%',
+                borderRadius:'10px',
+                overflow:'visible'
+            }}
+            overlay={{
+                backgroundColor:'rgba(0, 0, 0, 0.5)',
+                WebkitBackdropFilter: 'blur(0)',
+                backdropFilter: 'blur(0)',
+
+            }}
+          >
+            <SimpleBar style={{ maxHeight: '95vh' }}>
+                <AddressCreate border  
+                  type='modal'
+                  footer={footer}
+                />
+            </SimpleBar>
+          </Classic>
+
+            <IconFrameCovered
+                icon={<GeoAlt className="menu-icon" />}
+                title='İletişim Ayarlarım'
+            >
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4'>
+                     <Search placeholder='Adres Başlığı Ara' />
+                     <p 
+                      className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
+                      items-center text-white rounded-md cursor-pointer'
+                      onClick={()=>setStatus(true)}
+                     >Yeni Adres Ekle</p>
+                </div>
+                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
+                   {addresses.map((item:any,i:number)=>( // Array.from(Array(5))
+                     <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
+                        <h5 className='text-yg-blue text-sm font-medium'>Adres Başlığı</h5>
+                        <p className='text-gray-900 text-sm'>{item.place?.street}</p>
+                        <p className='text-gray-400 text-sm'>{item.contact?.name} - +{item.contact?.code} {item.contact?.phone}</p>
+                        <div className='flex justify-end w-full mt-2'>
+                            <p className='bg-yg-orange text-sm mr-1 text-white flex items-center 
+                            hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange
+                            px-4 py-1 rounded-md cursor-pointer'>Sil</p>
+                            <p className='bg-yg-blue text-sm ml-1 text-white flex items-center 
+                            hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
+                            px-4 py-1 rounded-md cursor-pointer'>Düzenle</p>
+                        </div>
+                    </li>
+                   ))}
+                </ul>
+            </IconFrameCovered>
+        </React.Fragment>
+    )
+}
