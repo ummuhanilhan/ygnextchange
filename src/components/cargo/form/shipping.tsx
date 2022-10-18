@@ -8,7 +8,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { FloatLabelHook } from "@shared/elements/hooks";
-import { MapView } from "@pages/account/address";
+import { MapView } from "@shared/maps";
 import classNames from "classnames"; 
 import SimpleBar from "simplebar-react";
 

@@ -17,8 +17,8 @@ import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
 import { CalendarHook } from '@shared/elements/hooks/calendarHook'
 import { InputAppendHook, InputGroupHook } from '@shared/elements/hooks'
+import { FormFooter } from "@shared/footers";
 import { FileUpload } from 'primereact/fileupload';
-import { FormFooter } from './account'
 import { Select } from '@shared/elements/selects'
  
 export const Codebase = () => {

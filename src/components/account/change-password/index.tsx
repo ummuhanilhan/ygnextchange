@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import React from "react";
 import { ShieldLock } from "@shared/icons";
 import { FloatLabelHook } from "@shared/elements/hooks";
-import { FormFooter } from "..";
+import { FormFooter } from "@shared/footers";
 
 export type ResetValues = {
     password: string,

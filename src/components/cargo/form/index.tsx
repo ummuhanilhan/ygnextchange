@@ -1,7 +1,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormFooter } from "@components/account";
+import { FormFooter } from "@shared/footers";
 import { Frame } from "@components/frames/MainFrame";
 import Rent from "./rent";
 import { CargoTab } from "@components/tabs/CargoTab";
