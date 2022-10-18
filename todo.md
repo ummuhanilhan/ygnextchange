@@ -3,11 +3,12 @@
 - cargo create shipping tab **AddressBox**
 - file upload component err 
 - `api.ts` session out & login modal
-- ✅ some responsives and h-[100vh]
+- ✅ mobile issue for h-[100vh] 
 - input err
 - filter form
 - Remain pages
 - logs & ts
+- some responsives 
 - docs & storybook
 - alignment
 - Account profile individual/corporate information form
