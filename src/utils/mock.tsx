@@ -639,6 +639,8 @@ export const issues = [
 export const addressList:any = [
  {
    _id:1,
+   title:'Ev adresi',
+   directions:'Açık Adres',
     geolocation:{
         lat:40.788855,
         lng:30.40595399999999,
@@ -671,13 +673,16 @@ export const addressList:any = [
  },
  {
   _id:2,
+  title:'İşyeri',
+  directions:'Ana caddenin hemen üzeri',
   geolocation:{
       lat:40.788855,
       lng:30.40595399999999,
   },
   contact:{
       name:'Pentester Test',
-      phone:'0505 555 55 55',
+      phone:5055555555,
+      email:"test@test.com",
       type:'office',
       country:'TR',
       code:'90',

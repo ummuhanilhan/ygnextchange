@@ -10,14 +10,18 @@ import { addAddress, removeAddress, selectAddress, setAddr } from "stores/slices
 import { useAppDispatch } from "stores/store"; 
 import AddressCreate from "./create";
 import { FormFooter } from "@shared/footers";
+import { slugify } from "@utils/helper";
 
 export const AddressList = () => {
     const [address, setAddress] = React.useState({});
     const [status, setStatus] = React.useState(false);
+    const [data, setData] = React.useState([]);
+    const [query, setQuery] = React.useState('');
     const {addresses} = useSelector(selectAddress)
     const dispatch = useAppDispatch();
-
-  
+    React.useEffect(()=>{
+        setData(addresses);
+    },[addresses])
 
     return (
         <React.Fragment>  
@@ -45,6 +49,7 @@ export const AddressList = () => {
                 <AddressCreate border  
                   type='modal'
                   defaultAddress={address}
+                  update={!!address}
                   footer={<FormFooter className='mb-4' />}
                 />
             </SimpleBar>
@@ -55,7 +60,11 @@ export const AddressList = () => {
                 title='İletişim Ayarlarım'
             >
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4'>
-                     <Search placeholder='Adres Başlığı Ara' />
+                     <Search 
+                        value={query}
+                        onChange={(e:any)=>setQuery(e.target.value)}
+                        placeholder='Adres Başlığı Ara' 
+                    />
                      <p 
                       className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
                       items-center text-white rounded-md cursor-pointer'
@@ -63,9 +72,15 @@ export const AddressList = () => {
                      >Yeni Adres Ekle</p>
                 </div>
                 <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-                   {addresses.map((item:any,i:number)=>( // Array.from(Array(5))
+                   {data
+                   .filter((item:any)=>{
+                        const title = slugify(item.title).includes(slugify(query))
+                        const addr = slugify(item.place.address).includes(slugify(query))
+                        return title || addr;
+                   })
+                   .map((item:any,i:number)=>( // Array.from(Array(5))
                      <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
-                        <h5 className='text-yg-blue text-sm font-medium'>Adres Başlığı</h5>
+                        <h5 className='text-yg-blue text-sm font-medium'>{item.title?item.title:'Adres Başlığı'}</h5>
                         <p className='text-gray-900 text-sm'>{item.place?.address}</p>
                         <p className='text-gray-400 text-sm'>
                             {item.contact?.name} 

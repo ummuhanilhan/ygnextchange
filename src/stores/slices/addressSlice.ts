@@ -75,12 +75,15 @@ export const addressSlice = createSlice({
     removeAddress:(state,action) => {
       let temp = state.addresses;
       const newAddresses = temp.filter((a:any)=>a._id!=action.payload);
-      console.log(newAddresses)
       state.addresses=newAddresses;
     },
 
     updateAddress:(state,action) => {
-      //
+      let temp = state.addresses;
+      const item = action.payload;
+      const addressIndex = temp.findIndex((t:any)=>t._id === item._id)
+      temp.splice(addressIndex,1,item);
+      state.addresses=temp;
     },
 
     setAddress:(state,action) => {
