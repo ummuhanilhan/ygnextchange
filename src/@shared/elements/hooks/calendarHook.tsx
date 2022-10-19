@@ -9,6 +9,7 @@ export const CalendarHook = ({
     className,
     selectionMode,
     error,
+    size,
     ...rest     
 }:any) => {
     return (
@@ -22,7 +23,8 @@ export const CalendarHook = ({
             formState,
         }) => (
             <div className={classNames(
-                'relative bg-white rounded-md w-full h-[4em] flex items-center',
+                'relative bg-white rounded-md w-full  flex items-center',
+                size!='small' ? 'h-[4em]' : 'h-[55px]',
                 {'border border-red-600':error}
             )}>
         <Calendar
@@ -31,6 +33,7 @@ export const CalendarHook = ({
             {...field}
             // inputRef={calendarRef}
             value={value} 
+            size={size||'medium'}
             onChange={onChange}
             dateFormat="dd/mm/yy"
             selectionMode='range'

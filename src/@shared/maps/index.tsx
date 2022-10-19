@@ -261,7 +261,7 @@ export const MapView = ({
                  **/}
                  <input
                      className={classNames(
-                       'w-full rFS rounded-md h-[2.7em] p-3',
+                       'w-full rFS rounded-md h-[3em] p-3',
                        {'border':border}
                      )}
                      placeholder={'Adres, Yer veya Koordinat Giriniz'}
