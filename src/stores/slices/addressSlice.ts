@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import api from '@utils/api'
+import { generateRandomNDigits } from '@utils/helper'
 import { addressList } from '@utils/mock'
 import { CoreState } from 'stores/store'
 import { JwtState, LoadingState } from '../types'
@@ -68,7 +69,18 @@ export const addressSlice = createSlice({
     },
     addAddress:(state,action) => {
       state.address = action.payload
-      state.addresses = [action.payload, ...state.addresses]
+      state.addresses = [{_id:generateRandomNDigits(13),...action.payload}, ...state.addresses]
+    },
+
+    removeAddress:(state,action) => {
+      let temp = state.addresses;
+      const newAddresses = temp.filter((a:any)=>a._id!=action.payload);
+      console.log(newAddresses)
+      state.addresses=newAddresses;
+    },
+
+    updateAddress:(state,action) => {
+      //
     },
 
     setAddress:(state,action) => {
@@ -122,6 +134,6 @@ export const selectAddress = createSelector(
     (state) => state
 )
   
-export const { setAddress, addAddress, clear, update, setAddr, clearAddr } = addressSlice.actions
+export const { setAddress, addAddress, removeAddress, updateAddress, clear, update, setAddr, clearAddr } = addressSlice.actions
 
 export default addressSlice.reducer

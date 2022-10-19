@@ -638,6 +638,7 @@ export const issues = [
 
 export const addressList:any = [
  {
+   _id:1,
     geolocation:{
         lat:40.788855,
         lng:30.40595399999999,
@@ -653,8 +654,8 @@ export const addressList:any = [
     place:{
         title:'',
         description:'',
-        address:'',
-        street:'Adapazarı, Karaosman, 54100 Adapazarı/Sakarya, Türkiye',
+        street:'',
+        address:'Adapazarı, Karaosman, 54100 Adapazarı/Sakarya, Türkiye',
     },
     direction:{
         city:'sakarya',
@@ -669,12 +670,13 @@ export const addressList:any = [
     },
  },
  {
+  _id:2,
   geolocation:{
       lat:40.788855,
       lng:30.40595399999999,
   },
   contact:{
-      name:'Tester Test',
+      name:'Pentester Test',
       phone:'0505 555 55 55',
       type:'office',
       country:'TR',
@@ -684,8 +686,8 @@ export const addressList:any = [
   place:{
       title:'',
       description:'',
-      address:'',
-      street:'Karaduvar, Mersin Limanı, 33020 - Merkez...',
+      street:'',
+      address:'Karaduvar, Mersin Limanı, 33020 - Merkez...',
   },
   direction:{
       city:'sakarya',
@@ -699,7 +701,4 @@ export const addressList:any = [
       },
   },
 }
-
- 
- 
 ]

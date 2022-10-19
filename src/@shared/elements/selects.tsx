@@ -41,6 +41,8 @@ export const Select = ({
       slugify(val) 
       }
     )
+    console.log('val--->', val)
+    console.log(item ? item[label] : 'nope')
     return item ? item[label] : null;
    }
 
@@ -51,6 +53,9 @@ export const Select = ({
    const [selected, setSelected] = React.useState(
     value ? select(value) : null
    );
+   React.useEffect(()=>{
+    setSelected(select(value))
+   },[value])
 
 
     return (

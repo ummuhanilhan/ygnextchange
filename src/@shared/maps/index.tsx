@@ -47,6 +47,7 @@ export const MapView = ({
              autocomplete.addListener("place_changed", () => onPlaceChanged());
              autocomplete.bindTo("bounds", map);
              let zoomOk = false;
+         
              const buildMarker = (lat: number, lng: number, setCenter: boolean) => {
                if (marker) {
                  marker.setMap(null);
@@ -60,7 +61,7 @@ export const MapView = ({
                  map.setCenter(marker.position);
                }
                if (!zoomOk) {
-                 map.setZoom(16);
+                 map.setZoom(7);//16
                  zoomOk = true;
                }
  
@@ -74,24 +75,26 @@ export const MapView = ({
              const setPlaceToForm = (place: any) => {
                // setFormattedAddress(place.formatted_address);
                const addresses = (place.address_components as any[]) || [];
-               // console.log(addresses)
+                console.log('addresses--->',addresses)
+                console.log('place', place);
                let obj:any = {direction:{country:{}},
                place:{}};
          
                for (let i = 0; i < addresses.length; i++) {
                  const item = addresses[i];
  
-         
  
                  if(item.types.includes('country')){
                    obj.direction.country.name = item.long_name;
                    obj.direction.country.code = item.short_name;
                  }
                  if(item.types.includes('administrative_area_level_1')){
-                   obj.direction.city = slugify(item.long_name);
+                   obj.direction.city = item.long_name;
                  }
+                 !obj.direction.district && setValue('direction.district', '');
                  if(item.types.includes('administrative_area_level_2')){
                    obj.direction.district = item.long_name;
+                   setValue('direction.district', item.long_name);
                  }
                  if(item.types.includes('administrative_area_level_4')){
                    obj.direction.province = item.long_name;
@@ -106,8 +109,13 @@ export const MapView = ({
  
  
                  const addressType = item.types[0];
-                 const value = item.long_name as string;
- 
+                 const value = item.long_name;
+                 console.log(obj.direction.city)
+                 obj.direction.city && setValue('direction.city', obj.direction.city)
+
+                 setValue('place.address', place.formatted_address)
+
+                 
                  switch (addressType) {
                    case "route":
                      // setRoute(value);
@@ -120,8 +128,7 @@ export const MapView = ({
                  }
                }
  
-               setValue('',obj);
-               
+                
                setTimeout(
                  () =>
                    (searchInput.value =
@@ -143,6 +150,9 @@ export const MapView = ({
                const lat = e.latLng.lat();
                const lng = e.latLng.lng();
                buildMarker(lat, lng, false);
+
+               setValue('geolocation', {lat,lng});
+
        
                if (e.placeId) {
                  const service = new google.maps.places.PlacesService(map);
@@ -251,7 +261,7 @@ export const MapView = ({
                  **/}
                  <input
                      className={classNames(
-                       'w-full rFS rounded-md h-[4em] p-3',
+                       'w-full rFS rounded-md h-[2.7em] p-3',
                        {'border':border}
                      )}
                      placeholder={'Adres, Yer veya Koordinat Giriniz'}
