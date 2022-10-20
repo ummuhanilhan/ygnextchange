@@ -1,6 +1,7 @@
 import { Refrigerated, Semitruck, Svg18Wheeler, Tractortrailer, Trailer, Truck } from "@shared/vehicleIcons"
 import classNames from "classnames"
 import { CircleFill, CircleHalf } from "@shared/icons";
+import { slugify } from "@utils/helper";
 
 
 export const vehicleMenu = [
@@ -26,11 +27,11 @@ export const VehicleRadio = ({
         <ul className="w-full vehicle-icons grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {vehicleMenu.map((item,i:number)=>(
                 <li 
-                    onClick={()=>onChange(item.slug.toLocaleLowerCase())}
+                    onClick={()=>onChange(slugify(item.slug))}
                     className={classNames(
                         'text-md mx-1 p-3 bg-white cursor-pointer flex  items-center justify-center flex-col',
                         'border-2 rounded-md border-transparent text-gray-400',
-                        {'active': !value ? ++i==1 : (value==item.slug.toLocaleLowerCase())}
+                        {'active':  value==slugify(item.slug) }
                     )}                
                     key={`vehicle-${i}`}
                 > {item.icon} <p>{item.title}</p> </li>
@@ -64,7 +65,6 @@ export const RentRadio = ({
                         status ? 'border-yg-blue' : 'border-transparent'
                     )}
                     onClick={()=>{
-                        console.log('RADIORADIO',value,val)
                         onChange(val)                  
                     }}
                 >

@@ -36,7 +36,7 @@ export const CalendarHook = ({
             size={size||'medium'}
             onChange={onChange}
             dateFormat="dd/mm/yy"
-            selectionMode='range'
+            selectionMode={selectionMode}
             className={classNames('z-10 w-full -w-28',{'p-invalid':error})}
             placeholder={placeholder||'Tarih Seçiniz'}
         />

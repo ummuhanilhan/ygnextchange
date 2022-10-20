@@ -298,7 +298,7 @@ export const initial: any = {
 
 export const item: any = {
     rent: {
-      vehicle: 4,
+      vehicle: "truck",
       type: "parsiel",
       count: 0,
       features: ["615dbd950 bad540e0897b82e"],
@@ -322,6 +322,10 @@ export const item: any = {
       bargain: "", // pazarlık var mı?
       weight:{
         unit: "kg",
+        size:''
+      },
+      volume:{
+        unit: "cm",
         size:''
       },
       price: {
@@ -439,15 +443,15 @@ export const item: any = {
         load:'62b14d9d7810ae9b35ea4b09',
         unload:'62b14d9d7810ae9b35ea4b0d',
       },
-      package:null,
+      package:'',
       stow:false,
       porter:false,
       weight:{
-        size:'325.968',
+        size:"325.968",
         unit:'ton',
       },
       volume:{
-        size:'77.23',
+        size:"77.23",
         unit:'cm', // ³
       },
       dimensions:{
@@ -463,9 +467,7 @@ export const item: any = {
         density:0,
         volume:0,
       },
-      load:{
-        meter:'',
-      }
+      
     },
     fee: {
       manual: false,

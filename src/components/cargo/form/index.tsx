@@ -30,8 +30,7 @@ export type CargoValues = {
 const initialValues = {
     ...initial,
     ...defaultItem,
-    'rent.type': 'parsiel',
-    'rent.vehicle': 'trailer',
+  
     // 'shipping.range': [ '14/05/2020', '19/09/2025' ],
    
 }
@@ -46,10 +45,9 @@ export const CargoCreate = ({update}:any) => {
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
-        console.log(data);
-        console.log(JSON.stringify(data));
+        console.log('submitted',JSON.stringify(data));
     };
-    const onError = (errors:any) => { console.log(errors) };
+    const onError = (errors:any) => { console.log('errors', errors, form.getValues() ) };
 
     return (
         <CargoLayout 
@@ -84,15 +82,16 @@ export const CargoCreate = ({update}:any) => {
                         ...defaultStyles,
                         top:'15%',
                         background:'#f7f6fb',
+                        paddingTop:'1em'
                     }}
                     overlay={defaultOverlays}
                 >
-                    <SimpleBar style={{ maxHeight: '350px' }} >
+                    {/** <SimpleBar style={{ maxHeight: '350px' }} > **/}
                         <Publish control={control} 
                         footer={<FormFooter cb={()=>sendref.current?.click()} />}  />
-                    </SimpleBar>
+                    {/** </SimpleBar> **/}
                 </Classic>
-                <button type='submit' className='hidden-' ref={sendref}>Send</button>
+                <button type='submit' className='hidden' ref={sendref}></button>
                 <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>

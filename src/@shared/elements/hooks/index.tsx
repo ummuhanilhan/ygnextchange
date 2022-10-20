@@ -163,6 +163,7 @@ export const VehicleRadioHook = ({
             formState,
         }) => (
             <VehicleRadio
+                id={name}
                 onBlur={onBlur}  
                 onChange={onChange}  
                 value={value}
@@ -466,11 +467,13 @@ export const InputAppendHook = ({
     error,
     ...rest
 }:any) => {
+    const sizeName = `${name}.size`;
+    const unitName = `${name}.unit`;
 
     return (
     <Controller
         control={control}
-        name={`${name}.size`}
+        name={sizeName}
         render={({
         field: { onChange, onBlur, value, name, ref },
         fieldState: { isTouched, isDirty, error },
@@ -498,7 +501,7 @@ export const InputAppendHook = ({
                 <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
                     <SelectHook
                         {...rest}
-                        name={`${name}.unit`}
+                        name={unitName}
                         items={items} 
                         control={control} 
                         id={id||'value'}

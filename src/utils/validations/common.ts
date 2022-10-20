@@ -34,7 +34,7 @@ export const place = Joi.object({
   title: Joi.string().optional(),
   description: Joi.string().optional(),
   address: Joi.string().required(),
-  street: Joi.any().optional(),
+  street: Joi.string().allow('').optional(),
 }).optional()
 
 // address
@@ -70,8 +70,8 @@ export const shipping = Joi.object({
 
 
 const measure = Joi.object({
-  size: Joi.string().required(),
-  unit: Joi.string().required(),
+  size: Joi.string().optional(),
+  unit: Joi.string().optional(),
 })
 
 // cargo
@@ -86,24 +86,24 @@ export const payload = Joi.object({
   }),
   weight: measure,
   capacity: measure,
-  volume: measure.required(),
+  volume: measure.optional(),
   dimensions: Joi.object({
       length:Joi.string().required(),
       width:Joi.string().required(),
       height:Joi.string().required(),
       unit:Joi.string().required(),
-  }).required(),
-  tonnage:{
-      range:Joi.string(),
-  },
-  freight:{
-      density: Joi.number(),
-      volume: Joi.number(),
-  },
+  }).optional(),
+  tonnage:Joi.object({
+      range:Joi.string().optional().allow(''),
+  }).optional(),
+  freight:Joi.object({
+      density: Joi.number().optional(),
+      volume: Joi.number().optional(),
+  }).optional(),
   meter:Joi.string().optional(),
   stow:Joi.boolean().optional(),
   porter:Joi.boolean().optional(),
-  package:Joi.string().optional(),
+  package:Joi.string().allow('').optional(),
 });
 
 // payment method
@@ -126,11 +126,11 @@ export const fee = Joi.object({
   
 export const publish = Joi.object({
   start: Joi.object({
-    date: Joi.date(),
+    date: Joi.any(),
     option: Joi.string()
   }).optional(),
   end: Joi.object({
-    date: Joi.date(),
+    date: Joi.any(),
     option: Joi.string()
   }).optional()
 })

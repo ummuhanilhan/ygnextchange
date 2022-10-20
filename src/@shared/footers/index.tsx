@@ -1,10 +1,11 @@
 import React from "react"
 import {  CheckboxHook } from "@shared/elements/hooks";
+import classNames from "classnames";
 
 export const FormFooter = ({className, control, label, check, cb}:any) => {
 
     return (
-        <div className={className}>
+        <div className={classNames(className, 'mt-3')}>
             {check && (
                  <div className="mt-5 flex items-start my-1 mb-5">
                     <CheckboxHook name="accept" label={label} control={control} />

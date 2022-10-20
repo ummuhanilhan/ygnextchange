@@ -198,5 +198,7 @@ export const formSuite = (values:any) => {
     delete data.user
     delete data.viewing
     delete data.privacy
+    data.publish.start.date = new Date(data.publish.start.date) 
+    data.publish.end.date = new Date(data.publish.end.date) 
     return data;
 }
