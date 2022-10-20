@@ -1,7 +1,7 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
 import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { SelectHook } from "@shared/elements/hooks/selectHook";
-import Classic from "@shared/modals/classic";
+import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
 import { definitions } from "@utils/dummy/definitions";
 import { tagItems } from "@utils/mock";
 import React from "react";
@@ -78,20 +78,8 @@ export const AddressBox = ({control, address, getValues, setValue, type}:any) =>
        <React.Fragment>
         {/** Create new one  */}
          <Classic status={newStatus} close={setNew} 
-            styles={{
-                height:'fit-content',
-                left:'20%',
-                right:'20%',
-                borderRadius:'10px',
-                overflow:'visible',
-                padding:'1em',
-            }}
-            overlay={{
-                backgroundColor:'rgba(0, 0, 0, 0.5)',
-                WebkitBackdropFilter: 'blur(0)',
-                backdropFilter: 'blur(0)',
-
-            }}
+            styles={defaultStyles}
+            overlay={defaultOverlays}
          >
             <AddressCreate  
                 type={type}
@@ -111,19 +99,9 @@ export const AddressBox = ({control, address, getValues, setValue, type}:any) =>
         <Classic 
             status={listStatus}
             close={setList} 
-            styles={{
-                height:'fit-content',
-                left:'20%',
-                right:'20%',
-                borderRadius:'10px',
-                overflow:'visible',
-                padding:'1em',
-            }}
-            overlay={{
-                backgroundColor:'rgba(0, 0, 0, 0.5)',
-                WebkitBackdropFilter: 'blur(0)',
-                backdropFilter: 'blur(0)',
-            }}
+            styles={defaultStyles}
+            overlay={defaultOverlays}
+
         >
             <AddressList
                 border 

@@ -2,7 +2,7 @@ import { IconFrameCovered, IconFrame, IconFrameDropdown } from "@components/fram
 import React from "react";
 import { GeoAlt } from "@shared/icons";
 import { Search } from "@shared/elements/searches";
-import Classic, { ModalHeader } from "@shared/modals/classic";
+import Classic, { defaultOverlays, defaultStyles, ModalHeader } from "@shared/modals/classic";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useSelector } from "react-redux";
@@ -31,20 +31,9 @@ export const AddressList = ({select, border}:any) => {
             close={setStatus} 
             className='pt-4'
             header={ModalHeader}
-            styles={{
-                height:'fit-content',
-                top:'10%',
-                left:'20%',
-                right:'20%',
-                borderRadius:'10px',
-                overflow:'visible'
-            }}
-            overlay={{
-                backgroundColor:'rgba(0, 0, 0, 0.5)',
-                WebkitBackdropFilter: 'blur(0)',
-                backdropFilter: 'blur(0)',
-
-            }}
+            styles={defaultStyles}
+            overlay={defaultOverlays}
+          
           >
             <SimpleBar style={{ maxHeight: '95vh' }}>
                 <AddressCreate 

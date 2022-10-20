@@ -87,3 +87,18 @@ export const ModalHeader = () => {
 
 export const ModalFooter = () => {}
 
+
+export const defaultStyles = {
+  height:'fit-content',
+  left:'20%',
+  right:'20%',
+  borderRadius:'10px',
+  overflow:'visible',
+  padding:'1em',
+}
+
+export const defaultOverlays = {
+  backgroundColor:'rgba(0, 0, 0, 0.5)',
+  WebkitBackdropFilter: 'blur(0)',
+  backdropFilter: 'blur(0)',
+}
