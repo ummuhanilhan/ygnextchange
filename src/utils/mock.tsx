@@ -301,19 +301,14 @@ export const item: any = {
       vehicle: 4,
       type: "parsiel",
       count: 0,
-      features: ["615dbd950bad540e0897b82e"],
+      features: ["615dbd950 bad540e0897b82e"],
       options: ["61238c46d805fc5832de14e7"],
     },
     shipping: {
       time: "",
       range: "",
       load: {
-        place: {
-          geolocation: {},
-          address: {},
-          personal: "",
-          contact: "",
-        },
+     
       },
       unload: {},
       distance: {},
@@ -412,9 +407,8 @@ export const item: any = {
           lng: 35.663372039794915,
         },
         place: {
-          address:
-            "Akdere, Akdere Tekir Yayla Yolu, 38900 Tomarza/Kayseri, Türkiye",
-          street: "No: Akdere Tekir Yayla Yolu",
+          address:"Akdere, Akdere Tekir Yayla Yolu, 38900 Tomarza/Kayseri, Türkiye",
+           street: "No: Akdere Tekir Yayla Yolu",
         },
         direction: {
           city: "kayseri",

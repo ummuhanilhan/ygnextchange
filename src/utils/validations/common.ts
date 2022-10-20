@@ -11,8 +11,9 @@ export const rent = Joi.object({
 
 export const contact = Joi.object({
   name: Joi.string(),
+  email: Joi.string(),
   phone: Joi.string().required(),
-  type: Joi.string().required().valid('home', 'office','mobile'),
+  type: Joi.string(),//.required().valid('home', 'office','mobile'),
   code: Joi.string(), // country-iso codes
   verify: Joi.boolean().default(false),
 });
@@ -33,7 +34,7 @@ export const place = Joi.object({
   title: Joi.string().optional(),
   description: Joi.string().optional(),
   address: Joi.string().required(),
-  street: Joi.string().optional(),
+  street: Joi.any().optional(),
 }).optional()
 
 // address
@@ -99,10 +100,10 @@ export const payload = Joi.object({
       density: Joi.number(),
       volume: Joi.number(),
   },
-  package:Joi.string(),
-  meter:Joi.string(),
-  stow:Joi.boolean(),
-  porter:Joi.boolean(),
+  meter:Joi.string().optional(),
+  stow:Joi.boolean().optional(),
+  porter:Joi.boolean().optional(),
+  package:Joi.string().optional(),
 });
 
 // payment method
@@ -116,11 +117,9 @@ export const fee = Joi.object({
   amount: Joi.boolean(),
   manual: Joi.boolean(),
   price: Joi.object({
-    manual: Joi.boolean(),
     tonnage: Joi.number(),
     total: Joi.number(),
     unit: Joi.number(),
-
   }),
 });
 
@@ -129,11 +128,11 @@ export const publish = Joi.object({
   start: Joi.object({
     date: Joi.date(),
     option: Joi.string()
-  }),
+  }).optional(),
   end: Joi.object({
     date: Joi.date(),
     option: Joi.string()
-  })
+  }).optional()
 })
 
 

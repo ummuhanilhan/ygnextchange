@@ -1,6 +1,6 @@
 # next
-- cargo create publish modal
-- cargo create shipping tab **AddressBox**
+- ✅ cargo create publish modal
+- ✅ cargo create shipping tab **AddressBox**
 - file upload component err 
 - `api.ts` session out & login modal
 - ✅ mobile issue for h-[100vh] 
