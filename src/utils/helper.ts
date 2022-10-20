@@ -187,4 +187,16 @@ export const add = (increment:number) => new Date(Date.now() + increment)
 
 export const  Capitalize = (string:string) => {
     return string?.charAt(0).toUpperCase() + string?.slice(1);
-  }
+}
+
+export const formSuite = (values:any) => {
+    let data = values;
+    delete data._id
+    delete data.__v
+    delete data.created_at
+    delete data.updated_at
+    delete data.user
+    delete data.viewing
+    delete data.privacy
+    return data;
+}

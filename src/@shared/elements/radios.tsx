@@ -64,6 +64,7 @@ export const RentRadio = ({
                         status ? 'border-yg-blue' : 'border-transparent'
                     )}
                     onClick={()=>{
+                        console.log('RADIORADIO',value,val)
                         onChange(val)                  
                     }}
                 >

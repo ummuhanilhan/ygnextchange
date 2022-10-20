@@ -271,6 +271,7 @@ export const SelectHook = ({
     name,
     label,
     size,
+    items,
     ...rest
 }:any) => {
     return (
@@ -287,6 +288,7 @@ export const SelectHook = ({
                size={size||'medium'}
                value={value}
                error={error}
+               items={items}
                onChange={onChange}
             />
         )}

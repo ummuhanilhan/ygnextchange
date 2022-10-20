@@ -281,8 +281,9 @@ export const initial: any = {
     shipping: {},
     payload: {
       bargain: true,
-      measurement: {
-        measure: "kg",
+      weight:{
+        unit: "kg",
+        size:''
       },
     },
     fee: {
@@ -324,6 +325,10 @@ export const item: any = {
       define: "", // yük tanımı
       transport: "", // rampa, vinç, elle
       bargain: "", // pazarlık var mı?
+      weight:{
+        unit: "kg",
+        size:''
+      },
       price: {
         unit: "",
         total: "",
@@ -707,3 +712,4 @@ export const addressList:any = [
   },
 }
 ]
+

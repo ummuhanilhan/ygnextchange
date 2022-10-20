@@ -5,7 +5,7 @@ import { CalendarHook } from "@shared/elements/hooks/calendarHook"
 import { definitions } from "@utils/dummy/definitions"
 
 
-export const Publish = ({control}:any) => {
+export const Publish = ({control, footer}:any) => {
 
     return (
         <div>
@@ -46,6 +46,8 @@ export const Publish = ({control}:any) => {
                         size='small'
                     />
             </div>
+
+            {footer}
         </div>
     )
 }

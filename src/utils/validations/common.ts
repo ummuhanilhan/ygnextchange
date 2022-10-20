@@ -113,25 +113,14 @@ export const fee = Joi.object({
   paymethod: Joi.string().required(),
   vat: Joi.string().required(), // bool
   bargain: Joi.boolean(),
+  amount: Joi.boolean(),
   manual: Joi.boolean(),
   price: Joi.object({
     manual: Joi.boolean(),
+    tonnage: Joi.number(),
+    total: Joi.number(),
+    unit: Joi.number(),
 
-    tonnage: Joi.number()
-      .when("manual", {
-        is: false,
-        then: Joi.number() //.required(),
-      })
-      .optional(),
-
-    unit: Joi.number().when("manual", {
-      is: false,
-      then: Joi.number() // .required(),
-    }),
-    total: Joi.number().when("manual", {
-      is: true,
-      then: Joi.number() // .required(),
-    }),
   }),
 });
 

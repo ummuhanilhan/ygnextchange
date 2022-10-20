@@ -135,7 +135,7 @@ export const Payload = ({control}:any) => {
 
                             />
                             <SelectHook 
-                                name="fee.price" 
+                                name="fee.price.unit" 
                                 control={control} 
                                 placeholder="Birim Fiyat Giriniz" 
                                 items={tagItems}
@@ -145,7 +145,7 @@ export const Payload = ({control}:any) => {
 
                             />
                             <InputHook 
-                                name="fee.total" 
+                                name="fee.price.total" 
                                 control={control} 
                                 placeholder="Toplam Tutar" 
                                 items={tagItems}
@@ -159,8 +159,8 @@ export const Payload = ({control}:any) => {
                 <div className='flex justify-between'>
                     <div></div>
                     <div className='flex items-start mt-5'>
-                        <CheckboxHook name='payload.bargain' label='Fiyat görüşülür' control={control} className='mr-6' />
-                        <CheckboxHook name='payload.amount' label='Yalnızca tutar belirteceğim' control={control} checked />
+                        <CheckboxHook name='fee.bargain' label='Fiyat görüşülür' control={control} className='mr-6' />
+                        <CheckboxHook name='fee.amount' label='Yalnızca tutar belirteceğim' control={control} checked />
                     </div>
                 </div>
 

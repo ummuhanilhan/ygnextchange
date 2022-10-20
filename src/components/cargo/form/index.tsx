@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormFooter } from "@shared/footers";
@@ -12,9 +12,10 @@ import Shipping from "./shipping";
 import { CargoCreateRoute, defaultItem, initial } from "@utils/mock";
 import { joiResolver } from '@hookform/resolvers/joi';
 import { cargoSchema } from "@utils/validations/cargo";
-import Classic from "@shared/modals/classic";
+import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
 import SimpleBar from "simplebar-react";
 import { Publish } from "./publish";
+import { formSuite } from "@utils/helper";
 
 export type CargoValues = {
     name: string,
@@ -37,9 +38,10 @@ const initialValues = {
 
 export const CargoCreate = ({update}:any) => {
     const [open, setOpen] = React.useState(false)
+    const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<any>({
-        defaultValues: initialValues,
+        defaultValues: formSuite(initialValues),
        resolver: joiResolver(cargoSchema),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
@@ -79,27 +81,18 @@ export const CargoCreate = ({update}:any) => {
                     status={open} 
                     close={()=>setOpen(!open)}
                     styles={{
-                        height:'fit-content',
+                        ...defaultStyles,
                         top:'15%',
-                        left:'20%',
-                        right:'20%',
-                        borderRadius:'10px',
-                        overflow:'visible',
                         background:'#f7f6fb',
                     }}
-                    overlay={{
-                        backgroundColor:'rgba(0, 0, 0, 0.5)',
-                        WebkitBackdropFilter: 'blur(0)',
-                        backdropFilter: 'blur(0)',
-        
-                    }}
+                    overlay={defaultOverlays}
                 >
                     <SimpleBar style={{ maxHeight: '350px' }} >
-                        
-                        <Publish control={control} />
+                        <Publish control={control} 
+                        footer={<FormFooter cb={()=>sendref.current?.click()} />}  />
                     </SimpleBar>
                 </Classic>
-                <button type='submit' className='button btn'>send</button>
+                <button type='submit' className='hidden-' ref={sendref}>Send</button>
                 <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>

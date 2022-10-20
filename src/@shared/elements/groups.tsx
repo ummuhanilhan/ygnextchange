@@ -154,7 +154,8 @@ export const Select = ({
     error,
     onChange
   }:any) => {
-       const [selected, setSelected] = React.useState(value || items?.lenght>0 && items[0][id]);
+       const [selected, setSelected] = React.useState(
+        value || items?.lenght>0 && items[0][id]);
       const [active, setActive] = React.useState(false);
       const [open, setOpen] = React.useState(false);
       const [data, setData] = React.useState(items);
