@@ -11,8 +11,10 @@ import { FloatLabelHook } from "@shared/elements/hooks";
 import { MapView } from "@shared/maps";
 import classNames from "classnames"; 
 import SimpleBar from "simplebar-react";
+import AddressCreate from "@components/account/address/create";
+import { FormFooter } from "@shared/footers";
 
-export const Shipping = ({control}:any) => {
+export const Shipping = ({control, setValue, getValues}:any) => {
 
     return (
         <React.Fragment>
@@ -41,10 +43,18 @@ export const Shipping = ({control}:any) => {
 
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                 <TitleFrame title="Yükleme Adresi">
-                    <AddressBox />
+                    <AddressBox  
+                        type='load' 
+                        setValue={setValue} 
+                        getValues={getValues}
+                    />
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Adresi">
-                    <AddressBox />
+                    <AddressBox 
+                        type='unload' 
+                        setValue={setValue} 
+                        getValues={getValues}
+                    />
                 </TitleFrame>
             </div>
  
@@ -55,10 +65,14 @@ export const Shipping = ({control}:any) => {
 
 export default Shipping;
 
-export const AddressBox = () => {
+export const AddressBox = ({control, address, getValues, setValue, type}:any) => {
     const [newStatus, setNew] = React.useState(false);
     const [listStatus, setList] = React.useState(false);
 
+    const [addr, setAddr] = React.useState<any>({});
+    React.useEffect(()=>{
+           setAddr(getValues('shipping.'+type))
+    },[addr])
     return(
        <React.Fragment>
         {/** Create new one  */}
@@ -68,7 +82,8 @@ export const AddressBox = () => {
                 left:'20%',
                 right:'20%',
                 borderRadius:'10px',
-                overflow:'visible'
+                overflow:'visible',
+                padding:'1em',
             }}
             overlay={{
                 backgroundColor:'rgba(0, 0, 0, 0.5)',
@@ -77,21 +92,48 @@ export const AddressBox = () => {
 
             }}
          >
-            <CreateAddressModal />
+            <AddressCreate  
+                type={type}
+                cb={(data)=>{
+                    setValue(`shipping.${type}`, data)
+                    setAddr(data);
+                    console.log('data:',data)
+                }}
+                id='cargo-modal' 
+                defaultAddress={addr} 
+                update={!!addr} 
+                footer={<FormFooter />} 
+                border 
+            />
         </Classic>
         {/** List old records  */}
         <Classic status={listStatus} close={setList} >
             <h1 className='text-3xl'>Records</h1>
         </Classic>
-        <div className='bg-white p-3 h-32 flex flex-col justify-between'>
+        <div className='bg-white rounded-lg p-3 h-32 flex flex-col justify-between'>
 
-            <p className='text-gray-400'>Yükün Yükleneceği Konumu Seçiniz</p>
+         { !addr?.title && <p className='text-gray-400'>Yükün Yükleneceği Konumu Seçiniz</p> }
+          { addr?.title && <h3 className='text-yg-blue text-2xlxl text-medium'>{addr.title}</h3> }
+            
+           {addr && (
+             <div>
+                <p className='text-sm'>{addr.place?.address}</p>
+                {addr?.contact && (
+                <div className="flex items-start">
+                    <p className='text-gray-400 text-sm'>Yetkili:</p>
+                    <p className='text-sm'>{addr.contact?.name} 
+                    {addr.contact?.code ? `- +90 ` + addr.contact.code : null }  
+                    {` `}{addr.contact?.phone}</p>
+                </div>
+                )}
+            </div>
+           )}
 
-            <div className="w-full flex justify-end mt">
+            <div className="w-full flex justify-end my-2">
                 <div className="bg-yg-orange p-2 px-4 text-white rounded-md  
                 cursor-pointer text-sm"
                 onClick={()=>setNew(true)}
-                >Yeni Adres Ekle</div>
+                >{!addr ?'Yeni Adres Ekle':'Güncelle'}</div>
                 <div className="bg-yg-blue p-2 px-4 ml-2 text-white rounded-md 
                 cursor-pointer text-sm" 
                 onClick={()=>setList(true)}
@@ -100,74 +142,5 @@ export const AddressBox = () => {
 
         </div>
        </React.Fragment>
-    )
-}
-
-export const CreateAddressModal = ({className}:any) => {
-    const form = useForm<any>({
-        defaultValues: {
-            
-        },
-        // resolver: yupResolver(),
-    });
-    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<any> = data => {
-        console.log(data)
-        alert(JSON.stringify(data))
-    };
-    const onError = (errors:any) => {
-        console.log(errors)
-
-    };
-    return(
-        <React.Fragment>
-            <SimpleBar style={{ maxHeight: '550px',  }} className='pb-1'>
-            </SimpleBar>
-
-            <form onSubmit={handleSubmit(onSubmit, onError)} 
-            className={classNames('p-3',className)}>
-
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-                            <FloatLabelHook border name="place.address" type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />
-                            <FloatLabelHook border name="address_search" type="text" className='mb-2' placeholder="Mersin Lİmanı" example="" control={control} />
-                        </div>
-                        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
-                            <div>
-                                <FloatLabelHook border name="address_detail" type="text" 
-                                placeholder="Haritadan Seçili Adres Detayları" className='mb-2' disabled example="" control={control} />
-                                <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
-                                    <SelectHook
-                                            name='direction.city'
-                                            placeholder='İl Seçiniz'
-                                            size='medium'
-                                            id='value'
-                                            removable
-                                            searchable
-                                            border
-                                            items={Turkiye}
-                                            control={control}
-                                            className='mb-2'
-                                            />
-                                        <SelectHook
-                                            name='direction.district'
-                                            placeholder='İl Seçiniz'
-                                            size='medium'
-                                            id='value'
-                                            removable
-                                            searchable
-                                            border
-                                            items={Turkiye}
-                                            control={control}
-                                            className='mb-2'
-                                        />
-                                </div>
-                                <FloatLabelHook border name="directions" type="text" className='mb-2' placeholder="Adres Tarifi İçin Ek Detay Ekleyiniz (Opsiyonel)" example="" control={control} />
-                            </div>
-                            <MapView control={control} border />
-                            <div></div>
-                        </div>
-                    
-                </form>
-        </React.Fragment>
     )
 }

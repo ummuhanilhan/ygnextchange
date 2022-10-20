@@ -5,15 +5,15 @@ import classNames from "classnames"
 
 export const TitleFrame = ({children, title, className, color='blue'}:any) => {
 
-    return(
-      <div className={classNames('frame w-full', className)}>
+  return(
+    <div className={classNames('frame w-full', className)}>
         <div className={`border-0 border-b-[1px] border-yg-${color} py-1 mb-2`}>
           <h3 className={`text-yg-${color} text-lg`}>{title}</h3>
         </div>
         {children}
     </div>
-    )
-  }
+  )
+}
 
 
   export const TitleFrameCovered = ({title, name, placeholder, type, control, ...rest}:any) => {

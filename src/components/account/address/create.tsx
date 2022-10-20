@@ -37,9 +37,45 @@ export type AddressValues = {
 
 export const addressValues =  addresses[0]
 
-export const AddressCreate = ({border=false, footer, type, defaultAddress, update}:any) => {
-  const dispatch = useAppDispatch();
-
+export const AddressCreate = ({
+  border=false, 
+  footer, 
+  defaultAddress, 
+  update,
+  id, 
+  type,
+  cb, 
+}:{
+  /** 
+   * border
+   */
+  border?:boolean,
+  /** 
+   * border
+   */
+  footer:any,
+  /** 
+   * onloading data
+  */
+  defaultAddress?: object,
+  /** 
+   * If updatable it will call defaults
+  */
+  update?:boolean,
+  /** 
+   * top form extension for seperating by modal
+  */
+  type?:string,
+  /** 
+   * input id for same form in different fields
+  */
+  id?:string,
+  /** 
+   * set data to another form with callback
+   */
+  cb?:(data:any)=>void,
+}) => {
+    const dispatch = useAppDispatch();
     const form = useForm<AddressValues>({
       defaultValues: defaultAddress,
         // resolver: yupResolver(),
@@ -47,12 +83,14 @@ export const AddressCreate = ({border=false, footer, type, defaultAddress, updat
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
         console.log(data)
-        if(update)
-           dispatch(updateAddress(data));  
-        else 
-           dispatch(addAddress(data));
-
-        
+        if(typeof cb != undefined){
+            cb && cb(data)
+        }else{
+            if(update)
+              dispatch(updateAddress(data));  
+            else 
+              dispatch(addAddress(data));
+        }
     };
     const onError = (errors:any) => {
         console.log(errors)
@@ -105,17 +143,16 @@ export const AddressCreate = ({border=false, footer, type, defaultAddress, updat
                         />
                 </div>
                   <MapView
-                      id={type} 
+                      id={id} 
                       border={border} 
                       setValue={setValue}
                   />
             </div>
 
             <Communication control={control} border />
-
             
             {footer}
-              
+
       </form> 
     )
 }

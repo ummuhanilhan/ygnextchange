@@ -46,11 +46,12 @@ export const AddressList = () => {
             }}
           >
             <SimpleBar style={{ maxHeight: '95vh' }}>
-                <AddressCreate border  
-                  type='modal'
+                <AddressCreate 
+                  id='modal'
                   defaultAddress={address}
                   update={!!address}
                   footer={<FormFooter className='mb-4' />}
+                  border  
                 />
             </SimpleBar>
           </Classic>

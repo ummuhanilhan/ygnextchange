@@ -64,7 +64,11 @@ export const CargoCreate = ({update}:any) => {
                         <Rent control={control} />
                     </div>
                     <div className={classNames({'hidden': CargoCreateRoute.shipping!=selected})}>
-                        <Shipping control={control} />
+                        <Shipping 
+                            control={control}
+                            getValues={form.getValues}
+                            setValue={form.setValue}
+                        />
                     </div>
                     <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
                         <Payload control={control} />
