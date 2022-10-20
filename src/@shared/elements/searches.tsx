@@ -1,9 +1,15 @@
+import classNames from "classnames"
 import { FaSearch } from "react-icons/fa"
 
 
-export const Search = ({value, onChange, placeholder}:any) => {
+export const Search = ({value, onChange, placeholder, border}:any) => {
     return(
-        <div className="search bg-white py-3 px-2 flex justify-between rounded-lg">
+        <div 
+        className={classNames(
+            'search bg-white py-3 px-2 flex justify-between rounded-lg',
+            {'border':border}
+        )} 
+        >
             <input 
             type="text" 
             value={value}

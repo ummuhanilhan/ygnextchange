@@ -13,6 +13,7 @@ import classNames from "classnames";
 import SimpleBar from "simplebar-react";
 import AddressCreate from "@components/account/address/create";
 import { FormFooter } from "@shared/footers";
+import { AddressList } from "@components/account/address/list";
 
 export const Shipping = ({control, setValue, getValues}:any) => {
 
@@ -107,8 +108,30 @@ export const AddressBox = ({control, address, getValues, setValue, type}:any) =>
             />
         </Classic>
         {/** List old records  */}
-        <Classic status={listStatus} close={setList} >
-            <h1 className='text-3xl'>Records</h1>
+        <Classic 
+            status={listStatus}
+            close={setList} 
+            styles={{
+                height:'fit-content',
+                left:'20%',
+                right:'20%',
+                borderRadius:'10px',
+                overflow:'visible',
+                padding:'1em',
+            }}
+            overlay={{
+                backgroundColor:'rgba(0, 0, 0, 0.5)',
+                WebkitBackdropFilter: 'blur(0)',
+                backdropFilter: 'blur(0)',
+            }}
+        >
+            <AddressList
+                border 
+                select={(data:any)=>{
+                    setValue(`shipping.${type}`, data)
+                    setAddr(data);
+                }} 
+            />
         </Classic>
         <div className='bg-white rounded-lg p-3 h-32 flex flex-col justify-between'>
 

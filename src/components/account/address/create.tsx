@@ -82,14 +82,14 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
-        console.log(data)
-        if(typeof cb != undefined){
+      if(cb){
             cb && cb(data)
-        }else{
+      }else{
+        
             if(update)
-              dispatch(updateAddress(data));  
+                dispatch(updateAddress(data));  
             else 
-              dispatch(addAddress(data));
+                dispatch(addAddress(data));
         }
     };
     const onError = (errors:any) => {

@@ -11,8 +11,9 @@ import { useAppDispatch } from "stores/store";
 import AddressCreate from "./create";
 import { FormFooter } from "@shared/footers";
 import { slugify } from "@utils/helper";
+import classNames from "classnames";
 
-export const AddressList = () => {
+export const AddressList = ({select, border}:any) => {
     const [address, setAddress] = React.useState({});
     const [status, setStatus] = React.useState(false);
     const [data, setData] = React.useState([]);
@@ -55,32 +56,36 @@ export const AddressList = () => {
                 />
             </SimpleBar>
           </Classic>
-
             <IconFrameCovered
                 icon={<GeoAlt className="menu-icon" />}
                 title='İletişim Ayarlarım'
             >
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4'>
-                     <Search 
+                    <Search 
                         value={query}
+                        border
                         onChange={(e:any)=>setQuery(e.target.value)}
                         placeholder='Adres Başlığı Ara' 
                     />
-                     <p 
-                      className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
-                      items-center text-white rounded-md cursor-pointer'
-                      onClick={()=>setStatus(true)}
-                     >Yeni Adres Ekle</p>
+                    <p 
+                    className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
+                    items-center text-white rounded-md cursor-pointer'
+                    onClick={()=>setStatus(true)}
+                    >Yeni Adres Ekle</p>
                 </div>
                 <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-                   {data
-                   .filter((item:any)=>{
+                {data
+                .filter((item:any)=>{
                         const title = slugify(item.title).includes(slugify(query))
                         const addr = slugify(item.place.address).includes(slugify(query))
                         return title || addr;
-                   })
-                   .map((item:any,i:number)=>( // Array.from(Array(5))
-                     <li className='address-box bg-white p-2 rounded-md' key={`address-${i}`}>
+                })
+                .map((item:any,i:number)=>( // Array.from(Array(5))
+                    <li className={classNames(
+                        'address-box bg-white p-2 rounded-md',
+                        {'border': border}
+                    )}
+                    key={`address-${i}`}>
                         <h5 className='text-yg-blue text-sm font-medium'>{item.title?item.title:'Adres Başlığı'}</h5>
                         <p className='text-gray-900 text-sm'>{item.place?.address}</p>
                         <p className='text-gray-400 text-sm'>
@@ -103,11 +108,24 @@ export const AddressList = () => {
                             className='bg-yg-blue text-sm ml-1 text-white flex items-center 
                             hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
                             px-4 py-1 rounded-md cursor-pointer'>Düzenle</p>
+
+                            {select && (
+                                <p 
+                                    onClick={()=>{
+                                        select && select(item);
+                                    }}
+                                    className='bg-yg-blue text-sm ml-1 text-white flex items-center 
+                                    hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
+                                    px-4 py-1 rounded-md cursor-pointer'>
+                                     Seç
+                                </p>
+                            )}
                         </div>
                     </li>
-                   ))}
+                ))}
                 </ul>
             </IconFrameCovered>
+
         </React.Fragment>
     )
 }
