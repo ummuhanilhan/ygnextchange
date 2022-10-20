@@ -27,20 +27,13 @@ export type CargoValues = {
     },
 };
 
-const initialValues = {
-    ...initial,
-    ...defaultItem,
-  
-    // 'shipping.range': [ '14/05/2020', '19/09/2025' ],
-   
-}
 
-export const CargoCreate = ({update}:any) => {
+export const CargoCreate = ({update, initial}:any) => {
     const [open, setOpen] = React.useState(false)
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<any>({
-        defaultValues: formSuite(initialValues),
+        defaultValues: initial ? formSuite(initial):{},
        resolver: joiResolver(cargoSchema),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
