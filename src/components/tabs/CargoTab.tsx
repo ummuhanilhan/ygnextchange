@@ -32,8 +32,7 @@ export const CargoTab = ({
                 key={`cargo-menu-${i}`} 
                 className={classNames({active:(selected == CargoCreateRoute[item.slug]) },`
                 text-md flex flex-center items-center border border-transparent border-b-2 bg-white p-3 rounded-md
-                cursor-pointer mb-3
-                `)} 
+                cursor-pointer mb-0`)} 
                 onMouseDown={(e:any)=>{
                     if(e.button === 1 )
                         window.open(item.path, "_blank")    

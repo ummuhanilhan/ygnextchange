@@ -20,13 +20,13 @@ export const contact = Joi.object({
 
 export const direction = Joi.object({
   city: Joi.string(),
+  zip: Joi.string(),
+  district: Joi.string(),
+  province: Joi.string(),
+  town: Joi.string(),
   country: Joi.object({
     name: Joi.string(),
     code: Joi.string(),
-    zip: Joi.string(),
-    district: Joi.string(),
-    province: Joi.string(),
-    town: Joi.string(),
   }),
 })
 
@@ -39,6 +39,8 @@ export const place = Joi.object({
 
 // address
 export const statement = Joi.object({
+  title: Joi.string(),
+  directions: Joi.string(),
   geolocation: Joi.object({
     lat: Joi.alternatives(
       Joi.string(), Joi.number()
@@ -70,8 +72,8 @@ export const shipping = Joi.object({
 
 
 const measure = Joi.object({
-  size: Joi.string().optional(),
-  unit: Joi.string().optional(),
+  size: Joi.string().required(),
+  unit: Joi.string().required(),
 })
 
 // cargo

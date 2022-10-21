@@ -27,16 +27,15 @@ export type CargoValues = {
     },
 };
 
-
-export const CargoCreate = ({update, initial}:any) => {
+export const CargoCreate = ({update, init}:any) => {
     const [open, setOpen] = React.useState(false)
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
     const form = useForm<any>({
-        defaultValues: initial ? formSuite(initial):{},
+        defaultValues: init ? formSuite(init): initial,
        resolver: joiResolver(cargoSchema),
     });
-    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+    const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
         console.log('submitted',JSON.stringify(data));
     };
@@ -61,6 +60,8 @@ export const CargoCreate = ({update, initial}:any) => {
                             control={control}
                             getValues={form.getValues}
                             setValue={form.setValue}
+                            errors={errors}
+                            dirtyFields={dirtyFields}
                         />
                     </div>
                     <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
@@ -84,13 +85,12 @@ export const CargoCreate = ({update, initial}:any) => {
                         footer={<FormFooter cb={()=>sendref.current?.click()} />}  />
                     {/** </SimpleBar> **/}
                 </Classic>
-                <button type='submit' className='hidden' ref={sendref}></button>
+                <button type='submit' className='hidden-' ref={sendref}>send</button>
                 <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>
     )
 }
-
 
 export default CargoCreate;
 
@@ -114,4 +114,4 @@ export const Footer = ({
             }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
         </div>
     )
-} 
+}

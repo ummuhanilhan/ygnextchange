@@ -8,8 +8,6 @@ import { InputAppendHook, InputGroupHook } from "@shared/elements/hooks";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { CheckboxHook } from "@shared/elements/hooks/checkboxHook";
 
-
-
 export const Payload = ({control}:any) => {
 
     return (
@@ -58,7 +56,6 @@ export const Payload = ({control}:any) => {
                     />
                 </TitleFrame>
             </div>
-
             <div className='grid grid-cols-1 lg:flex justify-between gap-2'>
                 <TitleFrame title="Ağırlık" className='lg:w-96'>
                     <InputAppendHook
@@ -86,8 +83,6 @@ export const Payload = ({control}:any) => {
                     </div>
                 </TitleFrame>
             </div>
-
-
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>
                 <TitleFrame title="Ödeme Şekli">
                     <SelectHook 
@@ -118,57 +113,58 @@ export const Payload = ({control}:any) => {
                         label="label" 
                         placeholder="Kdv Durumu Seçiniz"
                     />
-                
                 </TitleFrame>
             </div>
-
-                <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
-                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
-                            <SelectHook 
-                                name="fee.type" 
-                                control={control} 
-                                placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
-                                items={tagItems}
-                                size='medium'
-                                id='id'
-                                disabled
-
-                            />
-                            <SelectHook 
-                                name="fee.price.unit" 
-                                control={control} 
-                                placeholder="Birim Fiyat Giriniz" 
-                                items={tagItems}
-                                size='medium'
-                                id='id'
-                                disabled
-
-                            />
-                            <InputHook 
-                                name="fee.price.total" 
-                                control={control} 
-                                placeholder="Toplam Tutar" 
-                                items={tagItems}
-                                size='medium'
-                                id='id'
-                                type='number'
-                            />
-                       
-                    </div>
-                </TitleFrame>
-                <div className='flex justify-between'>
-                    <div></div>
-                    <div className='flex items-start mt-5'>
-                        <CheckboxHook name='fee.bargain' label='Fiyat görüşülür' control={control} className='mr-6' />
-                        <CheckboxHook name='fee.amount' label='Yalnızca tutar belirteceğim' control={control} checked />
-                    </div>
+            <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
+                    <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
+                    <InputHook 
+                        name="fee.price.tonnage" 
+                        control={control} 
+                        placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
+                        items={tagItems}
+                        size='medium'
+                        type='number'
+                        // disabled
+                    />
+                    <InputHook 
+                        name="fee.price.unit" 
+                        control={control} 
+                        placeholder="Birim Fiyat Giriniz" 
+                        items={tagItems}
+                        size='medium'
+                        type='number'
+                        // disabled
+                    />
+                    <InputHook 
+                        name="fee.price.total" 
+                        control={control} 
+                        placeholder="Toplam Tutar" 
+                        items={tagItems}
+                        size='medium'
+                        id='id'
+                        type='number'
+                    />
                 </div>
-
-
-
+            </TitleFrame>
+            <div className='flex justify-between'>
+                <div></div>
+                <div className='flex items-start mt-5'>
+                    <CheckboxHook 
+                        name='fee.bargain' 
+                        label='Fiyat görüşülür' 
+                        control={control} 
+                        className='mr-6' 
+                    />
+                    <CheckboxHook 
+                        name='fee.amount' 
+                        label='Yalnızca tutar belirteceğim' 
+                        control={control} 
+                         
+                    />
+                </div>
+            </div> 
         </React.Fragment>
     )
 }
-
 
 export default Payload;

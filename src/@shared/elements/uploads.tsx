@@ -23,9 +23,7 @@ export const Upload = ({
 
     const onFileUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
         const fileInput:any = e.target;
-        console.log('file',fileInput.file)
-        console.log('files', fileInput.files)
-        if (!fileInput.files) {
+         if (!fileInput.files) {
           alert("No file was chosen");
           return;
         }

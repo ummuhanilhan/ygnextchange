@@ -135,3 +135,13 @@ input[type=number] {
   h-5 mr-2;
 }
 
+ 
+
+
+.p-invalid *{
+    &::placeholder{
+      @apply
+        text-red-500
+      ;
+    }
+}

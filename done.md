@@ -1,4 +1,8 @@
 # done 
+- ✅ cargo create publish modal
+- ✅ cargo create shipping tab **AddressBox**
+- ✅ mobile issue for h-[100vh] 
+- ✅ input placeholder err
 - ✅ redux address list
 - ✅filter sticky feature is broken
 - ✅ small phone label size at `auth page`

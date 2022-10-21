@@ -272,28 +272,35 @@ export const tagItems2 = [
     {id:9, slug:'3', value:'C1 Sınıfı', label:''},
 ]
 
-export const initial: any = {
-    viewing: 0,
-    rent: {
-      vehicle: "trailer",
-      type: "parsiel",
-    },
-    shipping: {},
-    payload: {
-      bargain: true,
-      weight:{
-        unit: "kg",
-        size:''
-      },
-    },
-    fee: {
-      manual: true,
-      price: {
-        unit: 0.0,
-      },
-    },
-};
 
+
+
+export const initial: any = {
+  rent: {
+    vehicle: "truck",
+    type: "parsiel",
+  },
+  shipping: {},
+  payload: {
+    bargain: true,
+    weight:{
+      unit:'kg',
+    },
+    volume:{
+      unit:'m', // ³
+    },
+    dimensions:{
+      unit:'kg',
+    },
+  },
+  fee: {
+    manual: true,
+    amount: true,
+    price: {
+      unit: 0,
+    },
+  },
+};
 
 
 export const item: any = {
@@ -321,12 +328,13 @@ export const item: any = {
       transport: "", // rampa, vinç, elle
       bargain: "", // pazarlık var mı?
       weight:{
-        unit: "kg",
-        size:''
+        unit:'kg',
       },
       volume:{
-        unit: "cm",
-        size:''
+        unit:'m', // ³
+      },
+      dimensions:{
+        unit:'kg',
       },
       price: {
         unit: "",
@@ -347,6 +355,7 @@ export const item: any = {
       offerPrice: 1,
       paymethod: "credit",
       vat: true,
+      amount: true,
     },
   };
   
@@ -448,11 +457,11 @@ export const item: any = {
       porter:false,
       weight:{
         size:"325.968",
-        unit:'ton',
+        unit:'kg',
       },
       volume:{
         size:"77.23",
-        unit:'cm', // ³
+        unit:'m', // ³
       },
       dimensions:{
         length:'259.735',
@@ -639,9 +648,9 @@ export const issues = [
 
 export const addressList:any = [
  {
-   _id:1,
-   title:'Ev adresi',
-   directions:'Açık Adres',
+    _id:1,
+    title:'Ev adresi',
+    directions:'Açık Adres',
     geolocation:{
         lat:40.788855,
         lng:30.40595399999999,

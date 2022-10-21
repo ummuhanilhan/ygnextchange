@@ -273,6 +273,9 @@ export const SelectHook = ({
     label,
     size,
     items,
+    selectClass,
+    appended,
+    grouped,
     ...rest
 }:any) => {
     return (
@@ -291,6 +294,9 @@ export const SelectHook = ({
                error={error}
                items={items}
                onChange={onChange}
+               grouped={grouped}
+               appended={appended}
+               selectClass={selectClass}
             />
         )}
     />
@@ -416,7 +422,7 @@ export const InputGroupHook = ({
     return (
 
         <div className={classNames(
-            'bg-white rounded-md h-[4em] pr-4',
+            'bg-white rounded-md h-[4em] pr-4-',
             border && 'border',
             {'border border-red-500': error},
         )}>
@@ -438,7 +444,7 @@ export const InputGroupHook = ({
                 name={`${name}.height`}
                 control={control} 
             />
-            <div className='pl-3 pr-3 border-transparent border-l-[1px] border-gray-100'>
+            <div className='pl-3- pr-3- border-transparent border-l-[1px] border-gray-100'>
                 <SelectHook
                     {...rest}
                     name={`${name}.unit`}
@@ -447,6 +453,7 @@ export const InputGroupHook = ({
                     id={id||'value'}
                     label={label||'label'}
                     size={size||'medium'}
+                    grouped
                 />
             </div>
         </div>  
@@ -498,7 +505,7 @@ export const InputAppendHook = ({
                     value={value}
                 />
                 
-                <div className='pl-3 border-transparent border-l-[1px] border-gray-100'>
+                <div className='pl-3- border-transparent border-l-[1px] border-gray-100'>
                     <SelectHook
                         {...rest}
                         name={unitName}
@@ -507,6 +514,7 @@ export const InputAppendHook = ({
                         id={id||'value'}
                         label={label||'label'}
                         size={size||'medium'}
+                        appended
                     />
                 </div>
             </div> 

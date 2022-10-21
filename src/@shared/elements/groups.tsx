@@ -152,17 +152,22 @@ export const Select = ({
     success,
     value, 
     error,
-    onChange
+    onChange,
+    appended,
+    grouped,
+    selectClass
   }:any) => {
-       const [selected, setSelected] = React.useState(
-        value || items?.lenght>0 && items[0][id]);
+      const [selected, setSelected] = React.useState(
+      value ); // || items[0][id]
       const [active, setActive] = React.useState(false);
       const [open, setOpen] = React.useState(false);
       const [data, setData] = React.useState(items);
       return (
         <div className={classnames(
         'w-full flashback floatinglabel-selects rounded-md relative', 
-         'medium w-20',
+         'medium min-w-[6em]',
+         {'pr-3 pl-2': appended},
+         {'pr-1 pl-2': grouped},
          {'error': error},
         {'success': success},
         )}>
@@ -271,7 +276,7 @@ const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
           <div 
           className="cursor-pointer w-22
           absolute top-0 bottom-0 
-           h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
+           h-full bg-blue-500- flex items-center justify-center pl-2 pr-1">
   
              {status ? (
               <ChevronDown

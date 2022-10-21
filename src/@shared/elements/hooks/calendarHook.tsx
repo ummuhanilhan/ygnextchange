@@ -25,7 +25,7 @@ export const CalendarHook = ({
             <div className={classNames(
                 'relative bg-white rounded-md w-full  flex items-center',
                 size!='small' ? 'h-[4em]' : 'h-[55px]',
-                {'border border-red-600':error}
+                {'border border-red-600 err':error}
             )}>
         <Calendar
             id={field.name}
@@ -37,7 +37,10 @@ export const CalendarHook = ({
             onChange={onChange}
             dateFormat="dd/mm/yy"
             selectionMode={selectionMode}
-            className={classNames('z-10 w-full -w-28',{'p-invalid':error})}
+            className={classNames(
+                'z-10 w-full -w-28',
+                {'p-invalid':error}
+            )}
             placeholder={placeholder||'Tarih Seçiniz'}
         />
         <div 

@@ -435,7 +435,6 @@ export const CountryCodeDropdown = ({status, setStatus, handleCode}:{status:bool
     country:'',
     countryCode:'',
   });
-  console.log(code)
   const defaultFlag = <TR width={23} onClick={()=>setStatus(!status)}  className="mt-[-4px] cursor-pointer"  />;
 
   return (
