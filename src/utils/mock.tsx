@@ -297,7 +297,9 @@ export const initial: any = {
     manual: true,
     amount: true,
     price: {
-      unit: 0,
+      tonnage: null,
+      total: null,
+      unit: null,
     },
   },
 };
@@ -356,6 +358,9 @@ export const item: any = {
       paymethod: "credit",
       vat: true,
       amount: true,
+      price: {
+        unit: 0,
+      },
     },
   };
   

@@ -119,9 +119,9 @@ export const fee = Joi.object({
   amount: Joi.boolean(),
   manual: Joi.boolean(),
   price: Joi.object({
-    tonnage: Joi.number(),
-    total: Joi.number(),
-    unit: Joi.number(),
+    tonnage: Joi.any().optional(),
+    total: Joi.any().optional(),
+    unit: Joi.any().optional(),
   }),
 });
 

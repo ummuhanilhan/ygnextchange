@@ -167,7 +167,7 @@ export const Select = ({
         'w-full flashback floatinglabel-selects rounded-md relative', 
          'medium min-w-[6em]',
          {'pr-3 pl-2': appended},
-         {'pr-1 pl-2': grouped},
+         {'pr-1 md:pr-2 pl-2': grouped},
          {'error': error},
         {'success': success},
         )}>
