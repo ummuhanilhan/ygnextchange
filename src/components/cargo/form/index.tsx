@@ -15,7 +15,13 @@ import { cargoSchema } from "@utils/validations/cargo";
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
 import SimpleBar from "simplebar-react";
 import { Publish } from "./publish";
-import { formSuite } from "@utils/helper";
+import { formSuite, notify } from "@utils/helper";
+import Joi from "joi";
+import rent from "./rent";
+import shipping from "./shipping";
+import payload from "./payload";
+import { fee, publish, unprice } from "@utils/validations/common";
+
 
 export type CargoValues = {
     name: string,
@@ -28,9 +34,13 @@ export type CargoValues = {
 };
 
 export const CargoCreate = ({update, init}:any) => {
+ 
+    const [amount, setAmount] = React.useState(false)
     const [open, setOpen] = React.useState(false)
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
+  
+  
     const form = useForm<any>({
         defaultValues: init ? formSuite(init): initial,
        resolver: joiResolver(cargoSchema),
@@ -38,8 +48,11 @@ export const CargoCreate = ({update, init}:any) => {
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
         console.log('submitted',JSON.stringify(data));
+        // notify('',{position:'bottom-center', theme:'light'})
     };
-    const onError = (errors:any) => { console.log('errors', errors, form.getValues() ) };
+    const onError = (errors:any) => { 
+        notify('Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})
+        console.log('errors', errors, form.getValues() ) };
 
     return (
         <CargoLayout 
@@ -47,10 +60,9 @@ export const CargoCreate = ({update, init}:any) => {
             setSelected={setSelected}
         >
             <form onSubmit={handleSubmit(onSubmit, onError)}>
-                
                  <div 
-                 className=''
-                 // style={{maxHeight:'55vh'}} className='overflow-hidden overflow-y-auto'
+                    className=''
+                    // style={{maxHeight:'55vh'}} className='overflow-hidden overflow-y-auto'
                  >
                     <div className={classNames({'hidden': CargoCreateRoute.rent!=selected})}>
                         <Rent control={control} />
@@ -65,7 +77,13 @@ export const CargoCreate = ({update, init}:any) => {
                         />
                     </div>
                     <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
-                        <Payload control={control} />
+                        <Payload 
+                            control={control} 
+                            setValue={form.setValue} 
+                            amount={amount} 
+                            setAmount={setAmount} 
+                            errors={errors} 
+                        />
                     </div>
                  </div>
                 

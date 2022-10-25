@@ -13,7 +13,7 @@ export interface FloatInputProps {
   /**
    * FloatInput placeholder
    */
-    value: string;
+    value: string|number;
    /**
     * Input contents
     */
@@ -53,7 +53,7 @@ export interface FloatInputProps {
   /**
    * Click handler
   */
-     onChange: (value:string) => Function|void;
+     onChange: (value:any) => Function|void;
   /**
    * Optional click handler
    */
@@ -117,7 +117,7 @@ export const FloatingInput = ({
 }:FloatInputProps) => {
   // const [value, setValue] = React.useState('')
   // const onChange = (val:string) => setValue(val)
-  
+
     const [active, setActive] = React.useState(false);
     const [hide, setHide] = React.useState(true);
     const inputRef = createRef<HTMLInputElement>();
@@ -126,16 +126,17 @@ export const FloatingInput = ({
       setActive(!!e.target.value);
       onChange(e.target.value);
     }
+
     function handleLabel(e:any) {
       const node = inputRef.current;
       node && node.focus()
     }
 
     React.useEffect(()=>{
-      if(value)
-        setActive(true)
-      else
+      if(value==undefined || value==null)
         setActive(false)
+      else
+        setActive(true)
     },[value])
 
     return (
@@ -181,7 +182,7 @@ export const FloatingInput = ({
               className={classNames(
                 "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
                 active ? "font-medium " : " text-gray-500 ",
-                size=='small' ? (active ? 'text-xs' : 'text-sm pt-5') : '',
+                size=='small' ? (active ? 'text-xs' : 'text-sm pt-4') : '',
                 size=='medium' ? (active ? 'text-xs pt-3' : 'text-base pt-5') : '',
                 size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
               )}
@@ -408,7 +409,7 @@ export const FloatingPhone = ({
                 {'hidden': !status}
             ].join(' ')} />
             )}
-            {value && type!='password' && (
+            {value!=null || value!=undefined && type!='password' && (
               <XCircle 
                 onClick={()=>{onChange(''); setActive(false);}}  
                 className={[

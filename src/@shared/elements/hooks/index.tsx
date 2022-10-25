@@ -14,6 +14,7 @@ import { FloatingInput, FloatingPhone } from "../inputs";
 import { Bordered, InputAppend, InputGroup, Select } from "../groups";
 import classNames from "classnames";
 import { Avatar } from "../uploads";
+import { PriceCalculate } from "@components/cargo/form/payload";
 
 export const FloatLabelHook = ({
     control, 
@@ -522,3 +523,70 @@ export const InputAppendHook = ({
     />
     )
 }
+
+
+
+export const PriceHook = ({
+    control, 
+    name,
+    size,
+    error,
+    ...rest
+}:any) => {
+
+    return (
+        <Controller
+            control={control}
+            name={name}
+            render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { isTouched, isDirty, error },
+                formState,
+            }) => (
+                <PriceCalculate 
+                   {...rest}
+                   size={size||'medium'}
+                   value={value}
+                   error={error}
+                   onChange={onChange}
+                />
+            )}
+        />
+    )
+}
+
+
+
+export const NumberHook = (props:any) => {
+    let input = (
+    <Controller 
+        name={props.name} 
+        control={props.control} 
+        rules={{ required: 'Gerekli.' }} 
+        render={({ 
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { isTouched, isDirty, error },
+            formState,
+         }) => (
+            
+            <FloatingInput 
+                name="fee.price.unit" 
+                placeholder="Birim Fiyat Giriniz" 
+                size='medium'
+                type='number'
+                value={value}
+                error={error}
+                onChange={(e:any)=>{
+
+                }}
+                disabled={props.disabled}
+            />
+
+        )} 
+    />
+    )
+    return input;
+};
+
+
+

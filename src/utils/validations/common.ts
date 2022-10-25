@@ -108,6 +108,13 @@ export const payload = Joi.object({
   package:Joi.string().allow('').optional(),
 });
 
+export const price = Joi.object({
+  amount: Joi.boolean(),
+  tonnage: Joi.alternatives().conditional('amount', { is:true, then: Joi.any().required() }),
+  unit: Joi.alternatives().conditional('amount', { is:true, then: Joi.any().required() }),
+  total: Joi.alternatives().conditional('amount', { is:false, then: Joi.any().required() }),
+})
+
 // payment method
 export const fee = Joi.object({
   type: Joi.string().optional(),
@@ -116,13 +123,8 @@ export const fee = Joi.object({
   paymethod: Joi.string().required(),
   vat: Joi.string().required(), // bool
   bargain: Joi.boolean(),
-  amount: Joi.boolean(),
   manual: Joi.boolean(),
-  price: Joi.object({
-    tonnage: Joi.any().optional(),
-    total: Joi.any().optional(),
-    unit: Joi.any().optional(),
-  }),
+  price
 });
 
   

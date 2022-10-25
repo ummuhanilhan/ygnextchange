@@ -9,6 +9,7 @@ export const CheckboxHook = ({
     name,
     label,
     className,
+    setAmount,
     ...rest
 }:any) => {
 
@@ -23,7 +24,10 @@ export const CheckboxHook = ({
             }) => (
                 <Checkbox
                     onBlur={onBlur}  
-                    onChange={onChange}  
+                    onChange={(e:any)=>{
+                        onChange(e)
+                        setAmount && setAmount(e)
+                    }}  
                     value={value}
                     error={error}
                     name={name}

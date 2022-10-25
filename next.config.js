@@ -3,12 +3,12 @@ const path = require('path')
 const prod = false
 
 let domain = `http://localhost:5005`;
-if(prod) domain = ``;
+if(prod) domain = process.env.DOMAIN;
 
 const nextConfig = {
   env:{
     domain,
-    GOOGLE_MAP_API_KEY:'AIzaSyBHIepTOP0GNZQds-zz28X_vvWQ2W1WvsM'
+    GOOGLE_MAP_API_KEY:process.env.GOOGLE_MAP_API_KEY
 
   },
   reactStrictMode: false,

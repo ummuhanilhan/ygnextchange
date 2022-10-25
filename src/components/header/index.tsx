@@ -6,6 +6,9 @@ import React from "react"
 import { useState } from "react"
 import { NotificationList, NotificationMini } from "@components/notification"
 import { FiMenu } from 'react-icons/fi' 
+import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { FloatLabelHook } from "@shared/elements/hooks"
 
 const profileMenu = [
     {id:1, title:'Hesabım', path:'/account'},
@@ -41,74 +44,15 @@ export const Header = ({mobile, setMobile}:any) =>{
                     </a>
                 </li>
             </ul>
-            <div className="profile ">
-                <ul className="">
-                    <li className="relative hover:bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center">
-                        <Share className="menu-icon" />
-                        {/** <p>Davet Et</p> **/}
-                    </li>
-                    <li className="relative- hover:bg-gray-100 rounded-full mx-1- w-12 h-12 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
-                    <Outside cb={()=>setBellStatus(false)}>
-                        <div className='relative'>
-                            <Bell className="menu-icon" />
-                            <span className="flex h-3 w-3 absolute top-[0rem] right-[-.1rem]">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                            </span>
-                        </div>
-                        { bellStatus && <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />}
-                        {/**  <p>Bildiriler</p> **/}
-                     </Outside>
-                    </li>
-                    <li className="relative hover:bg-gray-100 rounded-full mr-1 w-12 h-12 flex items-center justify-center"
-                     onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
-                        <Heart className="menu-icon orange" />
-                        {/**  <p>Favorilerim</p **/} 
-                    </li>
-                </ul>
-                <div className="profile-dropdown relative">
-               
-                <Outside cb={()=>setOpen(false)}>
-                    <button 
-                    onClick={()=>setOpen(!open)}
-                    className="flex text-sm
-                    rounded-full md:mr-0 focus:ring-4 focus:ring-gray-100
-                    " type="button">
-                        <span className="sr-only">Open user menu</span>
-                        <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="avatar" />
-                    </button>
-                    <div className={classNames(
-                        "z-40 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
-                        {'hidden':!open},
-                    )}>
-                    <div className=" py-3 px-4 text-sm text-gray-900 dark:text-white">
-                        <div>Tester Test</div>
-                        <div className="font-medium truncate">test@test.com</div>
-                        </div>
-                        <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
-                        {profileMenu.map((item, i:number)=>(
-                            <li key={`profile-menu-${i}`}>
-                                <div onClick={()=>router.push(item.path)} className="relative cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    {item.title}
-                                </div>
-                            </li>
-                        ))}
-                    
-                        </ul>
-                        <div className="py-1">
-                        <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            Güvenli Çıkış
-                        </a>
-                        </div>
-                    </div>
-
-                </Outside>
-
-                </div>
-                <div className="mx-2 cursor-pointer lg:hidden" onClick={()=>setMobile(!mobile)} >
-                    <FiMenu size={25} className="text-gray-500" />
-                </div>
-            </div>
+            <Profile 
+                bellStatus={bellStatus}
+                setBellStatus={setBellStatus}
+                router={router}
+                open={open}
+                setOpen={setOpen}
+                setMobile={setMobile}
+                mobile={mobile}
+            />
         </div>
     )
 }
@@ -191,3 +135,136 @@ export const NotificationDropdown2 = ({status, setBellStatus}:any) => {
     )
 }
 
+export const Profile = ({
+    bellStatus,
+    setBellStatus,
+    router,
+    open,
+    setOpen,
+    setMobile,
+    mobile,
+}:any) => {
+
+    return (
+        <div className="profile ">
+                <ul className="">
+                    <li className="relative hover:bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center">
+                        <Share className="menu-icon" />
+                        {/** <p>Davet Et</p> **/}
+                    </li>
+                    <li className="relative- hover:bg-gray-100 rounded-full mx-1- w-12 h-12 flex items-center justify-center" onClick={()=>setBellStatus(!bellStatus)} >
+                    <Outside cb={()=>setBellStatus(false)}>
+                        <div className='relative'>
+                            <Bell className="menu-icon" />
+                            <span className="flex h-3 w-3 absolute top-[0rem] right-[-.1rem]">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                            </span>
+                        </div>
+                        { bellStatus && <NotificationDropdown status={bellStatus} setStatus={setBellStatus} />}
+                        {/**  <p>Bildiriler</p> **/}
+                     </Outside>
+                    </li>
+                    <li className="relative hover:bg-gray-100 rounded-full mr-1 w-12 h-12 flex items-center justify-center"
+                     onClick={()=>router.push('/account/favorites', undefined, { shallow: true })}>
+                        <Heart className="menu-icon orange" />
+                        {/**  <p>Favorilerim</p **/} 
+                    </li>
+                </ul>
+                <div className="profile-dropdown relative">
+               
+                <Outside cb={()=>setOpen(false)}>
+                    <button 
+                    onClick={()=>setOpen(!open)}
+                    className="flex text-sm
+                    rounded-full md:mr-0 focus:ring-4 focus:ring-gray-100
+                    " type="button">
+                        <span className="sr-only">Open user menu</span>
+                        <img className="w-12 h-12 rounded-full" src="/assets/default.png" alt="avatar" />
+                    </button>
+                    <div className={classNames(
+                        "z-40 w-44 bg-white absolute right-0 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600",
+                        {'hidden':!open},
+                    )}>
+                    <div className=" py-3 px-4 text-sm text-gray-900 dark:text-white">
+                        <div>Tester Test</div>
+                        <div className="font-medium truncate">test@test.com</div>
+                        </div>
+                        <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" >
+                        {profileMenu.map((item, i:number)=>(
+                            <li key={`profile-menu-${i}`}>
+                                <div onClick={()=>router.push(item.path)} className="relative cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    {item.title}
+                                </div>
+                            </li>
+                        ))}
+                    
+                        </ul>
+                        <div className="py-1">
+                        <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            Güvenli Çıkış
+                        </a>
+                        </div>
+                    </div>
+
+                </Outside>
+
+                </div>
+                <div className="mx-2 cursor-pointer lg:hidden" onClick={()=>setMobile(!mobile)} >
+                    <FiMenu size={25} className="text-gray-500" />
+                </div>
+            </div>
+    )
+}
+
+export const Session = () => {
+    const [status, setStatus] = React.useState(false);
+    const form = useForm<any>({
+      defaultValues: {},
+        // resolver: yupResolver(),
+    });
+    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+    const onSubmit: SubmitHandler<any> = data => {
+        console.log(errors)
+    };
+    const onError = (errors:any) => {
+        console.log(errors)
+    };
+
+    return (
+        <React.Fragment>
+            <Classic 
+                    status={status} 
+                    close={setStatus} 
+                    styles={{
+                        ...defaultStyles, 
+                        top:'10%',
+                        left:'27%',
+                        right:'27%',
+                    }}
+                    overlay={{
+                        ...defaultOverlays, 
+                        backgroundColor:'rgba(0, 0, 0, 0.2)',
+                    }}
+                >
+                    <div className='flex items-center flex-col w-full'>
+                        <img src="/assets/default.png" width='85' />
+                        <h3 className='mx-2 mt-2 font-medium'>Oturum sonlandı</h3>
+                        <FloatLabelHook 
+                            name="password" 
+                            border 
+                            type="password" 
+                            className='mt-3' 
+                            size='small'
+                            placeholder="Şifre" 
+                            example="" 
+                            control={control} />
+                        
+                    </div>
+            </Classic>
+         
+            <div onClick={()=>setStatus(!status)}>sessionize</div>
+
+        </React.Fragment>
+    )
+}

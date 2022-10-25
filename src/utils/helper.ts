@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";  
 import moment from 'moment'; 
 import slug from "slug";
+import { toast } from "react-toastify";
 
+export const domain = process.env.DOMAIN;
+export const url = process.env.DOMAIN + '/api';
+export const storage =  domain + '/public/uploads'
+export const server = typeof window === "undefined";
 
 export function slugify(value:string='', options={}) {
     return slug((String(value)), options) || ''
@@ -202,3 +207,18 @@ export const formSuite = (values:any) => {
     data.publish.end.date = new Date(data.publish.end.date) 
     return data;
 }
+
+
+
+export const notify = (title:string='', obj:object={}) =>  toast(title||'🦄 Wow so easy!', {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    type: 'success',
+    ...obj,
+});

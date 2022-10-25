@@ -14,7 +14,8 @@ export const Checkbox = ({
 
     return (
     
-    <div className={classNames('flex items-center justify-center', className)}  >
+    <div className={classNames('', className)}  >
+        <label htmlFor={name} className="select-none text-sm flex items-center justify-center">
         <input type="checkbox" 
         id={name} name="confirmation" 
         onClick={()=>onChange(!value)} 
@@ -33,7 +34,6 @@ export const Checkbox = ({
             </g>
         </svg>
         </div>
-        <label htmlFor={name} className="select-none text-sm">
             {children}
         </label>
     </div>

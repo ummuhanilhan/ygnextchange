@@ -4,12 +4,23 @@ import { tagItems } from "@utils/mock";
 import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";
 import { currencies, definitions, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
-import { InputAppendHook, InputGroupHook } from "@shared/elements/hooks";
+import { InputAppendHook, InputGroupHook, NumberHook } from "@shared/elements/hooks";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { CheckboxHook } from "@shared/elements/hooks/checkboxHook";
-
-export const Payload = ({control}:any) => {
-
+import { Select } from "@shared/elements/selects";
+import { FloatingInput } from "@shared/elements/inputs";
+import { Checkbox } from "@shared/elements/checkboxes";
+import FormLayout from "@layouts/FormLayout";
+import { server } from "@utils/helper";
+import { useRouter } from "next/router";
+ 
+export const Payload = ({
+    control, 
+    setValue, 
+    amount,
+    setAmount,
+    errors
+}:any) => {
     return (
         <React.Fragment>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
@@ -83,69 +94,46 @@ export const Payload = ({control}:any) => {
                     </div>
                 </TitleFrame>
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>
-                <TitleFrame title="Ödeme Şekli">
-                    <SelectHook 
-                        name="fee.paymethod" 
-                        items={paymentMethods}
-                        id="value" 
-                        label="label" 
-                        control={control} 
-                        placeholder="Ödeme Şekli Seçiniz"
-                    />
-                </TitleFrame>
-                <TitleFrame title="Para Birimi">
-                    <SelectHook 
-                        name="fee.currency" 
-                        items={currencies} 
-                        id="value" 
-                        label="label" 
-                        control={control} 
-                        placeholder="Para Birimi Seçiniz"
-                    />
-                </TitleFrame>
-                <TitleFrame title="Kdv Durumu">
-                    <SelectHook 
-                        name="fee.vat" 
-                        control={control} 
-                        items={vatOptions} 
-                        id="value" 
-                        label="label" 
-                        placeholder="Kdv Durumu Seçiniz"
-                    />
-                </TitleFrame>
-            </div>
-            <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
-                    <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
-                    <InputHook 
-                        name="fee.price.tonnage" 
-                        control={control} 
-                        placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
-                        items={tagItems}
-                        size='medium'
-                        type='number'
-                        // disabled
-                    />
-                    <InputHook 
-                        name="fee.price.unit" 
-                        control={control} 
-                        placeholder="Birim Fiyat Giriniz" 
-                        items={tagItems}
-                        size='medium'
-                        type='number'
-                        // disabled
-                    />
-                    <InputHook 
-                        name="fee.price.total" 
-                        control={control} 
-                        placeholder="Toplam Tutar" 
-                        items={tagItems}
-                        size='medium'
-                        id='id'
-                        type='number'
-                    />
-                </div>
+          
+           <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>
+            <TitleFrame title="Ödeme Şekli">
+                <SelectHook 
+                    name="fee.paymethod" 
+                    items={paymentMethods}
+                    id="value" 
+                    label="label" 
+                    control={control} 
+                    placeholder="Ödeme Şekli Seçiniz"
+                />
             </TitleFrame>
+            <TitleFrame title="Para Birimi">
+                <SelectHook 
+                    name="fee.currency" 
+                    items={currencies} 
+                    id="value" 
+                    label="label" 
+                    control={control} 
+                    placeholder="Para Birimi Seçiniz"
+                />
+            </TitleFrame>
+            <TitleFrame title="Kdv Durumu">
+                <SelectHook 
+                    name="fee.vat" 
+                    control={control} 
+                    items={vatOptions} 
+                    id="value" 
+                    label="label" 
+                    placeholder="Kdv Durumu Seçiniz"
+                />
+            </TitleFrame>
+           </div>
+
+           <PriceCalculate 
+                setValue={setValue}                
+                disabled={amount} 
+                errors={errors}
+            />
+        
             <div className='flex justify-between'>
                 <div></div>
                 <div className='flex items-start mt-5'>
@@ -155,12 +143,13 @@ export const Payload = ({control}:any) => {
                         control={control} 
                         className='mr-6' 
                     />
-                    <CheckboxHook 
-                        name='fee.amount' 
+                     <CheckboxHook 
+                        name='fee.price.amount' 
                         label='Yalnızca tutar belirteceğim' 
                         control={control} 
-                         
+                        setAmount={setAmount} 
                     />
+                    
                 </div>
             </div> 
         </React.Fragment>
@@ -168,3 +157,68 @@ export const Payload = ({control}:any) => {
 }
 
 export default Payload;
+
+
+export const PriceCalculate = ({
+    value, 
+    onChange, 
+    error, 
+    size, 
+    setValue,
+    errors,
+    disabled
+}:any) => {
+  
+    const [tonnage, setTonnage] = React.useState(0);
+    const [unit, setUnit] = React.useState(0);
+    const [total, setTotal] = React.useState(0);
+
+    React.useEffect(()=>{
+        setTotal(unit*tonnage);
+        setValue('fee.price',{tonnage, unit, total})
+    },[unit,tonnage])
+
+
+    return (
+
+    <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
+
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
+                <FloatingInput 
+                    name="tonnage" 
+                    placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
+                    size='medium'
+                    type='number'
+                    value={tonnage}
+                    onChange={setTonnage}
+                    disabled={disabled}
+                    error={errors?.fee?.price?.tonnage}
+                />
+                
+                <FloatingInput 
+                    name="unit" 
+                    placeholder="Birim Fiyat Giriniz" 
+                    size='medium'
+                    type='number'
+                    value={unit}
+                    onChange={setUnit}     
+                    disabled={disabled}
+                    error={errors?.fee?.price?.tonnage}
+                />
+            
+                <FloatingInput 
+                    name="total" 
+                    placeholder="Toplam Tutar" 
+                    size='medium'
+                    type='number'
+                    value={total}
+                    onChange={setTotal}
+                    disabled={!disabled}
+                    error={errors?.fee?.price?.total}
+                />
+        </div>
+ 
+    </TitleFrame>
+    )
+}
+

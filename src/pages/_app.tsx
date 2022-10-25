@@ -6,7 +6,9 @@ import Head from 'next/head';
 import { primeOptions } from '@utils/mock';
 import { Provider } from 'react-redux'
 import { store } from 'stores/store';
- 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 PrimeReact.ripple = true;
 
 addLocale('tr', primeOptions);
@@ -17,12 +19,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const { Layout, Title }: any = Component;
   const Container = Layout ? Layout : React.Fragment;
   return (
-    <Container> 
-      <Head>
-        <title>{Title || 'Yükgetir'}</title>
-      </Head>
-        <Component {...pageProps} /> 
-    </Container>
+    <React.Fragment>
+        <Container> 
+          <Head>
+            <title>{Title || 'Yükgetir'}</title>
+          </Head>
+          <Component {...pageProps} /> 
+      </Container>
+      <ToastContainer />
+    </React.Fragment>
   )
 }
 
