@@ -21,6 +21,7 @@ export const Checkbox = ({
         onClick={()=>onChange(!value)} 
         className="opacity-0
         absolute h-6 w-6" 
+        checked={value}
         {...rest}
         />
         <div className="border-2 rounded-xl border-blue-400 w-5 h-5 flex flex-shrink-0 

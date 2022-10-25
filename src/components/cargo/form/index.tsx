@@ -16,11 +16,6 @@ import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic"
 import SimpleBar from "simplebar-react";
 import { Publish } from "./publish";
 import { formSuite, notify } from "@utils/helper";
-import Joi from "joi";
-import rent from "./rent";
-import shipping from "./shipping";
-import payload from "./payload";
-import { fee, publish, unprice } from "@utils/validations/common";
 
 
 export type CargoValues = {
@@ -35,7 +30,6 @@ export type CargoValues = {
 
 export const CargoCreate = ({update, init}:any) => {
  
-    const [amount, setAmount] = React.useState(false)
     const [open, setOpen] = React.useState(false)
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
@@ -45,6 +39,8 @@ export const CargoCreate = ({update, init}:any) => {
         defaultValues: init ? formSuite(init): initial,
        resolver: joiResolver(cargoSchema),
     });
+    const [amount, setAmount] = React.useState(form.getValues('fee.price.amount')||false)
+
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
         console.log('submitted',JSON.stringify(data));
@@ -80,9 +76,11 @@ export const CargoCreate = ({update, init}:any) => {
                         <Payload 
                             control={control} 
                             setValue={form.setValue} 
+                            getValues={form.getValues} 
                             amount={amount} 
                             setAmount={setAmount} 
                             errors={errors} 
+                            watch={watch}
                         />
                     </div>
                  </div>

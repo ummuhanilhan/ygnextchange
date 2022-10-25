@@ -17,7 +17,9 @@ import { useRouter } from "next/router";
 export const Payload = ({
     control, 
     setValue, 
+    getValues,
     amount,
+    watch,
     setAmount,
     errors
 }:any) => {
@@ -130,8 +132,10 @@ export const Payload = ({
 
            <PriceCalculate 
                 setValue={setValue}                
+                getValues={getValues}                
                 disabled={amount} 
                 errors={errors}
+                watch={watch}
             />
         
             <div className='flex justify-between'>
@@ -165,18 +169,22 @@ export const PriceCalculate = ({
     error, 
     size, 
     setValue,
+    getValues,
     errors,
+    watch,
     disabled
 }:any) => {
   
-    const [tonnage, setTonnage] = React.useState(0);
-    const [unit, setUnit] = React.useState(0);
-    const [total, setTotal] = React.useState(0);
+    const [tonnage, setTonnage] = React.useState(getValues('fee.price.tonnage')||0);
+    const [unit, setUnit] = React.useState(getValues('fee.price.unit')||0);
+    const [total, setTotal] = React.useState(getValues('fee.price.total')||0);
 
     React.useEffect(()=>{
         setTotal(unit*tonnage);
-        setValue('fee.price',{tonnage, unit, total})
-    },[unit,tonnage])
+        setValue('fee.price.tonnage',tonnage)
+        setValue('fee.price.unit',unit)
+        setValue('fee.price.total',total)
+    },[unit,tonnage, watch])
 
 
     return (
@@ -188,7 +196,7 @@ export const PriceCalculate = ({
                     name="tonnage" 
                     placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
                     size='medium'
-                    type='number'
+                    type='string'
                     value={tonnage}
                     onChange={setTonnage}
                     disabled={disabled}
@@ -199,7 +207,7 @@ export const PriceCalculate = ({
                     name="unit" 
                     placeholder="Birim Fiyat Giriniz" 
                     size='medium'
-                    type='number'
+                    type='string'
                     value={unit}
                     onChange={setUnit}     
                     disabled={disabled}
@@ -210,7 +218,7 @@ export const PriceCalculate = ({
                     name="total" 
                     placeholder="Toplam Tutar" 
                     size='medium'
-                    type='number'
+                    type='string'
                     value={total}
                     onChange={setTotal}
                     disabled={!disabled}

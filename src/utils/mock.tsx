@@ -486,6 +486,7 @@ export const item: any = {
     fee: {
       manual: false,
       price: {
+        amount:true,
         unit: 555,
         tonnage: 35,
         total: 19425,
