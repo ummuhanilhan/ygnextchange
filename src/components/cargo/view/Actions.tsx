@@ -141,8 +141,8 @@ export const Actions = ({item, actionType, status, fav}:any) => {
         }  
     }
 
-    return (
-        <div className="flex-[5] sm:flex-[9] md:flex-[5]  h-auto flex items-end justify-end">
+    return (//md:flex-[3]
+        <div className="flex-[5] sm:flex-[9] md:flex-[3]  h-auto flex items-end justify-end">
             {getActions(actionType, item, status)}
         </div>
     )
