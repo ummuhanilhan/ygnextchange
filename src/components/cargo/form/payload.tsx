@@ -178,14 +178,16 @@ export const PriceCalculate = ({
     const [tonnage, setTonnage] = React.useState(getValues('fee.price.tonnage')||0);
     const [unit, setUnit] = React.useState(getValues('fee.price.unit')||0);
     const [total, setTotal] = React.useState(getValues('fee.price.total')||0);
+    const watchAllFields = watch()
 
     React.useEffect(()=>{
         setTotal(unit*tonnage);
         setValue('fee.price.tonnage',tonnage)
         setValue('fee.price.unit',unit)
         setValue('fee.price.total',total)
-    },[unit,tonnage, watch])
+    },[unit,tonnage])
 
+    const err = errors?.fee?.price;
 
     return (
 
@@ -193,36 +195,36 @@ export const PriceCalculate = ({
 
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-2'>   
                 <FloatingInput 
-                    name="tonnage" 
+                    name="fee.price.tonnage" 
                     placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
                     size='medium'
-                    type='string'
+                    type='number'
                     value={tonnage}
                     onChange={setTonnage}
                     disabled={disabled}
-                    error={errors?.fee?.price?.tonnage}
+                    error={err?.tonnage}
                 />
                 
                 <FloatingInput 
-                    name="unit" 
+                    name="fee.price.unit" 
                     placeholder="Birim Fiyat Giriniz" 
                     size='medium'
-                    type='string'
+                    type='number'
                     value={unit}
                     onChange={setUnit}     
                     disabled={disabled}
-                    error={errors?.fee?.price?.tonnage}
+                    error={err?.unit}
                 />
             
                 <FloatingInput 
-                    name="total" 
+                    name="fee.price.total" 
                     placeholder="Toplam Tutar" 
                     size='medium'
-                    type='string'
+                    type='number'
                     value={total}
                     onChange={setTotal}
                     disabled={!disabled}
-                    error={errors?.fee?.price?.total}
+                    error={err?.total}
                 />
         </div>
  

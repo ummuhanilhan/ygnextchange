@@ -14,10 +14,11 @@ export const Upload = ({
     height='h-[55px]',
     placeholder,
     value,
+    getValues,
     onChange,
 }:any) => {
 
-    const [fileName, setFileName] = useState('');
+    const [fileName, setFileName] = useState();
     const [file, setFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 

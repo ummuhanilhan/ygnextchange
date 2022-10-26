@@ -110,10 +110,9 @@ export const payload = Joi.object({
 
 export const price = Joi.object({
   amount: Joi.boolean(),
-  tonnage: Joi.number().when('fee.price.amount', { is: true, then: Joi.required(), otherwise: Joi.optional() }),
-  unit: Joi.number().when('fee.price.amount', { is: true, then: Joi.required(), otherwise: Joi.optional() }),
-  total: Joi.number().when('amount', { is:false, then: Joi.required(), otherwise: Joi.optional() }),
-
+  tonnage: Joi.number().when('amount', { is: true, then: Joi.number().required(), otherwise: Joi.number().optional() }),
+  unit: Joi.number().when('amount', { is: true, then: Joi.number().required(), otherwise: Joi.number().optional() }),
+  total: Joi.number().when('amount', { is:false, then: Joi.number().required(), otherwise: Joi.number().optional() }),
 })
 
 // payment method
@@ -125,19 +124,19 @@ export const fee = Joi.object({
   vat: Joi.string().required(), // bool
   bargain: Joi.boolean(),
   manual: Joi.boolean(),
-  price
+  price,
 });
 
   
 export const publish = Joi.object({
   start: Joi.object({
-    date: Joi.any(),
-    option: Joi.string()
-  }).optional(),
+    date: Joi.any().required(),
+    option: Joi.string().required()
+  }),
   end: Joi.object({
-    date: Joi.any(),
-    option: Joi.string()
-  }).optional()
+    date: Joi.any().required(),
+    option: Joi.string().required()
+  })
 })
 
 

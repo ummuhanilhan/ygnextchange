@@ -10,13 +10,16 @@ import { profileSchema } from "@utils/validations/account";
 import classNames from "classnames";
 import { IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
 import { useRouter } from 'next/router'
-import { AccountRoute, tagItems } from "@utils/mock";
+import { AccountRoute, tagItems, tagItems2 } from "@utils/mock";
 import { InputHook } from "@shared/elements/hooks/inputHook";
 import { Upload } from "@shared/elements/uploads";
 import { TextareaHook } from "@shared/elements/hooks/textareaHook";
 import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { FormFooter } from "@shared/footers";
+import { PhoneHook } from "@shared/elements/hooks/phoneHook";
+import { TagHook } from "@shared/elements/hooks/tagHook";
+import Turkiye from '@utils/dummy/turkiye.json'
 
 export type SignupValues = {
     name: string,
@@ -30,17 +33,21 @@ export type SignupValues = {
     business_phone: string,
     website: string,
     authorized: string,
-    gender: any,
     city: any,
     address: string,
     district: any,
     accept: boolean,
+    gender: any,
+    birth:Date,
+    src_file:string,
+    licence_year:string,
+    driver:string[],
 };
 
 const initialValues = {
     name:'tester',
     email:'test@test.com',
-    phone:'0505 555 55 55',
+    phone:5055555555,//'0505 555 55 55',
     fullname:'Tester Test',
     company:'HyperWise.co',
     tax: '',
@@ -51,6 +58,11 @@ const initialValues = {
     address: '',
     type:false,
     accept:false,
+    gender:1,
+    birth:new Date('04-05-1990'),
+    src_file:'/src_file92348.pdf',
+    licence_year:'2',
+    driver:['1','2','3'],
 }
 
 export const Account = () => {
@@ -62,10 +74,11 @@ export const Account = () => {
 
     const change = () => setType(!type);
     const form = useForm<SignupValues>({
+        //@ts-ignore
         defaultValues: initialValues,
         resolver: yupResolver(profileSchema),
     });
-    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+    const { register, control, handleSubmit, watch, getValues, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<SignupValues> = data => {
         console.log(data)
         alert(JSON.stringify(data))
@@ -78,7 +91,7 @@ export const Account = () => {
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
             className="flex items-center justify-start flex-col h-full informations" id="profile">
-                <ProfileInformation control={control} setSelected={setSelected} selected={selected} />
+                <ProfileInformation control={control} setSelected={setSelected} selected={selected} getValues={getValues} />
                 <div className={classNames(' w-full',{'hidden-':selected!=AccountRoute.ChangePassword})} ></div>
             </form>
         </AccountLayout>
@@ -90,13 +103,13 @@ Account.Layout = PrivateLayout
 
 export default Account;
 
-export const ProfileInformation = ({control, selected, setSelected}:any) =>{
+export const ProfileInformation = ({control, selected, setSelected, getValues}:any) =>{
     const [type, setType] = React.useState(true)
     return(
         <div className={classNames('w-full',{'hidden-':selected!=AccountRoute.ChangePassword })} >
             <ul className='w-full'>
                 <Corporate control={control} corporate={type} setCorporate={setType} />
-                <DriverLicense control={control} />
+                <DriverLicense control={control}  getValues={getValues} />
                 <Healthy control={control} />
 
             </ul>
@@ -135,24 +148,37 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     </div>
                 </div>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 w-full'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mb-2'>
                     <InputHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
                     <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                    <InputHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
-                    <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
-                    <FloatLabelPhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
-                    <FloatLabelPhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                    {/**
+                        <InputHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
+                        <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
+                        <PhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
+                     */}
+                    <PhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                     {/** verified **/}
                     <InputHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
-                    <InputHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
-                    <InputHook name="authorized" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
+                    {/** 
+                      <InputHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
+                        <InputHook name="authorized" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
+                     */}
                 </div>    
                
                 {/** selecbox **/}
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                     <div className="w-ful">
-                        <SelectHook items={tagItems} className='mb-2' name="gender" control={control} placeholder="Cinsiyet Seçiniz"  />                 
-                        <SelectHook items={[]} className='mb-2' name="city" control={control} placeholder="İl Seçiniz"  />                 
+                        <SelectHook 
+                            name="gender" 
+                            placeholder="Cinsiyet Seçiniz"  
+                            control={control} 
+                            items={[
+                                {slug:1,name:'Erkek'},
+                                {slug:0,name:'Kadın'},
+                            ]} 
+                            className='mb-2' 
+                        />                 
+                        <SelectHook items={Turkiye} className='mb-2' name="city" control={control} placeholder="İl Seçiniz"  />                 
                         <SelectHook items={[]} className='mb-2' name="district" control={control} placeholder="İlçe Seçiniz"  />                 
                     </div>
                     <div className="w-full">
@@ -189,7 +215,7 @@ export const Personal = ({control}:any) => {
     )
 }
 
-export const DriverLicense = ({control}:any) => {
+export const DriverLicense = ({control, getValues}:any) => {
     const [status, setStatus] = React.useState(true)
 
     return(
@@ -204,13 +230,24 @@ export const DriverLicense = ({control}:any) => {
             {status&&(
                 <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <InputHook name="driver" type="text" placeholder="Sürücü Bilgilerim" example="" control={control} />
-                    <SelectHook items={[]} name="licence_year" control={control} placeholder="Ehliyet Tescil Yılı"  />                 
+                    <TagHook 
+                         name='driver'
+                         placeholder="Sürücü Bilgilerim" 
+                         size='small'
+                         items={tagItems2}
+                         control={control}
+                     />
+                    <SelectHook 
+                        name="licence_year"
+                        placeholder="Ehliyet Tescil Yılı"  
+                        items={tagItems2} 
+                        control={control} 
+                    />                 
                 </div>
     
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
                 <Upload name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
-                    <Upload name="src_file" control={control} placeholder="Src Belgesi Ekle"  />
+                    <Upload name="src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
                     <Upload name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
                 </div>
     

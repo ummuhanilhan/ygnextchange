@@ -6,6 +6,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook } from "@shared/elements/hooks";
+import { PhoneHook } from "@shared/elements/hooks/phoneHook";
 
 export type SignupValues = {
     name: string,
@@ -71,7 +72,7 @@ export const Signup = () =>{
                     <div className="grid grid-cols-2 gap-2 w-full">
                         <FloatLabelHook size='small' className='' name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
                         <FloatLabelHook size='small' className='' name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                        <FloatLabelPhoneHook size='small' name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                        <PhoneHook size='small' name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                         <FloatLabelHook size='small' className='' name="email" type="text" placeholder="Eposta" example="orn: deneme@gmail.com" control={control} />
                         <FloatLabelHook size='small' className='' name="password" type="password" placeholder="Şifre" example="" control={control} />
                         <FloatLabelHook size='small' className='' name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
