@@ -15,7 +15,7 @@ import { Select } from "@shared/elements/selects";
 import { IconFrame, IconDropdown } from "@components/frames/IconFrame"
 import { FloatLabelHook } from "@shared/elements/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Outside from "@utils/useOutside";
+import Outside from "@utils/useoutside";
 import { FaSearch } from "react-icons/fa"
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";

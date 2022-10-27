@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { Header } from '@components/header'
 import { Sidebar } from '@components/sidebar'
 import classNames from "classnames";
-import Outside from "@utils/useOutside";
+import Outside from "@utils/useoutside";
 
 export const MainContainer = ({children, className}:any) => {
     const [mobile, setMobile] = React.useState(false)
