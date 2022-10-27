@@ -11,7 +11,7 @@ const nextConfig = {
     GOOGLE_MAP_API_KEY:process.env.GOOGLE_MAP_API_KEY
 
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   swcMinify: true,
   webpack(config) {
     config.module.rules.push({
@@ -22,7 +22,11 @@ const nextConfig = {
 
     return config
   },
-  
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: false,
+  },
 }
 
 module.exports = nextConfig
