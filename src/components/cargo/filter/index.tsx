@@ -199,6 +199,17 @@ export const VehicleFeatures = ({control}:any) => {
                 removable
                 onChange={(e:string)=>setValue(e)}
               />
+            <TagHook 
+                name="type" 
+                control={control} 
+                placeholder="Araç Tipi Seçiniz" 
+                size='medium'
+                id='_id'
+                label='name'
+                items={definitions.feature}
+                rotation='bottom-16'
+             />                 
+
             {/** <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  /> */}
             </div>
         </React.Fragment>
