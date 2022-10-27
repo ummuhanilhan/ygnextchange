@@ -18,7 +18,6 @@ const Classic = ({status, close, title, styles, overlay, children, header, class
     const [ref, { width }]:any = useDimensions();
 
     React.useEffect(()=>{
-      console.log('width')
     },[width])
 
     const closeModal = (e: React.MouseEvent) => {

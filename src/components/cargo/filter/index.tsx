@@ -167,14 +167,18 @@ export const VehicleType = ({control}:any) => {
              setStatus={setStatus} 
             icon={<Truck className="fill-yg-blue" width={19} />} title="Araç Tipi" />
             <div className={classNames({hidden:!status})}>
-                <Tag
-                    value={value}
+            
+                <TagHook 
+                    name="rent.types" 
+                    control={control} 
                     placeholder='Araç Tipi Seçiniz'
                     size='medium'
-                    items={tagItems}
+                    id='_id'
+                    label='name'
+                    items={definitions.feature}
+                    rotation='bottom-16'
                     removable
-                    onChange={(e:string)=>setValue(e)}
-                />
+                />            
                 {/** <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  /> */}
             </div>
         </React.Fragment>
@@ -191,23 +195,16 @@ export const VehicleFeatures = ({control}:any) => {
              setStatus={setStatus} 
             icon={<FilePlus className="fill-yg-blue" width={19} />} title="Araç Özellikleri" />
             <div className={classNames({hidden:!status})}>
-            <Tag
-                value={value}
-                placeholder='Araç Özellikleri Seçiniz'
-                size='medium'
-                items={tagItems}
-                removable
-                onChange={(e:string)=>setValue(e)}
-              />
             <TagHook 
-                name="type" 
+                name="rent.features" 
                 control={control} 
-                placeholder="Araç Tipi Seçiniz" 
+                placeholder='Araç Özellikleri Seçiniz'
                 size='medium'
                 id='_id'
                 label='name'
                 items={definitions.feature}
                 rotation='bottom-16'
+                removable
              />                 
 
             {/** <MultiSelectHook name="type" control={control} placeholder="Araç Tipi Seçiniz"  /> */}
@@ -226,7 +223,7 @@ export const VehicleOptions = ({control}:any) => {
             icon={<FileText className="fill-yg-blue" width={19} />} title="Donanım Özellikleri" />
             <div className={classNames({hidden:!status})}>
                  <TagHook 
-                 name="type" 
+                 name="rent.options" 
                  control={control} 
                  placeholder="Araç Tipi Seçiniz" 
                  size='medium'

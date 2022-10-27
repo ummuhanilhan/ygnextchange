@@ -41,8 +41,6 @@ export const Select = ({
       slugify(val) 
       }
     )
-    console.log('val--->', val)
-    console.log(item ? item[label] : 'nope')
     return item ? item[label] : null;
    }
 

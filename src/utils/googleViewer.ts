@@ -111,7 +111,6 @@ export function getPlace(lat:string,lng:string) {
                    if (results[1]) {
                        let country = null, countryCode = null, city = null, cityAlt = null;
                        let c, lc, component;
-                       // console.log(results)
                        for (let r = 0, rl = results.length; r < rl; r += 1) {
                            let result = results[r];
        

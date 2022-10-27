@@ -46,7 +46,6 @@ export function isNumber(data:any) {
  export const reformatRequirements = (data:any,typeId:string) => {
     let list:any = [];
     data?.map((el:any)=>{
-        console.log(el)
         const {type,count, _id} = el;
         let l = {type, count, num:generateRandomNDigits(15), typeId,_id}; 
         list.push(l)
@@ -125,12 +124,10 @@ export const defines = (definitions:any, selection:any, str:boolean=false) => {
     selection?.map((s:any)=>{
     definitions?.map((t:any)=>{
             if(s == t._id) {
-                console.log(s, t._id)
                 l.push(t.name)
             }
         })
     });
-    console.log('l',l)
     return str ? l.toString().replace(/,/g, " - ") : l;
 }
 
@@ -155,8 +152,6 @@ export const defineById = (definitions:any, select:string, str:boolean=false) =>
         }
 
    }else{
-    console.log('defined:',definitions, select, str)
-    console.log('defined:',defined(definitions, select, '_id', str))
             return defined(definitions, select, '_id', str);
     }
 }

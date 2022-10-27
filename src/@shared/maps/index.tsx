@@ -75,8 +75,6 @@ export const MapView = ({
              const setPlaceToForm = (place: any) => {
                // setFormattedAddress(place.formatted_address);
                const addresses = (place.address_components as any[]) || [];
-                console.log('addresses--->',addresses)
-                console.log('place', place);
                let obj:any = {direction:{country:{}},
                place:{}};
          
@@ -110,7 +108,7 @@ export const MapView = ({
  
                  const addressType = item.types[0];
                  const value = item.long_name;
-                 console.log(obj.direction.city)
+                 // console.log(obj.direction.city)
                  obj.direction.city && setValue('direction.city', obj.direction.city)
 
                  setValue('place.address', place.formatted_address)

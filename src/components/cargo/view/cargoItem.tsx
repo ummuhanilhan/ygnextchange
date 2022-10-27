@@ -6,7 +6,6 @@ import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
 
 export const CargoItem = ({item, actionType='', status}:any) => {
-  console.log(actionType)
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 mb-3 rounded-lg py-4',

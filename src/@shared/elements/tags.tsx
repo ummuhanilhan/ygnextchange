@@ -39,7 +39,6 @@ export const Tag = ({
     }
     const selections = (vals:string[]) => {
         let selects:any = []
-        console.log('typeof vals:',typeof vals);
         vals?.length>0 && vals?.map((slug:any)=>{
             let item = select(slug);
             item && selects.push(item)
