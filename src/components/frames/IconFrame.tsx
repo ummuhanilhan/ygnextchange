@@ -40,7 +40,7 @@ export const IconFrameCovered = ({children, open, ...rest}:any) => {
     const [status, setStatus] = React.useState(open||true);
 
     return(
-        <React.Fragment>
+        <div className='my-4'>
              <IconFrameDropdown 
                onClick={()=>setStatus(!status)}
                {...rest}
@@ -50,7 +50,7 @@ export const IconFrameCovered = ({children, open, ...rest}:any) => {
             <div className={classNames({'hidden':!status})}>
                 {children}
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

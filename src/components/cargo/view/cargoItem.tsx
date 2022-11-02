@@ -8,18 +8,18 @@ import { Actions } from "./Actions"
 export const CargoItem = ({item, actionType='', status}:any) => {
     return (
         <div className={classNames(
-            'cargo-item bg-white px-4 mb-3 rounded-lg py-4',
+            'cargo-item mt-3 bg-white px-4 mb-3 rounded-lg py-4',
             {'grayscale': item.progress=='outdated'}
         )}>
             <div className=''>
                 <div className='flex justify-between '>
-                    <ul className='w-full flex-start justify-center
+                    <ul className='w-full flex items-center justify-start
                     '>
                         
-                       <li className='-inline-block float-left flex-center mt-[-.3em]'>
+                       <li className='-inline-block float-left flexflex-center -mt-[-.3em]'>
                         <div className='tag rounded-[25px] p-1 px-3 w-fit border border-1 
                             border-yg-blue items-start h-min flex-center'> 
-                                <People className='fill-yg-blue' width={20} /> 
+                                <People className='fill-yg-blue' width={15} /> 
                                 <p className='text-yg-blue ml-1 text-sm'>
                                     {item.corporate?'Kurumsal İlan':'Bireysel İlan'}
                                 </p>
@@ -27,33 +27,33 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                        </li>
                         
                        <li className='-inline-block float-left flex-center '>
-                            <div className=" flex items-start  h-fit justify-center ml-2">
+                            <div className=" flex items-start h-fit justify-center ml-2">
                                 <PinAngle width={15} />
                                 <p className='ml-1 text-sm '> İlan No: 25959 </p>
                             </div>
                        </li>
 
                         <li className='-inline-block float-left flex-center '>
-                            <div className='flex items-start'>
-                                <div><Geo width={15} className='fill-yg-blue ml-1 mt-' /></div>
-                                <p className='text-gray-500 m-0 p-0 pl-1 text-sm'>Ankara</p>
-                                <div><ChevronDoubleRight width={15} className='fill-yg-orange mt-' /></div>
-                                <p className='text-gray-500 px-1'>Mersin</p>
-                            </div>
+                            <div><Geo width={15} className='fill-yg-blue ml-1 ' /></div>
+                            <p className='text-gray-500  pl-1 text-sm'>Ankara</p>
+                            <div><ChevronDoubleRight width={15} className='fill-yg-orange ' /></div>
+                            <p className='text-gray-500 px-1'>Mersin</p>
                         </li>
                         
                         <li className='-inline-block float-left flex-center '>
                             <div className="flex items-start ml-3">  
+                                <div className='mt-[.2em]'>
                                 {item.type ? 
-                                <div><CircleFill width={15} className='fill-yg-blue  ml--1' /></div> : 
-                                <div><CircleHalf width={15} className='fill-yg-blue  ml--1' /></div> }
+                                <CircleFill width={15} className='fill-yg-blue  ml--1' /> : 
+                                <CircleHalf width={15} className='fill-yg-blue  ml--1' /> }
+                                </div>
                                 <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
                             </div>
                         </li>
                         
                     </ul>
                     <div className='flex items-end flex-col'>
-                        <h2 className='text-2xlflex items-end'> <b>{item.price}</b> {item.currency}</h2>
+                        <h2 className='text-2xl flex items-end'> <b>{item.price}</b> {item.currency}</h2>
                         <p className='text-gray-400 text-sm w-max'>({item.vat?'KDV Dahil':'+KDV'})</p>
                     </div>
                   </div>
