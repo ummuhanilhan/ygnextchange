@@ -13,12 +13,12 @@ export const CargoItem = ({item, actionType='', status}:any) => {
         )}>
             <div className=''>
                 <div className='flex justify-between '>
-                    <ul className='w-full -flex items-start
+                    <ul className='w-full flex-start justify-center
                     '>
                         
-                       <li className='inline-block float-left'>
-                        <div className='tag rounded-lg p-1 px-1 w-fit border border-1 
-                            border-yg-blue flex items-start h-min'> 
+                       <li className='-inline-block float-left flex-center mt-[-.3em]'>
+                        <div className='tag rounded-[25px] p-1 px-3 w-fit border border-1 
+                            border-yg-blue items-start h-min flex-center'> 
                                 <People className='fill-yg-blue' width={20} /> 
                                 <p className='text-yg-blue ml-1 text-sm'>
                                     {item.corporate?'Kurumsal İlan':'Bireysel İlan'}
@@ -26,34 +26,34 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                             </div>
                        </li>
                         
-                       <li className='inline-block float-left'>
-                            <div className=" flex items-start mt-1 h-fit justify-center ml-2">
+                       <li className='-inline-block float-left flex-center '>
+                            <div className=" flex items-start  h-fit justify-center ml-2">
                                 <PinAngle width={15} />
                                 <p className='ml-1 text-sm '> İlan No: 25959 </p>
                             </div>
                        </li>
 
-                        <li className='inline-block float-left'>
+                        <li className='-inline-block float-left flex-center '>
                             <div className='flex items-start'>
-                                <div><Geo width={20} className='fill-yg-blue ml-1' /></div>
-                                <p className='text-gray-500 pl-1'>Ankara</p>
-                                <div><ChevronDoubleRight width={20} className='fill-yg-orange mt-[.1rem]' /></div>
+                                <div><Geo width={15} className='fill-yg-blue ml-1 mt-' /></div>
+                                <p className='text-gray-500 m-0 p-0 pl-1 text-sm'>Ankara</p>
+                                <div><ChevronDoubleRight width={15} className='fill-yg-orange mt-' /></div>
                                 <p className='text-gray-500 px-1'>Mersin</p>
                             </div>
                         </li>
                         
-                        <li className='inline-block float-left'>
+                        <li className='-inline-block float-left flex-center '>
                             <div className="flex items-start ml-3">  
                                 {item.type ? 
-                                <div><CircleFill width={15} className='fill-yg-blue mt-[.25rem] ml--1' /></div> : 
-                                <div><CircleHalf width={15} className='fill-yg-blue mt-[.25rem] ml--1' /></div> }
+                                <div><CircleFill width={15} className='fill-yg-blue  ml--1' /></div> : 
+                                <div><CircleHalf width={15} className='fill-yg-blue  ml--1' /></div> }
                                 <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
                             </div>
                         </li>
                         
                     </ul>
                     <div className='flex items-end flex-col'>
-                        <h2 className='text-2xl font-bold'>{item.price}{item.currency}</h2>
+                        <h2 className='text-2xlflex items-end'> <b>{item.price}</b> {item.currency}</h2>
                         <p className='text-gray-400 text-sm w-max'>({item.vat?'KDV Dahil':'+KDV'})</p>
                     </div>
                   </div>

@@ -13,7 +13,7 @@ import { initial, tagItems } from "@utils/mock";
 import { Tag } from "@shared/elements/tags";
 import { Select } from "@shared/elements/selects";
 import { IconFrame, IconDropdown } from "@components/frames/IconFrame"
-import { FloatLabelHook } from "@shared/elements/hooks";
+import { FloatLabelHook, SelectHook } from "@shared/elements/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Outside from "@utils/useoutside";
 import { FaSearch } from "react-icons/fa"
@@ -86,7 +86,7 @@ const Filter = ({}:any) => {
 }
 
 export const Location = ({control}:any) => {
-    const [status, setStatus] = React.useState(false);
+    const [status, setStatus] = React.useState(true);
   const [value, setValue] = React.useState('')
 
     return (
@@ -97,22 +97,27 @@ export const Location = ({control}:any) => {
             icon={<PinMap className="fill-yg-blue" width={19} />} title="Konum" />
 
             <div className={classNames({hidden:!status})}>
-                <Select 
-                   value={value}
-                   placeholder='Yükleme Yeri'
-                   className='mb-1'
-                   size='medium'
-                   id='label'
-                   items={Turkiye}
-                   onChange={(e:string)=>setValue(e)}
-              />
-                 <Select
-                  value={value}
-                  placeholder='Boşaltma Yeri'
-                  size='medium'
-                  id='label'
-                  items={Turkiye}
-                  onChange={(e:string)=>setValue(e)}
+               <SelectHook
+                    name="load" 
+                    control={control} 
+                    placeholder='Yükleme yeri'
+                    size='small'
+                    items={Turkiye}
+                    id='label'
+                    label='value'
+                    className='mb-1 '
+                />
+
+              
+            <SelectHook
+                    name="unload" 
+                    control={control} 
+                    placeholder='Boşaltma yeri'
+                    size='small'
+                    items={Turkiye}
+                    id='label'
+                    label='value'
+                    className='my-1 mt-3'
                 />
 
                 {/** 
@@ -172,7 +177,7 @@ export const VehicleType = ({control}:any) => {
                     name="rent.types" 
                     control={control} 
                     placeholder='Araç Tipi Seçiniz'
-                    size='medium'
+                    size='small'
                     id='_id'
                     label='name'
                     items={definitions.feature}
@@ -199,7 +204,7 @@ export const VehicleFeatures = ({control}:any) => {
                 name="rent.features" 
                 control={control} 
                 placeholder='Araç Özellikleri Seçiniz'
-                size='medium'
+                size='small'
                 id='_id'
                 label='name'
                 items={definitions.feature}
@@ -226,7 +231,7 @@ export const VehicleOptions = ({control}:any) => {
                  name="rent.options" 
                  control={control} 
                  placeholder="Araç Tipi Seçiniz" 
-                 size='medium'
+                 size='small'
                  id='_id'
                  label='name'
                  items={definitions.feature}
@@ -250,7 +255,7 @@ export const RangePrice = ({control}:any) => {
                  name="type" 
                  control={control} 
                  placeholder="Araç Tipi Seçiniz" 
-                 size='medium'
+                 size='small'
                  id='_id'
                  label='name'
                  items={definitions.feature}

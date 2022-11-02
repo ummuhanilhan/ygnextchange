@@ -5,7 +5,7 @@ import { FaChevronRight } from "react-icons/fa"
 import { Selectes } from "../view"
 
 
-export const Heading = ({wide}:any) => {
+export const Heading = ({filter}:any) => {
   
     return (
         <div className='heading'>
@@ -21,7 +21,7 @@ export const Heading = ({wide}:any) => {
                 filters={inShipmentOut}
                  />
             </div>
-            {wide && <Selectes />}
+            {filter && <Selectes />}
         </div>
     )
 }

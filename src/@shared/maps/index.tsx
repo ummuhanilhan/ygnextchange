@@ -4,7 +4,8 @@ import { getPlace } from "@utils/googleViewer";
 import classNames from "classnames";
 import { useAppDispatch } from "stores/store";
 import { slugify } from "@utils/helper";
-declare var google:any;
+declare var google:any
+
 export const MapView = ({
     setValue,
     border, 
@@ -24,7 +25,7 @@ export const MapView = ({
              }  // form.getValues(`shipping.${addressType}`)?.geolocation;
              let lat = pin?.lat;
              let lng = pin?.lng;
-           
+ 
              const map = new google.maps.Map(mapRef.current, {
                zoom: 5,
                center: new google.maps.LatLng(39.0,36.0),

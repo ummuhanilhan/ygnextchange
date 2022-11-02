@@ -98,7 +98,10 @@ export const CargoCreate = ({update, init}:any) => {
                 >
                     {/** <SimpleBar style={{ maxHeight: '350px' }} > **/}
                         <Publish control={control} 
-                        footer={<FormFooter cb={()=>sendref.current?.click()} />}  />
+                        footer={<FormFooter 
+                            cb={()=>sendref.current?.click()} 
+                            close={()=>setOpen(!open)}
+                        />}  />
                     {/** </SimpleBar> **/}
                 </Classic>
                 <button type='submit' className='hidden-' ref={sendref}>send</button>

@@ -4,7 +4,7 @@ import classNames from "classnames"
 export const Frame = ({children}:any) => {
 
     return(
-      <div className="frame bg-white p-3 rounded-lg mt-3">
+      <div className="frame h-full bg-white p-3 rounded-lg mt-3">
       <div className='bg-yg-lightblue bg-gray-100- p-3 rounded-md h-full'>
         {children}
       </div>

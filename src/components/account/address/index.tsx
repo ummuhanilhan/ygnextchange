@@ -19,7 +19,9 @@ export const Address = () => {
                 icon={<GeoAlt className="menu-icon" />}
                 title='Adres Detay Bilgileri'
             >
-                <AddressCreate footer={<FormFooter />} />
+                <AddressCreate footer={<FormFooter close={()=>{
+                    // redirect
+                }} />} />
             </IconFrameCovered>
 
             <AddressList  />

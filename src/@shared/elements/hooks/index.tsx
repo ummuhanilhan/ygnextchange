@@ -275,6 +275,7 @@ export const SelectHook = ({
     size,
     items,
     selectClass,
+    className,
     appended,
     grouped,
     ...rest
@@ -297,6 +298,7 @@ export const SelectHook = ({
                onChange={onChange}
                grouped={grouped}
                appended={appended}
+               className={className}
                selectClass={selectClass}
             />
         )}

@@ -139,7 +139,7 @@ export const Tag = ({
                 ></div>
 
             </div>
-            {selected.length>2 && (
+            {false && selected.length>2 && (
                 <div 
                 onClick={()=>setOpen(!open)}
                 className='absolute right-10 top-[1.25rem] text-gray-700 text-base'>

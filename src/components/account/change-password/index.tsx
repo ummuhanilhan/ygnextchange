@@ -52,7 +52,9 @@ export const ChangePassword = () => {
                 <FloatLabelHook name="confirm" type="password" placeholder="Yeni Şifrenizi Tekrar Giriniz" example="" control={control} />
             </div>
            )}
-          <div className="my-3 mt-5"><FormFooter /></div>
+          <div className="my-3 mt-5"><FormFooter close={()=>{
+            // redirect 
+          }} /></div>
         </AccountLayout>
     )
 }

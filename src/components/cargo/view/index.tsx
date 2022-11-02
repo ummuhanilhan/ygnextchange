@@ -8,7 +8,7 @@ import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
 
 
-export const View = ({wide, type, tabs}:any) => {
+export const View = ({wide, filter, type, tabs}:any) => {
     const [selected, setSelected] = React.useState(1);
 
     return ( 
@@ -16,7 +16,7 @@ export const View = ({wide, type, tabs}:any) => {
         'bg-gray-50 h-full',  
         {'lg:ml-[18.8em] p-3':!wide}
          )}> 
-            <Heading wide />
+            <Heading filter={filter} />
             {
                 tabs &&
                 <Tabs 

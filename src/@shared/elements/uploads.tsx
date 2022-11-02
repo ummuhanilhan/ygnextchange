@@ -125,9 +125,9 @@ export const Avatar = ({
   const [value, setValue] = React.useState('')
   return (
     
-    <div className="flex items-start w-full gap-3">
+    <div className="flex-center w-full gap-3">
       <div className="avatar">
-          <img src="/assets/avatar.svg" width="135" />
+          <img src="/assets/avatar.svg" width="100" />
       </div>
       <div className="w-full flex flex-start flex-col">
           <IconFrame icon={<CardImage className="menu-icon" />} title="Profil Fotoğrafım" />

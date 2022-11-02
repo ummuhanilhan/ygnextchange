@@ -154,7 +154,8 @@ export const Select = ({
     error,
     onChange,
     appended,
-    grouped,
+      className,
+      grouped,
     selectClass
   }:any) => {
       const [selected, setSelected] = React.useState(
@@ -165,11 +166,12 @@ export const Select = ({
       return (
         <div className={classnames(
         'w-full flashback floatinglabel-selects rounded-md relative', 
-         'medium min-w-[6em]',
+         'medium min-w-[6em] bg-white',
          {'pr-3 pl-2': appended},
          {'pr-1 md:pr-2 pl-2': grouped},
          {'error': error},
         {'success': success},
+        className,
         )}>
             <Outside cb={()=>setOpen(false)}>
             <div 
