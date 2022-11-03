@@ -16,7 +16,7 @@ export const Dropdown = ({
      dropdwonClass?:string
     setSelected?:Function
 }) => {
-    const [selected, setSelected] = React.useState(1)
+    const [selected, setSelected] = React.useState(3)
     const [open, setOpen] = React.useState(false)
     const handle = () => setOpen(!open)
     const select = (id:number) => setSelected(id)
@@ -37,13 +37,13 @@ export const Dropdown = ({
                     </p>
                 </div>
                 <div>
-                    {open? <FaChevronDown size={17} className='text-gray-400' /> :
-                    <FaChevronRight size={17} className='text-gray-400' /> }
+                    {open? <FaChevronDown size={15} className='text-gray-400' /> :
+                    <FaChevronRight size={15} className='text-gray-400' /> }
                 </div>
            </div>
             <div className={classNames(
                     'dropdown absolute shadow-xl bg-white', 
-                    'top-[2.5rem] z-30 w-72 p-4 right-0 rounded-xl',
+                    'top-[2.5rem] z-30 w-auto w-72- p-4 right-0 rounded-xl',
                     {'hidden':!open},
                     dropdwonClass
                 )}

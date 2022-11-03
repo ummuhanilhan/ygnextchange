@@ -207,7 +207,7 @@ export const FloatingInput = ({
           />
           </div>
           {false && error && (
-            <p className="mb-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">Oh, snapp!</span> Some error message. </p>
+            <p className="mb-2 text-sm text-red-600"><span className="font-medium">Oh, snapp!</span> Some error message. </p>
           )}
       </div>
     );
@@ -446,24 +446,22 @@ export const CountryCodeDropdown = ({status, setStatus, handleCode}:{status:bool
             <div className={classNames('flag placeholder cursor-pointer', code.country||'tr')} onClick={()=>setStatus(!status)} ></div>
           )}
           <div id="dropdownUsers" className={`${status?'':'hidden'} absolute left-[-.7rem] top-8 z-10 
-          w-72 bg-white rounded shadow dark:bg-gray-700 `}>
+          w-72 bg-white rounded shadow`}>
             <div className="p-3">
                 <label htmlFor="input-group-search" className="sr-only">Ara</label>
                 <div className="relative">
                   <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
+                    <svg className="w-5 h-5 text-gray-500 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                   </div>
                   <input type="text" id="input-group-search"
                   onChange={(e:any)=>setQuery(e.target.value)}
                   value={query}
                     className="block p-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg 
-                    border border-gray-300 focus:ring-blue-500 focus:border-blue-500 
-                    dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 
-                    dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    border border-gray-300 focus:ring-blue-500 focus:border-blue-500" 
                     placeholder="Ülke kodu seç" />
                 </div>
             </div>
-          <ul className="overflow-y-auto py-1 h-auto text-gray-700 dark:text-gray-200
+          <ul className="overflow-y-auto py-1 h-auto text-gray-700 
               flex items-start flex-col justify-center scroll-auto
               md:max-h-44 lg:max-h-56  pt-4" aria-labelledby="dropdownUsersButton">
               {data
@@ -499,8 +497,7 @@ export const CountryCodeDropdown = ({status, setStatus, handleCode}:{status:bool
                     className="w-full"
                   >
                     <a href="#" className="flex items-center py-2 px-4
-                      hover:bg-gray-100 dark:hover:bg-gray-600
-                      dark:hover:text-white w-full">
+                      hover:bg-gray-100 w-full">
                         <div className={classNames('flag', flag)}></div>
                         <p className="text-md ml-2"> {name} (+{countryCode}) </p>
                     </a>

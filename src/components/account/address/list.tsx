@@ -62,6 +62,7 @@ export const AddressList = ({select, border}:any) => {
                     onClick={()=>setStatus(true)}
                     >Yeni Adres Ekle</p>
                 </div>
+          
                 <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
                 {data
                 .filter((item:any)=>{

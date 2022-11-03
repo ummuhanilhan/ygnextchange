@@ -244,6 +244,7 @@ export const MapView = ({
      return (
          <React.Fragment>
              <div
+             className='h-[5%]'
                id={`search-container-${id}`}
              >
                  {/** 
@@ -266,7 +267,7 @@ export const MapView = ({
                      placeholder={'Adres, Yer veya Koordinat Giriniz'}
                    />
                    
-                <div className='map w-full h-[32.5vh] my-2 rounded-lg' ref={mapRef} />
+                <div className='map w-full h-[95%] -[32.5vh] my-2 rounded-lg' ref={mapRef} />
  
              </div>
  

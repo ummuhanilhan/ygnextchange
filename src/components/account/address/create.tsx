@@ -101,8 +101,8 @@ export const AddressCreate = ({
 
     return (
       <form onSubmit={handleSubmit(onSubmit, onError)}>           
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-                <div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 -h-[350px]'>
+                <div className='h-full'>
                      {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}
                       <FloatLabelHook name="title" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
                       <FloatLabelHook name="place.address" border={border} type="text" disabled
@@ -135,18 +135,20 @@ export const AddressCreate = ({
                           name="directions"
                           type="text"
                           border={border}
-                          className='mb-2'
+                          className=''
                           placeholder="Adres Tarifi İçin 
                           Ek Detay Ekleyiniz (Opsiyonel)"
                           example=""
                           control={control}
                         />
                 </div>
-                  <MapView
+              <div className='grid grid-cols-1 bg-gray-'>
+                <MapView
                       id={id} 
                       border={border} 
                       setValue={setValue}
                   />
+              </div>
             </div>
 
             <Communication control={control} border />

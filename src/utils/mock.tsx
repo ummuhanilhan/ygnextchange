@@ -232,6 +232,13 @@ export const pendingOut = [
   { id:3, title:'Tümünü Göster', slug:'all'},
 ];
 
+export const ranges = [
+ {id:1, title:5 },
+ {id:2, title:15 },
+ {id:3, title:25 },
+ {id:4, title:50 }
+];
+
 
 
 export const items = [

@@ -8,15 +8,15 @@ import { Actions } from "./Actions"
 export const CargoItem = ({item, actionType='', status}:any) => {
     return (
         <div className={classNames(
-            'cargo-item mt-3 bg-white px-4 mb-3 rounded-lg py-4',
+            'cargo-item mt-3 bg-white px-4 mb-3 rounded-lg py-3',
             {'grayscale': item.progress=='outdated'}
         )}>
             <div className=''>
                 <div className='flex justify-between '>
-                    <ul className='w-full flex items-center justify-start
+                    <ul className='w-full flex items-center justify-start h-full
                     '>
                         
-                       <li className='-inline-block float-left flexflex-center -mt-[-.3em]'>
+                       <li className='-inline-block float-left flexflex-center '>
                         <div className='tag rounded-[25px] p-1 px-3 w-fit border border-1 
                             border-yg-blue items-start h-min flex-center'> 
                                 <People className='fill-yg-blue' width={15} /> 
@@ -37,17 +37,17 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                             <div><Geo width={15} className='fill-yg-blue ml-1 ' /></div>
                             <p className='text-gray-500  pl-1 text-sm'>Ankara</p>
                             <div><ChevronDoubleRight width={15} className='fill-yg-orange ' /></div>
-                            <p className='text-gray-500 px-1'>Mersin</p>
+                            <p className='text-gray-500 px-1 text-sm'>Mersin</p>
                         </li>
                         
                         <li className='-inline-block float-left flex-center '>
                             <div className="flex items-start ml-3">  
-                                <div className='mt-[.2em]'>
+                                <div className='mt-[.07em]'>
                                 {item.type ? 
                                 <CircleFill width={15} className='fill-yg-blue  ml--1' /> : 
                                 <CircleHalf width={15} className='fill-yg-blue  ml--1' /> }
                                 </div>
-                                <p className="text-gray-400 ml-1">{!item.type? 'Parsiyel':'Komple'}</p>
+                                <p className="text-gray-400 ml-1 text-sm">{!item.type? 'Parsiyel':'Komple'}</p>
                             </div>
                         </li>
                         

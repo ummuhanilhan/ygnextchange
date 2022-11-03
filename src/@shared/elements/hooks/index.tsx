@@ -7,7 +7,7 @@ import { Calendar } from "primereact/calendar"
 import { FileUpload } from 'primereact/fileupload';
 import React from "react"
 import { CloudArrowUp } from "@shared/icons"
-import { FiXCircle } from "react-icons/fi"
+import { FiX, FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
 import { FloatingInput, FloatingPhone } from "../inputs";
@@ -432,16 +432,30 @@ export const InputGroupHook = ({
             <div className="items-center 
             h-full grid grid-cols-4
             gap-2 px-2 w-full">
-            <BorderedHook
-                placeholder='Uzunluk'
-                name={`${name}.length`}
-                control={control} 
-            />
-            <BorderedHook 
-                placeholder='Genişlik'
-                name={`${name}.width`}
-                control={control} 
-            />
+                
+            <div className='flex-center'>
+                <BorderedHook
+                    placeholder='Uzunluk'
+                    name={`${name}.length`}
+                    control={control} 
+                />
+                <div>
+                    <FiX className='stroke-gray-500' />
+                </div>
+            </div>
+
+            <div className='flex-center'>
+                <BorderedHook 
+                    placeholder='Genişlik'
+                    name={`${name}.width`}
+                    control={control} 
+                />
+                <div>
+                    <FiX className='stroke-gray-500' />
+                </div>
+            </div>
+
+          
             <BorderedHook 
                 placeholder='Yükseklik'
                 name={`${name}.height`}
@@ -502,7 +516,7 @@ export const InputAppendHook = ({
                     placeholder={placeholder} 
                     className="block py-2.5 px-0 w-full text-base 
                     text-gray-900 bg-transparent appearance-none 
-                    dark:text-white peer h-full outline-none" 
+                    peer h-full outline-none" 
                     onBlur={onBlur}  
                     onChange={onChange}  
                     value={value}
