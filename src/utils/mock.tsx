@@ -227,9 +227,13 @@ export const acceptedOut = [
 ];
 
 export const pendingOut = [ 
-  { id:1, title:'Teklif Beklenenler', slug:'pending'},
-  { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
-  { id:3, title:'Tümünü Göster', slug:'all'},
+  { id:1, title:'Beklemede Olanlar', slug:'pending'},
+  { id:2, title:'İlan Sahibi Tarafından Görülenler', slug:'pending'},
+  { id:3, title:'Kabul Edilmeyenler', slug:'pending'},
+  { id:4, title:'İlan Süresi Geçenler', slug:'pending'},
+  //{ id:1, title:'Teklif Beklenenler', slug:'pending'},
+  //{ id:2, title:'Yanıt Bekleyenler', slug:'pending'},
+  //{ id:3, title:'Tümünü Göster', slug:'all'},
 ];
 
 export const ranges = [
