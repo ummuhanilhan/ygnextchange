@@ -41,7 +41,7 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                         </li>
                         
                         <li className='-inline-block float-left flex-center '>
-                            <div className="flex items-start ml-3">  
+                            <div className="flex items-start ml-1">  
                                 <div className='mt-[.07em]'>
                                 {item.type ? 
                                 <CircleFill width={15} className='fill-yg-blue  ml--1' /> : 

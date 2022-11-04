@@ -1,16 +1,19 @@
-import { menuItems } from "@utils/mock"
+import { guestItems, menuItems } from "@utils/mock"
 import useDimensions from "@utils/useDimensions";
 import { BoxArrowRight } from "@yukgetir-icons"
 import { useRouter } from "next/router"
 import { useRef } from "react";
 import { FiX } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
+import { selectAuth } from "stores/slices/authSlice";
 
 export const Sidebar = ({mobile, setMobile}:any) =>{
     const router = useRouter();
     const {pathname} = router;
     const [ref, { height }]:any = useDimensions();
+    const { isAuth } = useSelector(selectAuth);
 
     const logo = (
     <img 
@@ -37,18 +40,23 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
 
                 <ul className="menu">
                  <SimpleBar style={{ maxHeight: height-260||400 }}>
-                    {menuItems.map((item, key:number)=>(
+                    {isAuth && menuItems.map((item, key:number)=>(
+                        <MenuItem item={item} key={`menu-item-${key}`} pathname={pathname}  />
+                    ))}
+                    {!isAuth && guestItems.map((item, key:number)=>(
                         <MenuItem item={item} key={`menu-item-${key}`} pathname={pathname}  />
                     ))}
                   </SimpleBar>
                 </ul>
 
-                <ul className="footer">
-                    <li className="justify-center">
-                        <BoxArrowRight className="menu-icon" />
-                        <p className="text-yg-gray">Çıkış Yap</p>
-                    </li>
-                </ul>
+                {isAuth && (
+                    <ul className="footer">
+                        <li className="justify-center">
+                            <BoxArrowRight className="menu-icon" />
+                            <p className="text-yg-gray">Çıkış Yap</p>
+                        </li>
+                    </ul>
+                )}
                 <p className="text-yg-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinova Bilişim A.Ş.</p>
             </div>  
     )

@@ -59,6 +59,40 @@ export const menuItems = [
     },
     
 ]
+
+export const guestItems = [
+    {
+        title:'Güncel İlanlar',
+        icon: <ListStars className="menu-icon" />,
+        path:'/cargo'
+    },
+    {
+        title:'Lokasyonlar',
+        icon: <PinMap className="menu-icon" />,
+        path:'/locations'
+    },
+    {
+        title:'Destek Taleplerim',
+        icon: <ChatLeftText className="menu-icon" />,
+        path:'/account/support'
+    },
+    {
+        title:'Sıkça Sorulan Sorular',
+        icon: <QuestionCircle className="menu-icon" />,
+        path:'/faq'
+    },
+    {
+        title:'Bize Ulaşın',
+        icon: <Envelope className="menu-icon" />,
+        path:'/contact'
+    },
+    {
+        title:'Geri Bildirim',
+        icon: <Smile className="menu-icon" />,
+        path:'/feedback'
+    },
+    
+]
  
 export const primeOptions = {
   accept: "Evet",

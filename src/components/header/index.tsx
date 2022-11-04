@@ -9,6 +9,8 @@ import { FiMenu } from 'react-icons/fi'
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FloatLabelHook } from "@shared/elements/hooks"
+import { useSelector } from "react-redux"
+import { selectAuth } from "stores/slices/authSlice"
 
 const profileMenu = [
     {id:1, title:'Hesabım', path:'/account'},
@@ -19,6 +21,7 @@ const profileMenu = [
 export const Header = ({mobile, setMobile}:any) =>{
     const [open, setOpen ] = useState(false)
     const [bellStatus, setBellStatus ] = useState(false)
+    const {user,isAuth} = useSelector(selectAuth);
 
     const router = useRouter()
     return (
@@ -44,15 +47,17 @@ export const Header = ({mobile, setMobile}:any) =>{
                     </a>
                 </li>
             </ul>
-            <Profile 
-                bellStatus={bellStatus}
-                setBellStatus={setBellStatus}
-                router={router}
-                open={open}
-                setOpen={setOpen}
-                setMobile={setMobile}
-                mobile={mobile}
-            />
+            {isAuth && ( 
+                <Profile 
+                    bellStatus={bellStatus}
+                    setBellStatus={setBellStatus}
+                    router={router}
+                    open={open}
+                    setOpen={setOpen}
+                    setMobile={setMobile}
+                    mobile={mobile}
+                />
+            )}
         </div>
     )
 }
@@ -144,6 +149,7 @@ export const Profile = ({
     setMobile,
     mobile,
 }:any) => {
+    const { user } = useSelector(selectAuth);
 
     return (
         <div className="profile ">
