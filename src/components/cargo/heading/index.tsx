@@ -11,9 +11,8 @@ export const Heading = ({filter}:any) => {
         <div className='heading'>
             <div className='flex justify-between items-center rounded-md w-full bg-white py-3 px-2'>
                 <div className='flex items-center justify-center text-base'>
-                    <p>Her sayfada</p>
                     <Dropdown 
-                        title='Sırala' 
+                        title='Her sayfada sırala' 
                         filters={ranges}
                     />
                     <p className='ml-2'>İlan göster</p>

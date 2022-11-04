@@ -6,7 +6,7 @@ import { AuthProps, JwtState, LoadingState } from '../types'
 const initialState : AuthProps = {
   user: {},
   session:false,
-  isAuth:undefined,
+  isAuth:true,//undefined,
   loading: LoadingState.IDLE,
   error: undefined,
   message: '',

@@ -58,8 +58,8 @@ export default Support;
 
 export const SupportItem = ({item, mini}:any) =>{
 
-    const colorize = () =>{
-        switch (item.status) {
+    const colorize = (status:string) =>{
+        switch (status) {
             case 'answered':
                 return {color:'green', message:'Cevap Verildi'}
             break;
@@ -77,19 +77,27 @@ export const SupportItem = ({item, mini}:any) =>{
     
     
     const message = () => {
-        const colorized:any = colorize()
+        const colorized:any = colorize(item.status)
         const color = colorized.color;
         const text = color && `text-${color}-700`;
         const fill = color && `fill-${color}-700`;
         const border = color && `border-${color}-700`;
 
         return (
-            <div className='flex items-center'> 
-                <div className={classNames(`border-[1.5px] w-4 h-4 flex items-center justify-center rounded-full`, border)}>
-                    <Warn height={10} className={classNames(fill)} />
+            <div className='flex items-center mt-3'> 
+                <div className={classNames(`border-[1.5px] w-4 h-4 flex items-center mr-1 justify-center rounded-full`, border)}>
+                    <Warn height={8} className={classNames(
+                        {'fill-green-600 border-green-600': color=='green'},
+                        {'fill-gray-300 border-gray-300': color=='blue'},
+                        {'fill-red-600 border-red-600': color=='red'},
+                    )} />
                 </div>
-                <p className={classNames(text,'text-sm ')}>
-                    Durum: {colorized.message} {colorized.color}</p> 
+                <p className={classNames(
+                    {'text-green-600': color=='green'},
+                    {'text-gray-300': color=='blue'},
+                    {'text-red-600': color=='red'},
+                    'text-sm')}>
+                    Durum: {colorized.message}</p> 
             </div> 
         )
     }
@@ -101,7 +109,7 @@ export const SupportItem = ({item, mini}:any) =>{
             mini ? 'p-1': 'p-3',
             !item.err && item.read && 'gray',
         )}>
-           <div className='flex items-center'>
+           <div className='flex items-start'>
               <div>
                     <div className={classNames(
                         'icon-circle',
@@ -119,11 +127,11 @@ export const SupportItem = ({item, mini}:any) =>{
                     !item.err && item.read && 'gray'
                 )}>
                     <h3 className={classNames(
-                        'action font-semibold',
+                        'action font-semibold text-base',
                         item.err ? 'text-[#e30a17]' : 'text-yg-blue'
                     )}
                     >{item.title}</h3>
-                    <p className='message'>{item.body}</p>
+                    <p className='message text-base'>{item.body}</p>
                     {message()}
                 </div>
            </div>
