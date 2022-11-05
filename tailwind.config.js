@@ -13,6 +13,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'map': "url('/assets/harita.png')",
+      },
       colors:{
         yg:{
           lightblue: '#f7f6fb',

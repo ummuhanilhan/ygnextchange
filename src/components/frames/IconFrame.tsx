@@ -5,7 +5,7 @@ import { FiChevronDown, FiChevronRight } from "react-icons/fi"
 export const IconFrame = ({title, icon}:any) => {
     return(
         <div className="title flex flex-start items-center pb-1">
-            {icon}<p>{title}</p>
+            {icon}<p className=''>{title}</p>
         </div>   
     )
 }
