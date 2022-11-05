@@ -16,7 +16,7 @@ export const Search = ({value, onChange, placeholder, border}:any) => {
             onChange={onChange}
             className="bg-transparent h-full border-0 w-full text-gray-500 px-1 outline-none" 
             placeholder={placeholder} />
-            <FaSearch className="fill-yg-blue mx-1" size={18} />
+            <FaSearch className="fill-yg-blue mx-1 stroke-[1px]" size={18} />
         </div>
     )
 }

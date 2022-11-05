@@ -9,6 +9,8 @@ import classNames from "classnames";
 import { Bell, Bidirection, Check, CheckLight, Doublecheck, Refresh, Return, Send, Warn } from "@shared/icons";
 import { Frame } from "@components/frames/MainFrame";
 import { issues } from "@utils/mock";
+import { Search } from "@shared/elements/searches";
+import { SimplePagination } from "@shared/paginations";
 
 export type SupportValues = {
     password: string,
@@ -21,10 +23,7 @@ const initialValues = {
     confirm:'',
     old_password:'',
 }
-
  
-
-
 export const Support = () => {
     const form = useForm<SupportValues>({
         defaultValues: initialValues,
@@ -41,11 +40,24 @@ export const Support = () => {
     };
     
     return (
-      <Frame>
-        <IconFrame icon={<Send className="menu-icon" />} title="Destek Taleplerim" />
-        {issues.map((item,i:number)=>(
-            <SupportItem item={item} key={`notify-${i}`} />
-        ))}
+      <Frame className='flex flex-col justify-between'>
+       <div>
+            <IconFrame icon={<Send className="menu-icon" />} title="Destek Taleplerim" />
+
+            <div className='heading grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                <Search placeholder='Destek Talebi Ara...' />
+                <div className='px-5 py-2 bg-yg-blue text-white flex-center w-full rounded-lg cursor-pointer'>
+                    Destek Talebi Oluştur
+                </div>
+            </div>
+
+            {issues.map((item,i:number)=>(
+                <SupportItem item={item} key={`notify-${i}`} />
+            ))}
+       </div>
+
+        <SimplePagination />
+
       </Frame>
     )
 }
@@ -75,7 +87,6 @@ export const SupportItem = ({item, mini}:any) =>{
         }
     }
     
-    
     const message = () => {
         const colorized:any = colorize(item.status)
         const color = colorized.color;
@@ -84,7 +95,7 @@ export const SupportItem = ({item, mini}:any) =>{
         const border = color && `border-${color}-700`;
 
         return (
-            <div className='flex items-center mt-3'> 
+            <div className='flex items-center mt-3 '> 
                 <div className={classNames(`border-[1.5px] w-4 h-4 flex items-center mr-1 justify-center rounded-full`, border)}>
                     <Warn height={8} className={classNames(
                         {'fill-green-600 border-green-600': color=='green'},
@@ -100,7 +111,7 @@ export const SupportItem = ({item, mini}:any) =>{
                     Durum: {colorized.message}</p> 
             </div> 
         )
-    }
+    }   
 
 
     return(
@@ -112,7 +123,7 @@ export const SupportItem = ({item, mini}:any) =>{
            <div className='flex items-start'>
               <div>
                     <div className={classNames(
-                        'icon-circle',
+                        'icon-circle mr-5 mt-2',
                         item.read ? 'read' : 'unread',
                         item.err && 'err',
                     )}>

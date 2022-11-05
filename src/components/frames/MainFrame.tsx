@@ -1,10 +1,10 @@
 import classNames from "classnames"
 
 
-export const Frame = ({children}:any) => {
+export const Frame = ({children, className}:any) => {
 
     return(
-      <div className="frame h-full bg-white p-3 rounded-lg mt-3">
+      <div className={classNames(`frame h-full bg-white p-3 rounded-lg mt-3`, className)}>
       <div className='bg-yg-lightblue bg-gray-100- p-3 rounded-md h-full'>
         {children}
       </div>
