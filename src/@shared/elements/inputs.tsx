@@ -8,7 +8,6 @@ import classNames from "classnames";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { Select } from "./selects";
 
-
 export interface FloatInputProps {
   /**
    * FloatInput placeholder
@@ -165,7 +164,7 @@ export const FloatingInput = ({
                 "p-2 pr-10 outline-none w-full h-full rounded-md bg-transparent transition-all duration-200 ease-in-out",
                 active ? "text-gray-500 " : "",
                 border && 'border-gray-300 border-opacity-25',
-                size=='small' ? (active ? 'pt-6' : 'pt-2') : '',
+                size=='small' ? (active ? 'pt-6' : 'pt-3') : '',
                 size=='medium' ? (active ? 'pt-5 text-base' : 'pt-2') : '',
                 size=='large' ? (active ? 'pt-6' : 'pt-2') : '',
 
@@ -182,7 +181,7 @@ export const FloatingInput = ({
               className={classNames(
                 "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
                 active ? "font-medium " : " text-gray-500 ",
-                size=='small' ? (active ? 'text-xs' : 'text-sm pt-4') : '',
+                size=='small' ? (active ? 'text-xs' : 'text-sm pt-5') : '',
                 size=='medium' ? (active ? 'text-xs pt-3' : 'text-base pt-4') : '',
                 size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
               )}
@@ -291,7 +290,7 @@ export const FloatingPhone = ({
         {active && (
             <div className={classNames(
               'country-code flex items-center absolute left-[.5rem]',
-              size=='small' && 'top-[1.5rem]',
+              size=='small' && 'top-[1.7rem]',
               size=='medium' && ' top-[1.8rem] ',
               size=='large' && ' top-[1.8rem] ',
             )}>

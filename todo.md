@@ -2,9 +2,10 @@
 - ✅ input issue
 - ✅ change container
 - ✅ cargo form filter
-- phone
-- ✅ sol menüde ki font boyutu
 - auth page
+- phone
+- input sizes
+- ✅ sol menüde ki font boyutu
 - file upload component err 
 - some responsives 
 - alignment
