@@ -8,15 +8,15 @@ export const Actions = ({item, actionType, status, fav}:any) => {
     const faved = (
         <div className="inline-block">
             <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
-                    items-center justify-center mr-2 cursor-pointer hover:bg-yg-lightblue'> 
+                    items-center justify-center ml-2 cursor-pointer hover:bg-yg-lightblue'> 
                 {item.fav ? <HeartFill width={15} className='fill-yg-orange' /> : <Heart width={15} className='fill-yg-orange' />}
             </div>
         </div>
     )
 
     const viewed = (
-        <div className="inline-block">
-            <div className='view flex flex-col items-center mr-2'>
+        <div className='inline-block'>
+            <div className='view flex flex-col items-center'>
                 <Eye width={15} className='fill-gray-400' />
                 <p className='text-gray-400 text-sm'>{item.view}</p>
             </div>
@@ -30,7 +30,7 @@ export const Actions = ({item, actionType, status, fav}:any) => {
     const normal = `${common}`
 
     const Button = ({children, rich}:any) => {
-        return <div className='sm:flex'>{children}</div>
+        return children
     }
 
     const getActions = (value:string, item:any, status:boolean) => {
@@ -151,18 +151,18 @@ export const Actions = ({item, actionType, status, fav}:any) => {
 
 export const Action = ({path, color, title, outline, disabled}:any) => {
     const disabledItem =  <a href={path} className={classNames(
-        ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
+        ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-gray-300 text-white inline-block float-left h-min w-max`
     )}>{title}</a>
 
     const normalItem = <a href={path} className={classNames(
-        ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-1`,
+        ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-yg-${color} text-white inline-block float-left h-min w-max`,
         `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
     )}>{title}</a>
 
     const outlinedItem = <a href={path} className={classNames(
-        ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-1`,
+        ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-transparent text-yg-${color} border-yg-${color} inline-block float-left h-min w-max`,
         `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
     )}>{title}</a>

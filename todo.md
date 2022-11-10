@@ -1,5 +1,10 @@
 # next
-- cargo form filter
+- ✅ input issue
+- ✅ change container
+- ✅ cargo form filter
+- phone
+- ✅ sol menüde ki font boyutu
+- auth page
 - file upload component err 
 - some responsives 
 - alignment

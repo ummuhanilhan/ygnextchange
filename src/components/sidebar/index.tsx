@@ -81,7 +81,7 @@ export const MenuItem = ({item, pathname}:any) => {
                     window.open(item.path, "_blank")       
             }}
         >
-            <a href={item.path} className='flex items-start'>
+            <a href={item.path} className='flex items-start text-base'>
                 {item.icon}
                 <p>{item.title}</p>
             </a>

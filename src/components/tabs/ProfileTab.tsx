@@ -29,7 +29,7 @@ export const ProfileTab = ({change}:any) => {
                     router.push(item.path,  undefined, { shallow: true })
                 }} >
                     {item.icon}
-                    {item.title}
+                    <p className='text-base'>{item.title}</p>
                 </li>
             ))}
         </ul>

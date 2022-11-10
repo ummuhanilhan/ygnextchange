@@ -13,39 +13,38 @@ export const CargoItem = ({item, actionType='', status}:any) => {
         )}>
             <div className=''>
                 <div className='flex justify-between '>
-                    <ul className='w-full flex items-center justify-start h-full
-                    '>
+                    <ul className='w-full flex- items-center justify-start h-full pt-1'>
                         
-                       <li className='-inline-block float-left flexflex-center '>
+                       <li className='lg:flex-center inline-block float-left mt-[-.4rem]'>
                         <div className='tag rounded-[25px] p-1 px-3 w-fit border border-1 
                             border-yg-blue items-start h-min flex-center'> 
                                 <People className='fill-yg-blue' width={15} /> 
-                                <p className='text-yg-blue ml-1 text-sm'>
+                                <p className='text-yg-blue md:ml-1 text-sm'>
                                     {item.corporate?'Kurumsal İlan':'Bireysel İlan'}
                                 </p>
                             </div>
                        </li>
                         
-                       <li className='-inline-block float-left flex-center '>
-                            <div className=" flex items-start h-fit justify-center ml-2">
-                                <PinAngle width={15} />
-                                <p className='ml-1 text-sm '> İlan No: 25959 </p>
+                       <li className='lg:flex-center inline-block float-left'>
+                            <div className=" flex items-start h-fit justify-center md:ml-3">
+                                <PinAngle width={15} className='fill-gray-600' />
+                                <p className='md:ml-1 text-sm text-gray-500'> İlan No: 25959 </p>
                             </div>
                        </li>
 
-                        <li className='-inline-block float-left flex-center '>
-                            <div><Geo width={15} className='fill-yg-blue ml-1 ' /></div>
-                            <p className='text-gray-500  pl-1 text-sm'>Ankara</p>
+                        <li className='flex-center float-left'>
+                            <div><Geo width={15} className='fill-yg-blue md:ml-3 ' /></div>
+                            <p className='text-gray-500  md:ml-1 text-sm'>Ankara</p>
                             <div><ChevronDoubleRight width={15} className='fill-yg-orange ' /></div>
-                            <p className='text-gray-500 px-1 text-sm'>Mersin</p>
-                        </li>
                         
-                        <li className='-inline-block float-left flex-center '>
-                            <div className="flex items-start ml-1">  
-                                <div className='mt-[.07em]'>
+                            <p className='text-gray-500 mx-1 mr-3 text-sm'>Mersin</p>
+                        </li>
+                        <li className='lg:flex-center inline-block float-left'>
+                            <div className="flex items-start md:ml-1">  
+                                <div className='mt-[.15rem]'>
                                 {item.type ? 
-                                <CircleFill width={15} className='fill-yg-blue  ml--1' /> : 
-                                <CircleHalf width={15} className='fill-yg-blue  ml--1' /> }
+                                <CircleFill width={13} className='fill-yg-blue  ml--1' /> : 
+                                <CircleHalf width={13} className='fill-yg-blue  ml--1' /> }
                                 </div>
                                 <p className="text-gray-400 ml-1 text-sm">{!item.type? 'Parsiyel':'Komple'}</p>
                             </div>
@@ -54,7 +53,7 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                     </ul>
                     <div className='flex items-end flex-col'>
                         <h2 className='text-2xl flex items-end'> <b>{item.price}</b> {item.currency}</h2>
-                        <p className='text-gray-400 text-sm w-max'>({item.vat?'KDV Dahil':'+KDV'})</p>
+                        <p className='text-gray-400 text-sm w-max mt-[-.3rem]'>({item.vat?'KDV Dahil':'+KDV'})</p>
                     </div>
                   </div>
             </div>    

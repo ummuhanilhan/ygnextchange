@@ -8,11 +8,13 @@ import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
 
 
-export const View = ({wide, filter, type, tabs}:any) => {
+export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
     const [selected, setSelected] = React.useState(1);
 
     return ( 
-        <div className={classNames('view mt-4- rounded-lg',
+        <div 
+        ref={forwardRef}
+        className={classNames('view mt-4- rounded-lg',
         'bg-gray-50 h-full',  
         {'lg:ml-[18.8em] p-3':!wide}
          )}> 

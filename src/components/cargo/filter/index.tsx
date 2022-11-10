@@ -1,6 +1,6 @@
 import { Calendar, Cash, CircleHalf, FilePlus, FileText, PinMap, Truck } from "@shared/icons"
 import useDimensions from "@utils/useDimensions"
-import React from "react";
+import React, { useEffect } from "react";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -19,6 +19,7 @@ import Outside from "@utils/useoutside";
 import { FaSearch } from "react-icons/fa"
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";
+import { useScrollYPosition } from "@shared/elements/hooks/usePosition";
  
 export type FilterValues = {
     name: string,
@@ -29,23 +30,25 @@ const initialValues = {
 }
 
 export const CargoFilter = () => {
+    const [ref, props]:any = useDimensions();
+    useEffect(()=>{
+        console.log('left:',props.left,'right:',props.right, 'w:',props.width,'h:',props.height,'x:',props.x)
+    },[props])
     const content = (
-        <DoubleFrame  id="cargoes" className="relative">
-            <Filter />
-            <View type='cargoes' />
+        <DoubleFrame  id="cargoes" className="" >
+            <Filter {...props} />
+            <View type='cargoes'  forwardRef={ref}   />
         </DoubleFrame>
  
     )
-    const single = <div id="cargoes" className="relative">
-            <Filter />
-        <View type='cargoes' />
-    </div>
+ 
     return content;
 }
 
-const Filter = ({}:any) => {
-    const [ref, { height }]:any = useDimensions();
+const Filter = ({  x }:any) => {
     const [sync, setSync] = React.useState(false);
+    const y = useScrollYPosition();
+ 
     const form = useForm<FilterValues>({
         defaultValues: {
             ...initial,
@@ -63,12 +66,24 @@ const Filter = ({}:any) => {
 
     };
     return (
-        <div className="filter bg-gray-50 z-30 lg:sticky invisible lg:visible
-         top-4 left-0 h-0 rounded-md w-[18em]" ref={ref}>
-                <form onSubmit={handleSubmit(onSubmit, onError)} 
-                className='flex flex-col h-[80vh]- justify-between 
-                bg-gray-50 p-3 rounded-lg'>
-                  <SimpleBar style={{ maxHeight: '65vh',  }} className='pb-1'>
+        <div 
+            style={{
+                // @ts-ignore
+                left: parseInt(x-245) 
+            }}
+            className={classNames(
+            {'lg:fixed   top-2 bottom-2': y>88},
+            'filter z-30 invisible lg:visible',
+            'top-4 left-0-md w-[18em] transition h-0'
+        )} >
+                <form 
+                onSubmit={handleSubmit(onSubmit, onError)} 
+                className={classNames(
+                    y>88 ? 'screenize' :'bottomize',
+                    'flex flex-col justify-between', 
+                    'bg-gray-50 rounded-lg p-3'
+                )}>
+                  <SimpleBar style={{ maxHeight: '80vh',  }} className='pb-1'>
                         <Search control={control} placeholder='İlan ara...' />
                         <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
                         <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>

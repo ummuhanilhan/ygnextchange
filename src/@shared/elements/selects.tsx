@@ -200,7 +200,7 @@ const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
             color ? color : 'text-gray-500 ',
             'p-2 absolute top-0 left-0 rounded-md flex items-center transition-all duration-200 ease-in-out cursor-pointer',
                 size=='small' ? (selected ? 'text-sm pt-2' : 'text-base pt-5') : '',
-                size=='medium' ? (selected ? ( mini ? 'text-base pt-7' : 'text-base pt-5') : 'text-base pt-5') : '',
+                size=='medium' ? (selected ? ( mini ? 'text-base pt-7' : 'text-base pt-4') : 'text-base pt-5') : '',
           )}
           htmlFor={name}
           >

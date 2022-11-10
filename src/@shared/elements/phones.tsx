@@ -95,7 +95,7 @@ export const FloatingLabelPhone = ({
             <label
               className={[
                 "absolute top-0 left-0 flex items-center p-2 transition-all duration-200 ease-in-out",
-                value || active ? "text-xs font-medium " : "text-sm text-gray-500 pt-4"
+                value || active ? "text-xs font-medium " : "text-sm text-gray-500 pt-3"
               ].join(" ")}
               htmlFor={name}
               onClick={handleLabel}
