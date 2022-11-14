@@ -152,9 +152,6 @@ export const Profile = ({
 }:any) => {
     const { user, isAuth }:any = useSelector(selectAuth);
 
-    const dispatch = useAppDispatch();
-    // React.useEffect(()=>{dispatch(me())},[])
-
     return (
         <div className="profile ">
                 {isAuth && (

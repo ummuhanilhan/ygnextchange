@@ -33,9 +33,7 @@ const initialValues = {
 
 export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
-    useEffect(()=>{
-        console.log('left:',props.left,'right:',props.right, 'w:',props.width,'h:',props.height,'x:',props.x)
-    },[props])
+   
     const content = (
         <DoubleFrame  id="cargoes" className="" >
             <Filter {...props} />

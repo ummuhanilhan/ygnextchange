@@ -33,7 +33,8 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
     const [limit, setLimit] = React.useState(3)
     const [currentPage, setCurrentPage] = React.useState(1);
     
-    const { data, isLoading, error }:any = useQuery(`cargo/filter?skip=${currentPage}&limit=${limit}&from=${'filter.from'}&to=${'filter.to'}`)
+    const { data, isLoading, error }:any = useQuery(`cargo`) 
+    // /filter?skip=${currentPage}&limit=${limit}&from=${'filter.from'}&to=${'filter.to'} 
     
     const [total, setTotal] = React.useState(data?.meta?.total-1);
 
@@ -73,8 +74,19 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
                             setSelected={setSelected}
                         />
                     }
+
+                    {data?.map((item:any,i:number)=>(
+                        <CargoItem 
+                            item={item} 
+                            key={`cargo-item-${i}`} 
+                            actionType={type} 
+                            status={selected===1}  
+                        />
+                    ))}
+
+
                     {[
-                    ...items
+                    // ...items
                     ].map((item,i:number)=>(
                         <CargoItem 
                             item={item} 

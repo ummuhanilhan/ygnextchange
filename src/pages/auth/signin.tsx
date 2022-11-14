@@ -10,6 +10,7 @@ import { selectAuth, signin } from "stores/slices/authSlice";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { LoadingState } from "stores/types";
+import { useEffect } from "react";
 
 
 export type SigninValues = {
@@ -33,6 +34,12 @@ export const Signin = () =>{
         // if(loading == LoadingState.LOADED) router.push('/')
         
     };
+
+    useEffect(()=>{
+        if(loading == LoadingState.LOADED){
+            router.push('/')
+        }
+    },[loading])
     const onError = (errors:any) => { 
         notify('Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})
         console.log('errors', errors, form.getValues() ) };

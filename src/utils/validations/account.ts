@@ -1,10 +1,10 @@
-import { object, string, number, date, boolean } from 'joi';
+import * as Joi from 'joi';
 
-export const profileSchema = object({
-    fullname: string().required(),
-    name: string().required(),
-    email: string().email().required(),
-    phone: string().min(7).max(13).required(),
-    type: boolean(),
+export const profileSchema = Joi.object({
+    fullname: Joi.string().required(),
+    name: Joi.string().required(),
+    email: Joi.string().required(), 
+    phone: Joi.string().min(7).max(13).required(),
+    type: Joi.boolean(),
   });
   

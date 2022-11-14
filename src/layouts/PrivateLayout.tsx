@@ -15,15 +15,14 @@ type DefaultState = {
 
 export const Private = ({children}: DefaultState) => {
     const router = useRouter();
+    const { isAuth, loading } = useSelector(selectAuth)
     const dispatch = useAppDispatch();
-    const {isAuth, loading} = useSelector(selectAuth);
+    React.useEffect(()=>{dispatch(me())},[])
     useEffect(()=>{
-        console.log('isAuth', isAuth);
-         if(isAuth==false) router.push('/auth/signin')
+        console.log('loading',loading)
+        if( loading == LoadingState.ERROR && !isAuth ) router.push('/')
+    },[loading])
 
-        dispatch(me())
-
-    },[])
     const content = isAuth ? (
         <div className="flex flex-center items-center">
             <div className="max-w-[1669px] w-full">
