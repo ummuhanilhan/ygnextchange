@@ -1,4 +1,5 @@
 import { CargoFilter } from "@components/cargo/filter"
+import DefaultLayout from "@layouts/DefaultLayout"
 import PrivateLayout from "@layouts/PrivateLayout"
 import React from "react"
 
@@ -9,7 +10,7 @@ const Home = () => {
   )
 }
 
-Home.Layout = PrivateLayout
+Home.Layout = DefaultLayout
 
 export default Home
 

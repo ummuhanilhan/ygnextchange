@@ -6,38 +6,87 @@ import React from "react"
 import {  FiMinusCircle, FiXCircle } from "react-icons/fi"
 import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
+import useSWR from 'swr'
+import api from "@utils/api";
 
+const fetcher = (path:string) => api.get(path).then(res => res.data)
+
+function useQuery (url:string, values:any=null, method='get') {
+  const { data, error } = useSWR(url, ()=>api({
+    method,
+    url,
+    data:values
+  }).then(res => res.data))
+
+  return {
+    data,
+    isLoading: !error && !data,
+    error
+  }
+}
 
 export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
     const [selected, setSelected] = React.useState(1);
 
+
+    const [page, setPage] = React.useState(1)
+    const [limit, setLimit] = React.useState(3)
+    const [currentPage, setCurrentPage] = React.useState(1);
+    
+    const { data, isLoading, error }:any = useQuery(`cargo/filter?skip=${currentPage}&limit=${limit}&from=${'filter.from'}&to=${'filter.to'}`)
+    
+    const [total, setTotal] = React.useState(data?.meta?.total-1);
+
+    const currentTableData = React.useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * limit;
+        const lastPageIndex = firstPageIndex + limit;
+        return data?.cargoes?.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
+
+
+    
+
     return ( 
-        <div 
-        ref={forwardRef}
-        className={classNames('view mt-4- rounded-lg',
-        'bg-gray-50 h-full',  
-        {'lg:ml-[18.8em] p-3':!wide}
-         )}> 
-            <Heading filter={filter} />
-            {
-                tabs &&
-                <Tabs 
-                    selected={selected}
-                    setSelected={setSelected}
-                />
-            }
-            {[
-            ...items
-            ].map((item,i:number)=>(
-                <CargoItem 
-                    item={item} 
-                    key={`cargo-item-${i}`} 
-                    actionType={type} 
-                    status={selected===1}  
-                />
-            ))}
-            <SimplePagination />
-        </div>
+        <React.Fragment>
+              {error && <h3>Bir şeyler ters gitti!</h3>}
+          
+          {isLoading && ( // spinner
+            <div className="flex flex-center w-full justify-center">
+                {/** <img src="/assets/empty.svg" className="h-40"  /> */}
+                Loading...
+            </div>
+          )}
+        {[...items]?.length<=0 && (
+            <h1>Sonuç yok</h1>
+        )}
+            <div 
+                ref={forwardRef}
+                className={classNames('view mt-4- rounded-lg',
+                'bg-gray-50 h-full',  
+                {'lg:ml-[18.8em] p-3':!wide}
+                )}> 
+                    <Heading filter={filter} />
+                    {
+                        tabs &&
+                        <Tabs 
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    }
+                    {[
+                    ...items
+                    ].map((item,i:number)=>(
+                        <CargoItem 
+                            item={item} 
+                            key={`cargo-item-${i}`} 
+                            actionType={type} 
+                            status={selected===1}  
+                        />
+                    ))}
+                    <SimplePagination />
+                </div>
+        </React.Fragment>
+
     )
 }
 

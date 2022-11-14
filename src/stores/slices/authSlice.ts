@@ -6,7 +6,7 @@ import { AuthProps, JwtState, LoadingState } from '../types'
 const initialState : AuthProps = {
   user: {},
   session:false,
-  isAuth:true,//undefined,
+  isAuth:undefined,
   loading: LoadingState.IDLE,
   error: undefined,
   message: '',
@@ -21,6 +21,7 @@ export const signin = createAsyncThunk(
     'auth/signin', async (values:any, thunkAPI) => {
         try {
             const response = await api.post('/auth/signin', values)
+            console.log(response.data)
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })
@@ -69,9 +70,9 @@ export const authSlice = createSlice({
     },
     signout: (state) => {
         state.user =  {}
-        state.isAuth = false;
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
+        state.isAuth = false;
         state.loading = LoadingState.LOADED;
       },
     clear:(state) => {
@@ -114,7 +115,7 @@ export const authSlice = createSlice({
         state.loading = LoadingState.ERROR
     })
     builder.addCase(me.fulfilled, (state, action) => {
-        const payload = action.payload;
+    const payload = action.payload;
         state.user = payload
         if(!payload.error) 
             state.isAuth = true;

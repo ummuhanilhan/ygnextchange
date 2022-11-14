@@ -20,7 +20,8 @@ import { FaSearch } from "react-icons/fa"
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";
 import { useScrollYPosition } from "@shared/elements/hooks/usePosition";
- 
+
+
 export type FilterValues = {
     name: string,
 };
@@ -28,6 +29,7 @@ export type FilterValues = {
 const initialValues = {
     name:'test',
 }
+
 
 export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
@@ -39,13 +41,12 @@ export const CargoFilter = () => {
             <Filter {...props} />
             <View type='cargoes'  forwardRef={ref}   />
         </DoubleFrame>
- 
     )
  
     return content;
 }
 
-const Filter = ({  x }:any) => {
+const Filter = ({ x }:any) => {
     const [sync, setSync] = React.useState(false);
     const y = useScrollYPosition();
  

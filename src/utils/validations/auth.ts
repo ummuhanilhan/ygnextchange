@@ -1,27 +1,26 @@
-import { object, string, number, date, InferType, boolean } from 'yup';
+import * as Joi from 'joi';
 
-export const signinSchema = object({
-  name: string().required(),
-  email: string().email().required(),
-  password: string().min(8).max(32).required(),
-  rememberme: boolean(),
+export const signinSchema = Joi.object({
+  email: Joi.string().required(),
+  password: Joi.string().min(6).max(32).required(),
+  remember: Joi.boolean().optional(),
 });
 
-export const signupSchema = object({
-  fullname: string().required(),
-  name: string().required(),
-  email: string().email().required(),
-  password: string().min(8).max(32).required().required(),
-  confirm: string().required(),
-  phone: string().min(7).max(13).required(),
-  type: boolean(),
+export const signupSchema = Joi.object({
+  fullname: Joi.string().required(),
+  name: Joi.string().required(),
+  email: Joi.string().required(),
+  password: Joi.string().min(8).max(32).required().required(),
+  confirm: Joi.string().required(),
+  phone: Joi.string().min(7).max(13).required(),
+  type: Joi.boolean(),
 }).required();
 
-export const forgottenSchema = object({
-  email: string().email().required(),
+export const forgottenSchema = Joi.object({
+  email: Joi.string().required(),
 });
 
-export const resetSchema = object({
-    password: string().min(8).max(32).required(),
-    confirm: string().required(),
+export const resetSchema = Joi.object({
+    password: Joi.string().min(8).max(32).required(),
+    confirm: Joi.string().required(),
 })

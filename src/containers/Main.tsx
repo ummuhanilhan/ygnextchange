@@ -30,6 +30,7 @@ export const MainContainer = ({children, className}:any) => {
           </div>
        
           <div 
+            ref={itemRef}
             className={classNames(
             // blur, 
             'lg:ml-[325px] m-0 px-4 lg:px-0 -lg:blur-0 relative',
@@ -39,7 +40,7 @@ export const MainContainer = ({children, className}:any) => {
               mobile={mobile}
               setMobile={setMobile}
             />
-            <div className="content" ref={itemRef} >
+            <div className="content">
               {children}
             </div>
           </div>

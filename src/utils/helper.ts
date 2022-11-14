@@ -4,7 +4,7 @@ import slug from "slug";
 import { toast } from "react-toastify";
 
 export const domain = process.env.DOMAIN;
-export const url = process.env.DOMAIN + '/api';
+export const url = process.env.DOMAIN + '/api/v1/'
 export const storage =  domain + '/public/uploads'
 export const server = typeof window === "undefined";
 

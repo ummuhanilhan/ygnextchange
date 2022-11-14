@@ -7,9 +7,11 @@ import { FiX } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
-import { selectAuth } from "stores/slices/authSlice";
+import { selectAuth, signout } from "stores/slices/authSlice";
+import { useAppDispatch } from "stores/store";
 
 export const Sidebar = ({mobile, setMobile}:any) =>{
+    const dispatch = useAppDispatch();
     const router = useRouter();
     const {pathname} = router;
     const [ref, { height }]:any = useDimensions();
@@ -50,8 +52,12 @@ export const Sidebar = ({mobile, setMobile}:any) =>{
                 </ul>
 
                 {isAuth && (
-                    <ul className="footer">
-                        <li className="justify-center">
+                    <ul className="footer"
+                    onClick={()=>{
+                        dispatch(signout())
+                    }}
+                    >
+                        <li className="justify-center cursor-pointer">
                             <BoxArrowRight className="menu-icon" />
                             <p className="text-yg-gray">Çıkış Yap</p>
                         </li>

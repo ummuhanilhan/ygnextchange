@@ -1,4 +1,4 @@
-import { object, string, number, date, InferType, boolean } from 'yup';
+import { object, string, number, date, boolean } from 'joi';
 
 export const profileSchema = object({
     fullname: string().required(),

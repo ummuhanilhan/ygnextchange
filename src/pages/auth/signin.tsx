@@ -2,29 +2,43 @@ import { SignLayout } from "@layouts/SignLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CheckboxHook, FloatLabelHook } from "@shared/elements/hooks";
 import { signinSchema } from "@utils/validations/auth";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { InputHook } from "@shared/elements/hooks/inputHook";
+import { notify } from "@utils/helper";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { useAppDispatch } from "stores/store";
+import { selectAuth, signin } from "stores/slices/authSlice";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { LoadingState } from "stores/types";
 
 
 export type SigninValues = {
-    name: string,
-    email: string,
+     email: string,
     password: string,
-    rememberme: boolean,
+    remember: boolean,
 };
 
 export const Signin = () =>{
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+    const { loading } = useSelector(selectAuth)
+
     const form = useForm<SigninValues>({
         defaultValues: {},
-        resolver: yupResolver(signinSchema),
+        resolver: joiResolver(signinSchema),
     });
     const { register, control,  handleSubmit, watch, formState: { errors } } = form;
     const onSubmit: SubmitHandler<SigninValues> = data => {
-        console.log(data)
-        alert(JSON.stringify(data))
+        dispatch(signin(data))
+        // if(loading == LoadingState.LOADED) router.push('/')
+        
     };
-
+    const onError = (errors:any) => { 
+        notify('Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})
+        console.log('errors', errors, form.getValues() ) };
+        
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex items-center justify-center h-screen">
+        <form onSubmit={handleSubmit(onSubmit, onError)} className="flex items-center justify-center h-screen">
             <div id="signin" className="auth transform scale-[100%] h-auto">
                 <div className="form 
                   w-screen
@@ -34,13 +48,12 @@ export const Signin = () =>{
                     <img src="/logo.png" alt="yükgetir logo" className="h-14 object-contain" />
                     <h3 className="text-base mt-2 mb-12">Kullanıcı Girişi</h3>
         
-                    <FloatLabelHook size='small' className='mb-2' name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                    <FloatLabelHook size='small' className='mb-2' name="email" type="text" placeholder="Eposta" example="test@test.com" control={control} />
-                    <FloatLabelHook size='small' className='mb-2' name="password" type="password" placeholder="Şifre" example="" control={control} />
+                    <InputHook size='small' className='mb-2' name="email" type="text" placeholder="Eposta" example="test@test.com" control={control} />
+                    <InputHook size='small' className='mb-2' name="password" type="password" placeholder="Şifre" example="" control={control} />
                     
 
                     <div className="flex justify-between w-full my-2">
-                        <div className="rememberme">
+                        <div className="remember">
                             <CheckboxHook name="remember" label="Remember Me" control={control} />
                          
                         </div>
@@ -49,7 +62,9 @@ export const Signin = () =>{
                         </a>
                     </div>
 
-                    <button disabled type="button" className="text-white align-center bg-yg-blue focus:ring-4 focus:ring-blue-300 font-medium 
+                    <input type='submit' value='send' />
+
+                    <button  type="button" className="text-white align-center bg-yg-blue focus:ring-4 focus:ring-blue-300 font-medium 
                     rounded-lg text-sm px-5 py-2.5 text-center justify-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 
                     inline-flex items-center cursor-pointer mt- p-3 w-full">
                         
