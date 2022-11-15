@@ -19,7 +19,7 @@ const initialState:any = {
 export const getDefinitions = createAsyncThunk(
     'definition/findAll', async (_, thunkAPI) => {
         try {
-            const response = await api.get('/definitions/all')
+            const response = await api.get('/definitions/type')
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })
@@ -42,6 +42,7 @@ export const definitionSlice = createSlice({
         state.definitions = action.payload;
         state.formatted = formattedDefines(action.payload);
         state.loading = LoadingState.LOADED
+        console.log(action.payload, formattedDefines(action.payload))
       })
 
       builder.addCase(getDefinitions.pending, (state) =>{
