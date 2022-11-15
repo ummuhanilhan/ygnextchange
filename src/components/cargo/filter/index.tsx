@@ -35,7 +35,7 @@ export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
    
     const content = (
-        <DoubleFrame  id="cargoes" className="" >
+        <DoubleFrame  id="cargoes" className="bottomize" >
             <Filter {...props} />
             <View type='cargoes'  forwardRef={ref}   />
         </DoubleFrame>

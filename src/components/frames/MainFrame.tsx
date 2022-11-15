@@ -20,7 +20,7 @@ export const Frame = ({children, className}:any) => {
 export const DoubleFrame = ({children, className, forwardRef, id}:any) => {
 
   return(
-    <div id={id} ref={forwardRef} className={classNames('frame bg-white p-3 rounded-md mt-3', className)}>
+    <div id={id} ref={forwardRef} className={classNames('frame bg-white p-3 rounded-md mt-3 ', className)}>
       {children}
   </div>
   )

@@ -133,6 +133,7 @@ export const defines = (definitions:any, selection:any, str:boolean=false) => {
 
 export const formattedDefines = (definitions:any) => {
     const newDefinitions:any = {};
+    console.log('entry:', Object.entries(definitions))
     Object.entries(definitions).map((el:any,i:any)=>{
         const name = el[0];
         const items = el[1];

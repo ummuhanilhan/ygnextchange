@@ -19,7 +19,6 @@ export const Private = ({children}: DefaultState) => {
     const dispatch = useAppDispatch();
     React.useEffect(()=>{dispatch(me())},[])
     useEffect(()=>{
-        console.log('loading',loading)
         if( loading == LoadingState.ERROR && !isAuth ) router.push('/')
     },[loading])
 

@@ -1,11 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, Eye, Forward, Geo, Heart, HeartFill, People, PinAngle, Truck } from "@yukgetir-icons"
 import classNames from "classnames"
 import { FaMapPin } from "react-icons/fa"
 import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
+import { useSelector } from "react-redux"
+import { selectDefinition } from "stores/slices/definitionSlice"
 
 export const CargoItem = ({item, actionType='', status}:any) => {
+    const { definitions,formatted } = useSelector(selectDefinition);
+    
     return (
         <div className={classNames(
             'cargo-item mt-3 bg-white px-4 mb-3 rounded-lg py-3',

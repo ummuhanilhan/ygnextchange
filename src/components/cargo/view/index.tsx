@@ -49,17 +49,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
 
     return ( 
         <React.Fragment>
-              {error && <h3>Bir şeyler ters gitti!</h3>}
           
-          {isLoading && ( // spinner
-            <div className="flex flex-center w-full justify-center">
-                {/** <img src="/assets/empty.svg" className="h-40"  /> */}
-                Loading...
-            </div>
-          )}
-        {[...items]?.length<=0 && (
-            <h1>Sonuç yok</h1>
-        )}
             <div 
                 ref={forwardRef}
                 className={classNames('view mt-4- rounded-lg',
@@ -84,6 +74,18 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
                         />
                     ))}
 
+                   {error && <h3>Bir şeyler ters gitti!</h3>}
+                    
+                    {isLoading && ( // spinner
+                        <div className="flex flex-center w-full justify-center">
+                            {/** <img src="/assets/empty.svg" className="h-40"  /> */}
+                            Loading...
+                        </div>
+                    )}
+                    {[...items]?.length<=0 && (
+                        <h1>Sonuç yok</h1>
+                    )}
+                    
 
                     {[
                     // ...items

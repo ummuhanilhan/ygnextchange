@@ -16,6 +16,8 @@ import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic"
 import SimpleBar from "simplebar-react";
 import { Publish } from "./publish";
 import { formSuite, notify } from "@utils/helper";
+import { useAppDispatch } from "stores/store";
+import { create } from "stores/slices/cargoSlice";
 
 
 export type CargoValues = {
@@ -29,7 +31,7 @@ export type CargoValues = {
 };
 
 export const CargoCreate = ({update, init}:any) => {
- 
+    const dispatch = useAppDispatch();
     const [open, setOpen] = React.useState(false)
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
@@ -44,6 +46,9 @@ export const CargoCreate = ({update, init}:any) => {
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
         console.log('submitted',JSON.stringify(data));
+        if(update){
+            dispatch(create(data))
+        }
         // notify('',{position:'bottom-center', theme:'light'})
     };
     const onError = (errors:any) => { 

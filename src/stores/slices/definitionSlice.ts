@@ -19,7 +19,7 @@ const initialState:any = {
 export const getDefinitions = createAsyncThunk(
     'definition/findAll', async (_, thunkAPI) => {
         try {
-            const response = await api.get('/definitions')
+            const response = await api.get('/definitions/all')
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })

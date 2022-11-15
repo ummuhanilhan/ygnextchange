@@ -5,7 +5,7 @@ import { useAppDispatch } from "stores/store";
 import { me, selectAuth } from "stores/slices/authSlice";
 import { useSelector } from "react-redux";
 import { LoadingState } from "stores/types";
-
+import { getDefinitions } from "stores/slices/definitionSlice";
 
 type DefaultState = {
     children: ReactNode
@@ -17,6 +17,10 @@ export const Default = ({children}: DefaultState) => {
     const [mobile, setMobile] = React.useState(false)
     const dispatch = useAppDispatch();
     React.useEffect(()=>{dispatch(me())},[])
+    
+    useEffect(()=>{dispatch(getDefinitions())},[])
+
+
     return (
         <Main>
             {children}
