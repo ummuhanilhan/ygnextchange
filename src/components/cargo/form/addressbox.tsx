@@ -31,7 +31,7 @@ export const AddressBox = ({
          >
             <AddressCreate  
                 type={type}
-                cb={(data)=>{
+                cb={(data:any)=>{
                     setValue(`shipping.${type}`, data)
                     setAddr(data);
                     console.log('data:',data)

@@ -6,10 +6,16 @@ import { FiInfo } from "react-icons/fi"
 import { Actions } from "./Actions"
 import { useSelector } from "react-redux"
 import { selectDefinition } from "stores/slices/definitionSlice"
+import { selectAuth } from "stores/slices/authSlice"
+import moment from "moment"
+import { capitalize, priceFormat, currencyFormat } from "@utils/helper"
 
 export const CargoItem = ({item, actionType='', status}:any) => {
-    const { definitions,formatted } = useSelector(selectDefinition);
+    const { definitions, formatted } = useSelector(selectDefinition);
+    const { isAuth} = useSelector(selectAuth);
     
+    const defined = (name:string) => formatted[name]?.name
+
     return (
         <div className={classNames(
             'cargo-item mt-3 bg-white px-4 mb-3 rounded-lg py-3',
@@ -38,26 +44,26 @@ export const CargoItem = ({item, actionType='', status}:any) => {
 
                         <li className='flex-center float-left'>
                             <div><Geo width={15} className='fill-yg-blue md:ml-3 ' /></div>
-                            <p className='text-gray-500  md:ml-1 text-sm'>Ankara</p>
+                            <p className='text-gray-500  md:ml-1 text-sm'>{capitalize(item?.shipping?.load?.direction?.city)}</p>
                             <div><ChevronDoubleRight width={15} className='fill-yg-orange ' /></div>
                         
-                            <p className='text-gray-500 mx-1 mr-3 text-sm'>Mersin</p>
+                            <p className='text-gray-500 mx-1 mr-3 text-sm'>{capitalize(item?.shipping?.unload?.direction?.city)}</p>
                         </li>
                         <li className='lg:flex-center inline-block float-left'>
                             <div className="flex items-start md:ml-1">  
                                 <div className='mt-[.15rem]'>
-                                {item.type ? 
+                                {item.rent?.type ? 
                                 <CircleFill width={13} className='fill-yg-blue  ml--1' /> : 
                                 <CircleHalf width={13} className='fill-yg-blue  ml--1' /> }
                                 </div>
-                                <p className="text-gray-400 ml-1 text-sm">{!item.type? 'Parsiyel':'Komple'}</p>
+                                <p className="text-gray-400 ml-1 text-sm">{item.rent?.type=='parsiel' ? 'Parsiyel':'Komple'}</p>
                             </div>
                         </li>
                         
                     </ul>
                     <div className='flex items-end flex-col'>
-                        <h2 className='text-2xl flex items-end'> <b>{item.price}</b> {item.currency}</h2>
-                        <p className='text-gray-400 text-sm w-max mt-[-.3rem]'>({item.vat?'KDV Dahil':'+KDV'})</p>
+                        <h2 className='text-2xl flex items-end'> <b className='flex-center'>{currencyFormat( priceFormat(item?.fee?.price?.total) , item?.fee?.currency)}</b>  </h2>
+                        <p className='text-gray-400 text-sm w-max mt-[-.3rem]'>({item?.fee?.vat=='include' ?'KDV Dahil':'+KDV'})</p>
                     </div>
                   </div>
             </div>    
@@ -71,27 +77,28 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                     <li className='flex w-screen mb-1 mt-2'>
                         <div><Calendar width={17} className='fill-yg-blue mr-2 mb-1' /></div>
                         <p className="text-yg-blue text-sm mr-2">Yükleme Tarihi:</p>
-                        <p className='text-gray-400 text-sm'>{item.date}</p>
+                        <p className='text-gray-400 text-sm'>{item?.shipping?.range?.map((date:string,i:number)=> `${ new Date(date).toISOString().slice(0, 10) } ${i==0 ? ' - ' : ''}` )}</p>
                      </li>
                     <li className='flex w-screen mb-1'>
                         <div> <Clock width={17} className='fill-yg-blue mr-2 mb-1' /></div>
                         <p className="text-yg-blue text-sm mr-2">Boşaltma Zamanı:</p>
-                        <p className='text-gray-400 text-sm'>{item.time}</p>
+                        <p className='text-gray-400 text-sm'>{defined(item?.shipping?.time)}</p>
                     </li>  
                 </ul>
                 <ul className='mt-1 grid grid-cols-1'>
                 <li className='flex w-screen mb-1'>
                     <div> <Truck width={17} className='fill-yg-blue mr-2 mb-1' /></div>
                     <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
-                    <p className='text-gray-400 text-sm'>{item.vehicle}</p>
+                    <p className='text-gray-400 text-sm'>{!item.type? 'Parsiyel':'Komple'}</p>
                 </li>
                 <li className='flex w-screen mb-1 --ml-8'>
                     <div> <Capslock width={17} className='fill-yg-blue mr-2 mb-1' /></div>
-                    <p className='text-gray-400 text-sm'>{item.weight}</p>
+                    <p className='text-gray-400 text-sm'>{item.payload?.weight?.size} {item.payload?.weight?.unit}</p>
                 </li>
                 </ul>
 
-                   
+                {false && (
+                    <React.Fragment>
                     {/*** SHIPMENT  **/}
                     {item.progress == 'active' && (
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
@@ -111,9 +118,11 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                             Durum: Sevkiyat Tamamlandı    
                         </p>
                     )}
+                </React.Fragment>
 
+                )}
                 </div>
-                   <Actions item={item} actionType={actionType} status={status} />
+                   <Actions item={item} isAuth={isAuth} actionType={actionType} status={status} />
             </div>
         </div>
     )

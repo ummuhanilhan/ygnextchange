@@ -217,3 +217,27 @@ export const notify = (title:string='', obj:object={}) =>  toast(title||'🦄 Wo
     type: 'success',
     ...obj,
 });
+
+function firstLetter(string:string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function currencyFormat(price:string, currency:string) {
+    switch (currency) {
+        case 'try':
+            return price + '₺' 
+        break;
+        case 'usd':
+            return '$' + price
+        break;
+        default:
+            return price + '₺';
+        break;
+    }
+    return;
+}
+  
+
+export const priceFormat = (price:string) => {
+    return new Intl.NumberFormat('try').format(parseInt(price))||price;
+}

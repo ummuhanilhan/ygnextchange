@@ -6,7 +6,7 @@ export const CargoCreatePage = () => {
 
     return (
         <div>
-            <CargoCreate update init={{
+            <CargoCreate uptodate init={{
                 ...initial,
                 ...defaultItem,              
             }} />

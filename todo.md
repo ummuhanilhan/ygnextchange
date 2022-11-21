@@ -1,11 +1,11 @@
 # next
-- ✅ input issue
-- ✅ change container
-- ✅ cargo form filter
+- address box error
+- defined
+- cargoItem modal
+- no need to throw an error message for all buttons
 - auth page
 - phone
 - input sizes
-- ✅ sol menüde ki font boyutu
 - file upload component err 
 - some responsives 
 - alignment

@@ -4,7 +4,7 @@ import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
 
 
-export const Actions = ({item, actionType, status, fav}:any) => {
+export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
     const faved = (
         <div className="inline-block">
             <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
@@ -18,7 +18,7 @@ export const Actions = ({item, actionType, status, fav}:any) => {
         <div className='inline-block'>
             <div className='view flex flex-col items-center'>
                 <Eye width={15} className='fill-gray-400' />
-                <p className='text-gray-400 text-sm'>{item.view}</p>
+                <p className='text-gray-400 text-sm'>{item.viewed}</p>
             </div>
         </div>
     )
@@ -37,24 +37,24 @@ export const Actions = ({item, actionType, status, fav}:any) => {
         switch (value) {
             case 'cargoes':
                 return (<Button>
-                    {viewed}
-                    {faved}
+                    {item.viewed && viewed}
+                    {isAuth && faved}
                     <Action title='Detay Gör' color='orange' path='#' />
-                    <Action title='Teklif Gönder' color='blue' path='#' />
+                    {isAuth && <Action title='Teklif Gönder' color='blue' path='#' />}
 
                  </Button>)
             break;
             case 'favorites':
                 return (<Button>
-                    {viewed}
-                    {faved}
+                    {item.viewed && viewed}
+                    {isAuth && faved}
                     <Action title='Detay Gör' color='orange' path='#' />
-                   <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />
+                    {isAuth && <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />}
                  </Button>)
             break;
             case 'mycargoes':
                 return (<Button>
-                    {viewed}
+                    {item.viewed && viewed}
                      <Action title='Sil' color='gray' outline path='#' />
                      <Action title='Kopyala' color='blue' outline path='#' />
                      <Action title='Tarih Güncelle' color='orange' outline path='#' />
@@ -64,8 +64,8 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;
             case 'outgoing-inshipment':
                 return (<Button rich>
-                     {viewed}
-                     {faved}
+                     {item.viewed && viewed}
+                     {isAuth && faved}
                      <Action title='Vazgeç' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
@@ -73,8 +73,8 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;
             case 'outgoing-accepted':
                 return (<Button>
-                     {viewed}
-                     {faved}
+                     {item.viewed && viewed}
+                     {isAuth && faved}
                      <Action title='Vazgeç' color='gray' outline path='#' />
                     <Action title='İlan detayını gör' color='orange' path='#' />
                     <Action title='Sevkiyatı Başlat' color='blue' path='#' />
@@ -82,14 +82,14 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;
             case 'outgoing-pending':
                 return (<Button rich>
-                     {viewed}
+                     {item.viewed && viewed}
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifi Geri Al' color='blue' path='#' />
                  </Button>)
             break;            
             case 'ingoing-inshipment':
                 return (<Button rich>
-                     {viewed}
+                     {item.viewed && viewed}
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
@@ -97,7 +97,7 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;
             case 'ingoing-accepted':
                 return (<Button rich>
-                     {viewed}
+                     {item.viewed && viewed}
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Diğer Teklifleri İncele (5)' color='blue' path='#' />
@@ -105,7 +105,7 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;
             case 'ingoing-pending':
                 return (<Button rich>
-                    {viewed}
+                    {item.viewed && viewed}
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifleri İncele (3)' color='blue' path='#' />
@@ -113,7 +113,7 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;            
             case 'vehicle-active':
                 return (<Button>
-                    {viewed}
+                    {item.viewed && viewed}
                     <Action title='Sil' color='gray' outline path='#' />
                     <Action title='Kopyala' color='blue' outline path='#' />
                    <Action title='Düzenle' color='blue' path='#' />
@@ -123,7 +123,7 @@ export const Actions = ({item, actionType, status, fav}:any) => {
             break;            
             case 'vehicle-pending':
                 return (<Button>
-                    {viewed}
+                    {item.viewed && viewed}
                     <Action title='Detay Gör' color='orange' path='#' />
                     <Action title='Teklif Gönder'  color='blue' path='#' />
                  </Button>)

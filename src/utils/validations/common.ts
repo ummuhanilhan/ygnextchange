@@ -109,7 +109,7 @@ export const payload = Joi.object({
 });
 
 export const price = Joi.object({
-  amount: Joi.boolean(),
+  amount: Joi.boolean().optional(),
   tonnage: Joi.number().when('amount', { is: true, then: Joi.number().required(), otherwise: Joi.number().optional() }),
   unit: Joi.number().when('amount', { is: true, then: Joi.number().required(), otherwise: Joi.number().optional() }),
   total: Joi.number().when('amount', { is:false, then: Joi.number().required(), otherwise: Joi.number().optional() }),

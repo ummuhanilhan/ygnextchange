@@ -1,6 +1,6 @@
 import TabLayout from "@layouts/TabLayout"
 import { SimplePagination } from "@shared/paginations"
-import { CargoRoute, cargoTabMenu, items } from "@utils/mock"
+import { CargoRoute, cargoTabMenu, dummyItems, items } from "@utils/mock"
 import classNames from "classnames"
 import React from "react"
 import {  FiMinusCircle, FiXCircle } from "react-icons/fi"
@@ -8,6 +8,9 @@ import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
 import useSWR from 'swr'
 import api from "@utils/api";
+import { useAppDispatch } from "stores/store"
+import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice"
+import { useSelector } from "react-redux"
 
 const fetcher = (path:string) => api.get(path).then(res => res.data)
 
@@ -27,12 +30,14 @@ function useQuery (url:string, values:any=null, method='get') {
 
 export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
     const [selected, setSelected] = React.useState(1);
-
-
     const [page, setPage] = React.useState(1)
     const [limit, setLimit] = React.useState(3)
     const [currentPage, setCurrentPage] = React.useState(1);
-    
+    const dispatch = useAppDispatch();
+    const {definitions} = useSelector(selectDefinition);
+    React.useEffect(()=>{
+        !definitions && dispatch(getDefinitions());
+    },[])
     const { data, isLoading, error }:any = useQuery(`cargo`) 
     // /filter?skip=${currentPage}&limit=${limit}&from=${'filter.from'}&to=${'filter.to'} 
     
@@ -43,10 +48,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
         const lastPageIndex = firstPageIndex + limit;
         return data?.cargoes?.slice(firstPageIndex, lastPageIndex);
     }, [currentPage]);
-
-
-    
-
+ 
     return ( 
         <React.Fragment>
           
@@ -65,7 +67,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
                         />
                     }
 
-                    {data?.map((item:any,i:number)=>(
+                    {data?.map((item:any,i:number)=>( // dummyItems
                         <CargoItem 
                             item={item} 
                             key={`cargo-item-${i}`} 

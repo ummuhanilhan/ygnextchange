@@ -45,11 +45,11 @@ export const create = createAsyncThunk<any, any>(
   'cargo/create',
   async (values, thunkAPI) => {
       try {
-          const response = await api.post(`/cargo`,values)
+          const response = await api.post(`/cargo`, {...values})
           return response.data
             
-      } catch (error) {
-          return thunkAPI.rejectWithValue({ error: (error as Error).message })
+      } catch (error:any) {
+        return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
       }
   }
 )
@@ -58,11 +58,11 @@ export const update = createAsyncThunk<any, any>(
   'cargo/update',
   async ({id, values}, thunkAPI) => {
       try {
-          const response = await api.post(`/cargo`,{id, values})
+          const response = await api.post(`/cargo`,{id, ...values})
           return response.data
             
-      } catch (error) {
-          return thunkAPI.rejectWithValue({ error: (error as Error).message })
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
       }
   }
 )
@@ -88,8 +88,20 @@ const cargoSlice = createSlice({
       state.cargoes = action.payload 
       state.loading = LoadingState.LOADED
     })
+    
+    // FIND
+    builder.addCase(find.rejected, (state)=>{state.loading= LoadingState.ERROR})
+    builder.addCase(find.pending, (state)=>{state.loading= LoadingState.LOADING})
+    builder.addCase(find.fulfilled, (state,action) => {
+      state.message = '';
+      state.cargo = action.payload; 
+      state.loading = LoadingState.LOADED;
+    })
+
+    // CREATE
     builder.addCase(create.pending, (state)=>{
       state.message = ''
+      state.error=false;
       state.loading= LoadingState.LOADING
     })
     builder.addCase(create.fulfilled, (state,action) => {
@@ -102,15 +114,27 @@ const cargoSlice = createSlice({
       state.message = 'Başarı ile oluşturuldu'
       state.loading = LoadingState.LOADED
     })
-    builder.addCase(create.rejected, (state)=>{state.loading= LoadingState.ERROR})
-
-    builder.addCase(find.rejected, (state)=>{state.loading= LoadingState.ERROR})
-    builder.addCase(find.pending, (state)=>{state.loading= LoadingState.LOADING})
-    builder.addCase(find.fulfilled, (state,action) => {
-      state.message = '';
-      state.cargo = action.payload; 
-      state.loading = LoadingState.LOADED;
+    builder.addCase(create.rejected, (state, action:any)=>{
+      state.error = true;  
+      state.message = action.payload?.error; 
+      state.loading= LoadingState.ERROR
     })
+
+    // UPDATE
+    builder.addCase(update.pending, (state)=>{ 
+      state.error=false;
+      state.message='';
+      state.loading= LoadingState.LOADING})
+    builder.addCase(update.fulfilled, (state)=>{
+       state.error=false;
+       state.message = '';
+      state.loading= LoadingState.LOADED
+    })
+    builder.addCase(update.rejected, (state, action:any)=>{
+      state.error = true;  
+      state.message = action.payload?.error; 
+      state.loading= LoadingState.ERROR
+   })
 
   }
 })
@@ -127,7 +151,9 @@ export const selectCargo = createSelector(
     cargo: state.cargo.cargo,
     filter: state.cargo.filter,
     cargoes: state.cargo.cargoes,
-    message: state.cargo.message
+    message: state.cargo.message,
+    error: state.cargo.error,
+    loading: state.cargo.loading
   }),
   (state) => state
 )

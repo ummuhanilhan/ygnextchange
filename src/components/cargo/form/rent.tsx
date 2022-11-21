@@ -1,13 +1,15 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
 import { MultiSelectHook, RentRadioHook, VehicleRadioHook } from "@shared/elements/hooks";
 import { TagHook } from "@shared/elements/hooks/tagHook";
-import { definitions } from "@utils/dummy/definitions";
 import { tagItems } from "@utils/mock";
 import classNames from "classnames";
 import React from "react";
- 
+import { useSelector } from "react-redux";
+import { selectDefinition } from "stores/slices/definitionSlice";
+// import { definitions } from "@utils/dummy/definitions";
+
 export const Rent = ({control}:any) => {
- 
+    const {definitions} = useSelector(selectDefinition);
     return (
             <React.Fragment>
 

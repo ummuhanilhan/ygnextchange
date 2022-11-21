@@ -1,25 +1,29 @@
 import React, { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormFooter } from "@shared/footers";
-import { Frame } from "@components/frames/MainFrame";
 import Rent from "./rent";
+import { Frame } from "@components/frames/MainFrame";
 import { CargoTab } from "@components/tabs/CargoTab";
+import { yupResolver } from "@hookform/resolvers/yup";
+import SimpleBar from "simplebar-react";
 import { CargoLayout } from "@layouts/CargoLayout";
 import classNames from "classnames";
 import Payload from "./payload";
 import Shipping from "./shipping";
-import { CargoCreateRoute, defaultItem, initial } from "@utils/mock";
+import { CargoCreateRoute, initial,  defaultItem } from "@utils/mock";
 import { joiResolver } from '@hookform/resolvers/joi';
 import { cargoSchema } from "@utils/validations/cargo";
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
-import SimpleBar from "simplebar-react";
 import { Publish } from "./publish";
 import { formSuite, notify } from "@utils/helper";
 import { useAppDispatch } from "stores/store";
-import { create } from "stores/slices/cargoSlice";
-
-
+import { create, selectCargo, update } from "stores/slices/cargoSlice";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { LoadingState } from "stores/types";
+import { useRouter } from "next/router";
+import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice";
+ 
 export type CargoValues = {
     name: string,
     rent: {
@@ -30,13 +34,18 @@ export type CargoValues = {
     },
 };
 
-export const CargoCreate = ({update, init}:any) => {
+export const CargoCreate = ({uptodate, init}:any) => {
     const dispatch = useAppDispatch();
+    const router = useRouter();
     const [open, setOpen] = React.useState(false)
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
-  
-  
+    const {message, loading, error}:any = useSelector(selectCargo)
+    const success = () => notify('',{position:'bottom-center', theme:'light'})
+    const err = (message:string) => message && notify(message||'Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})
+    useEffect(()=>{
+        error && err(message)
+    },[error])
     const form = useForm<any>({
         defaultValues: init ? formSuite(init): initial,
        resolver: joiResolver(cargoSchema),
@@ -45,17 +54,27 @@ export const CargoCreate = ({update, init}:any) => {
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
-        console.log('submitted',JSON.stringify(data));
-        if(update){
+        console.log(data);
+        if(uptodate)
+            dispatch(create(data)) // update({id:'', values:data})
+        else
             dispatch(create(data))
-        }
-        // notify('',{position:'bottom-center', theme:'light'})
-    };
-    const onError = (errors:any) => { 
-        notify('Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})
-        console.log('errors', errors, form.getValues() ) };
 
-    return (
+        if( loading == LoadingState.LOADED) router.push('/')
+       // success()
+    };
+    const onError = (errors:any) => {
+        err(message); 
+        console.log('errors', errors, form.getValues() ) 
+    };
+    const {definitions} = useSelector(selectDefinition);
+    React.useEffect(()=>{
+        console.log(definitions)
+        if(!definitions.load) dispatch(getDefinitions());
+    },[definitions])
+    // if(!definitions.load) return;
+
+    return definitions.load ? (
         <CargoLayout 
             selected={selected}
             setSelected={setSelected}
@@ -113,7 +132,7 @@ export const CargoCreate = ({update, init}:any) => {
                 <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>
-    )
+    ) :<>Loading...</>
 }
 
 export default CargoCreate;

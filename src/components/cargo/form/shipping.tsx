@@ -2,8 +2,9 @@ import React from "react";
 import { TitleFrame } from "@components/frames/TitleFrame";
 import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { SelectHook } from "@shared/elements/hooks/selectHook";
-import { definitions } from "@utils/dummy/definitions";
 import { AddressBox } from "./addressbox";
+import { useSelector } from "react-redux";
+import { selectDefinition } from "stores/slices/definitionSlice";
 
 export const Shipping = ({
     control, 
@@ -12,6 +13,7 @@ export const Shipping = ({
     setValue, 
     getValues
 }:any) => {
+    const {definitions} = useSelector(selectDefinition);
 
     return (
         <React.Fragment>

@@ -33,6 +33,23 @@ export const definitionSlice = createSlice({
   initialState,
   reducers: {
    
+    defined:(state, action) => {
+        state.definitions[action.payload]
+    },
+
+    defines:(state, action) => {
+      const {label, id , ids} = action.payload;
+        if(id) state.definitions.map((s:any)=>s[label] == id );
+        if(!id) {
+           state.definitions.map((s:any)=>{
+             ids.map((item:string)=>{
+              s[label] == item
+             })
+           });
+
+        }
+    },
+    
     clear:(state) => {
         state.message = ''
     },
@@ -42,7 +59,6 @@ export const definitionSlice = createSlice({
         state.definitions = action.payload;
         state.formatted = formattedDefines(action.payload);
         state.loading = LoadingState.LOADED
-        console.log(action.payload, formattedDefines(action.payload))
       })
 
       builder.addCase(getDefinitions.pending, (state) =>{
@@ -66,6 +82,6 @@ export const selectDefinition = createSelector(
     (state) => state
 )
   
-export const { clear } = definitionSlice.actions
+export const { clear, defined, defines } = definitionSlice.actions
 
 export default definitionSlice.reducer

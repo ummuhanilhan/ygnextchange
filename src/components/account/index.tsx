@@ -52,10 +52,11 @@ const initialValues = {
     company:'HyperWise.co',
     tax: '',
     tax_administrator: '',
-    business_phone: '',
-    website: '',
+    business_phone: 5012345678,
+    website: 'http://test.com',
     authorized: '',
-    address: '',
+    address: 'address is here',
+    district:'district',
     type:false,
     accept:false,
     gender:1,
@@ -63,6 +64,8 @@ const initialValues = {
     src_file:'/src_file92348.pdf',
     licence_year:'2',
     driver:['1','2','3'],
+    bloodgroup:'+A',
+    disease:'',
 }
 
 export const Account = () => {
@@ -76,7 +79,7 @@ export const Account = () => {
     const form = useForm<SignupValues>({
         //@ts-ignore
         defaultValues: initialValues,
-        resolver: yupResolver(profileSchema),
+        // resolver: yupResolver(profileSchema),
     });
     const { register, control, handleSubmit, watch, getValues, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<SignupValues> = data => {
@@ -172,6 +175,8 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                             name="gender" 
                             placeholder="Cinsiyet Seçiniz"  
                             control={control} 
+                            id='slug'
+                            label='name'
                             items={[
                                 {slug:1,name:'Erkek'},
                                 {slug:0,name:'Kadın'},

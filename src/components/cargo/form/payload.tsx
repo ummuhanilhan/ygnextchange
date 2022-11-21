@@ -3,7 +3,7 @@ import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { tagItems } from "@utils/mock";
 import React from "react";
 import { InputHook } from "@shared/elements/hooks/inputHook";
-import { currencies, definitions, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
+import { currencies, meterUnits, paymentMethods, vatOptions, weightUnits } from "@utils/dummy/definitions";
 import { InputAppendHook, InputGroupHook, NumberHook } from "@shared/elements/hooks";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { CheckboxHook } from "@shared/elements/hooks/checkboxHook";
@@ -13,7 +13,9 @@ import { Checkbox } from "@shared/elements/checkboxes";
 import FormLayout from "@layouts/FormLayout";
 import { server } from "@utils/helper";
 import { useRouter } from "next/router";
- 
+import { useSelector } from "react-redux";
+import { selectDefinition } from "stores/slices/definitionSlice";
+
 export const Payload = ({
     control, 
     setValue, 
@@ -23,6 +25,8 @@ export const Payload = ({
     setAmount,
     errors
 }:any) => {
+    const {definitions} = useSelector(selectDefinition);
+
     return (
         <React.Fragment>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
