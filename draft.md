@@ -1,5 +1,177 @@
 
 
+- Ağırlık giriniz: fee.price.tonnage
+- Birim fiyat giriniz: fee.price.unit
+- Toplam Tutar: fee.price.unit
+- yük cinsi: payload.type
+- yük tanımı: payload.definition
+
+
+- Yükleme Şekli: payload.transport.load
+- Boşaltma Şekli: payload.transport.unload
+- Ağırlık: payload.weight
+- Ebat: payload.volume
+- Ebat: payload.dimensions
+- Ödeme Şekli: fee.paymethod
+- Para Birimi: fee.currency
+- Kdv Durumu: fee.vat
+- Fiyat Görüşülür: fee.bargain
+- Tutar belirteceğim: fee.price.amount
+- Ücret Hesaplayıcı: fee.price.tonnage / unit / total
+- Yükleme / Boşaltma Adresi: shipping.load / unload
+- Boşaltma Zamanı: shipping.time
+- Yükleme Tarih Aralığı: shipping.range
+
+- Araç Özellikleri: rent.features
+- Donanım seçenekleri: rent.options
+- Araç markası: rent.type
+- Araç tipi: rent.vehicle
+
+
+
+
+```json
+
+{
+    "_id": "637c04e2d7812fbb5c9a4231",
+    "user": {
+        "_id": "6372896dc8297c87a97f91c3",
+        "name": "Tester Tester",
+        "slug": "tester-tester"
+    },
+    "privacy": "drafted",
+    "progress": "pending",
+    "viewing": 0,
+    "rent": {
+        "vehicle": "semitruck",
+        "type": "parsiel",
+        "features": [],
+        "options": []
+    },
+    "shipping": {
+        "range": [
+            "2021-09-30T21:00:00.000Z",
+            "2021-10-04T21:00:00.000Z"
+        ],
+        "time": "63728b818628c49d822e8c2a",
+        "time-custom": "93 sene sonra",
+        "load": {
+            "geolocation": {
+                "lat": 37.94205600840452,
+                "lng": 30.85136032104491
+            },
+            "place": {
+                "address": "Mahmatlar/Eğirdir/Isparta, Türkiye",
+                "street": ""
+            },
+            "direction": { 
+                "city": "isparta",
+                "country": {
+                    "code": "TR",
+                    "name": "Türkiye"
+                }
+            },
+            "contact": {
+                "name": "test",
+                "phone": "0123 132 13 12",
+                "verify": false
+            }
+        },
+        "unload": {
+            "geolocation": {
+                "lat": 38.47726887091417,
+                "lng": 35.663372039794915
+            },
+            "place": {
+                "address": "Akdere, Akdere Tekir Yayla Yolu, 38900 Tomarza/Kayseri, Türkiye",
+                "street": "No: Akdere Tekir Yayla Yolu"
+            },
+            "direction": {
+                "city": "kayseri",
+                "country": {
+                    "code": "TR",
+                    "name": "Türkiye"
+                }
+            },
+            "contact": {
+                "name": "tester",
+                "phone": "0213 123 12 31",
+                "verify": false
+            }
+        },
+        "distance": {
+            "text": "557 KM",
+            "value": 557030
+        },
+        "duration": {
+            "text": "7 SAAT 6 DAKIKA",
+            "value": 25586
+        }
+    },
+    "payload": {
+        "bargain": true,
+        "type": "yük cinsi",
+        "definition": "yük tanımı",
+        "transport": {
+            "load": "63728b818628c49d822e8c0e",
+            "unload": "63728b818628c49d822e8c0c"
+        },
+        "package": "",
+        "stow": false,
+        "porter": false,
+        "weight": {
+            "size": "325.968",
+            "unit": "kg"
+        },
+        "volume": {
+            "size": "77.23",
+            "unit": "m"
+        },
+        "dimensions": {
+            "length": "259.735",
+            "width": "921,33",
+            "height": "77,550",
+            "unit": "kg"
+        },
+        "tonnage": {
+            "range": ""
+        },
+        "freight": {
+            "density": 0,
+            "volume": 0
+        }
+    },
+    "fee": {
+        "manual": false,
+        "price": {
+            "amount": true,
+            "unit": 325,
+            "tonnage": 123,
+            "total": 3936
+        },
+        "paymethod": "onload",
+        "currency": "try",
+        "vat": "exclude",
+        "bargain": true
+    },
+    "publish": {
+        "start": {
+            "date": "2022-07-20T03:38:16.322Z",
+            "option": "now"
+        },
+        "end": {
+            "date": "2022-07-27T03:38:16.322Z",
+            "option": "10day"
+        }
+    },
+    "updated_at": "2022-11-21T23:08:18.628Z",
+    "created_at": "2022-11-21T23:08:18.627Z",
+    "__v": 0,
+    "id": "637c04e2d7812fbb5c9a4231"
+}
+
+```
+
 ```js
 
 

@@ -12,8 +12,8 @@ export const FormFooter = ({className, control, label, check, cb, close, submit}
                 </div>
             )}
             <div className="w-full flex justify-end">
-                <button onClick={()=>close && close()} className="bg-yg-orange p-3 px-12 text-white rounded-md cursor-pointer">Vazgeç</button>
-                <button onClick={()=>cb&&cb()} type={submit?'submit':'button'} className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer">Güncelle</button>
+                <button onClick={ ()=>close && close()} type='button' className="bg-yg-orange p-3 px-12 text-white rounded-md cursor-pointer">Vazgeç</button>
+                <button onClick={ ()=>cb&&cb() } type={submit?'submit':'button'} className="bg-yg-blue p-3 px-12 ml-2 text-white rounded-md cursor-pointer">Güncelle</button>
             </div>
         </div>
     )

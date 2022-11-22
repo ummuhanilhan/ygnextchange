@@ -1,6 +1,6 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
-import React from "react";
+import React, { useRef } from "react";
 import AddressCreate from "@components/account/address/create";
 import { FormFooter } from "@shared/footers";
 import { AddressList } from "@components/account/address/list";
@@ -22,6 +22,8 @@ export const AddressBox = ({
     React.useEffect(()=>{
            setAddr(getValues('shipping.'+type))
     },[addr])
+
+
     return(
        <React.Fragment>
         {/** Create new one  */}
@@ -31,10 +33,11 @@ export const AddressBox = ({
          >
             <AddressCreate  
                 type={type}
-                cb={(data:any)=>{
-                    setValue(`shipping.${type}`, data)
-                    setAddr(data);
-                    console.log('data:',data)
+                cb={(data:any) => {
+                    if(data){
+                        setValue(`shipping.${type}`, data)
+                        setAddr(data);
+                    }
                 }}
                 id='cargo-modal' 
                 defaultAddress={addr} 

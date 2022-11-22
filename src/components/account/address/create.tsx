@@ -73,7 +73,7 @@ export const AddressCreate = ({
   /** 
    * set data to another form with callback
    */
-  cb?:(data:any)=>void,
+   cb?:(data:any)=>void,
 }) => {
     const dispatch = useAppDispatch();
     const form = useForm<AddressValues>({
@@ -82,6 +82,8 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
+      alert('Test')
+      
       if(cb){
             cb && cb(data)
       }else{
@@ -100,7 +102,9 @@ export const AddressCreate = ({
     const addr = getAddr.addr;
 
     return (
-      <form onSubmit={handleSubmit(onSubmit, onError)}>           
+      <form  
+        onSubmit={handleSubmit(onSubmit, onError)}
+      >           
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 -h-[350px]'>
                 <div className='h-full'>
                      {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}
@@ -152,9 +156,7 @@ export const AddressCreate = ({
             </div>
 
             <Communication control={control} border />
-            
             {footer}
-
       </form> 
     )
 }

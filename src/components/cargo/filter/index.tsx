@@ -68,10 +68,10 @@ const Filter = ({ x }:any) => {
         <div 
             style={{
                 // @ts-ignore
-                left: parseInt(x-245) 
+                left: parseInt(x-300) // 245 
             }}
             className={classNames(
-            {'lg:fixed   top-2 bottom-2': y>88},
+            {'lg:fixed top-2 bottom-2': y>88},
             'filter z-30 invisible lg:visible',
             'top-4 left-0-md w-[18em] transition h-0'
         )} >

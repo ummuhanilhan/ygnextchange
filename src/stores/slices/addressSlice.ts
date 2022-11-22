@@ -9,6 +9,8 @@ const initialState : any = {
   addresses: addressList,
   address: {},
   addr: {},
+  load: {},
+  unload: {},
   loading: LoadingState.IDLE,
   error: undefined,
   message: '',
@@ -90,7 +92,12 @@ export const addressSlice = createSlice({
       state.address = action.payload;
       // state.address = state.addresses.filter((addr:any)=>addr._id === action.payload)
     },
-
+    setLoad:(state,action) => {
+      state.load = action.payload;
+    },
+    setUnload:(state,action) => {
+      state.unload = action.payload;
+    },
 
     update:(state,action) => {
       
@@ -133,10 +140,13 @@ export const selectAddress = createSelector(
       loading: state.address.loading,
       message: state.address.message,
       addr: state.address.addr,
+      load: state.address.load,
+      unload: state.address.unload,
     }),
     (state) => state
 )
   
-export const { setAddress, addAddress, removeAddress, updateAddress, clear, update, setAddr, clearAddr } = addressSlice.actions
+export const { setAddress, addAddress, removeAddress, 
+  updateAddress, clear, update, setAddr, setLoad, setUnload, clearAddr } = addressSlice.actions
 
 export default addressSlice.reducer
