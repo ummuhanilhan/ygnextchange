@@ -34,16 +34,14 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
         return children
     }
 
-    const modal = useModal();
+    const {open}:any = useModal(state=>state);
 
     const show = (
     <Action 
         title='Detay Gör' 
         color='orange' 
         path='#' 
-        onClick={()=>{
-            
-        }}
+        onClick={()=> open({type:'show', styles:{padding:0, height:'fit-content' }, values:{item} }) }
     /> )
 
     const getActions = (value:string, item:any, status:boolean) => {
@@ -162,23 +160,23 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
 }
 
 
-export const Action = ({path, color, title, outline, disabled}:any) => {
+export const Action = ({path, color, title, outline, disabled, onClick}:any) => {
     const disabledItem =  <a href={path} className={classNames(
         ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-gray-300 text-white inline-block float-left h-min w-max`
-    )}>{title}</a>
+    )} onClick={onClick} >{title}</a>
 
     const normalItem = <a href={path} className={classNames(
         ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-yg-${color} text-white inline-block float-left h-min w-max`,
         `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-    )}>{title}</a>
+    )} onClick={onClick} >{title}</a>
 
     const outlinedItem = <a href={path} className={classNames(
         ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-transparent text-yg-${color} border-yg-${color} inline-block float-left h-min w-max`,
         `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-    )}>{title}</a>
+    )} onClick={onClick} >{title}</a>
 
     return !outline? (
        disabled ? disabledItem : normalItem

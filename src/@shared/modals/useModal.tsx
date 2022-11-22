@@ -5,7 +5,7 @@ import Classic, { modalState } from "./classic";
  
 const modal = (val:string, values:any) => {
     switch (val) {
-        case '':
+        case 'show':
             return <CargoModal {...values} />
         break;
         default:
