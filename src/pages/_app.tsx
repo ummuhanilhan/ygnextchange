@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from 'stores/store';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Modals } from '@shared/modals/useModal';
 
 PrimeReact.ripple = true;
 
@@ -20,6 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const Container = Layout ? Layout : React.Fragment;
   return (
     <React.Fragment>
+        <Modals />
         <Container> 
           <Head>
             <title>{Title || 'Yükgetir'}</title>

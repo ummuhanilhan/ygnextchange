@@ -3,7 +3,7 @@ import React from 'react'
 import { FiX } from 'react-icons/fi';
 import Modal from 'react-modal';
 
-type props = {
+export type modalState = {
     status?:boolean,
     close:Function,
     title?:string,
@@ -14,7 +14,7 @@ type props = {
     className?:string,
 }
 
-const Classic = ({status, close, title, styles, overlay, children, header, className}:props) => {
+export const Classic = ({status, close, title, styles, overlay, children, header, className}: modalState) => {
     const [ref, { width }]:any = useDimensions();
 
     React.useEffect(()=>{

@@ -2,6 +2,7 @@
 import React from "react"
 import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
+import { useModal } from "stores/features/useModal"
 
 
 export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
@@ -33,13 +34,25 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
         return children
     }
 
+    const modal = useModal();
+
+    const show = (
+    <Action 
+        title='Detay Gör' 
+        color='orange' 
+        path='#' 
+        onClick={()=>{
+            
+        }}
+    /> )
+
     const getActions = (value:string, item:any, status:boolean) => {
         switch (value) {
             case 'cargoes':
                 return (<Button>
                     {item.viewed && viewed}
                     {isAuth && faved}
-                    <Action title='Detay Gör' color='orange' path='#' />
+                    {show}
                     {isAuth && <Action title='Teklif Gönder' color='blue' path='#' />}
 
                  </Button>)
@@ -48,7 +61,7 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
                 return (<Button>
                     {item.viewed && viewed}
                     {isAuth && faved}
-                    <Action title='Detay Gör' color='orange' path='#' />
+                    {show}
                     {isAuth && <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />}
                  </Button>)
             break;
@@ -59,7 +72,7 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
                      <Action title='Kopyala' color='blue' outline path='#' />
                      <Action title='Tarih Güncelle' color='orange' outline path='#' />
                     <Action title='Düzenle' color='blue'disabled={!status}  path='#' />
-                    <Action title='Detay Gör' color='orange' path='#' />
+                    {show}
                  </Button>)
             break;
             case 'outgoing-inshipment':
@@ -117,14 +130,14 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
                     <Action title='Sil' color='gray' outline path='#' />
                     <Action title='Kopyala' color='blue' outline path='#' />
                    <Action title='Düzenle' color='blue' path='#' />
-                    <Action title='Detay gör' color='orange' path='#' />
+                    {show}
 
                  </Button>)
             break;            
             case 'vehicle-pending':
                 return (<Button>
                     {item.viewed && viewed}
-                    <Action title='Detay Gör' color='orange' path='#' />
+                    {show}
                     <Action title='Teklif Gönder'  color='blue' path='#' />
                  </Button>)
             break;      
