@@ -241,3 +241,7 @@ export function currencyFormat(price:string, currency:string) {
 export const priceFormat = (price:string) => {
     return new Intl.NumberFormat('try').format(parseInt(price))||price;
 }
+
+
+export const successMessage = () => notify('',{position:'bottom-center', theme:'light'})
+export const errMessage = (message:string) => message && notify(message||'Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})

@@ -1,22 +1,20 @@
 import { TitleFrame } from "@components/frames/TitleFrame";
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
 import React, { useRef } from "react";
-import AddressCreate from "@components/account/address/create";
+import { useModal } from "stores/features/useModal";
+import cx from "classnames";
 import { FormFooter } from "@shared/footers";
-import { AddressList } from "@components/account/address/list";
-import classNames from "classnames";
 
 export const AddressBox = ({
+    errors,
+    dirtyFields,
     control,
-     errors,
-     dirtyFields,
-     address,
-     getValues,
-     setValue, 
-     type
+    address,
+    getValues,
+    setValue, 
+    type
 }:any) => {
-    const [newStatus, setNew] = React.useState(false);
-    const [listStatus, setList] = React.useState(false);
+    const {open}:any = useModal(state=>state);
 
     const [addr, setAddr] = React.useState<any>({});
     React.useEffect(()=>{
@@ -27,42 +25,8 @@ export const AddressBox = ({
     return(
        <React.Fragment>
         {/** Create new one  */}
-         <Classic status={newStatus} close={setNew} 
-            styles={defaultStyles}
-            overlay={defaultOverlays}
-         >
-            <AddressCreate  
-                type={type}
-                cb={(data:any) => {
-                    if(data){
-                        setValue(`shipping.${type}`, data)
-                        setAddr(data);
-                    }
-                }}
-                id='cargo-modal' 
-                defaultAddress={addr} 
-                update={!!addr} 
-                footer={<FormFooter />} 
-                border 
-            />
-        </Classic>
-        {/** List old records  */}
-        <Classic 
-            status={listStatus}
-            close={setList} 
-            styles={defaultStyles}
-            overlay={defaultOverlays}
-
-        >
-            <AddressList
-                border 
-                select={(data:any)=>{
-                    setValue(`shipping.${type}`, data)
-                    setAddr(data);
-                }} 
-            />
-        </Classic>
-        <div className={classNames(
+   
+        <div className={cx(
             'bg-white rounded-lg p-3 h-32 flex flex-col justify-between',
             {'border border-red-500': 
             dirtyFields.shipping && dirtyFields.shipping[type] 
@@ -91,11 +55,32 @@ export const AddressBox = ({
             <div className="w-full flex justify-end my-2">
                 <div className="bg-yg-orange p-2 px-4 text-white rounded-md  
                 cursor-pointer text-sm"
-                onClick={()=>setNew(true)}
+                onClick={()=>{
+                    open({type:'create-address', styles:{padding:0, height:'fit-content' }, values:{
+                        border:true,
+                        id:'cargo-modal',  update: !!addr, defaultAddress: addr, type ,
+                        footer:<FormFooter />,
+                        cb:(data:any) => {
+                            if(data){
+                                setValue(`shipping.${type}`, data)
+                                setAddr(data);
+                            }
+                        }
+                    } })
+                }}
                 >{!addr ?'Yeni Adres Ekle':'Güncelle'}</div>
                 <div className="bg-yg-blue p-2 px-4 ml-2 text-white rounded-md 
                 cursor-pointer text-sm" 
-                onClick={()=>setList(true)}
+                onClick={()=>{
+                    open({type:'addresses', styles:{padding:0, height:'fit-content' }, values:{
+                        border:true,
+                        select:(data:any)=>{
+                            setValue(`shipping.${type}`, data)
+                            setAddr(data);
+                        }                        
+                    } })
+                    
+                }}
                 >Adres Seç</div>
             </div>
 

@@ -698,17 +698,50 @@ export const issues = [
 ];
 
 export const addressList:any = [
- {
-    _id:1,
-    title:'Ev adresi',
-    directions:'Açık Adres',
+    {
+        title:'Ev adresi',
+        directions:'Açık Adres',
+        geolocation:{
+            lat:40.788855,
+            lng:30.40595399999999,
+        },
+        contact:{
+            name:'Tester Test',
+            phone:'0505 555 55 55',
+            type:'office',
+            country:'TR',
+            code:'90',
+            verify:false,
+        },
+        place:{
+            title:'',
+            description:'',
+            street:'',
+            address:'Adapazarı, Karaosman, 54100 Adapazarı/Sakarya, Türkiye',
+        },
+        direction:{
+            city:'sakarya',
+            country:{
+                name:'',
+                code:'',
+            },
+            zip:'',
+            district:'',
+            province:'',
+            town:'',
+        },
+    },
+    {
+    title:'İşyeri',
+    directions:'Ana caddenin hemen üzeri',
     geolocation:{
         lat:40.788855,
         lng:30.40595399999999,
     },
     contact:{
-        name:'Tester Test',
-        phone:'0505 555 55 55',
+        name:'Pentester Test',
+        phone:5055555555,
+        email:"test@test.com",
         type:'office',
         country:'TR',
         code:'90',
@@ -718,55 +751,41 @@ export const addressList:any = [
         title:'',
         description:'',
         street:'',
-        address:'Adapazarı, Karaosman, 54100 Adapazarı/Sakarya, Türkiye',
+        address:'Karaduvar, Mersin Limanı, 33020 - Merkez...',
     },
     direction:{
         city:'sakarya',
         country:{
             name:'',
             code:'',
+            zip:'',
+            district:'',
+            province:'',
+            town:'',
         },
-        zip:'',
-        district:'',
-        province:'',
-        town:'',
     },
- },
- {
-  _id:2,
-  title:'İşyeri',
-  directions:'Ana caddenin hemen üzeri',
-  geolocation:{
-      lat:40.788855,
-      lng:30.40595399999999,
-  },
-  contact:{
-      name:'Pentester Test',
-      phone:5055555555,
-      email:"test@test.com",
-      type:'office',
-      country:'TR',
-      code:'90',
-      verify:false,
-  },
-  place:{
-      title:'',
-      description:'',
-      street:'',
-      address:'Karaduvar, Mersin Limanı, 33020 - Merkez...',
-  },
-  direction:{
-      city:'sakarya',
-      country:{
-          name:'',
-          code:'',
-          zip:'',
-          district:'',
-          province:'',
-          town:'',
-      },
-  },
-}
+},
+    {
+        "title": "test",
+        "place": {
+            "address": "D260, 40300 Çiftlikmehmetağa/Akpınar/Kırşehir, Türkiye"
+        },
+        "direction": {
+            "city": "Kırşehir",
+            "district": "Akpınar"
+        },
+        "directions": "test",
+        "contact": {
+            "name": "test",
+            "phone": "324234",
+            "email": "tester@test.com",
+            "verify": false
+        },
+        "geolocation": {
+            "lat": 39.34547354914127,
+            "lng": 33.966499328613274
+        }
+    },
 ]
 
 

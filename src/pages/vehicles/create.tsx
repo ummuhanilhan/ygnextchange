@@ -14,28 +14,32 @@ import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { FileUploadHook } from "@shared/elements/hooks/uploadHook";
 import { FormFooter } from "@shared/footers";
+import { vehicleSchema } from "@utils/validations/vehicle";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { useAppDispatch } from "stores/store";
+import { create } from "stores/slices/vehicleSlice";
 // import { FormFooter } from "@pages/account";
 // import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 
-export type SignupValues = {
+export type VehicleValues = {
     model: string,
     brand: string,
     type:string,
     plate:string,
     features:string[],
     options:string[],
-    m_date: Date|string,
+    year: Date|string,
     model_year: Date|string,
     insurance_date: Date|string,
     examination_date: Date|string,
-    casgo_date: Date|string,
+    casco_date: Date|string,
     k1_file: string,
     accept:boolean
 };
 
 const initialValues = {
     accept:false,
-    m_date: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)"),
+    year: new Date("Sat Sep 03 2011 01:52:19 GMT+0300 (GMT+03:00)"),
     type: 'trailer',
     plate: '34 YKGTR 123',
     model_year: new Date(),
@@ -45,7 +49,7 @@ const initialValues = {
     brand:'dorse1',
     insurance_date: new Date(),
     examination_date: new Date(),
-    casgo_date:new Date(),
+    casco_date:new Date(),
     k1_file:'k1_file.pdf',
 }
 
@@ -60,17 +64,22 @@ export enum VehicleType {
   }
 
 export const VehicleCreate = () => {
-    const form = useForm<SignupValues>({
+    const dispatch = useAppDispatch();
+
+    const form = useForm<VehicleValues>({
+        resolver: joiResolver(vehicleSchema),
         defaultValues: initialValues,
-        resolver: yupResolver(profileSchema),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<SignupValues> = data => {
+   
+    const onSubmit: SubmitHandler<VehicleValues> = data => {
+        //@ts-ignore
+        delete data.accept
         console.log(data)
-        alert(JSON.stringify(data))
+        dispatch(create(data));
     };
     const onError = (errors:any) => {
-        console.log(errors)
+        console.log('err',errors)
     };
 
      return (
@@ -170,7 +179,7 @@ export const VehicleCreate = () => {
                     <TitleFrame title="Araç Kasko Tarihi">
                 
                      <CalendarHook 
-                            name='casgo_date' 
+                            name='casco_date' 
                             type="text" 
                             placeholder='Araç Kasko Tarihi' 
                             control={control}

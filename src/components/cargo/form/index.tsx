@@ -15,7 +15,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { cargoSchema } from "@utils/validations/cargo";
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic";
 import { Publish } from "./publish";
-import { formSuite, notify } from "@utils/helper";
+import { errMessage, formSuite, notify } from "@utils/helper";
 import { useAppDispatch } from "stores/store";
 import { create, selectCargo, update } from "stores/slices/cargoSlice";
 import { useSelector } from "react-redux";
@@ -41,10 +41,8 @@ export const CargoCreate = ({uptodate, init}:any) => {
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
     const {message, loading, error}:any = useSelector(selectCargo)
-    const success = () => notify('',{position:'bottom-center', theme:'light'})
-    const err = (message:string) => message && notify(message||'Boş alanları doldurunuz!',{position:'bottom-right', theme:'light', type:'error'})
     useEffect(()=>{
-        error && err(message)
+        error && errMessage(message)
     },[error])
     const form = useForm<any>({
         defaultValues: init ? formSuite(init): initial,
@@ -64,7 +62,7 @@ export const CargoCreate = ({uptodate, init}:any) => {
        // success()
     };
     const onError = (errors:any) => {
-        err(message); 
+        errMessage(message); 
         console.log('errors', errors, form.getValues() ) 
     };
     const {definitions} = useSelector(selectDefinition);

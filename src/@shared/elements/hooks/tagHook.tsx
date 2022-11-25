@@ -23,7 +23,10 @@ export const TagHook = ({
             <Tag
                 {...rest}
                 value={value}
-                onChange={onChange}
+                onChange={(data:any)=>{
+                    console.log('data', data);
+                    onChange(data)
+                }}
                 id={id||'slug'}
                 label={label||'value'}
                 error={error}

@@ -12,12 +12,15 @@ import { useAppDispatch } from "stores/store";
 import { generateRandomNDigits } from "@utils/helper";
 
 export type AddressValues = {
+    _id?:number | string,
     no:number | string,
     geolocation: {
       lat: string | number
       lng: string | number
     },
     place?: {
+      title?: string
+      description?: string
       address: string
       street: string
     },
@@ -82,29 +85,21 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
-      alert('Test')
-      
-      if(cb){
-            cb && cb(data)
-      }else{
-        
-            if(update)
-                dispatch(updateAddress(data));  
-            else 
-                dispatch(addAddress(data));
-        }
+      cb && cb(data)
+      if(update)
+          dispatch(updateAddress(data));  
+      else 
+          dispatch(addAddress(data));
     };
     const onError = (errors:any) => {
-        console.log(errors)
+        console.log('err:',errors)
     };
 
     const getAddr:any = useSelector(selectAddress);
     const addr = getAddr.addr;
 
     return (
-      <form  
-        onSubmit={handleSubmit(onSubmit, onError)}
-      >           
+      <form onSubmit={handleSubmit(onSubmit, onError)}>           
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 -h-[350px]'>
                 <div className='h-full'>
                      {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}

@@ -1,16 +1,52 @@
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
 import { useModal } from "stores/features/useModal"
+import { useAppDispatch } from "stores/store"
+import { useSelector } from "react-redux"
+import { isfav, selectFavorite } from "stores/slices/favoriteSlice"
+import api from "@utils/api"
 
 
-export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
+export const Actions = ({item, isAuth, actionType, status}:any) => {
+  
+  
+  
+  
+  
+    const [fav, setFav] = useState(false)
+    useEffect(()=>{
+        isFaved()
+    },[])
+
+    const isFaved = async () => {
+          const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
+          if(isfaved?.data?.result){
+              setFav(true)
+          }else{
+              setFav(false);
+          }
+    }
+
+    const toggle = async () => {
+         const isfaved: {result:boolean} = await api.post(`/favorites/toggle`,{cargo:item._id})
+         if(isfaved?.data?.result){
+             setFav(true)
+         }else{
+             setFav(false);
+         }
+       // setFav(!fav);
+    }
     const faved = (
         <div className="inline-block">
-            <div className='heart rounded-md border border-1 border-yg-orange h-[1.85em] w-[1.85em] flex
-                    items-center justify-center ml-2 cursor-pointer hover:bg-yg-lightblue'> 
-                {item.fav ? <HeartFill width={15} className='fill-yg-orange' /> : <Heart width={15} className='fill-yg-orange' />}
+            <div 
+            onClick={()=>toggle()}
+            className='heart rounded-md border border-1 border-yg-orange 
+            h-[1.85em] w-[1.85em] flex items-center justify-center ml-2 
+            cursor-pointer hover:bg-yg-lightblue'> 
+                {fav ? <HeartFill width={15} className='fill-yg-orange' /> : 
+                <Heart width={15} className='fill-yg-orange' />}
             </div>
         </div>
     )
@@ -41,7 +77,7 @@ export const Actions = ({item, isAuth, actionType, status, fav}:any) => {
         title='Detay Gör' 
         color='orange' 
         path='#' 
-        onClick={()=> open({type:'show', styles:{padding:0, height:'fit-content' }, values:{item} }) }
+        onClick={()=> open({type:'show-cargo', styles:{padding:0, height:'fit-content' }, values:{item} }) }
     /> )
 
     const getActions = (value:string, item:any, status:boolean) => {
@@ -166,11 +202,12 @@ export const Action = ({path, color, title, outline, disabled, onClick}:any) => 
         `bg-gray-300 text-white inline-block float-left h-min w-max`
     )} onClick={onClick} >{title}</a>
 
-    const normalItem = <a href={path} className={classNames(
+    const normalItem = <div // href={path} 
+    className={classNames(
         ` py-1 px-2 border border-transparent cursor-pointer text-sm rounded-md inline-block ml-2`,
         `bg-yg-${color} text-white inline-block float-left h-min w-max`,
         `hover:border-yg-${color} hover:bg-transparent hover:text-yg-${color}`
-    )} onClick={onClick} >{title}</a>
+    )} onClick={onClick} >{title}</div>
 
     const outlinedItem = <a href={path} className={classNames(
         ` py-1 px-2 border cursor-pointer text-sm rounded-md inline-block ml-2`,
@@ -191,3 +228,46 @@ export const Action = ({path, color, title, outline, disabled, onClick}:any) => 
 <Action title='İlan Detayını Gör' color='orange' path='#' />
 <Action title='Sevkiyatı Tamamla' color='green' path='#' />
  */
+
+
+export const Favorite = ({item}:any) => {
+    const dispatch = useAppDispatch();
+    const [faved, setFaved] = useState(false)
+
+    useEffect(()=>{
+        isFaved()
+    },[])
+
+    const isFaved = async () => {
+        // const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
+        // if(isfaved.result){
+        //     setFaved(true)
+        // }else{
+        //     setFaved(false);
+        // }
+    }
+
+    const toggle = async () => {
+        // const isfaved: {result:boolean} = await api.post(`/favorites/toggle`,{cargo:item._id})
+        // if(isfaved.result){
+        //     setFaved(true)
+        // }else{
+        //     setFaved(false);
+        // }
+        setFaved(!faved);
+
+    }
+
+    return (
+        <div className="inline-block">
+            <div 
+            onClick={()=>toggle()}
+            className='heart rounded-md border border-1 border-yg-orange 
+            h-[1.85em] w-[1.85em] flex items-center justify-center ml-2 
+            cursor-pointer hover:bg-yg-lightblue'> 
+                {faved ? <HeartFill width={15} className='fill-yg-orange' /> : 
+                <Heart width={15} className='fill-yg-orange' />}
+            </div>
+        </div>
+    )
+}

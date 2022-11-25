@@ -39,6 +39,7 @@ export const place = Joi.object({
 
 // address
 export const statement = Joi.object({
+  _id: Joi.number(),
   title: Joi.string(),
   directions: Joi.string(),
   geolocation: Joi.object({

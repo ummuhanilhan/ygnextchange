@@ -14,7 +14,7 @@ const initialState: FavoriteState = {
   message: '',
 }
 
-export const myFavorites = createAsyncThunk<any>(
+export const myfavorites = createAsyncThunk<any>(
   'favorite/my',
   async (_, thunkAPI) => {
       try {
@@ -27,11 +27,11 @@ export const myFavorites = createAsyncThunk<any>(
   }
 )
 
-export const addFav = createAsyncThunk<any, any>(
-  'favorite/add',
-  async (values, thunkAPI) => {
+export const isfav = createAsyncThunk<any>(
+  'favorite/isfav',
+  async (cargo, thunkAPI) => {
       try {
-          const response = await api.post(`/favorites/fav`,values)
+          const response = await api.post(`/favorites/isfav`,{cargo})
           return response.data
 
       } catch (error) {
@@ -40,11 +40,11 @@ export const addFav = createAsyncThunk<any, any>(
   }
 )
 
- export const unfav = createAsyncThunk<any, any>(
-  'favorite/remove',
-  async (values, thunkAPI) => {
+export const toggle = createAsyncThunk<any>(
+  'favorite/isfav',
+  async (cargo, thunkAPI) => {
       try {
-          const response = await api.post(`/favorites/unfav`,values)
+          const response = await api.post(`/favorites/toggle`,{cargo})
           return response.data
 
       } catch (error) {
@@ -53,8 +53,7 @@ export const addFav = createAsyncThunk<any, any>(
   }
 )
 
-// toggle
-// favorites
+
 
 
 const favoriteSlice = createSlice({
@@ -66,9 +65,8 @@ const favoriteSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(addFav.fulfilled, (state,action) => {})
-    builder.addCase(unfav.fulfilled, (state,action) => {})
-    builder.addCase(myFavorites.fulfilled, (state,action) => {
+    builder.addCase(isfav.fulfilled, (state,action) => {})
+    builder.addCase(myfavorites.fulfilled, (state,action) => {
       state.favorites = action.payload
     })
   }

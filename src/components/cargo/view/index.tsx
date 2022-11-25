@@ -36,7 +36,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
     const dispatch = useAppDispatch();
     const {definitions} = useSelector(selectDefinition);
     React.useEffect(()=>{
-        !definitions && dispatch(getDefinitions());
+        !definitions.load && dispatch(getDefinitions());
     },[])
     const { data, isLoading, error }:any = useQuery(`cargo`) 
     // /filter?skip=${currentPage}&limit=${limit}&from=${'filter.from'}&to=${'filter.to'} 

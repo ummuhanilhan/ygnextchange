@@ -1,5 +1,5 @@
 import { ArrowClockwise, CheckCircle, ChevronDown, ChevronRight, Eye, EyeSlash, Share, ShieldLock, XCircle } from "@yukgetir-icons"
-import React, { createRef, useRef } from "react"
+import React, { createRef, useEffect, useRef } from "react"
 import TR from '@public/assets/flags/tr.svg'
 import classnames from "classnames";
 import rawCountries from "@utils/dummy/rawCountries";
@@ -37,26 +37,39 @@ export const Tag = ({
     const select = (val:string) => {
         return items.find((f:any)=> f[id] === val )||null
     }
-    const selections = (vals:string[]) => {
+    const selections = (vals:any) => {
         let selects:any = []
-        vals?.length>0 && vals?.map((slug:any)=>{
-            let item = select(slug);
-            item && selects.push(item)
+        vals?.length>0 && vals?.map((slugId:any)=>{
+            let item = select(slugId);
+            // slug && 
+            selects.push(item)
         })
         return selects || [];
+    }
+    const toSlug = (items:any) => {
+        let vals:any = []
+        items?.length>0 && items?.map((item:any)=>{
+            vals.push(item._id)
+        })
+        return vals || [];
     }
     const save = (data:string[]) => {
         let values:string[] = [];
         if(values.length>0){
             data.map(d=> values.push(d[id]) )
         }
-        typeof onChange != undefined && onChange(values)
+
+       // if(onChange) onChange(toSlug(selected))
     }
     const scrollRef = useRef<HTMLUListElement>(null)
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState(items);
     const [selected, setSelected] = React.useState(selections(value));
     const allSelected = selected.length == data.length;
+
+   useEffect(()=>{
+       if(onChange) onChange(toSlug(selected))
+   },[selected])
 
     return (
       <div className={classnames(
@@ -167,7 +180,7 @@ export const Tag = ({
                     onClick={()=>{
                         if(allSelected){
                             setSelected([])
-                            typeof onChange != undefined && onChange()
+                            if(onChange) onChange()
                         }else{
                             // @ts-ignore
                             setSelected(data)

@@ -40,7 +40,12 @@ export const AddressList = ({select, border}:any) => {
                   id='modal'
                   defaultAddress={address}
                   update={!!address}
-                  footer={<FormFooter close={()=>setStatus(!status)} className='mb-4' />}
+                  footer={
+                   <FormFooter 
+                      close={()=>setStatus(!status)} 
+                      className='mb-4' 
+                    />
+                  }
                   border  
                 />
             </SimpleBar>
