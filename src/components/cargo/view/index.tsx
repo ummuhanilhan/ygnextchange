@@ -80,7 +80,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
                     }
 
                    <Cargoes 
-                        data={data}
+                        data={data?.cargoes}
                         selected={selected}
                         type={type}
                         error={error}
@@ -102,7 +102,7 @@ isLoading,
 }:any) => {
     return(
         <React.Fragment>
-             {data && data?.cargoes?.map((item:any,i:number)=>( // dummyItems
+               { data?.map((item:any,i:number)=>( // dummyItems
                     <CargoItem 
                         item={item} 
                         key={`cargo-item-${i}`} 

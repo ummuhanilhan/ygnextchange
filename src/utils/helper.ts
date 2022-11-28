@@ -55,6 +55,7 @@ export function isNumber(data:any) {
  
 
 export const capitalize = (str:string) => {
+    if(!str) return;
     const lower = str.toLocaleLowerCase()
     return str.charAt(0).toUpperCase() 
     + lower.slice(1); 

@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Cargoes, useQuery, View } from "@components/cargo/view";
 import ReactPaginate from 'react-paginate';
+import { useEffect, useState } from "react";
 
 export type FavoriteValues = {
     password: string,
@@ -34,10 +35,23 @@ export const Favorites = () => {
 
     const { data, isLoading, error }:any = useQuery(`favorites`, null, 'get') 
     
+    const [favorites, setFavorites] = useState([])
+    useEffect(()=>{
+        getFavorites()
+    },[data])
+
+    const getFavorites = () => {
+        let favs:any = [];
+        data?.map((d:any)=>{
+            favs.push(d.cargo);
+        }) 
+        setFavorites(favs);
+    }
+
     return (
         <AccountLayout>
             <Cargoes 
-                data={data}
+                data={favorites}
                 selected={1}
                 type='favorites'
                 error={error}
