@@ -2,7 +2,8 @@ import PrivateLayout from "@layouts/PrivateLayout";
 import { AccountLayout } from "@layouts/AccountLayouts";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { View } from "@components/cargo/view";
+import { Cargoes, useQuery, View } from "@components/cargo/view";
+import ReactPaginate from 'react-paginate';
 
 export type FavoriteValues = {
     password: string,
@@ -30,9 +31,18 @@ export const Favorites = () => {
         console.log(errors)
 
     };
+
+    const { data, isLoading, error }:any = useQuery(`favorites`, null, 'get') 
+    
     return (
         <AccountLayout>
-            <View wide type='favorites' />
+            <Cargoes 
+                data={data}
+                selected={1}
+                type='favorites'
+                error={error}
+                isLoading={isLoading}
+            />
          </AccountLayout>
     )
 }

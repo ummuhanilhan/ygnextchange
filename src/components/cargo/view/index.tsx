@@ -2,7 +2,7 @@ import TabLayout from "@layouts/TabLayout"
 import { SimplePagination } from "@shared/paginations"
 import { CargoRoute, cargoTabMenu, dummyItems, items } from "@utils/mock"
 import classNames from "classnames"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {  FiMinusCircle, FiXCircle } from "react-icons/fi"
 import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
@@ -11,14 +11,18 @@ import api from "@utils/api";
 import { useAppDispatch } from "stores/store"
 import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice"
 import { useSelector } from "react-redux"
+import { useFilter } from "stores/features/filter"
 
 const fetcher = (path:string) => api.get(path).then(res => res.data)
 
-function useQuery (url:string, values:any=null, method='get') {
+export const useQuery = (url:string, values:any=null, method='post') => {
   const { data, error } = useSWR(url, ()=>api({
     method,
     url,
-    data:values
+    data:{
+        ...values,
+        load:'Sivas'
+    }
   }).then(res => res.data))
 
   return {
@@ -29,17 +33,25 @@ function useQuery (url:string, values:any=null, method='get') {
 }
 
 export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
+    const filters:any = useFilter(state=>state)    
     const [selected, setSelected] = React.useState(1);
-    const [page, setPage] = React.useState(1)
-    const [limit, setLimit] = React.useState(3)
-    const [currentPage, setCurrentPage] = React.useState(1);
+    const [limit, setLimit] = React.useState(10)
+    const [page, setPage] = React.useState(0)
+    const [currentPage, setCurrentPage] = React.useState(0);
     const dispatch = useAppDispatch();
     const {definitions} = useSelector(selectDefinition);
+    const [param, setParam] = useState([])
+
     React.useEffect(()=>{
         !definitions.load && dispatch(getDefinitions());
     },[])
-    const { data, isLoading, error }:any = useQuery(`cargo`) 
-    // /filter?skip=${currentPage}&limit=${limit}&from=${'filter.from'}&to=${'filter.to'} 
+
+    useEffect(()=>{
+        setParam(filters)
+    },[filters])
+   
+    const { data, isLoading, error }:any = 
+    useQuery(`cargo/filter?skip=${currentPage}&limit=${limit}`, param) 
     
     const [total, setTotal] = React.useState(data?.meta?.total-1);
 
@@ -67,42 +79,63 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
                         />
                     }
 
-                    {data?.map((item:any,i:number)=>( // dummyItems
-                        <CargoItem 
-                            item={item} 
-                            key={`cargo-item-${i}`} 
-                            actionType={type} 
-                            status={selected===1}  
-                        />
-                    ))}
-
-                   {error && <h3>Bir şeyler ters gitti!</h3>}
-                    
-                    {isLoading && ( // spinner
-                        <div className="flex flex-center w-full justify-center">
-                            {/** <img src="/assets/empty.svg" className="h-40"  /> */}
-                            Loading...
-                        </div>
-                    )}
-                    {[...items]?.length<=0 && (
-                        <h1>Sonuç yok</h1>
-                    )}
-                    
-
-                    {[
-                    // ...items
-                    ].map((item,i:number)=>(
-                        <CargoItem 
-                            item={item} 
-                            key={`cargo-item-${i}`} 
-                            actionType={type} 
-                            status={selected===1}  
-                        />
-                    ))}
-                    <SimplePagination />
+                   <Cargoes 
+                        data={data}
+                        selected={selected}
+                        type={type}
+                        error={error}
+                        isLoading={isLoading}
+                   />
                 </div>
         </React.Fragment>
 
+    )
+}
+
+export const Cargoes = ({
+data,
+selected,
+type,
+error,
+isLoading,
+
+}:any) => {
+    return(
+        <React.Fragment>
+             {data && data?.cargoes?.map((item:any,i:number)=>( // dummyItems
+                    <CargoItem 
+                        item={item} 
+                        key={`cargo-item-${i}`} 
+                        actionType={type} 
+                        status={selected===1}  
+                    />
+                ))}
+
+                {error && <h3>Bir şeyler ters gitti!</h3>}
+                
+                {isLoading && ( // spinner
+                    <div className="flex flex-center w-full justify-center">
+                        {/** <img src="/assets/empty.svg" className="h-40"  /> */}
+                        Loading...
+                    </div>
+                )}
+                {[...items]?.length<=0 && (
+                    <h1>Sonuç yok</h1>
+                )}
+                
+
+                {[
+                // ...items
+                ].map((item,i:number)=>(
+                    <CargoItem 
+                        item={item} 
+                        key={`cargo-item-${i}`} 
+                        actionType={type} 
+                        status={selected===1}  
+                    />
+                ))}
+            <SimplePagination />
+        </React.Fragment>
     )
 }
 

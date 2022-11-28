@@ -89,7 +89,7 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                 <li className='flex w-screen mb-1'>
                     <div> <Truck width={17} className='fill-yg-blue mr-2 mb-1' /></div>
                     <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
-                    <p className='text-gray-400 text-sm'>{!item.type? 'Parsiyel':'Komple'}</p>
+                    <p className='text-gray-400 text-sm'> {defined(item.rent.vehicle)}</p>
                 </li>
                 <li className='flex w-screen mb-1 --ml-8'>
                     <div> <Capslock width={17} className='fill-yg-blue mr-2 mb-1' /></div>

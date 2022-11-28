@@ -136,7 +136,7 @@ export const Select = ({
               removable={removable}
               onChange={onChange}
               setOpen={()=>setOpen(!open)}
-              value={selected}
+              value={selected?.length}
             />
            )}
           </div>

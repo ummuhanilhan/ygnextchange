@@ -422,38 +422,52 @@ export const item: any = {
     privacy: "draft",
     viewing: 0,
     rent: {
-      vehicle: "truck",
+      vehicle: "truck", // 18wheeler
       type: "parsiel",
       features: [
-        "62b14d9d7810ae9b35ea4b52",
-        "62b14d9d7810ae9b35ea4b54",
-        "62b14d9d7810ae9b35ea4b5a",
-        "62b14d9d7810ae9b35ea4b5b",
-        "62b14d9d7810ae9b35ea4b5c",
-        "62b14d9d7810ae9b35ea4b5d",
+        "6383e3f1dd37724c6c7b7850",
+        "6383e3f1dd37724c6c7b7851",
+        "6383e3f1dd37724c6c7b7853",
+        "6383e3f1dd37724c6c7b7844",
+        "6383e3f1dd37724c6c7b7842",
+        "6383e3f1dd37724c6c7b7835",
+        "6383e3f1dd37724c6c7b7836",
+        "6383e3f1dd37724c6c7b7838",
+        "6383e3f1dd37724c6c7b7839"
       ],
       options: [
-        "62b14d9d7810ae9b35ea4b72",
-        "62b14d9d7810ae9b35ea4b73",
-        "62b14d9d7810ae9b35ea4b74",
-        "62b14d9d7810ae9b35ea4b75",
+        "6383e3f1dd37724c6c7b7855",
+        "6383e3f1dd37724c6c7b7856",
+        "6383e3f1dd37724c6c7b7858",
+        "6383e3f1dd37724c6c7b7859",
+        "6383e3f1dd37724c6c7b785a",
+        "6383e3f1dd37724c6c7b785b",
+        "6383e3f1dd37724c6c7b785c",
+        "6383e3f1dd37724c6c7b785d",
+        "6383e3f1dd37724c6c7b785e",
+        "6383e3f1dd37724c6c7b785f",
+        "6383e3f1dd37724c6c7b7860",
+        "6383e3f1dd37724c6c7b7861",
+        "6383e3f1dd37724c6c7b7862",
+        "6383e3f1dd37724c6c7b7863"
       ],
     },
     shipping: {
-      range:   [new Date("10-01-2021"), new Date("10-05-2021")],
-      time: "62b14d9d7810ae9b35ea4b27", // other
+      range:   [new Date("2021-09-30"), new Date("2021-10-26")],
+      time: "6383e3f1dd37724c6c7b7809", // other
       "time-custom": "93 sene sonra",
       load: {
         geolocation: {
-          lat: 37.94205600840452,
-          lng: 30.85136032104491,
+          lat: 37.6120803427278,
+          lng: 34.979988098144524,
         },
         place: {
-          address: "Mahmatlar/Eğirdir/Isparta, Türkiye",
+          address: "Aşçıbekirli, İsimsiz Yol, 01470 Pozantı/Adana, Türkiye",
           street: "",
         },
         direction: {
           city: "isparta",
+          "district": "Pozantı",
           country: {
             code: "TR",
             name: "Türkiye",
@@ -462,7 +476,11 @@ export const item: any = {
         contact: {
           name: "test",
           phone: "0123 132 13 12",
+          "email": "test@test.com",
+          "verify": false
         },
+        "title": "adres başlığı test",
+        "directions": "açık adres tarif"
       },
       unload: {
         geolocation: {
@@ -483,6 +501,7 @@ export const item: any = {
         contact: {
           name: "tester",
           phone: "0213 123 12 31",
+          "verify": false
         },
       },
       distance: {
@@ -499,25 +518,25 @@ export const item: any = {
       type: "yük cinsi",
       definition: "yük tanımı",
       transport: {
-        load:'62b14d9d7810ae9b35ea4b09',
-        unload:'62b14d9d7810ae9b35ea4b0d',
+        load:'6383e3f1dd37724c6c7b77ee',
+        unload:'6383e3f1dd37724c6c7b77ed',
       },
       package:'',
       stow:false,
       porter:false,
       weight:{
-        size:"325.968",
-        unit:'kg',
+        "size": "555.968",
+        "unit": "kg"
       },
       volume:{
-        size:"77.23",
+        size:"177.23",
         unit:'m', // ³
       },
       dimensions:{
-        length:'259.735',
-        width:'921,33',
-        height:'77,550',
-        unit:'kg',
+        "length": "9954.735",
+        "width": "24543",
+        "height": "34522",
+        "unit": "kg"
       },
       tonnage:{
           range:'',
@@ -531,23 +550,24 @@ export const item: any = {
     fee: {
       manual: false,
       price: {
-        amount:true,
-        unit: 555,
-        tonnage: 35,
-        total: 19425,
+        "amount": true,
+        "unit": 9980,
+        "tonnage": 77,
+        "total": 768537
       },
-      paymethod: "credit",
-      currency: "usd",
-      vat: 'exclude',
+      "paymethod": "onunload", // credit
+      "currency": "try",
+      "vat": "include",
+      "bargain": true
     },
     publish: {
       start: {
-        date: "2022-07-20T03:38:16.322Z",
-        option: "now",
+        date: "2022-07-14T21:00:00.000Z",
+        option: "62b14d9d7810ae9b35ea4b09", // now
       },
       end: {
-        date: "2022-07-27T03:38:16.322Z",
-        option: "10day",
+        date: "22022-07-27T21:00:00.000Z",
+        option: "62b14d9d7810ae9b35ea4b0a", //10day
       },
     },
     updated_at: {
@@ -560,7 +580,6 @@ export const item: any = {
         $numberLong: "1658288302697",
       },
     },
-    __v: 0,
   };
   
   // shipping

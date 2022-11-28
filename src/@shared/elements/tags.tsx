@@ -41,8 +41,8 @@ export const Tag = ({
         let selects:any = []
         vals?.length>0 && vals?.map((slugId:any)=>{
             let item = select(slugId);
-            // slug && 
-            selects.push(item)
+
+            if(item?.name) selects.push(item)
         })
         return selects || [];
     }
@@ -124,6 +124,7 @@ export const Tag = ({
                 >
                    
                     {selected.map((item:any,i:number)=>{
+
                         const el = (
                             <li 
                                 key={`selected-${i}`}

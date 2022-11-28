@@ -20,6 +20,7 @@ import { FaSearch } from "react-icons/fa"
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";
 import { useScrollYPosition } from "@shared/elements/hooks/usePosition";
+import { useFilter } from "stores/features/filter";
 
 
 export type FilterValues = {
@@ -45,6 +46,7 @@ export const CargoFilter = () => {
 }
 
 const Filter = ({ x }:any) => {
+    const {setFilter}:any = useFilter(state=>state);
     const [sync, setSync] = React.useState(false);
     const y = useScrollYPosition();
  
@@ -56,14 +58,23 @@ const Filter = ({ x }:any) => {
         // resolver: yupResolver(),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<FilterValues> = data => {
-        console.log(data)
-        alert(JSON.stringify(data))
+    const onSubmit: SubmitHandler<FilterValues> = (data:any) => {
+        setFilter({
+            ...data,
+        })
+        console.log(
+            'load:', data.load,
+            'unload:', data.unload,
+            'total:', data.fee?.total,
+            'price:', data.price,
+            'features:', data.rent?.features,
+            'options:', data.rent?.options,
+            'vehicle:', data.rent?.vehicle, 
+            'type:', data.rent?.type
+        )
     };
-    const onError = (errors:any) => {
-        console.log(errors)
+    const onError = (errors:any) => console.log(errors)
 
-    };
     return (
         <div 
             style={{

@@ -27,7 +27,36 @@
 - Araç markası: rent.type
 - Araç tipi: rent.vehicle
 
+`&from=${'filter.from'}&to=${filter.to}`
 
+```json 
+// filter parts 
+{
+    "shipping": {},
+    "payload": {
+        "bargain": true,
+        "weight": {
+            "unit": "kg"
+        },
+        "volume": {
+            "unit": "m"
+        },
+        "dimensions": {
+            "unit": "kg"
+        }
+    },
+    "fee": {
+        "manual": true,
+        "price": {
+            "amount": true,
+            "tonnage": null,
+            "total": null,
+            "unit": null
+        }
+    },
+    "name": "test",
+}
+ ```
 
 
 ```json
