@@ -20,6 +20,7 @@ import { FormFooter } from "@shared/footers";
 import { PhoneHook } from "@shared/elements/hooks/phoneHook";
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import Turkiye from '@utils/dummy/turkiye.json'
+import { useAppDispatch } from "stores/store";
 
 type AccountValues = {
     name: string,
@@ -69,6 +70,7 @@ disease:'',
 }
 
 export const Account = ({uptodate}:any) => {
+    const dispatch = useAppDispatch();
     const [type, setType] = React.useState(false);
     const [selected, setSelected] = React.useState<number>(1)
     const router = useRouter()
@@ -83,6 +85,7 @@ export const Account = ({uptodate}:any) => {
     });
     const { register, control, handleSubmit, watch, getValues, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<any> = data => {
+        // dispatch()
         console.log(data)
         alert(JSON.stringify(data))
     };
@@ -159,7 +162,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                         <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
                         <PhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
                      */}
-                    <PhoneHook name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                    <PhoneHook name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                     {/** verified **/}
                     <InputHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
                     {/** 

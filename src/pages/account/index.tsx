@@ -27,7 +27,11 @@ export const Profile = () => {
      <React.Fragment>
       {data && (
          <Account 
-          uptodate={data}
+          uptodate={{
+            ...data, 
+            birth: new Date(data.birth),
+            gender: data.gender ? 1:0
+          }}
         />
       )}
      </React.Fragment>
