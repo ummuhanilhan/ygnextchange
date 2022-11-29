@@ -17,11 +17,10 @@ const initialState : any  = {
  * @returns {Object} save access and refresh token to localStorage
  * @method POST 
  */
-export const signin = createAsyncThunk(
-    'user/signin', async (values:any, thunkAPI) => {
+export const update = createAsyncThunk(
+    'users', async (values:any, thunkAPI) => {
         try {
-            const response = await api.post('/user', values)
-            console.log(response.data)
+            const response = await api.patch('/user', values)
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })
@@ -33,10 +32,10 @@ export const signin = createAsyncThunk(
  * @returns {Object} user data
  * @method POST 
  */
-export const me = createAsyncThunk(
-    'user/me', async (_, thunkAPI) => {
+export const my = createAsyncThunk(
+    'user/my', async (id, thunkAPI) => {
         try {
-            const response = await api.post('/user')
+            const response = await api.post('/user/'+id)
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })
@@ -55,8 +54,19 @@ export const userSlice = createSlice({
     },
   },
   extraReducers:(builder)=>{
-   
-  }
+    builder.addCase(my.pending, (state, action)=>{})
+    builder.addCase(my.fulfilled, (state, action)=>{})
+    builder.addCase(my.rejected, (state, action)=>{})
+    builder.addCase(update.pending, (state, action)=>{
+        
+    })
+    builder.addCase(update.fulfilled, (state, action)=>{
+        
+    })
+    builder.addCase(update.rejected, (state, action)=>{
+        
+    })
+ }
 })
 
 export const selectUser = createSelector(

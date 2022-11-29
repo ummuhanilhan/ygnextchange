@@ -23,15 +23,14 @@ export const Profile = () => {
 
   const { data, isLoading, error }:any = useQuery(`users/${user._id}`, null, 'get') 
   
-  useEffect(()=>{
-    console.log('data:',data)
-    console.log('user._id:',user._id)
-  },[data])
- 
   return(
-      <Account 
-        uptodate={data}
-      />
+     <React.Fragment>
+      {data && (
+         <Account 
+          uptodate={data}
+        />
+      )}
+     </React.Fragment>
   )
 }
 
