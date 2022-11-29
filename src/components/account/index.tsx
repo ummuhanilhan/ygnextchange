@@ -21,7 +21,7 @@ import { PhoneHook } from "@shared/elements/hooks/phoneHook";
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import Turkiye from '@utils/dummy/turkiye.json'
 
-export type SignupValues = {
+type AccountValues = {
     name: string,
     email: string,
     phone: string,
@@ -45,30 +45,30 @@ export type SignupValues = {
 };
 
 const initialValues = {
-    name:'tester',
-    email:'test@test.com',
-    phone:5055555555,//'0505 555 55 55',
-    fullname:'Tester Test',
-    company:'HyperWise.co',
-    tax: '',
-    tax_administrator: '',
-    business_phone: 5012345678,
-    website: 'http://test.com',
-    authorized: '',
-    address: 'address is here',
-    district:'district',
-    type:false,
-    accept:false,
-    gender:1,
-    birth:new Date('04-05-1990'),
-    src_file:'/src_file92348.pdf',
-    licence_year:'2',
-    driver:['1','2','3'],
-    bloodgroup:'+A',
-    disease:'',
+name:'tester',
+email:'test@test.com',
+phone:5055555555,//'0505 555 55 55',
+fullname:'Tester Test',
+company:'HyperWise.co',
+tax: '',
+tax_administrator: '',
+business_phone: 5012345678,
+website: 'http://test.com',
+authorized: '',
+address: 'address is here',
+district:'district',
+type:false,
+accept:false,
+gender:1,
+birth:new Date('04-05-1990'),
+src_file:'/src_file92348.pdf',
+licence_year:'2',
+driver:['1','2','3'],
+bloodgroup:'+A',
+disease:'',
 }
 
-export const Account = () => {
+export const Account = ({uptodate}:any) => {
     const [type, setType] = React.useState(false);
     const [selected, setSelected] = React.useState<number>(1)
     const router = useRouter()
@@ -76,13 +76,13 @@ export const Account = () => {
     React.useEffect(()=>{},[pathname])
 
     const change = () => setType(!type);
-    const form = useForm<SignupValues>({
+    const form = useForm({
         //@ts-ignore
-        defaultValues: initialValues,
+        defaultValues: uptodate,
         // resolver: yupResolver(profileSchema),
     });
     const { register, control, handleSubmit, watch, getValues, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<SignupValues> = data => {
+    const onSubmit: SubmitHandler<any> = data => {
         console.log(data)
         alert(JSON.stringify(data))
     };

@@ -1,5 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import auth from './slices/authSlice'
+import user from './slices/userSlice'
 import general from './slices/generalSlice'
 import address from './slices/addressSlice'
 import definition from './slices/definitionSlice'
@@ -11,6 +12,7 @@ import favorite from './slices/favoriteSlice'
 
 export default combineReducers({
     auth,
+    user,
     general,
     address,
     definition,
