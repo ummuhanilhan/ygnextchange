@@ -3,7 +3,7 @@ import { ChevronDown, ChevronRight } from "@yukgetir-icons"
 import React from "react"
 import classnames from "classnames";
 import classNames from "classnames";
-import { FiChevronDown, FiChevronRight } from "react-icons/fi";
+import { FiChevronDown, FiChevronRight, FiX } from "react-icons/fi";
 import Outside from "@utils/useoutside";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
@@ -154,8 +154,9 @@ export const Select = ({
     error,
     onChange,
     appended,
-      className,
-      grouped,
+    className,
+    grouped,
+    removable,
     selectClass
   }:any) => {
       const [selected, setSelected] = React.useState(
@@ -202,7 +203,7 @@ export const Select = ({
               <Appendix 
                  color={!!error?'fill-red-500':'fill-gray-500'}
                  status={open}
-                 removable
+                 removable={removable}
                  setValue={setSelected}
                  setOpen={()=>setOpen(!open)}
                  value={selected}
@@ -271,15 +272,30 @@ const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
     value,
     setValue,
     setOpen,
+    onChange,
   }:any) =>{
       
+    console.log('value && removable', value , removable)
     return (
       <React.Fragment> 
           <div 
           className="cursor-pointer w-22
           absolute top-0 bottom-0 
-           h-full bg-blue-500- flex items-center justify-center pl-2 pr-1">
+           h-full bg-blue-500- flex items-center justify-center pl-2 pr-2">
   
+          {value && removable && (
+                <div
+                    onClick={()=>{setValue(); typeof onChange != undefined && onChange()}}
+                >
+                        <FiX
+                            className={classNames(
+                            "icon h-4 top-[30%] icon-gray stroke-gray-700 right-4 mr-1",
+                            )} 
+                        />
+
+                </div>
+           )}
+
              {status ? (
               <ChevronDown
                   onClick={()=>setOpen && setOpen(false)}

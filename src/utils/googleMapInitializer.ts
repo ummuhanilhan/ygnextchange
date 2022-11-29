@@ -15,6 +15,6 @@ export function initializeGoogleMap(callback: () => void) {
     else {
         setTimeout(() => {
             callback();
-        }, 1000);
+        }, 2500);
     }
 }

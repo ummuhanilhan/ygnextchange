@@ -21,7 +21,6 @@ export const useQuery = (url:string, values:any=null, method='post') => {
     url,
     data:{
         ...values,
-        load:'Sivas'
     }
   }).then(res => res.data))
 
@@ -47,7 +46,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
     },[])
 
     useEffect(()=>{
-        setParam(filters)
+        setParam(filters.filters)
     },[filters])
    
     const { data, isLoading, error }:any = 

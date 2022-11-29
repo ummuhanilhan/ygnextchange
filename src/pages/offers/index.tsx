@@ -1,4 +1,5 @@
 import { FilterHeading } from "@components/cargo/heading/filter";
+import { useQuery } from "@components/cargo/view";
 import { CargoItem } from "@components/cargo/view/cargoItem";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
@@ -20,7 +21,12 @@ export default Offers;
 
 export const OfferDummy = ({actionType}:any)=>{
     const [selected, setSelected] = React.useState(String(1));
-    const dummy = items.map((item,i:number)=>(
+   
+   
+    const { data, isLoading, error }:any = useQuery(`offers`, null, 'get') 
+
+
+    const dummy = data?.map((item:any,i:number)=>(
         <CargoItem 
             item={item} 
             key={`vehicle-active-${i}`}  

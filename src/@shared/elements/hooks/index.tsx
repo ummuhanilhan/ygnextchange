@@ -278,6 +278,7 @@ export const SelectHook = ({
     className,
     appended,
     grouped,
+    removable,
     ...rest
 }:any) => {
     return (
@@ -300,6 +301,7 @@ export const SelectHook = ({
                appended={appended}
                className={className}
                selectClass={selectClass}
+               removable={removable}
             />
         )}
     />

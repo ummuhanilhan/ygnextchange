@@ -1,5 +1,6 @@
 import { Heading } from "@components/cargo/heading";
 import { FilterHeading } from "@components/cargo/heading/filter";
+import { useQuery } from "@components/cargo/view";
 import { VehicleItem } from "@components/cargo/view/vehicleItem";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
@@ -12,6 +13,8 @@ import React from "react";
 export const Vehicle = () => {
     const [selected, setSelected] = React.useState(String(1));
     
+    const { data, isLoading, error }:any = useQuery(`favorites`, null, 'get') 
+
     return (
         <Frame>
             <Heading />
@@ -25,7 +28,7 @@ export const Vehicle = () => {
                <React.Fragment>
 
                     <div className={classNames({'hidden': VehicleRoute.active != parseInt(selected) })}>
-                        {items.map((item,i:number)=>(
+                        {data?.map((item:any,i:number)=>(
                             <VehicleItem item={item} key={`vehiclle-active-${i}`} />
                         ))}
                     </div>

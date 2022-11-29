@@ -128,9 +128,10 @@ export const Location = ({control}:any) => {
                     placeholder='Yükleme yeri'
                     size='small'
                     items={Turkiye}
-                    id='label'
+                    id='value'
                     label='value'
                     className='mb-1 '
+                    removable
                 />
 
               
@@ -140,9 +141,11 @@ export const Location = ({control}:any) => {
                     placeholder='Boşaltma yeri'
                     size='small'
                     items={Turkiye}
-                    id='label'
+                    id='value'
                     label='value'
                     className='my-1 mt-3'
+                    removable
+
                 />
 
                 {/** 

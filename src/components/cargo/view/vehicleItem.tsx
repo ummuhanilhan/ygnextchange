@@ -5,6 +5,7 @@ import { Actions } from "./Actions"
 
 export const VehicleItem = ({item, type='normal'}:any) => {
 
+    console.log('item', item)
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
