@@ -18,6 +18,8 @@
     "webpack": "^5"
   },
   "dependencies": {
+    "@casl/ability": "^6.3.2",
+    "@casl/react": "^3.1.0",
     "@hookform/resolvers": "^2.9.8",
     "@reduxjs/toolkit": "^1.8.5",
     "@storybook/addon-controls": "^6.5.12",

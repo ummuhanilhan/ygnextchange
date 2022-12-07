@@ -7,13 +7,10 @@ import { useAppDispatch } from "stores/store"
 import { useSelector } from "react-redux"
 import { isfav, selectFavorite } from "stores/slices/favoriteSlice"
 import api from "@utils/api"
+import { slugify } from "@utils/helper"
 
 
 export const Actions = ({item, isAuth, actionType, status}:any) => {
-  
-  
-  
-  
   
     const [fav, setFav] = useState(false)
     useEffect(()=>{
@@ -82,14 +79,43 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
         onClick={()=> open({type:'show-cargo', styles:{padding:0, height:'fit-content' }, values:{item} }) }
     /> )
 
-    const getActions = (value:string, item:any, status:boolean) => {
+    const send = (<></>);
+
+      const openByType = (value:string) => {
+            switch (slugify(value)) {
+                case 'teklif-gonder':
+                    console.log(value)
+                    open({
+                        type:'show-cargo', 
+                        styles:{padding:0, height:'fit-content' }, 
+                        values:{item} 
+                    }) 
+                    return;
+                break;
+            
+                default:
+                    break;
+            }
+            return;
+      }
+
+      const openOfferSendModal = () => {
+        open({type:'show-vehicle', styles:{padding:0, height:'fit-content', left:'15%', right:'15%' },
+        values:{item} })
+
+      } 
+
+       const getActions = (value:string, item:any, status:boolean) => {
         switch (value) {
             case 'cargoes':
                 return (<Button>
                     {item.viewed && viewed}
                     {isAuth && faved}
                     {show}
-                    {isAuth && <Action title='Teklif Gönder' color='blue' path='#' />}
+                    {isAuth && <Action 
+                    title='Teklif Gönder' 
+                    onClick={openOfferSendModal}
+                    color='blue' path='#' />}
 
                  </Button>)
             break;
@@ -168,6 +194,17 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
                    <Action title='Düzenle' color='blue' path='#' />
                     {show}
 
+                 </Button>)
+            break;            
+            case 'vehicle-modal':
+                return (<Button>
+                    <Action title='Araç Değiştir' color='blue' outline path='#' />
+                    <Action title='Varsayılan Seç' color='orange' path='#' />
+                    <Action onClick={()=>{
+                        // create offer
+                        // close modal
+                        alert('offered')
+                    }} title='Teklif Gönder' color='blue' path='#' />
                  </Button>)
             break;            
             case 'vehicle-pending':

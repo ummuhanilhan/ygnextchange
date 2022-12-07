@@ -24,7 +24,6 @@ export const TagHook = ({
                 {...rest}
                 value={value}
                 onChange={(data:any)=>{
-                    console.log('data', data);
                     onChange(data)
                 }}
                 id={id||'slug'}

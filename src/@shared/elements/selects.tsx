@@ -134,6 +134,7 @@ export const Select = ({
               color={!!error?'fill-red-500':'fill-gray-500'}
               status={open}
               removable={removable}
+              setSelected={setSelected}
               onChange={onChange}
               setOpen={()=>setOpen(!open)}
               value={selected?.length}

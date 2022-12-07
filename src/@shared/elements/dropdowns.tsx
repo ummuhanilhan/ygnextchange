@@ -33,7 +33,7 @@ export const Dropdown = ({
                     <p>{title?title:'Filtrele'}:</p>
                     <p className="text-yg-orange mx-2">
                         {/** @ts-ignore */}
-                        {filters[parseInt(selected-1)]?.title}
+                        {(filters[parseInt(selected-1)]||filters[0])?.title}
                     </p>
                 </div>
                 <div>

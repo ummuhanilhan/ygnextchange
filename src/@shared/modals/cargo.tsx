@@ -72,7 +72,7 @@ export const CargoModal = ({item}:any) => {
 export const Box = ({label,value}:any) =>{
     return(
         <div className='bg-[#ebebeb] rounded-lg p-1 h-[55px] 
-        flex items-center justify-start pl-3'>
+        flex items-center justify-start pl-3 overflow-hidden'>
             <div>
                 <label className='text-xs text-black'>{label}</label>
                 <p className='text-gray-500 font-regular mb-1'>{value}</p>

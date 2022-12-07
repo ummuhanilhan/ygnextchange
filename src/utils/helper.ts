@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import moment from 'moment'; 
 import slug from "slug";
 import { toast } from "react-toastify";
+import { setAutoFreeze } from 'immer';
+import api from "@utils/api";
 
 export const domain = process.env.DOMAIN;
 export const url = process.env.DOMAIN + '/api/v1/'
@@ -12,6 +14,7 @@ export function slugify(value:string='', options={}) {
     return slug((String(value)), options) || ''
 };
 
+export const fetcher = (path:string) => api.get(path).then(res => res.data)
 
 export function toSelectItem(items: any[], id:boolean=false) {
     return items?.map(m => ({ label: m.name, value: id? m._id : m.slug }))
@@ -190,8 +193,9 @@ export const  Capitalize = (string:string) => {
     return string?.charAt(0).toUpperCase() + string?.slice(1);
 }
 
-export const formSuite = (values:any) => {
-    let data = values;
+export const formSuite = (obj:any) => {
+    setAutoFreeze(false);
+    let data = {...obj};
     delete data._id
     delete data.__v
     delete data.created_at
@@ -199,8 +203,13 @@ export const formSuite = (values:any) => {
     delete data.user
     delete data.viewing
     delete data.privacy
-    data.publish.start.date = new Date(data.publish.start.date) 
-    data.publish.end.date = new Date(data.publish.end.date) 
+   if(data.publish?.start){
+        const {start,end} = data.publish;
+        const startDate = start.date;
+        const endDate = end.date;
+         // if(startDate) data.publish.start.date = new Date(startDate) 
+         // if(endDate) data.publish.end.date = new Date(endDate) 
+   }
     return data;
 }
 

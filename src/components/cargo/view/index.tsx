@@ -6,60 +6,21 @@ import React, { useEffect, useState } from "react"
 import {  FiMinusCircle, FiXCircle } from "react-icons/fi"
 import { Heading } from "../heading"
 import { CargoItem } from "./cargoItem"
-import useSWR from 'swr'
-import api from "@utils/api";
-import { useAppDispatch } from "stores/store"
-import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice"
-import { useSelector } from "react-redux"
-import { useFilter } from "stores/features/filter"
 
-const fetcher = (path:string) => api.get(path).then(res => res.data)
-
-export const useQuery = (url:string, values:any=null, method='post') => {
-  const { data, error } = useSWR(url, ()=>api({
-    method,
-    url,
-    data:{
-        ...values,
-    }
-  }).then(res => res.data))
-
-  return {
+export const View = ({ 
+    wide, 
     data,
-    isLoading: !error && !data,
-    error
-  }
-}
+    error,
+    loading,
+    selected,
+    setSelected,
+    filter, 
+    type, 
+    tabs, 
+    forwardRef, 
+    param={} 
+}:any) => {
 
-export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
-    const filters:any = useFilter(state=>state)    
-    const [selected, setSelected] = React.useState(1);
-    const [limit, setLimit] = React.useState(10)
-    const [page, setPage] = React.useState(0)
-    const [currentPage, setCurrentPage] = React.useState(0);
-    const dispatch = useAppDispatch();
-    const {definitions} = useSelector(selectDefinition);
-    const [param, setParam] = useState([])
-
-    React.useEffect(()=>{
-        !definitions.load && dispatch(getDefinitions());
-    },[])
-
-    useEffect(()=>{
-        setParam(filters.filters)
-    },[filters])
-   
-    const { data, isLoading, error }:any = 
-    useQuery(`cargo/filter?skip=${currentPage}&limit=${limit}`, param) 
-    
-    const [total, setTotal] = React.useState(data?.meta?.total-1);
-
-    const currentTableData = React.useMemo(() => {
-        const firstPageIndex = (currentPage - 1) * limit;
-        const lastPageIndex = firstPageIndex + limit;
-        return data?.cargoes?.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage]);
- 
     return ( 
         <React.Fragment>
           
@@ -83,7 +44,7 @@ export const View = ({wide, filter, type, tabs, forwardRef}:any) => {
                         selected={selected}
                         type={type}
                         error={error}
-                        isLoading={isLoading}
+                        loading={loading}
                    />
                 </div>
         </React.Fragment>
@@ -96,7 +57,7 @@ data,
 selected,
 type,
 error,
-isLoading,
+loading,
 
 }:any) => {
     return(
@@ -112,7 +73,7 @@ isLoading,
 
                 {error && <h3>Bir şeyler ters gitti!</h3>}
                 
-                {isLoading && ( // spinner
+                {loading && ( // spinner
                     <div className="flex flex-center w-full justify-center">
                         {/** <img src="/assets/empty.svg" className="h-40"  /> */}
                         Loading...

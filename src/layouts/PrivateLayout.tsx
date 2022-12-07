@@ -7,7 +7,7 @@ import { me, selectAuth } from "stores/slices/authSlice";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { LoadingState } from "stores/types";
-  
+
 type DefaultState = {
     children: ReactNode
     title?: string
@@ -21,6 +21,7 @@ export const Private = ({children}: DefaultState) => {
     useEffect(()=>{
         if( loading == LoadingState.ERROR && !isAuth ) router.push('/')
     },[loading])
+
 
     const content = isAuth ? (
         <div className="flex flex-center items-center">

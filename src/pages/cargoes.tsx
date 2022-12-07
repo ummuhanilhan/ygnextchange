@@ -21,19 +21,7 @@ const initialValues = {
 }
 
 export const Cargoes = () => {
-    const form = useForm<CargoValues>({
-        defaultValues: initialValues,
-        // resolver: yupResolver(),
-    });
-    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<CargoValues> = data => {
-        console.log(data)
-        alert(JSON.stringify(data))
-    };
-    const onError = (errors:any) => {
-        console.log(errors)
 
-    };
     return (
         <View wide tabs type='mycargoes' />
     )

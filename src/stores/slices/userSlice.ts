@@ -17,10 +17,10 @@ const initialState : any  = {
  * @returns {Object} save access and refresh token to localStorage
  * @method POST 
  */
-export const update = createAsyncThunk(
-    'users', async (values:any, thunkAPI) => {
+export const update = createAsyncThunk<any, any>(
+    'users', async (values, thunkAPI) => {
         try {
-            const response = await api.patch('/user', values)
+            const response = await api.patch('/users/' + values.id, values.data)
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })
@@ -35,7 +35,7 @@ export const update = createAsyncThunk(
 export const my = createAsyncThunk(
     'user/my', async (id, thunkAPI) => {
         try {
-            const response = await api.post('/user/'+id)
+            const response = await api.post('/users/my')
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue({ error: (err as Error).message })
@@ -54,18 +54,20 @@ export const userSlice = createSlice({
     },
   },
   extraReducers:(builder)=>{
-    builder.addCase(my.pending, (state, action)=>{})
-    builder.addCase(my.fulfilled, (state, action)=>{})
-    builder.addCase(my.rejected, (state, action)=>{})
-    builder.addCase(update.pending, (state, action)=>{
-        
+    builder.addCase(my.pending, (state, action)=>{
+        state.loading = LoadingState.LOADING
     })
-    builder.addCase(update.fulfilled, (state, action)=>{
-        
+    builder.addCase(my.fulfilled, (state, action)=>{
+        state.user = action.payload
+        state.loading = LoadingState.LOADED
     })
-    builder.addCase(update.rejected, (state, action)=>{
-        
+    builder.addCase(my.rejected, (state, action)=>{
+        state.error = true
+        state.loading = LoadingState.ERROR
     })
+    builder.addCase(update.pending, (state, action)=>{})
+    builder.addCase(update.fulfilled, (state, action)=>{ })
+    builder.addCase(update.rejected, (state, action)=>{ })
  }
 })
 

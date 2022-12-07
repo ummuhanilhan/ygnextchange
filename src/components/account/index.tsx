@@ -21,52 +21,72 @@ import { PhoneHook } from "@shared/elements/hooks/phoneHook";
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { useAppDispatch } from "stores/store";
+import { update } from "stores/slices/userSlice";
+import { successMessage } from "@utils/helper";
+import { useSelector } from "react-redux";
+import { selectDefinition } from "stores/slices/definitionSlice";
 
 type AccountValues = {
     name: string,
     email: string,
     phone: string,
     fullname: string,
-    company: string,
     type: boolean,
-    tax: string,
-    tax_administrator: string,
-    business_phone: string,
-    website: string,
-    authorized: string,
     city: any,
     address: string,
     district: any,
     accept: boolean,
     gender: any,
     birth:Date,
-    src_file:string,
-    licence_year:string,
-    driver:string[],
+    driver:{
+        licence: string[],
+        file: string,
+        year: Date,
+        src_file: string,
+        psychotechnical_file: string,
+    },
+    health:{
+        blood:string,
+        chronic_disease:string,
+    },
+    company: string,
+    tax: string,
+    tax_administrator: string,
+    business_phone: string,
+    website: string,
+    authorized: string,
+
 };
 
 const initialValues = {
-name:'tester',
-email:'test@test.com',
-phone:5055555555,//'0505 555 55 55',
-fullname:'Tester Test',
-company:'HyperWise.co',
-tax: '',
-tax_administrator: '',
-business_phone: 5012345678,
-website: 'http://test.com',
-authorized: '',
-address: 'address is here',
-district:'district',
-type:false,
-accept:false,
-gender:1,
-birth:new Date('04-05-1990'),
-src_file:'/src_file92348.pdf',
-licence_year:'2',
-driver:['1','2','3'],
-bloodgroup:'+A',
-disease:'',
+    name:'tester',
+    email:'test@test.com',
+    phone:5055555555,//'0505 555 55 55',
+    fullname:'Tester Test',
+    address: 'address is here',
+    district:'district',
+    type:false,
+    accept:false,
+    gender:1,
+    birth:new Date('04-05-1990'),
+    driver:{
+        year:new Date('04-05-2000'),
+        licence: ['1','2','3'],
+        file:'/src_file92348.pdf',
+        src_file:'/src_file92348.pdf',
+        psychotechnicalal_file:'/src_file92348.pdf',
+
+    },
+    health:{
+        blood:'+A',
+        chronic_disease:'',
+    },
+    company:'HyperWise.co',
+    tax: '',
+    tax_administrator: '',
+    business_phone: 5012345678,
+    website: 'http://test.com',
+    authorized: '',
 }
 
 export const Account = ({uptodate}:any) => {
@@ -85,9 +105,9 @@ export const Account = ({uptodate}:any) => {
     });
     const { register, control, handleSubmit, watch, getValues, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<any> = data => {
-        // dispatch()
-        console.log(data)
-        alert(JSON.stringify(data))
+         dispatch(update({id:uptodate._id, data}))
+        console.log(uptodate._id, data)
+        successMessage();
     };
     const onError = (errors:any) => {
         console.log(errors)
@@ -225,6 +245,7 @@ export const Personal = ({control}:any) => {
 
 export const DriverLicense = ({control, getValues}:any) => {
     const [status, setStatus] = React.useState(true)
+    const {definitions} = useSelector(selectDefinition);
 
     return(
         <li> 
@@ -239,24 +260,25 @@ export const DriverLicense = ({control, getValues}:any) => {
                 <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <TagHook 
-                         name='driver'
+                         name='driver.licence'
                          placeholder="Sürücü Bilgilerim" 
                          size='small'
-                         items={tagItems2}
+                         id='_id'
+                         label='name'
+                         items={definitions.driver}
                          control={control}
                      />
-                    <SelectHook 
-                        name="licence_year"
-                        placeholder="Ehliyet Tescil Yılı"  
-                        items={tagItems2} 
+                      <CalendarHook 
+                        name="driver.year" 
                         control={control} 
-                    />                 
+                        placeholder="Ehliyet Tescil Yılı" 
+                    />                              
                 </div>
     
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-                <Upload name="driver_file" control={control} placeholder="Sürücü Belgesi Ekle"  />
-                    <Upload name="src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
-                    <Upload name="psychotechnical_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
+                <Upload name="driver.file" control={control} placeholder="Sürücü Belgesi Ekle"  />
+                    <Upload name="driver.src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
+                    <Upload name="driver.psychotechnicalal_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
                 </div>
     
             </div>
@@ -279,8 +301,8 @@ export const Healthy = ({control}:any) => {
             
             {status&&(
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <FloatLabelHook name="bloodgroup" type="text" placeholder="Kan Grubu" example="" control={control} />
-                    <FloatLabelHook name="disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
+                    <FloatLabelHook name="health.blood" type="text" placeholder="Kan Grubu" example="" control={control} />
+                    <FloatLabelHook name="health.chronic_disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
                 </div>
             )}
         </li>

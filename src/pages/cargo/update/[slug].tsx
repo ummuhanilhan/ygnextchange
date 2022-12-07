@@ -1,19 +1,57 @@
 import CargoCreate from "@components/cargo/form";
-import PrivateLayout from "@layouts/PrivateLayout";
+import Private from "@layouts/PrivateLayout";
 import { defaultItem, initial } from "@utils/mock";
+import { useDefinitions } from "@utils/useDefinitions";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { find, selectCargo } from "stores/slices/cargoSlice";
+import { useAppDispatch } from "stores/store";
 
-export const CargoCreatePage = () => {
+
+export const CargoUpdate = () => {
+    const { loaded } = useDefinitions();
+
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+    const {slug} = router.query
+    const {cargo} = useSelector(selectCargo)
+    useEffect(()=>{
+        dispatch(find(slug))
+    },[])
+
+
+    useEffect(()=>{
+        console.log('cargo:', cargo)
+        console.log('defaultItem:', defaultItem)
+    },[cargo])
 
     return (
         <div>
-            <CargoCreate uptodate init={{
-                ...initial,
-                ...defaultItem,              
-            }} />
+            { cargo && loaded && (
+                 <CargoCreate uptodate init={{
+                    ...initial,
+                    ...cargo,
+                    shipping:{
+                        ...cargo.shipping,
+                        range: [...cargo.shipping.range.map((date:string)=> date && new Date(date))]
+                    }
+                    // ...defaultItem,              
+                }} />
+            )}
         </div>
     )
 }
 
-CargoCreatePage.Layout = PrivateLayout;
+export const CargoUpdatePage = () => {
 
-export default CargoCreatePage;
+
+    return (
+        <CargoUpdate />
+    )
+}
+
+
+CargoUpdatePage.Layout = Private;
+
+export default CargoUpdatePage;

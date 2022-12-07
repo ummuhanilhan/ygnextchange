@@ -347,6 +347,7 @@ export const initial: any = {
       unit: null,
     },
   },
+  publish:{}
 };
 
 

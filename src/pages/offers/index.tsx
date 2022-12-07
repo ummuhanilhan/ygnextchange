@@ -1,13 +1,14 @@
 import { FilterHeading } from "@components/cargo/heading/filter";
-import { useQuery } from "@components/cargo/view";
 import { CargoItem } from "@components/cargo/view/cargoItem";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
 import TabLayout from "@layouts/TabLayout";
+import { SimplePagination } from "@shared/paginations";
+import { fetcher } from "@utils/helper";
 import { items, OfferReverse, OfferRoute, offerTabMenu } from "@utils/mock";
 import classNames from "classnames";
 import React from "react";
-
+import useSWR from "swr";
 
 export const Offers = () => {
     const [selected, setSelected] = React.useState(String(1));
@@ -21,14 +22,16 @@ export default Offers;
 
 export const OfferDummy = ({actionType}:any)=>{
     const [selected, setSelected] = React.useState(String(1));
-   
-   
-    const { data, isLoading, error }:any = useQuery(`offers`, null, 'get') 
+
+    const { data, error } = useSWR('/offers', fetcher)
+
+    if (error) return <div>failed to load</div>
+    if (!data) return <div>loading...</div>
 
 
     const dummy = data?.map((item:any,i:number)=>(
         <CargoItem 
-            item={item} 
+            item={item.cargo} 
             key={`vehicle-active-${i}`}  
             // @ts-ignore
             actionType={`${actionType}-${OfferReverse[selected]}`} 
@@ -58,6 +61,7 @@ export const OfferDummy = ({actionType}:any)=>{
 
             </React.Fragment>
             </TabLayout>
+            <SimplePagination />
     </Frame>
     )
 }

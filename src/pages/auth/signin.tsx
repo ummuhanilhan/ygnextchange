@@ -31,6 +31,7 @@ export const Signin = () =>{
     const { register, control,  handleSubmit, watch, formState: { errors } } = form;
     const onSubmit: SubmitHandler<SigninValues> = data => {
         dispatch(signin(data))
+        console.log(data)
         // if(loading == LoadingState.LOADED) router.push('/')
         
     };
@@ -70,7 +71,6 @@ export const Signin = () =>{
                     </div>
 
                     <input type='submit' value='send' />
-
                     <button  type="button" className="text-white align-center bg-yg-blue focus:ring-4 focus:ring-blue-300 font-medium 
                     rounded-lg text-sm px-5 py-2.5 text-center justify-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 
                     inline-flex items-center cursor-pointer mt- p-3 w-full">

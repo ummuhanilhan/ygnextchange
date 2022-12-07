@@ -29,6 +29,148 @@
 
 `&from=${'filter.from'}&to=${filter.to}`
 
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+    const { data, isLoading, error }:any = useQuery(`offers`, null, 'get') 
+// 
+```
+
+```javascript
+// 
+import useSWR from 'swr'
+import api from "@utils/api";
+
+import { useAppDispatch } from "stores/store"
+import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice"
+import { useSelector } from "react-redux"
+import { useFilter } from "stores/features/filter"
+
+const fetcher = (path:string) => api.get(path).then(res => res.data)
+
+export const useQuery = (url:string, values:any=null, method='post') => {
+  const { data, error } = useSWR(url, ()=>api({
+    method,
+    url,
+    data:{
+        ...values,
+    }
+  }).then(res => res.data))
+
+  return {
+    data,
+    loading: !error && !data,
+    error
+  }
+}
+// 
+```
+
+
+```javascript
+    const [selected, setSelected] = React.useState(1);
+    const [limit, setLimit] = React.useState(10)
+    const [page, setPage] = React.useState(0)
+    const [currentPage, setCurrentPage] = React.useState(0);
+    const dispatch = useAppDispatch();
+    const {definitions} = useSelector(selectDefinition);
+
+    React.useEffect(()=>{
+        !definitions.load && dispatch(getDefinitions());
+    },[])
+    
+    const [filtering, setfiltering] = useState({})
+    useEffect(()=>{
+        setfiltering(param)
+    },[param])
+    
+    const { data, loading, error }:any =  useQuery(`cargo/filter?skip=${currentPage}&limit=${limit}`, filtering) 
+
+    const [total, setTotal] = React.useState(data?.meta?.total-1);
+
+    const currentTableData = React.useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * limit;
+        const lastPageIndex = firstPageIndex + limit;
+        return data?.cargoes?.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
+ 
+       
+    
+    if(loading) return <>Loading..</>
+    if(error) return <>Something is went wrong</>
+```
+
+
+
+```javascript
+
+   const [param, setParam] = useState([])
+   const filters:any = useFilter(state=>state)    
+   useEffect(()=>{
+       setParam(filters.filters)
+   },[filters])
+
+
+```
+
+
+```javascript
+    // const {setFilter}:any = useFilter(state=>state);
+    const [sync, setSync] = React.useState(false);
+    const y = useScrollYPosition();
+ 
+    const form = useForm<FilterValues>({
+        defaultValues: {
+            ...initial,
+            ...initialValues
+        },
+        // resolver: yupResolver(),
+    });
+    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
+    const onSubmit: SubmitHandler<FilterValues> = (data:any) => {
+        console.log(
+            'load:', data.load,
+            'unload:', data.unload,
+            'total:', data.fee?.total,
+            'price:', data.price,
+            'features:', data.rent?.features,
+            'options:', data.rent?.options,
+            'vehicle:', data.rent?.vehicle, 
+            'type:', data.rent?.type
+        )
+        // setFilter({
+        //     ...data,
+        // })
+    };
+    const onError = (errors:any) => console.log(errors)
+    onSubmit={handleSubmit(onSubmit, onError)} 
+
+```
+
+
 ```json 
 // filter parts 
 {

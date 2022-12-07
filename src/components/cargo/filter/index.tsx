@@ -1,6 +1,6 @@
 import { Calendar, Cash, CircleHalf, FilePlus, FileText, PinMap, Truck } from "@shared/icons"
 import useDimensions from "@utils/useDimensions"
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -21,6 +21,7 @@ import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";
 import { useScrollYPosition } from "@shared/elements/hooks/usePosition";
 import { useFilter } from "stores/features/filter";
+import FormLayout from "@layouts/FormLayout";
 
 
 export type FilterValues = {
@@ -34,47 +35,31 @@ const initialValues = {
 
 export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
+    const [param, setParam] = useState<any>({});
+    const save = async (data:any) => {
+        await setParam(data);
+        console.log(data.load, param?.load);
+    }
    
     const content = (
         <DoubleFrame  id="cargoes" className="bottomize" >
-            <Filter {...props} />
-            <View type='cargoes'  forwardRef={ref}   />
+            <FormLayout 
+                save={async (data:any)=> await save(data)}
+                render={({control}:any)=>{ 
+                    return <Filter {...props} control={control} />
+                }}
+            />
+               
+            <View type='cargoes' forwardRef={ref} param={param}  />
         </DoubleFrame>
     )
  
     return content;
 }
 
-const Filter = ({ x }:any) => {
-    const {setFilter}:any = useFilter(state=>state);
-    const [sync, setSync] = React.useState(false);
+const Filter = ({ control ,x }:any) => {
     const y = useScrollYPosition();
  
-    const form = useForm<FilterValues>({
-        defaultValues: {
-            ...initial,
-            ...initialValues
-        },
-        // resolver: yupResolver(),
-    });
-    const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<FilterValues> = (data:any) => {
-        setFilter({
-            ...data,
-        })
-        console.log(
-            'load:', data.load,
-            'unload:', data.unload,
-            'total:', data.fee?.total,
-            'price:', data.price,
-            'features:', data.rent?.features,
-            'options:', data.rent?.options,
-            'vehicle:', data.rent?.vehicle, 
-            'type:', data.rent?.type
-        )
-    };
-    const onError = (errors:any) => console.log(errors)
-
     return (
         <div 
             style={{
@@ -86,8 +71,7 @@ const Filter = ({ x }:any) => {
             'filter z-30 invisible lg:visible',
             'top-4 left-0-md w-[18em] transition h-0'
         )} >
-                <form 
-                onSubmit={handleSubmit(onSubmit, onError)} 
+                <div 
                 className={classNames(
                     y>88 ? 'screenize' :'bottomize',
                     'flex flex-col justify-between', 
@@ -105,7 +89,7 @@ const Filter = ({ x }:any) => {
                         <VehicleOptions control={control} />
                     </SimpleBar>
                     <Footer />
-                </form>            
+                </div>            
         </div>
     )
 }

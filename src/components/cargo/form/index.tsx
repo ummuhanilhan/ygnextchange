@@ -67,7 +67,6 @@ export const CargoCreate = ({uptodate, init}:any) => {
     };
     const {definitions} = useSelector(selectDefinition);
     React.useEffect(()=>{
-        console.log(definitions)
         if(!definitions.load) dispatch(getDefinitions());
     },[definitions])
     // if(!definitions.load) return;

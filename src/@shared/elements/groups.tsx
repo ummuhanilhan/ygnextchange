@@ -204,7 +204,9 @@ export const Select = ({
                  color={!!error?'fill-red-500':'fill-gray-500'}
                  status={open}
                  removable={removable}
+                 setSelected={setSelected}
                  setValue={setSelected}
+                 onChange={onChange}
                  setOpen={()=>setOpen(!open)}
                  value={selected}
             />
@@ -269,23 +271,27 @@ const Label = ({open,size,selected, placeholder, name,mini, color}:any) => {
  export const Appendix = ({
     status,
     removable,
+    setSelected,
     value,
     setValue,
     setOpen,
     onChange,
   }:any) =>{
       
-    console.log('value && removable', value , removable)
     return (
       <React.Fragment> 
           <div 
           className="cursor-pointer w-22
-          absolute top-0 bottom-0 
+          absolute top-0 bottom-0 z-30
            h-full bg-blue-500- flex items-center justify-center pl-2 pr-2">
   
           {value && removable && (
                 <div
-                    onClick={()=>{setValue(); typeof onChange != undefined && onChange()}}
+                    onClick={()=>{
+                      setValue(null); 
+                      setSelected && setSelected(null)
+                      onChange && onChange(null)
+                    }}
                 >
                         <FiX
                             className={classNames(

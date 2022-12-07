@@ -4,6 +4,7 @@ import React from "react";
 import { useModal } from "stores/features/useModal";
 import { CargoModal } from "./cargo";
 import Classic, { modalState } from "./classic";
+import { VehicleModal } from "./vehicle";
  
 const modal = (val:string, values:any) => {
     switch (val) {
@@ -13,6 +14,8 @@ const modal = (val:string, values:any) => {
             return <AddressCreate {...values} />
         case 'addresses':
             return <AddressList {...values} />
+        case 'show-vehicle':
+            return <VehicleModal {...values} />
         break;
         default:
         break;

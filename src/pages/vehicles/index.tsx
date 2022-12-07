@@ -13,7 +13,7 @@ import React from "react";
 export const Vehicle = () => {
     const [selected, setSelected] = React.useState(String(1));
     
-    const { data, isLoading, error }:any = useQuery(`favorites`, null, 'get') 
+    const { data, isLoading, error }:any = useQuery(`vehicles`, null, 'get') 
 
     return (
         <Frame>

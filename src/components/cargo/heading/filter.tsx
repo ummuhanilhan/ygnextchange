@@ -12,22 +12,22 @@ export const FilterHeading = ({
 
     const items = (actionType:string) => {
         switch (actionType) {
-            case type+'-inshipment':
+            case 'ingoing-inshipment':
                 return inShipmentIn;   
             break;
-            case type+'-accepted':
+            case 'ingoing-accepted':
                 return acceptedIn;   
             break;
-            case type+'-pending':
+            case 'ingoing-pending':
                 return pendingIn;   
             break;
-            case type+'-inshipment':
+            case 'outgoing-inshipment':
                 return inShipmentOut;   
             break;
-            case type+'-accepted':
+            case 'outgoing-accepted':
                 return acceptedOut;   
             break;
-            case type+'-pending':
+            case 'outgoing-pending':
                 return pendingOut;   
             break;
             default:

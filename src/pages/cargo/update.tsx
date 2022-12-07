@@ -1,12 +1,15 @@
 import CargoCreate from "@components/cargo/form";
 import PrivateLayout from "@layouts/PrivateLayout";
-
+import { defaultItem, initial } from "@utils/mock";
 
 export const CargoUpdatePage = () => {
 
     return (
         <div>
-            <CargoCreate update />
+            <CargoCreate uptodate init={{
+                ...initial,
+                ...defaultItem,              
+            }} />
         </div>
     )
 }

@@ -1,5 +1,8 @@
 # next
+- view & filter issue
 - [react-paginate](https://github.com/AdeleD/react-paginate)
+- create form `other`
+- responsive
 - address box error
 - defined
 - cargoItem modal

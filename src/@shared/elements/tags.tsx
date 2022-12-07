@@ -34,6 +34,7 @@ export const Tag = ({
   onBlur,
   appendix,
 }:any) => {
+
     const select = (val:string) => {
         return items.find((f:any)=> f[id] === val )||null
     }
@@ -66,6 +67,7 @@ export const Tag = ({
     const [data, setData] = React.useState(items);
     const [selected, setSelected] = React.useState(selections(value));
     const allSelected = selected.length == data.length;
+
 
    useEffect(()=>{
        if(onChange) onChange(toSlug(selected))
@@ -240,6 +242,7 @@ export const Tag = ({
  */
  export const TagAppend = ({
   status,
+  setSelected,
   removable,
   value,
   setValue,
@@ -251,11 +254,16 @@ export const Tag = ({
     <React.Fragment> 
         <div 
         className="cursor-pointer w-22
-        absolute top-0 bottom-0 
+        absolute top-0 bottom-0 z-30
          h-full bg-blue-500- flex items-center justify-center pl-2 pr-4">
            {value && removable && (
                 <div
-                    onClick={()=>{setValue(); typeof onChange != undefined && onChange()}}
+                    onClick={()=>{
+                        alert('test')
+                        setValue(''); 
+                        setSelected && setSelected('')
+                        onChange && onChange('')
+                    }}
                 >
                         <FiX
                             className={classNames(
