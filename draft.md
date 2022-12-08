@@ -40,7 +40,6 @@
 
 // 
 ```
-
 ```javascript
 // 
 
@@ -50,6 +49,86 @@
 ```javascript
 // 
 
+// 
+```
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+    
+    const offers =  await this.offerModel.aggregate([
+      { $match : options },
+
+      {
+        $lookup: {
+          from: "cargoes",
+          localField: "cargo",
+          foreignField: "_id",
+          as: "cargo"
+        }
+      },
+      {
+        $lookup: {
+          from: "vehicles",
+          localField: "vehicle",
+          foreignField: "_id",
+          as: "vehicle"
+        }
+      },
+   
+      
+      { $sort: {created_at: -1} },
+      { $skip: skip }, 
+      { $limit: limit }
+    ])
+
+    return offers;
+    // return this.offerModel.find(options);
+// 
+```
+
+```javascript
+// 
+
+
+    @Prop({required:true, ref:'User' })                 
+    user: mongoose.Schema.Types.ObjectId;
+
+    @Prop({required:true, ref:'User' })                 
+    to: mongoose.Schema.Types.ObjectId;
+
+    // offer schema
+    
+    @Prop({min:0, required:true})
+    amount: Number;
+
+    @Prop()
+    note: String;
+
+    @Prop({type: Object })
+    rent: IRent;
+        
+    @Prop({type: Object })
+    shipping: IShipping;
+
+    @Prop({type:Object})
+    contact: IContact;
+    
+    @Prop({type:Object})
+    fee: IFee;
+    
+    @Prop({type:Object})
+    payload: IPayload;
 // 
 ```
 

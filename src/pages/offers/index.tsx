@@ -1,5 +1,6 @@
 import { FilterHeading } from "@components/cargo/heading/filter";
 import { CargoItem } from "@components/cargo/view/cargoItem";
+import { VehicleItem } from "@components/cargo/view/vehicleItem";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
 import TabLayout from "@layouts/TabLayout";
@@ -30,8 +31,8 @@ export const OfferDummy = ({actionType}:any)=>{
 
 
     const dummy = data?.map((item:any,i:number)=>(
-        <CargoItem 
-            item={item.cargo} 
+        <VehicleItem 
+            item={item.vehicle} 
             key={`vehicle-active-${i}`}  
             // @ts-ignore
             actionType={`${actionType}-${OfferReverse[selected]}`} 

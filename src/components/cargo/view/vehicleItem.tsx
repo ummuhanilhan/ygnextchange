@@ -7,7 +7,7 @@ export const VehicleItem = ({item, type='normal', actionType}:any) => {
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
-            {'grayscale': item.outdated}
+            {'grayscale': item?.outdated}
         )}>
             <div className="flex justify-between mb-[1.2rem]">
                 <div className="flex items-start">
@@ -15,7 +15,7 @@ export const VehicleItem = ({item, type='normal', actionType}:any) => {
                     <div className="tag rounded-lg p-1 px-3 border border-1 
                     border-yg-blue m-r2 flex items-start w-max"> 
                         <People className='fill-yg-blue' width={20} /> 
-                        <p className='text-yg-blue ml-1 text-sm'>{item.corporate?'Kurumsal Araç':'Bireysel Araç'}</p>
+                        <p className='text-yg-blue ml-1 text-sm'>{item?.corporate?'Kurumsal Araç':'Bireysel Araç'}</p>
                     </div>
 
                     <ul className="flex items-start justify-center">
@@ -38,7 +38,7 @@ export const VehicleItem = ({item, type='normal', actionType}:any) => {
             </div>
             <div className="flex justify-between mt-[-1em]">
                 <div className={classNames({
-                     'mt-6-':item.tax 
+                     'mt-6-':item?.tax 
                 })}>
                     <ul className='mt-1'>
                         <li className='flex items-start'>
