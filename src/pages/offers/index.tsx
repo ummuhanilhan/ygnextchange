@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { FilterHeading } from "@components/cargo/heading/filter";
 import { CargoItem } from "@components/cargo/view/cargoItem";
 import { VehicleItem } from "@components/cargo/view/vehicleItem";
@@ -6,9 +7,9 @@ import PrivateLayout from "@layouts/PrivateLayout";
 import TabLayout from "@layouts/TabLayout";
 import { SimplePagination } from "@shared/paginations";
 import { fetcher } from "@utils/helper";
+import { useOffer } from "@utils/hooks/useOffer";
 import { items, OfferReverse, OfferRoute, offerTabMenu } from "@utils/mock";
 import classNames from "classnames";
-import React from "react";
 import useSWR from "swr";
 
 export const Offers = () => {
@@ -24,15 +25,29 @@ export default Offers;
 export const OfferDummy = ({actionType}:any)=>{
     const [selected, setSelected] = React.useState(String(1));
 
-    const { data, error } = useSWR('/offers', fetcher)
+    const [param, setParam] = useState({})
+
+    React.useEffect(()=>{
+            setParam({})
+            console.log('OfferReverse[selected]',OfferReverse[selected]);
+            setParam({
+                status:OfferReverse[selected],
+                route:actionType
+            })
+
+    },[actionType, selected])
+
+    //const { data, error } = useOffer({url: '/offers/filter?', data:param, });
+
+    const { data, error } = useSWR('/offers/filter?', fetcher)
+
 
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
 
-
     const dummy = data?.map((item:any,i:number)=>(
-        <VehicleItem 
-            item={item.vehicle} 
+        <CargoItem 
+            item={item.cargo} 
             key={`vehicle-active-${i}`}  
             // @ts-ignore
             actionType={`${actionType}-${OfferReverse[selected]}`} 

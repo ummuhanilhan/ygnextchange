@@ -14,7 +14,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
   
     const [fav, setFav] = useState(false)
     useEffect(()=>{
-        isFaved()
+        // isFaved()
     },[])
 
     const isFaved = async () => {
@@ -54,7 +54,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
         <div className='inline-block'>
             <div className='view flex flex-col items-center'>
                 <Eye width={15} className='fill-gray-400' />
-                <p className='text-gray-400 text-sm'>{item.viewed}</p>
+                <p className='text-gray-400 text-sm'>{item?.viewed}</p>
             </div>
         </div>
     )
@@ -109,7 +109,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
         switch (value) {
             case 'cargoes':
                 return (<Button>
-                    {item.viewed && viewed}
+                    {item?.viewed && viewed}
                     {isAuth && faved}
                     {show}
                     {isAuth && <Action 
@@ -121,7 +121,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'favorites':
                 return (<Button>
-                    {item.viewed && viewed}
+                    {item?.viewed && viewed}
                     {isAuth && faved}
                     {show}
                     {isAuth && <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />}
@@ -129,7 +129,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'mycargoes':
                 return (<Button>
-                    {item.viewed && viewed}
+                    {item?.viewed && viewed}
                      <Action title='Sil' color='gray' outline path='#' />
                      <Action title='Kopyala' color='blue' outline path='#' />
                      <Action title='Tarih Güncelle' color='orange' outline path='#' />
@@ -139,7 +139,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'outgoing-inshipment':
                 return (<Button rich>
-                     {item.viewed && viewed}
+                     {item?.viewed && viewed}
                      {isAuth && faved}
                      <Action title='Vazgeç' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
@@ -148,7 +148,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'outgoing-accepted':
                 return (<Button>
-                     {item.viewed && viewed}
+                     {item?.viewed && viewed}
                      {isAuth && faved}
                      <Action title='Vazgeç' color='gray' outline path='#' />
                     <Action title='İlan detayını gör' color='orange' path='#' />
@@ -157,14 +157,14 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'outgoing-pending':
                 return (<Button rich>
-                     {item.viewed && viewed}
+                     {item?.viewed && viewed}
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifi Geri Al' color='blue' path='#' />
                  </Button>)
             break;            
             case 'ingoing-inshipment':
                 return (<Button rich>
-                     {item.viewed && viewed}
+                     {item?.viewed && viewed}
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teslimatı Onayla' color='blue' path='#' />
@@ -172,7 +172,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'ingoing-accepted':
                 return (<Button rich>
-                     {item.viewed && viewed}
+                     {item?.viewed && viewed}
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Diğer Teklifleri İncele (5)' color='blue' path='#' />
@@ -180,7 +180,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;
             case 'ingoing-pending':
                 return (<Button rich>
-                    {item.viewed && viewed}
+                    {item?.viewed && viewed}
                      <Action title='Listeden Kaldır' color='gray' outline path='#' />
                      <Action title='İlan Detayını Gör' color='orange' path='#' />
                      <Action title='Teklifleri İncele (3)' color='blue' path='#' />
@@ -188,7 +188,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;            
             case 'vehicle-active':
                 return (<Button>
-                    {item.viewed && viewed}
+                    {item?.viewed && viewed}
                     <Action title='Sil' color='gray' outline path='#' />
                     <Action title='Kopyala' color='blue' outline path='#' />
                    <Action title='Düzenle' color='blue' path='#' />
@@ -209,7 +209,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
             break;            
             case 'vehicle-pending':
                 return (<Button>
-                    {item.viewed && viewed}
+                    {item?.viewed && viewed}
                     {show}
                     <Action title='Teklif Gönder'  color='blue' path='#' />
                  </Button>)
@@ -274,7 +274,7 @@ export const Favorite = ({item}:any) => {
     const [faved, setFaved] = useState(false)
 
     useEffect(()=>{
-        isFaved()
+        // isFaved()
     },[])
 
     const isFaved = async () => {

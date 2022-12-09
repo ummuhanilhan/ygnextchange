@@ -249,18 +249,18 @@ export const pendingIn = [
 
 
 
-export const inShipmentOut = [
+export const inShipmentOut = [ // sevkiyatta (giden teklifler)
   { id:1, title:'Sevkiyatı Devam Edenler', slug:'inshipment'},
   { id:2, title:'Teslimat Onayı Bekleyenler', slug:'pending'},
   { id:3, title:'Sevkiyatı Tamamlananlar', slug:'complated'},
   { id:4, title:'Tümünü Göster', slug:'all'},
 ];
 
-export const acceptedOut = [
+export const acceptedOut = [ // kabul edilenler (giden teklifler)
     { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
 ];
 
-export const pendingOut = [ 
+export const pendingOut = [ // beklemede (giden teklifler)
   { id:1, title:'Beklemede Olanlar', slug:'pending'},
   { id:2, title:'İlan Sahibi Tarafından Görülenler', slug:'pending'},
   { id:3, title:'Kabul Edilmeyenler', slug:'pending'},

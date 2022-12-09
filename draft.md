@@ -59,7 +59,11 @@
 
 ```javascript
 // 
-
+()=>api({
+    method,
+    url,
+    data:values
+}).then(res => res.data)
 // 
 ```
 
@@ -85,7 +89,12 @@
           as: "vehicle"
         }
       },
-   
+   {
+        $match: {
+          "cargo.user": 1,
+          "vehicle.user": 1
+        }
+      }
       
       { $sort: {created_at: -1} },
       { $skip: skip }, 
