@@ -15,7 +15,7 @@ export type SigninValues = {
 export const Forgotten = () =>{
     const form = useForm<SigninValues>({
         defaultValues: {},
-        resolver: yupResolver(forgottenSchema),
+        // resolver: yupResolver(forgottenSchema),
     });
     const { register, control,  handleSubmit, watch, formState: { errors } } = form;
     const onSubmit: SubmitHandler<SigninValues> = data => {

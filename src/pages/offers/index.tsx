@@ -13,7 +13,7 @@ import classNames from "classnames";
 import useSWR from "swr";
 import { useAppDispatch } from "stores/store";
 import { useSelector } from "react-redux";
-import { findAll, selectOffer } from "stores/slices/offerSlice";
+import { filters, findAll, selectOffer } from "stores/slices/offerSlice";
 
 export const Offers = () => {
     const [selected, setSelected] = React.useState(String(1));
@@ -27,12 +27,20 @@ export default Offers;
 
 export const OfferDummy = ({actionType}:any)=>{
     const [selected, setSelected] = React.useState(String(1));
+    const [param, setParam] = useState([]);
     const dispatch = useAppDispatch()
     const { offers, error, loading } = useSelector(selectOffer)
     useEffect(()=>{
-        offers?.length <= 0 && dispatch(findAll())
-    },[offers])
+        offers?.length <= 0 && dispatch(findAll('id')) 
+    },[offers]) 
    
+    useEffect(()=>{
+        dispatch(filters({
+            route:actionType,
+            stauts:OfferReverse[selected]
+        }))
+    },[actionType, selected])
+
     const dummy = offers?.map((item:any,i:number)=>(
         <CargoItem 
             item={item.cargo} 
@@ -57,7 +65,7 @@ export const OfferDummy = ({actionType}:any)=>{
             <React.Fragment>
             {offers?.length<=0 && <div>Empty</div>}
             {error && <div>failed to load</div>}
-            {!offers && !error && <div>Loading...</div>}
+            { loading && <div>Loading...</div>}
                     <div className={classNames({'hidden': OfferRoute.inshipment != parseInt(selected) })}>
                    
                         {dummy}

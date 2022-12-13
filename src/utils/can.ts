@@ -1,1 +1,1 @@
-a
+export const can = ( ) => {};

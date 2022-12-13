@@ -8,7 +8,6 @@ import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice"
   
 import useSWR from 'swr'
 import api from "@utils/api";
-import { useQuery } from "@components/cargo/view";
 import { my, selectUser } from "stores/slices/userSlice";
 
 export const AccountPage = () => {
@@ -23,9 +22,10 @@ export const Profile = () => {
   const [account, setAccount] = useState();
   const {user}:any = useSelector(selectUser);
   const { definitions } = useSelector(selectDefinition)
-  const { data, isLoading, error }:any = useQuery(`users/${user._id}`, null, 'get') 
+ // const { data, isLoading, error }:any = useQuery(`users/${user._id}`, null, 'get') 
 
-  useEffect(()=>{
+/** 
+ *   useEffect(()=>{
       if(!definitions.load) dispatch(getDefinitions())
   },[definitions])
 
@@ -34,7 +34,10 @@ export const Profile = () => {
 },[user])
 
 
-  return(
+ */
+
+let data:any = [];
+return(
      <React.Fragment>
       {data && definitions.load && (
          <Account 

@@ -35,7 +35,7 @@ export const Signup = () =>{
             company:'',
             type:false,
         },
-        resolver: yupResolver(signupSchema),
+       // resolver: yupResolver(signupSchema),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<SignupValues> = data => {

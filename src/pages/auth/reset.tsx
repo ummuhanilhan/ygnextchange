@@ -13,7 +13,7 @@ export type Resetvalues = {
 export const Reset = () =>{
     const form = useForm<Resetvalues>({
         defaultValues: {},
-        resolver: yupResolver(resetSchema),
+        // resolver: yupResolver(resetSchema),
     });
     const { register, control,  handleSubmit, watch, formState: { errors } } = form;
     const onSubmit: SubmitHandler<Resetvalues> = data => {

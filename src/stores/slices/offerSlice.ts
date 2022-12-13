@@ -15,11 +15,11 @@ const initialState: any = {
   message: '',
 }
 
-export const findAll = createAsyncThunk<any>(
+export const findAll = createAsyncThunk<any, string>(
   'offer/findAll',
-  async (_, thunkAPI) => {
+  async (id, thunkAPI) => {
       try {
-          const response = await api.get(`/offers`)
+          const response = await api.get(`/offers/`) 
           return response.data
 
       } catch (error) {
@@ -28,12 +28,12 @@ export const findAll = createAsyncThunk<any>(
   }
 )
 
-export const filters = createAsyncThunk<any>(
+export const filters = createAsyncThunk<any, any>(
     'offer/filters',
-    async (_, thunkAPI) => {
+    async (values, thunkAPI) => {
         try {
-            const response = await api.get(`/offers/filter`)
-            return response.data?.offers
+            const response = await api.post(`/offers/filter`, values)
+            return response.data
   
         } catch (error) {
             return thunkAPI.rejectWithValue({ error: (error as Error).message })
