@@ -40,7 +40,7 @@ export const View = ({
                     }
 
                    <Cargoes 
-                        data={data?.cargoes}
+                        data={data}
                         selected={selected}
                         type={type}
                         error={error}

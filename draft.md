@@ -1,4 +1,5 @@
 
+ 
 
 - Ağırlık giriniz: fee.price.tonnage
 - Birim fiyat giriniz: fee.price.unit
@@ -47,14 +48,41 @@
 ```
 
 ```javascript
-// 
 
+    //const { data, error } = useOffer({url: '/offers/filter?', data:param, });
+
+    const { data, error, isLoading } = useSWR(`/offers/filter?route=${actionType}&status=${OfferReverse[selected]}`, fetcher, {
+        revalidateOnFocus: false,
+        revalidateOnMount:false,
+        revalidateOnReconnect: false,
+        refreshWhenOffline: false,
+        refreshWhenHidden: false,
+        refreshInterval: 0
+      })
+
+    import { useQuery } from "@components/cargo/view";
+    const { data, isLoading, error }:any = useQuery(`vehicles`, null, 'get') 
+
+
+    const { data, isLoading, error }:any = useQuery(`vehicles`, null, 'get') 
+    
+    if(isLoading) return <>Loading...</>
+    if(error) return <>Something went wrong!</>
 // 
 ```
 ```javascript
-// 
+const { data, error  } = useSWR(`/cargo/filter?load=${param.load}&unload=${param.unload}`, fetcher, {
+    revalidateOnFocus: true,
+    revalidateOnMount:true,
+    revalidateOnReconnect: false,
+    refreshWhenOffline: false,
+    refreshWhenHidden: false,
+    refreshInterval: 0
+})
 
-// 
+useEffect(()=>{
+    console.log('data', data)
+},[data])
 ```
 
 ```javascript

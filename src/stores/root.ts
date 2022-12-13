@@ -6,6 +6,7 @@ import address from './slices/addressSlice'
 import definition from './slices/definitionSlice'
 import cargo from './slices/cargoSlice'
 import vehicle from './slices/vehicleSlice'
+import offer from './slices/offerSlice'
 import project from './slices/projectSlice'
 import notification from './slices/notificationSlice'
 import favorite from './slices/favoriteSlice'
@@ -18,6 +19,7 @@ export default combineReducers({
     definition,
     cargo,
     vehicle,
+    offer,
     project,
     notification,
     favorite,

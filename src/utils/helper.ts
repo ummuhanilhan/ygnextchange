@@ -14,7 +14,7 @@ export function slugify(value:string='', options={}) {
     return slug((String(value)), options) || ''
 };
 
-export const fetcher = (path:string) => api.post(path).then(res => res.data)
+export const fetcher = (path:string) => api.get(path).then(res => res.data)
 export const fetcher2 = ({url, values=null, method='post'}:any) => api({
     method,
     url,

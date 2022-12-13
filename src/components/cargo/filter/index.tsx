@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
 import { View } from "../view";
 import classNames from "classnames";
 import { DoubleFrame } from "@components/frames/MainFrame";
@@ -22,6 +23,11 @@ import { definitions } from "@utils/dummy/definitions";
 import { useScrollYPosition } from "@shared/elements/hooks/usePosition";
 import { useFilter } from "stores/features/filter";
 import FormLayout from "@layouts/FormLayout";
+import { fetcher } from "@utils/helper";
+import useSWR from "swr";
+import {useSelector} from "react-redux";
+import {useAppDispatch} from "stores/store";
+import {filters, selectCargo} from "stores/slices/cargoSlice";
 
 
 export type FilterValues = {
@@ -35,7 +41,13 @@ const initialValues = {
 
 export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
-    const [param, setParam] = useState<any>({});
+    const [param, setParam] = useState<any>({})
+    const dispatch = useAppDispatch()
+    const { cargoes, error, loading } = useSelector(selectCargo)
+    useEffect(()=>{
+        cargoes.length <= 0 && dispatch(filters(param))
+        console.log('cargoes', cargoes)
+    },[cargoes, param])
     const save = async (data:any) => {
         await setParam(data);
         console.log(data.load, param?.load);
@@ -43,54 +55,62 @@ export const CargoFilter = () => {
    
     const content = (
         <DoubleFrame  id="cargoes" className="bottomize" >
-            <FormLayout 
-                save={async (data:any)=> await save(data)}
-                render={({control}:any)=>{ 
-                    return <Filter {...props} control={control} />
-                }}
+            <Filter {...props} save={save}  />
+            <View 
+                type='cargoes'
+                forwardRef={ref}
+                param={param}
+                data={cargoes} 
+                loading={cargoes.length<=0 && !error}
+                empty={cargoes?.length<=0}
+                error={error}
             />
-               
-            <View type='cargoes' forwardRef={ref} param={param}  />
         </DoubleFrame>
     )
- 
     return content;
 }
 
-const Filter = ({ control ,x }:any) => {
+const Filter = ({x, save }:any) => {
     const y = useScrollYPosition();
- 
+    const form = useForm<any>({});
+    const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
+    const onSubmit: SubmitHandler<any> = data => {
+        save && save(data)
+    };
+    const onError = (errors:any) => {}
     return (
-        <div 
-            style={{
-                // @ts-ignore
-                left: parseInt(x-300) // 245 
-            }}
-            className={classNames(
-            {'lg:fixed top-2 bottom-2': y>88},
-            'filter z-30 invisible lg:visible',
-            'top-4 left-0-md w-[18em] transition h-0'
-        )} >
-                <div 
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
+            <div 
+                style={{
+                    // @ts-ignore
+                    left: x ? parseInt(x-300) : 0 // 245
+                }}
                 className={classNames(
-                    y>88 ? 'screenize' :'bottomize',
-                    'flex flex-col justify-between', 
-                    'bg-gray-50 rounded-lg p-3'
-                )}>
-                  <SimpleBar style={{ maxHeight: '80vh',  }} className='pb-1'>
-                        <Search control={control} placeholder='İlan ara...' />
-                        <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
-                        <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>
-                        <Location control={control} />
-                        <Dates control={control} />
-                        <Hiring control={control} />
-                        <VehicleType control={control} />
-                        <VehicleFeatures control={control} />
-                        <VehicleOptions control={control} />
-                    </SimpleBar>
-                    <Footer />
-                </div>            
-        </div>
+                {'lg:fixed top-2 bottom-2': y>88},
+                'filter z-30 invisible lg:visible',
+                'top-4 left-0-md w-[18em] transition h-0'
+            )} >
+                    <div 
+                    className={classNames(
+                        y>88 ? 'screenize' :'bottomize',
+                        'flex flex-col justify-between', 
+                        'bg-gray-50 rounded-lg p-3'
+                    )}>
+                    <SimpleBar style={{ maxHeight: '80vh',  }} className='pb-1'>
+                            <Search control={control} placeholder='İlan ara...' />
+                            <h3 className='text-blue-600 text-base mt-3 font-medium '>Detaylı Arama</h3>
+                            <div className='line h-[1px] bg-gray-200 w-full my-2 mb-3'></div>
+                            <Location control={control} />
+                            <Dates control={control} />
+                            <Hiring control={control} />
+                            <VehicleType control={control} />
+                            <VehicleFeatures control={control} />
+                            <VehicleOptions control={control} />
+                        </SimpleBar>
+                        <Footer />
+                    </div>            
+            </div>
+        </form>
     )
 }
 

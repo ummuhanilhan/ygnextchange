@@ -20,7 +20,7 @@ export const findAll = createAsyncThunk<any>(
   async (_, thunkAPI) => {
       try {
           const response = await api.get(`/vehicles`)
-          return response.data?.vehicles
+          return response.data
 
       } catch (error) {
           return thunkAPI.rejectWithValue({ error: (error as Error).message })
@@ -83,12 +83,14 @@ const vehicleSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    builder.addCase(findAll.pending, (state)=>{state.loading= LoadingState.LOADING})
     builder.addCase(findAll.fulfilled, (state,action) => {
       state.message = '' 
       state.vehicles = action.payload 
       state.loading = LoadingState.LOADED
     })
-    
+    builder.addCase(findAll.rejected, (state)=>{state.loading= LoadingState.ERROR})
+ 
     // FIND
     builder.addCase(find.rejected, (state)=>{state.loading= LoadingState.ERROR})
     builder.addCase(find.pending, (state)=>{state.loading= LoadingState.LOADING})
@@ -146,7 +148,7 @@ const vehicleSlice = createSlice({
  * @returns {number} The current count
  */
 //export const Vehicle = (state: CoreState) => state.vehicle
-export const Vehicle = createSelector(
+export const selectVehicle = createSelector(
   (state: CoreState) => ({
     vehicles: state.vehicle.vehicles,
     filter: state.vehicle.filter,

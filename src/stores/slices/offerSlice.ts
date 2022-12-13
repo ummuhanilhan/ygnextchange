@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit'
 import api from '@utils/api'
 import { CoreState } from 'stores/store'
-import { CargoProps, LoadingState } from '../types'
+import {  LoadingState } from '../types'
 
-const initialState: CargoProps = {
-  cargoes: [],
-  cargo: {},
+const initialState: any = {
+  offers: [],
+  offer: {},
   filter: {
     from:'',
     to:'',
@@ -16,36 +16,36 @@ const initialState: CargoProps = {
 }
 
 export const findAll = createAsyncThunk<any>(
-  'cargo/findAll',
+  'offer/findAll',
   async (_, thunkAPI) => {
       try {
-          const response = await api.post(`/cargo`)
-          return response.data?.cargoes
+          const response = await api.get(`/offers`)
+          return response.data
 
       } catch (error) {
           return thunkAPI.rejectWithValue({ error: (error as Error).message })
       }
   }
 )
-export const filters = createAsyncThunk<any, any>(
-    'cargo/findAll',
-    async (param, thunkAPI) => {
-        try {
-            const response = await api.post(`/cargo/filter`, param)
-            return response.data?.cargoes
 
+export const filters = createAsyncThunk<any>(
+    'offer/filters',
+    async (_, thunkAPI) => {
+        try {
+            const response = await api.get(`/offers/filter`)
+            return response.data?.offers
+  
         } catch (error) {
             return thunkAPI.rejectWithValue({ error: (error as Error).message })
         }
     }
-)
-
+  )
 
 export const find = createAsyncThunk<string, any>(
-  'cargo/find',
+  'offer/find',
   async (id, thunkAPI) => {
       try {
-          const response = await api.get(`/cargo/${id}`)
+          const response = await api.get(`/offers/${id}`)
           return response.data
 
       } catch (error) {
@@ -55,10 +55,10 @@ export const find = createAsyncThunk<string, any>(
 )
 
 export const create = createAsyncThunk<any, any>(
-  'cargo/create',
+  'offer/create',
   async (values, thunkAPI) => {
       try {
-          const response = await api.post(`/cargo`, {...values})
+          const response = await api.post(`/offers`, {...values})
           return response.data
             
       } catch (error:any) {
@@ -68,10 +68,10 @@ export const create = createAsyncThunk<any, any>(
 )
 
 export const update = createAsyncThunk<any, any>(
-  'cargo/update',
+  'offer/update',
   async ({id, values}, thunkAPI) => {
       try {
-          const response = await api.post(`/cargo`,{id, ...values})
+          const response = await api.post(`/offers`,{id, ...values})
           return response.data
             
       } catch (error:any) {
@@ -81,12 +81,12 @@ export const update = createAsyncThunk<any, any>(
 )
 
 
-const cargoSlice = createSlice({
-  name: 'cargo',
+const offerSlice = createSlice({
+  name: 'offer',
   initialState,
   reducers: {
     refresh: (state, action) => {
-        state.cargoes = action.payload 
+        state.offers = action.payload 
     },
     clear: (state) => {
       state.message = ''
@@ -96,21 +96,29 @@ const cargoSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-
+    builder.addCase(findAll.pending, (state)=>{state.loading= LoadingState.LOADING})
+    builder.addCase(findAll.fulfilled, (state,action) => {
+      state.message = '' 
+      state.offers = action.payload 
+      state.loading = LoadingState.LOADED
+    })
+    builder.addCase(findAll.rejected, (state)=>{state.loading= LoadingState.ERROR})
+  
+    // FILTER
     builder.addCase(filters.pending, (state)=>{state.loading= LoadingState.LOADING})
     builder.addCase(filters.fulfilled, (state,action) => {
       state.message = '' 
-      state.cargoes = action.payload 
+      state.offers = action.payload 
       state.loading = LoadingState.LOADED
     })
     builder.addCase(filters.rejected, (state)=>{state.loading= LoadingState.ERROR})
-
+ 
     // FIND
     builder.addCase(find.rejected, (state)=>{state.loading= LoadingState.ERROR})
     builder.addCase(find.pending, (state)=>{state.loading= LoadingState.LOADING})
     builder.addCase(find.fulfilled, (state,action) => {
       state.message = '';
-      state.cargo = action.payload; 
+      state.offer = action.payload; 
       state.loading = LoadingState.LOADED;
     })
 
@@ -122,10 +130,10 @@ const cargoSlice = createSlice({
     })
     builder.addCase(create.fulfilled, (state,action) => {
       state.message = '' 
-      if(state.cargoes.length>0)
-        state.cargoes = [action.payload, ...state.cargoes] 
+      if(state.offers.length>0)
+        state.offers = [action.payload, ...state.offers] 
       else
-        state.cargoes = [action.payload] 
+        state.offers = [action.payload] 
 
       state.message = 'Başarı ile oluşturuldu'
       state.loading = LoadingState.LOADED
@@ -161,15 +169,14 @@ const cargoSlice = createSlice({
  * @param   {Object} state The root state
  * @returns {number} The current count
  */
-//export const Cargo = (state: CoreState) => state.cargo
-export const selectCargo = createSelector(
+//export const Offer = (state: CoreState) => state.offer
+export const selectOffer = createSelector(
   (state: CoreState) => ({
-    cargo: state.cargo.cargo,
-    filter: state.cargo.filter,
-    cargoes: state.cargo.cargoes,
-    message: state.cargo.message,
-    error: state.cargo.error,
-    loading: state.cargo.loading
+    offers: state.offer.offers,
+    filter: state.offer.filter,
+    message: state.offer.message,
+    error: state.offer.error,
+    loading: state.offer.loading
   }),
   (state) => state
 )
@@ -178,6 +185,6 @@ export const {
   refresh,
   setFilter,
   clear,
-} = cargoSlice.actions
+} = offerSlice.actions
  
-export default cargoSlice.reducer
+export default offerSlice.reducer
