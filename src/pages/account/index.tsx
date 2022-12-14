@@ -23,7 +23,7 @@ export const Profile = () => {
   const [account, setAccount] = useState();
   const {user}:any = useSelector(selectUser);
   const { definitions } = useSelector(selectDefinition)
- const { data, isLoading, error }:any = useQuery(`users/${user._id}`, null, 'get') 
+ const { data, isLoading, error }:any = useQuery(`users/${user._id?user._id:''}`, null, 'get') 
 
   useEffect(()=>{
       if(!definitions.load) dispatch(getDefinitions())

@@ -1,15 +1,16 @@
 # next
-- view & filter issue
+- [ ] elements
+- [ ] input sizes  
+- 🧊 view & filter issue
 - [react-paginate](https://github.com/AdeleD/react-paginate)
-- create form `other`
+- 🧊 create form `other`
 - responsive
-- address box error
-- defined
-- cargoItem modal
+- ✅ address box error
+- ✅ defined
+- ✅ cargoItem modal
 - no need to throw an error message for all buttons
 - auth page
 - phone
-- input sizes
 - file upload component err 
 - some responsives 
 - alignment
