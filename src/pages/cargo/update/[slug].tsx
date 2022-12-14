@@ -15,7 +15,7 @@ export const CargoUpdate = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const {slug} = router.query
-    const {cargo} = useSelector(selectCargo)
+    const {cargo}:any = useSelector(selectCargo)
     useEffect(()=>{
         dispatch(find(slug))
     },[])

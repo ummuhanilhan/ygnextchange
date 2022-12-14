@@ -44,7 +44,7 @@ export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
     const [param, setParam] = useState<any>({})
     const dispatch = useAppDispatch()
-    const { cargoes, error, loading } = useSelector(selectCargo)
+    const { cargoes, error, loading }:any = useSelector(selectCargo)
     useEffect(()=>{
         dispatch(filters(param))
     },[])

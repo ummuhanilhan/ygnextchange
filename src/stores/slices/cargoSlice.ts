@@ -120,7 +120,7 @@ const cargoSlice = createSlice({
       state.error=false;
       state.loading= LoadingState.LOADING
     })
-    builder.addCase(create.fulfilled, (state,action) => {
+    builder.addCase(create.fulfilled, (state:any,action) => {
       state.message = '' 
       if(state.cargoes.length>0)
         state.cargoes = [action.payload, ...state.cargoes] 
