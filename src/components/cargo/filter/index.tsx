@@ -76,7 +76,7 @@ const Filter = ({x, save }:any) => {
     const onSubmit: SubmitHandler<any> = data => {
         const options:any = {}
         if(data.load) options.load = data.load
-        dispatch(filters(options))
+        dispatch(filters(data))
 
     };
     const onError = (errors:any) => {}
