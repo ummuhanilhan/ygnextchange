@@ -1,5 +1,6 @@
 import TabLayout from "@layouts/TabLayout"
 import { SimplePagination } from "@shared/paginations"
+import { Empty } from "@utils/empty"
 import { CargoRoute, cargoTabMenu, dummyItems, items } from "@utils/mock"
 import classNames from "classnames"
 import React, { useEffect, useState } from "react"
@@ -77,14 +78,12 @@ empty,
                 
                 {!empty && loading && ( // spinner
                     <div className="flex flex-center w-full justify-center">
-                        {/** <img src="/assets/empty.svg" className="h-40"  /> */}
                         Loading...
                     </div>
                 )}
                 { empty && ( // [...items]?.length<=0 
-                    <h1>Sonuç yok</h1>
+                    <Empty /> // <h1>Sonuç yok</h1>
                 )}
-                
 
                 {[
                 // ...items
@@ -96,7 +95,9 @@ empty,
                         status={selected===1}  
                     />
                 ))}
-            <SimplePagination />
+            <SimplePagination 
+            
+            />
         </React.Fragment>
     )
 }

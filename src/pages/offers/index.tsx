@@ -14,6 +14,8 @@ import useSWR from "swr";
 import { useAppDispatch } from "stores/store";
 import { useSelector } from "react-redux";
 import { filters, findAll, selectOffer } from "stores/slices/offerSlice";
+import { LoadingState } from "stores/types";
+import { Empty } from "@utils/empty";
 
 export const Offers = () => {
     const [selected, setSelected] = React.useState(String(1));
@@ -30,18 +32,19 @@ export const OfferDummy = ({actionType}:any)=>{
     const [param, setParam] = useState([]);
     const dispatch = useAppDispatch()
     const { offers, error, loading } = useSelector(selectOffer)
+   
     useEffect(()=>{
         offers?.length <= 0 && dispatch(findAll('id')) 
-    },[offers]) 
+    },[]) 
    
     useEffect(()=>{
         dispatch(filters({
             route:actionType,
-            stauts:OfferReverse[selected]
+            status:OfferReverse[selected]
         }))
     },[actionType, selected])
 
-    const dummy = offers?.map((item:any,i:number)=>(
+    const Offers = offers?.map((item:any,i:number)=>(
         <CargoItem 
             item={item.cargo} 
             key={`vehicle-active-${i}`}  
@@ -63,17 +66,12 @@ export const OfferDummy = ({actionType}:any)=>{
                 type='vehicle'
             >
             <React.Fragment>
-            {offers?.length<=0 && <div>Empty</div>}
-            {error && <div>failed to load</div>}
-            { loading && <div>Loading...</div>}
-                    <div className={classNames({'hidden': OfferRoute.inshipment != parseInt(selected) })}>
-                   
-                        {dummy}
-                    </div>
-
-                    <div className={classNames({'hidden': OfferRoute.Accepted != parseInt(selected) })}>{dummy}</div>
-                    <div className={classNames({'hidden': OfferRoute.Pending != parseInt(selected) })}>{dummy}</div>
-
+                {offers?.length<=0 && loading!=LoadingState.LOADING && <Empty />}
+                {error && <div>failed to load</div>}
+                { loading==LoadingState.LOADING && <div>Loading...</div>}
+                <div className={classNames({'hidden': OfferRoute.inshipment != parseInt(selected) })}>{Offers}</div>
+                <div className={classNames({'hidden': OfferRoute.Accepted != parseInt(selected) })}>{Offers}</div>
+                <div className={classNames({'hidden': OfferRoute.Pending != parseInt(selected) })}>{Offers}</div>
             </React.Fragment>
             </TabLayout>
             <SimplePagination />

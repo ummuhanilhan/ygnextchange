@@ -10,6 +10,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "stores/store";
 import { findAll, selectVehicle } from "stores/slices/vehicleSlice";
 import { useSelector } from "react-redux";
+import { filters } from "../../stores/slices/vehicleSlice";
 
 
 export const Vehicle = () => {
@@ -18,9 +19,13 @@ export const Vehicle = () => {
     const dispatch = useAppDispatch()
     const { vehicles, error, loading } = useSelector(selectVehicle)
     useEffect(()=>{
-        vehicles?.length <= 0 && dispatch(findAll())
-        console.log('vehicles', vehicles)
-    },[vehicles])
+        dispatch(findAll())
+    },[])
+
+    useEffect(()=>{
+        dispatch(filters({}))
+    },[selected])
+
 
     return (
         <Frame>

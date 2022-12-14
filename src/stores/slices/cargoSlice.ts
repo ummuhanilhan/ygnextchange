@@ -4,7 +4,7 @@ import { CoreState } from 'stores/store'
 import { CargoProps, LoadingState } from '../types'
 
 const initialState: CargoProps = {
-  cargoes: [],
+  cargoes: undefined,
   cargo: {},
   filter: {
     from:'',

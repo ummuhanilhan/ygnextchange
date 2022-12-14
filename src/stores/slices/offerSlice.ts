@@ -34,7 +34,7 @@ export const filters = createAsyncThunk<any, any>(
         try {
             const response = await api.post(`/offers/filter`, values)
             return response.data
-  
+
         } catch (error) {
             return thunkAPI.rejectWithValue({ error: (error as Error).message })
         }

@@ -82,7 +82,7 @@ export type CargoState = {
 } | {}
 
 export type CargoProps = {
-    cargo?:CargoState|any
+    cargo?:CargoState|undefined
     filter?:any
     cargoes:CargoState[] | []
 } & LoadingProps
