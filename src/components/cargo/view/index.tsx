@@ -17,6 +17,7 @@ export const View = ({
     filter, 
     type, 
     tabs, 
+    empty,
     forwardRef, 
     param={} 
 }:any) => {
@@ -44,6 +45,7 @@ export const View = ({
                         selected={selected}
                         type={type}
                         error={error}
+                        empty={empty}
                         loading={loading}
                    />
                 </div>
@@ -58,7 +60,7 @@ selected,
 type,
 error,
 loading,
-
+empty,
 }:any) => {
     return(
         <React.Fragment>
@@ -73,13 +75,13 @@ loading,
 
                 {error && <h3>Bir şeyler ters gitti!</h3>}
                 
-                {loading && ( // spinner
+                {!empty && loading && ( // spinner
                     <div className="flex flex-center w-full justify-center">
                         {/** <img src="/assets/empty.svg" className="h-40"  /> */}
                         Loading...
                     </div>
                 )}
-                {[...items]?.length<=0 && (
+                { empty && ( // [...items]?.length<=0 
                     <h1>Sonuç yok</h1>
                 )}
                 

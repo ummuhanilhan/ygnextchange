@@ -28,6 +28,7 @@ import useSWR from "swr";
 import {useSelector} from "react-redux";
 import {useAppDispatch} from "stores/store";
 import {filters, selectCargo} from "stores/slices/cargoSlice";
+import { LoadingState } from "stores/types";
 
 
 export type FilterValues = {
@@ -45,23 +46,18 @@ export const CargoFilter = () => {
     const dispatch = useAppDispatch()
     const { cargoes, error, loading } = useSelector(selectCargo)
     useEffect(()=>{
-        cargoes.length <= 0 && dispatch(filters(param))
-        console.log('cargoes', cargoes)
-    },[cargoes, param])
-    const save = async (data:any) => {
-        await setParam(data);
-        console.log(data.load, param?.load);
-    }
-   
+        dispatch(filters(param))
+    },[])
+
     const content = (
         <DoubleFrame  id="cargoes" className="bottomize" >
-            <Filter {...props} save={save}  />
+            <Filter {...props}  />
             <View 
                 type='cargoes'
                 forwardRef={ref}
                 param={param}
                 data={cargoes} 
-                loading={cargoes.length<=0 && !error}
+                loading={loading==LoadingState.LOADING}
                 empty={cargoes?.length<=0}
                 error={error}
             />
@@ -74,8 +70,14 @@ const Filter = ({x, save }:any) => {
     const y = useScrollYPosition();
     const form = useForm<any>({});
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
+    const dispatch = useAppDispatch()
+   
+   
     const onSubmit: SubmitHandler<any> = data => {
-        save && save(data)
+        const options:any = {}
+        if(data.load) options.load = data.load
+        dispatch(filters(options))
+
     };
     const onError = (errors:any) => {}
     return (

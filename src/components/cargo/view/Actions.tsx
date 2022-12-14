@@ -14,7 +14,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
   
     const [fav, setFav] = useState(false)
     useEffect(()=>{
-        // isFaved()
+        isFaved()
     },[])
 
     const isFaved = async () => {

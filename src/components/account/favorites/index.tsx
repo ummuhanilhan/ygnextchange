@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Cargoes, View } from "@components/cargo/view";
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from "react";
+import { useQuery } from "@utils/helper";
 
 export type FavoriteValues = {
     password: string,
@@ -32,11 +33,7 @@ export const Favorites = () => {
         console.log(errors)
 
     };
-
-    /** 
-     * let data = [];
-    let isLoading = error = {}; 
-    // const { data, isLoading, error }:any = useQuery(`favorites`, null, 'get') 
+  const { data, isLoading, error }:any = useQuery(`favorites`, null, 'get') 
     
     const [favorites, setFavorites] = useState([])
     useEffect(()=>{
@@ -50,7 +47,6 @@ export const Favorites = () => {
         }) 
         setFavorites(favs);
     }
-     */
 
     return (
         <AccountLayout>

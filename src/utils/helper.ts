@@ -4,6 +4,7 @@ import slug from "slug";
 import { toast } from "react-toastify";
 import { setAutoFreeze } from 'immer';
 import api from "@utils/api";
+import useSWR from "swr";
 
 export const domain = process.env.DOMAIN;
 export const url = process.env.DOMAIN + '/api/v1/'
@@ -23,6 +24,21 @@ export const fetcher2 = ({url, values=null, method='post'}:any) => api({
     }
   }).then(res => res.data)
   
+  export const useQuery = (url:string, values:any=null, method='post') => {
+    const { data, error } = useSWR(url, ()=>api({
+      method,
+      url,
+      data:{
+          ...values,
+      }
+    }).then(res => res.data))
+  
+    return {
+      data,
+      loading: !error && !data,
+      error
+    }
+  }
 
 export function toSelectItem(items: any[], id:boolean=false) {
     return items?.map(m => ({ label: m.name, value: id? m._id : m.slug }))
