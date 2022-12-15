@@ -48,9 +48,61 @@
 ```
 
 ```javascript
+// 
 
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+```javascript
+<Classic 
+    status={status} 
+    close={setStatus} 
+    className='pt-4'
+    header={ModalHeader}
+    styles={defaultStyles}
+    overlay={defaultOverlays}
+>
+    <SimpleBar style={{ maxHeight: '95vh' }}>
+        <AddressCreate 
+            id='modal'
+            defaultAddress={address}
+            update={!!address}
+            footer={
+            <FormFooter 
+                close={()=>setStatus(!status)} 
+                className='mb-4' 
+            />
+            }
+            border  
+        />
+    </SimpleBar>
+</Classic>
+```
+
+```javascript
     //const { data, error } = useOffer({url: '/offers/filter?', data:param, });
-
     const { data, error, isLoading } = useSWR(`/offers/filter?route=${actionType}&status=${OfferReverse[selected]}`, fetcher, {
         revalidateOnFocus: false,
         revalidateOnMount:false,

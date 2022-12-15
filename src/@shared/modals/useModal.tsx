@@ -10,10 +10,13 @@ const modal = (val:string, values:any) => {
     switch (val) {
         case 'show-cargo':
             return <CargoModal {...values} />
+        break;
         case 'create-address':
             return <AddressCreate {...values} />
+        break;
         case 'addresses':
             return <AddressList {...values} />
+        break;
         case 'show-vehicle':
             return <VehicleModal {...values} />
         break;

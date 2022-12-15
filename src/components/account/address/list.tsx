@@ -12,6 +12,7 @@ import AddressCreate from "./create";
 import { FormFooter } from "@shared/footers";
 import { slugify } from "@utils/helper";
 import classNames from "classnames";
+import { useModal } from "stores/features/useModal";
 
 export const AddressList = ({select, border}:any) => {
     const [address, setAddress] = React.useState({});
@@ -23,33 +24,10 @@ export const AddressList = ({select, border}:any) => {
     React.useEffect(()=>{
         setData(addresses);
     },[addresses])
+    const open = useModal((state:any)=>state.open);
 
     return (
         <React.Fragment>  
-          <Classic 
-            status={status} 
-            close={setStatus} 
-            className='pt-4'
-            header={ModalHeader}
-            styles={defaultStyles}
-            overlay={defaultOverlays}
-          
-          >
-            <SimpleBar style={{ maxHeight: '95vh' }}>
-                <AddressCreate 
-                  id='modal'
-                  defaultAddress={address}
-                  update={!!address}
-                  footer={
-                   <FormFooter 
-                      close={()=>setStatus(!status)} 
-                      className='mb-4' 
-                    />
-                  }
-                  border  
-                />
-            </SimpleBar>
-          </Classic>
             <IconFrameCovered
                 icon={<GeoAlt className="menu-icon" />}
                 title='İletişim Ayarlarım'
@@ -64,7 +42,19 @@ export const AddressList = ({select, border}:any) => {
                     <p 
                     className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
                     items-center text-white rounded-md cursor-pointer'
-                    onClick={()=>setStatus(true)}
+                    onClick={()=>{
+                                // dispatch create address 
+                        open({ 
+                            type:'create-address',
+                            values:{
+                                id:'modal',
+                                border:true,
+                            },
+                            styles:{
+                                paddingTop:'1rem'
+                            },
+                         })
+                    }}
                     >Yeni Adres Ekle</p>
                 </div>
           
@@ -97,8 +87,21 @@ export const AddressList = ({select, border}:any) => {
                             >Sil</p>
                             <p 
                             onClick={()=>{
-                                setAddress(item)
-                                setStatus(!status)
+                                // dispatch update address 
+                                open({ 
+                                    type:'create-address',
+                                    values:{
+                                        id:'modal',
+                                        defaultAddress:item,
+                                        update:Object.entries(item)?.length>0,
+                                        border:true,
+                                    },
+                                    styles:{
+                                        paddingTop:'1rem'
+                                    },
+                                 })
+
+
                             }}
                             className='bg-yg-blue text-sm ml-1 text-white flex items-center 
                             hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
@@ -120,7 +123,6 @@ export const AddressList = ({select, border}:any) => {
                 ))}
                 </ul>
             </IconFrameCovered>
-
         </React.Fragment>
     )
 }

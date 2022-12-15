@@ -719,6 +719,7 @@ export const issues = [
 
 export const addressList:any = [
     {
+        _id:'1',
         title:'Ev adresi',
         directions:'Açık Adres',
         geolocation:{
@@ -752,6 +753,7 @@ export const addressList:any = [
         },
     },
     {
+    _id:'2',
     title:'İşyeri',
     directions:'Ana caddenin hemen üzeri',
     geolocation:{
@@ -784,8 +786,9 @@ export const addressList:any = [
             town:'',
         },
     },
-},
+    },
     {
+        "_id":"3",
         "title": "test",
         "place": {
             "address": "D260, 40300 Çiftlikmehmetağa/Akpınar/Kırşehir, Türkiye"
@@ -807,13 +810,6 @@ export const addressList:any = [
         }
     },
 ]
-
-
-
-
-
-
-
 
 
 export const dummyItem = {

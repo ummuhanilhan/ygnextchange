@@ -57,6 +57,7 @@ export const View = ({
 
 export const Cargoes = ({
 data,
+sub,
 selected,
 type,
 error,
@@ -67,7 +68,7 @@ empty,
         <React.Fragment>
                { data?.map((item:any,i:number)=>( // dummyItems
                     <CargoItem 
-                        item={item} 
+                        item={!sub ? item : item?.cargo} 
                         key={`cargo-item-${i}`} 
                         actionType={type} 
                         status={selected===1}  

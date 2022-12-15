@@ -75,9 +75,11 @@ export const addressSlice = createSlice({
     },
 
     removeAddress:(state,action) => {
-      let temp = state.addresses;
-      const newAddresses = temp.filter((a:any)=>a._id!=action.payload);
-      state.addresses=newAddresses;
+      if(action.payload){
+        let temp = state.addresses;
+        const newAddresses = temp.filter((a:any)=>a._id!=action.payload);
+        state.addresses=newAddresses;
+      }
     },
 
     updateAddress:(state,action) => {

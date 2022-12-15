@@ -19,7 +19,7 @@ export const CargoItem = ({item, actionType='', status}:any) => {
     return (
         <div className={classNames(
             'cargo-item mt-3 bg-white px-4 mb-3 rounded-lg py-3',
-            {'grayscale': item.progress=='outdated'}
+            {'grayscale': item?.progress=='outdated'}
         )}>
             <div className=''>
                 <div className='flex justify-between '>
@@ -30,7 +30,7 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                             border-yg-blue items-start h-min flex-center'> 
                                 <People className='fill-yg-blue' width={15} /> 
                                 <p className='text-yg-blue md:ml-1 text-sm'>
-                                    {item.corporate?'Kurumsal İlan':'Bireysel İlan'}
+                                    {item?.corporate?'Kurumsal İlan':'Bireysel İlan'}
                                 </p>
                             </div>
                        </li>
@@ -52,11 +52,11 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                         <li className='lg:flex-center inline-block float-left'>
                             <div className="flex items-start md:ml-1">  
                                 <div className='mt-[.15rem]'>
-                                {item.rent?.type ? 
+                                {item?.rent?.type ? 
                                 <CircleFill width={13} className='fill-yg-blue  ml--1' /> : 
                                 <CircleHalf width={13} className='fill-yg-blue  ml--1' /> }
                                 </div>
-                                <p className="text-gray-400 ml-1 text-sm">{item.rent?.type=='parsiel' ? 'Parsiyel':'Komple'}</p>
+                                <p className="text-gray-400 ml-1 text-sm">{item?.rent?.type=='parsiel' ? 'Parsiyel':'Komple'}</p>
                             </div>
                         </li>
                         
@@ -70,7 +70,7 @@ export const CargoItem = ({item, actionType='', status}:any) => {
             <div className="flex flex-col lg:flex-row justify-between --mt-[-1em]">
                 <div className={classNames(
                     'flex-[5] md:flex-[3] sm:mt-[-1.3em]',
-                    {'mt-6-':item.tax }
+                    {'mt-6-':item?.tax }
                 )}>
                 
                 <ul className='mt-1 grid grid-cols-1'>
@@ -89,30 +89,30 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                 <li className='flex w-screen mb-1'>
                     <div> <Truck width={17} className='fill-yg-blue mr-2 mb-1' /></div>
                     <p className="text-yg-blue text-sm mr-2">Araç Tipi:</p>
-                    <p className='text-gray-400 text-sm'> {defined(item.rent.vehicle)}</p>
+                    <p className='text-gray-400 text-sm'> {defined(item?.rent?.vehicle)}</p>
                 </li>
                 <li className='flex w-screen mb-1 --ml-8'>
                     <div> <Capslock width={17} className='fill-yg-blue mr-2 mb-1' /></div>
-                    <p className='text-gray-400 text-sm'>{item.payload?.weight?.size} {item.payload?.weight?.unit}</p>
+                    <p className='text-gray-400 text-sm'>{item?.payload?.weight?.size} {item?.payload?.weight?.unit}</p>
                 </li>
                 </ul>
 
                 {false && (
                     <React.Fragment>
                     {/*** SHIPMENT  **/}
-                    {item.progress == 'active' && (
+                    {item?.progress == 'active' && (
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-yg-green mr-1' /> 
                             Durum: Sevkiyat Devam Ediyor    
                         </p>
                     )}
-                     {item.progress == 'pending' && (
+                     {item?.progress == 'pending' && (
                         <p className='text-red-600 flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-red-600 mr-1' /> 
                             Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
                         </p>
                     )}
-                    {item.progress == 'complated' && (
+                    {item?.progress == 'complated' && (
                         <p className='flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='mr-1' /> 
                             Durum: Sevkiyat Tamamlandı    

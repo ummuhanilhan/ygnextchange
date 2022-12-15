@@ -17,9 +17,7 @@ const AddressCreatePage = () => {
                 icon={<GeoAlt className="menu-icon" />}
                 title='Adres Detay Bilgileri'
             >
-                <AddressCreate footer={<FormFooter close={()=>{
-                    // redirect
-                }} />} />
+                <AddressCreate />
             </IconFrameCovered>
         </AccountLayout>
     )

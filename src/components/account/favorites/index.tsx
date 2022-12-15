@@ -51,11 +51,12 @@ export const Favorites = () => {
     return (
         <AccountLayout>
             <Cargoes 
-                data={[]}
+                data={data}
                 selected={1}
+                sub
                 type='favorites'
-                error={{}}
-                isLoading={{}}
+                error={error}
+                isLoading={isLoading}
             />
          </AccountLayout>
     )

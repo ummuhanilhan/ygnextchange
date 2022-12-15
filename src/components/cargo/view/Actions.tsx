@@ -18,13 +18,15 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
     },[])
 
     const isFaved = async () => {
-          const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
-          //@ts-ignore
-          if(isfaved?.data?.result){
-              setFav(true)
-          }else{
-              setFav(false);
-          }
+        if(item){
+            const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
+            //@ts-ignore
+            if(isfaved?.data?.result){
+                setFav(true)
+            }else{
+                setFav(false);
+            }
+        }
     }
 
     const toggle = async () => {

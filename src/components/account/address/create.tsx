@@ -10,6 +10,8 @@ import { MapView } from "@shared/maps";
 import Communication from "./communication";
 import { useAppDispatch } from "stores/store";
 import { generateRandomNDigits } from "@utils/helper";
+import { FormFooter } from "@shared/footers";
+import { useModal } from "stores/features/useModal";
 
 export type AddressValues = {
     _id?:number | string,
@@ -42,8 +44,7 @@ export const addressValues =  addresses[0]
 
 export const AddressCreate = ({
   border=false, 
-  footer, 
-  defaultAddress, 
+   defaultAddress, 
   update,
   id, 
   type,
@@ -53,10 +54,6 @@ export const AddressCreate = ({
    * border
    */
   border?:boolean,
-  /** 
-   * border
-   */
-  footer:any,
   /** 
    * onloading data
   */
@@ -78,6 +75,7 @@ export const AddressCreate = ({
    */
    cb?:(data:any)=>void,
 }) => {
+    const close = useModal((state:any)=>state.close); 
     const dispatch = useAppDispatch();
     const form = useForm<AddressValues>({
       defaultValues: defaultAddress,
@@ -85,16 +83,17 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
-      cb && cb(data)
-      if(update)
+      console.log('update',defaultAddress)
+        if (update)
           dispatch(updateAddress(data));  
-      else 
+        else 
           dispatch(addAddress(data));
+        close()
     };
     const onError = (errors:any) => {
         console.log('err:',errors)
     };
-
+    
     const getAddr:any = useSelector(selectAddress);
     const addr = getAddr.addr;
 
@@ -149,9 +148,8 @@ export const AddressCreate = ({
                   />
               </div>
             </div>
-
             <Communication control={control} border />
-            {footer}
+            <FormFooter close={close} className='mb-4' />
       </form> 
     )
 }
