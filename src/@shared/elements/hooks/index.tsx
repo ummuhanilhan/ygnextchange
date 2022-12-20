@@ -542,8 +542,6 @@ export const InputAppendHook = ({
     )
 }
 
-
-
 export const PriceHook = ({
     control, 
     name,
@@ -572,8 +570,6 @@ export const PriceHook = ({
         />
     )
 }
-
-
 
 export const NumberHook = (props:any) => {
     let input = (
@@ -605,6 +601,3 @@ export const NumberHook = (props:any) => {
     )
     return input;
 };
-
-
-

@@ -80,8 +80,7 @@ export const Select = ({
           )}
           >
          
-            {!mini  &&
-            (
+            {!mini  && (
               selected ?
               <Label 
                   open={open}
@@ -97,9 +96,7 @@ export const Select = ({
                   placeholder={placeholder}
                   name={name}
               />
-            )
-            }
-
+            )}
 
             {mini && (
               <React.Fragment>
@@ -124,7 +121,6 @@ export const Select = ({
                 
               </React.Fragment>
             )}
-
             
             <div className="lay absolute left-0 right-0 bottom-0 top-0" 
             onClick={()=> !disabled && setOpen(!open)}></div>
@@ -184,7 +180,6 @@ export const Select = ({
                     </li>
                   )})}
               </SimpleBar>
-
 
             </ul>
           </Outside>

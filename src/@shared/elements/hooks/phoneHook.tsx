@@ -21,6 +21,7 @@ export const PhoneHook = ({
     verificiation?:boolean,
     success?:boolean,
     error?:string|object|boolean,
+    height?:string,
     size?: 'small' | 'medium' | 'large';
   }) => {
 

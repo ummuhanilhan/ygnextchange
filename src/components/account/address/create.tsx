@@ -4,7 +4,7 @@ import { FloatLabelHook } from "@shared/elements/hooks";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { useSelector } from "react-redux";
-import { addAddress, selectAddress, updateAddress } from "stores/slices/addressSlice";
+import { addAddress, create, update as up, selectAddress } from "stores/slices/addressSlice";
 import { addresses, item } from "@utils/mock";
 import { MapView } from "@shared/maps";
 import Communication from "./communication";
@@ -83,11 +83,11 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
-      console.log('update',defaultAddress)
+      console.log('update', update)
         if (update)
-          dispatch(updateAddress(data));  
+            dispatch(up({id:data._id, values:data})) // dispatch(updateAddress(data));
         else 
-          dispatch(addAddress(data));
+            dispatch(create(data)) // dispatch(addAddress(data));
         close()
     };
     const onError = (errors:any) => {

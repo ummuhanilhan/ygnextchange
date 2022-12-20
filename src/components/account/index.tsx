@@ -95,8 +95,7 @@ export const Account = ({uptodate}:any) => {
     const [selected, setSelected] = React.useState<number>(1)
     const router = useRouter()
     const { pid, pathname } = router.query
-    React.useEffect(()=>{},[pathname])
-
+    React.useEffect(()=>{},[pathname]) 
     const change = () => setType(!type);
     const form = useForm({
         //@ts-ignore
@@ -109,10 +108,7 @@ export const Account = ({uptodate}:any) => {
         console.log(uptodate._id, data)
         successMessage();
     };
-    const onError = (errors:any) => {
-        console.log(errors)
-
-    };
+    const onError = (errors:any) => { console.log(errors) };
     return (
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
@@ -122,8 +118,7 @@ export const Account = ({uptodate}:any) => {
             </form>
         </AccountLayout>
     )
-}
-
+} 
 
 Account.Layout = PrivateLayout
 
@@ -182,7 +177,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                         <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
                         <PhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
                      */}
-                    <PhoneHook name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                    <PhoneHook size='small' height='55px' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                     {/** verified **/}
                     <InputHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
                     {/** 
@@ -214,8 +209,6 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                         <TextareaHook className='mt-2'name="address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
                     </div>
                 </div>
-
-            
             </div>
         </li>
     )
@@ -236,7 +229,6 @@ export const Personal = ({control}:any) => {
         {status && (
              <div className="">
 
-        
              </div>
         )}
     </li>
@@ -274,7 +266,6 @@ export const DriverLicense = ({control, getValues}:any) => {
                         placeholder="Ehliyet Tescil Yılı" 
                     />                              
                 </div>
-    
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
                 <Upload name="driver.file" control={control} placeholder="Sürücü Belgesi Ekle"  />
                     <Upload name="driver.src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />

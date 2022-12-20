@@ -1,31 +1,34 @@
 import { IconFrameCovered, IconFrame, IconFrameDropdown } from "@components/frames/IconFrame";
-import React from "react";
+import React, { useEffect } from "react";
 import { GeoAlt } from "@shared/icons";
 import { Search } from "@shared/elements/searches";
 import Classic, { defaultOverlays, defaultStyles, ModalHeader } from "@shared/modals/classic";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useSelector } from "react-redux";
-import { addAddress, removeAddress, selectAddress, setAddr } from "stores/slices/addressSlice";
+import { addAddress, create, findAll, remove, removeAddress, selectAddress, setAddr, update } from "stores/slices/addressSlice";
 import { useAppDispatch } from "stores/store"; 
 import AddressCreate from "./create";
 import { FormFooter } from "@shared/footers";
-import { slugify } from "@utils/helper";
+import { add, slugify } from "@utils/helper";
 import classNames from "classnames";
 import { useModal } from "stores/features/useModal";
 
 export const AddressList = ({select, border}:any) => {
-    const [address, setAddress] = React.useState({});
-    const [status, setStatus] = React.useState(false);
+    const dispatch = useAppDispatch();
+    const {addresses} = useSelector(selectAddress)
     const [data, setData] = React.useState([]);
     const [query, setQuery] = React.useState('');
-    const {addresses} = useSelector(selectAddress)
-    const dispatch = useAppDispatch();
     React.useEffect(()=>{
+        getAddr()
+    },[])
+    const open = useModal((state:any)=>state.open);
+    const getAddr = async ( ) => {
+        await dispatch(findAll())
+    }
+    useEffect(()=>{
         setData(addresses);
     },[addresses])
-    const open = useModal((state:any)=>state.open);
-
     return (
         <React.Fragment>  
             <IconFrameCovered
@@ -43,7 +46,6 @@ export const AddressList = ({select, border}:any) => {
                     className='button bg-yg-blue py-2 px-10 flex justify-center text-sm
                     items-center text-white rounded-md cursor-pointer'
                     onClick={()=>{
-                                // dispatch create address 
                         open({ 
                             type:'create-address',
                             values:{
@@ -59,11 +61,11 @@ export const AddressList = ({select, border}:any) => {
                 </div>
           
                 <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-                {data
+                {data?.length>0 && data
                 .filter((item:any)=>{
-                        const title = slugify(item.title).includes(slugify(query))
-                        const addr = slugify(item.place.address).includes(slugify(query))
-                        return title || addr;
+                    const title = slugify(item.title).includes(slugify(query))
+                    const addr = slugify(item.place.address).includes(slugify(query))
+                    return title || addr;
                 })
                 .map((item:any,i:number)=>( // Array.from(Array(5))
                     <li className={classNames(
@@ -80,15 +82,16 @@ export const AddressList = ({select, border}:any) => {
                         </p>
                         <div className='flex justify-end w-full mt-2'>
                             <p 
-                            onClick={()=>dispatch(removeAddress(item._id))}
+                            onClick={()=>{
+                                dispatch(remove(item._id))// dispatch(removeAddress(item._id))
+                            }}
                             className='bg-yg-orange text-sm mr-1 text-white flex items-center 
                             hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange
                             px-4 py-1 rounded-md cursor-pointer' 
                             >Sil</p>
                             <p 
                             onClick={()=>{
-                                // dispatch update address 
-                                open({ 
+                                 open({ 
                                     type:'create-address',
                                     values:{
                                         id:'modal',

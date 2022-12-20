@@ -89,8 +89,7 @@ export interface FloatInputProps {
   /**
    * Options
   */
-     className?: string;
-
+     className?: string; 
 }
 
 export const FloatingInput = ({ 
@@ -114,8 +113,8 @@ export const FloatingInput = ({
   error, 
   success
 }:FloatInputProps) => {
-  // const [value, setValue] = React.useState('')
-  // const onChange = (val:string) => setValue(val)
+    // const [value, setValue] = React.useState('')
+    // const onChange = (val:string) => setValue(val)
 
     const [active, setActive] = React.useState(false);
     const [hide, setHide] = React.useState(true);
@@ -182,7 +181,7 @@ export const FloatingInput = ({
                 "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
                 active ? "font-medium " : " text-gray-500 ",
                 size=='small' ? (active ? 'text-xs' : 'text-sm pt-5') : '',
-                size=='medium' ? (active ? 'text-xs pt-3' : 'text-base pt-4') : '',
+                size=='medium' ? (active ? 'text-xs pt-2' : 'text-base pt-3') : '',
                 size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
               )}
               htmlFor={name}
@@ -280,7 +279,7 @@ export const FloatingPhone = ({
             "input relative rounded bg-white- w-full",
             border && 'border',
             'flex items-center justify-end',
-             size=='small' && 'h-[55px] ',
+             size=='small' && 'h-[50px] ',
              size=='medium' && 'h-[4em]',
              size=='large' && 'h-[4em]',
              {'active':active},
@@ -290,7 +289,7 @@ export const FloatingPhone = ({
         {active && (
             <div className={classNames(
               'country-code flex items-center absolute left-[.5rem]',
-              size=='small' && 'top-[1.7rem]',
+              size=='small' && 'top-[1.6rem]',
               size=='medium' && ' top-[1.8rem] ',
               size=='large' && ' top-[1.8rem] ',
             )}>
@@ -307,7 +306,7 @@ export const FloatingPhone = ({
               "p-2 pr-10 outline-none rounded-md w-full h-full-md bg-transparent transition-all duration-200 ease-in-out",
               border && 'border-gray-300 border-opacity-25',
               active ? "text-gray-500" : "",
-              size=='small' ? (active ? 'text-base pt-5' : 'pt-2') : '',
+              size=='small' ? (active ? 'text-base pt-7' : 'pt-2') : '',
               size=='medium' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               size=='large' ? (active ? 'text-base pt-6' : 'pt-2') : '',
               {'pl-[4rem]':!code.countryCode?.length&&value},

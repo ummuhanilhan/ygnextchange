@@ -4,6 +4,7 @@
     "paths": {
       "@shared/*": ["./@shared/*"],
       "@yukgetir-icons": ["./@shared/icons"],
+      "@packages": ["../@packages"],
       "@components/*": ["./components/*"],
       "@containers/*": ["./containers/*"],
       "@layouts/*": ["./layouts/*"],

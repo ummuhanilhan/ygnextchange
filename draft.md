@@ -90,10 +90,10 @@
             defaultAddress={address}
             update={!!address}
             footer={
-            <FormFooter 
-                close={()=>setStatus(!status)} 
-                className='mb-4' 
-            />
+                <FormFooter 
+                    close={()=>setStatus(!status)} 
+                    className='mb-4' 
+                />
             }
             border  
         />

@@ -20,8 +20,7 @@ import Outside from "@utils/useoutside";
 import { FaSearch } from "react-icons/fa"
 import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";
-import { useScrollYPosition } from "@shared/elements/hooks/usePosition";
-import { useFilter } from "stores/features/filter";
+ import { useFilter } from "stores/features/filter";
 import FormLayout from "@layouts/FormLayout";
 import { fetcher } from "@utils/helper";
 import useSWR from "swr";
@@ -29,7 +28,7 @@ import {useSelector} from "react-redux";
 import {useAppDispatch} from "stores/store";
 import {filters, selectCargo} from "stores/slices/cargoSlice";
 import { LoadingState } from "stores/types";
-
+import { useScrollYPosition } from "@utils/hooks/usePosition";
 
 export type FilterValues = {
     name: string,
