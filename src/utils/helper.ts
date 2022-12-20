@@ -6,9 +6,6 @@ import { setAutoFreeze } from 'immer';
 import api from "@utils/api";
 import useSWR from "swr";
 
-export const domain = process.env.DOMAIN;
-export const url = process.env.DOMAIN + '/api/v1/'
-export const storage =  domain + '/public/uploads'
 export const server = typeof window === "undefined";
 
 export function slugify(value:string='', options={}) {

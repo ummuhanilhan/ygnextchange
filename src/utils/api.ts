@@ -1,10 +1,7 @@
 import axios, {AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
-import { url } from './helper';
-
-console.log(url)
 
 const api = axios.create({
-    baseURL:url,
+    baseURL:process.env.DOMAIN + `/api/v1`,
     headers: {
         'Content-Type': 'application/json'
     }

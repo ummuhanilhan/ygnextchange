@@ -40,7 +40,7 @@ export const menuItems = [
     {
         title:'Destek Taleplerim',
         icon: <ChatLeftText className="menu-icon" />,
-        path:'/account/support'
+        path:'/support'
     },
     {
         title:'Sıkça Sorulan Sorular',
@@ -74,7 +74,7 @@ export const guestItems = [
     {
         title:'Destek Taleplerim',
         icon: <ChatLeftText className="menu-icon" />,
-        path:'/account/support'
+        path:'/support'
     },
     {
         title:'Sıkça Sorulan Sorular',

@@ -1,13 +1,9 @@
 const path = require('path')
 /** @type {import('next').NextConfig} */
-const prod = false
-
-let DOMAIN = `http://localhost:5005`;
-if(prod) DOMAIN = process.env.DOMAIN;
 
 const nextConfig = {
   env:{
-    DOMAIN,
+    DOMAIN:process.env.DOMAIN,
     GOOGLE_MAP_API_KEY:process.env.GOOGLE_MAP_API_KEY
 
   },
