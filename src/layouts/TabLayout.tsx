@@ -6,7 +6,7 @@ import React, { useState } from "react"
 export interface TabProps {
     type:'vehicle'|'cargo'|'offer'|'account',
     children?:JSX.Element,
-    selected:string,
+    selected:any,
     setSelected:Function,
     data:object[],
     routes:object,
@@ -14,20 +14,20 @@ export interface TabProps {
     pathname?: string
     frame?: boolean
     numeric?: boolean
+    filter?: string|number
 }
 
 export const TabLayout = (props:TabProps) => {
     const {selected, setSelected} = props;
     const router = useRouter();
-    // const [selected, setSelected] = React.useState(String(1))
     const {pathname} = router;
     const context = (
         <div id={props.type} className=''>
             <Tabs 
                 pathname={pathname}
                 {...props}
-                selected={props.numeric?selected:props.selected}
-                setSelected={props.numeric?setSelected:props.setSelected}
+                selected={selected}
+                setSelected={setSelected}
             />
             <React.Fragment>
                 {props.children} 

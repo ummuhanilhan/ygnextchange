@@ -8,7 +8,8 @@ export const FilterHeading = ({
     wide, 
     type,
     actionType,
-    callback
+    callback,
+    filter
 }:any) => {
 
     const items = (actionType:string) => {

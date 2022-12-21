@@ -13,7 +13,6 @@ export const Tabs = ({
 }:TabProps) => {
 
     const router = useRouter();
-    console.log('data',data);
     return (
         <ul className={classNames(
             'grid tabs my-4',
@@ -24,7 +23,7 @@ export const Tabs = ({
             {data?.map((item:any, i:number)=>(
                 <li 
                 key={`${type}-menu-${i}`} 
-                className={classNames({active: selected == item.id },`
+                className={classNames({active: selected?.filter == item.id },`
                 text-md flex flex-center items-center border border-transparent border-b-2 bg-white p-3 rounded-md
                 cursor-pointer mb-3-
                 `)} 
@@ -33,7 +32,7 @@ export const Tabs = ({
                         window.open(item.path, "_blank")    
                 }}
                 onClick={()=>{
-                    setSelected(item.id)
+                    setSelected({tab:item.id,filter:item.id})
                 }} >
                     {item.icon}
                     {item.title} {item.count && `(${item.count})` }

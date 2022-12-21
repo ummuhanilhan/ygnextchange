@@ -28,10 +28,10 @@ Offers.Layout = PrivateLayout;
 export default Offers;
 
 export const OfferDummy = ({actionType}:any)=>{
-    const [selected, setSelected] = React.useState(String(1));
+    const [selected, setSelected] = React.useState<any>({tab:String(1), filter:1}); 
     const [param, setParam] = useState([]);
-    const dispatch = useAppDispatch()
-    const { offers, error, loading } = useSelector(selectOffer)
+    const dispatch = useAppDispatch();
+    const { offers, error, loading } = useSelector(selectOffer);
    
     useEffect(()=>{
         // offers?.length <= 0 && dispatch(findAll('id')) 
@@ -40,12 +40,12 @@ export const OfferDummy = ({actionType}:any)=>{
     useEffect(()=>{
         dispatch(filters({
             route:actionType,
-            status:OfferReverse[selected]
+            status:OfferReverse[selected?.tab]
         }))
     },[actionType, selected])
 
-    const handleFilter = (slug:number) => {
-        setSelected(OfferRoute[slug])
+    const handleFilter = (slug:any) => {
+        setSelected({...selected, filter:OfferRoute[slug]})
     }
 
     const Offers = offers?.map((item:any,i:number)=>(
@@ -53,20 +53,22 @@ export const OfferDummy = ({actionType}:any)=>{
             item={item.cargo} 
             key={`vehicle-active-${i}`}  
             // @ts-ignore
-            actionType={`${actionType}-${OfferReverse[selected]}`} 
+            actionType={`${actionType}-${OfferReverse[selected?.tab]}`} 
         />
     ))
     return (
         <Frame>
             <FilterHeading 
                 type={actionType}
-                actionType={`${actionType}-${OfferReverse[selected]}`}
+                actionType={`${actionType}-${OfferReverse[selected?.tab]}`}
+                filter={selected?.filter}
                 callback={handleFilter}
             />
             <TabLayout 
                 selected={selected}
                 setSelected={setSelected}
                 data={offerTabMenu}
+                filter={selected?.filter}
                 routes={OfferRoute}
                 type='vehicle'
             >
@@ -74,9 +76,9 @@ export const OfferDummy = ({actionType}:any)=>{
                 {offers?.length<=0 && loading!=LoadingState.LOADING && <Empty />}
                 {error && <div>failed to load</div>}
                 { loading==LoadingState.LOADING && <div>Loading...</div>}
-                <div className={classNames({'hidden': OfferRoute.inshipment != parseInt(selected) })}>{Offers}</div>
-                <div className={classNames({'hidden': OfferRoute.Accepted != parseInt(selected) })}>{Offers}</div>
-                <div className={classNames({'hidden': OfferRoute.Pending != parseInt(selected) })}>{Offers}</div>
+                <div className={classNames({'hidden': OfferRoute.inshipment != parseInt(selected?.tab) })}>{Offers}</div>
+                <div className={classNames({'hidden': OfferRoute.Accepted != parseInt(selected?.tab) })}>{Offers}</div>
+                <div className={classNames({'hidden': OfferRoute.Pending != parseInt(selected?.tab) })}>{Offers}</div>
             </React.Fragment>
             </TabLayout>
             <SimplePagination />

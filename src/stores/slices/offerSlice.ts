@@ -105,13 +105,19 @@ const offerSlice = createSlice({
     builder.addCase(findAll.rejected, (state)=>{state.loading= LoadingState.ERROR})
   
     // FILTER
-    builder.addCase(filters.pending, (state)=>{state.loading= LoadingState.LOADING})
+    builder.addCase(filters.pending, (state)=>{
+      state.offers = []
+      state.loading= LoadingState.LOADING
+    })
     builder.addCase(filters.fulfilled, (state,action) => {
       state.message = '' 
       state.offers = action.payload 
       state.loading = LoadingState.LOADED
     })
-    builder.addCase(filters.rejected, (state)=>{state.loading= LoadingState.ERROR})
+    builder.addCase(filters.rejected, (state)=>{
+      state.offers = []
+      state.loading= LoadingState.ERROR
+    })
  
     // FIND
     builder.addCase(find.rejected, (state)=>{state.loading= LoadingState.ERROR})
