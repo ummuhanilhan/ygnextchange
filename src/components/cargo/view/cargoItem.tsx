@@ -97,22 +97,22 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                 </li>
                 </ul>
 
-                {false && (
+                {true && (
                     <React.Fragment>
                     {/*** SHIPMENT  **/}
-                    {item?.progress == 'active' && (
+                    {item?.progress == 'inshipmnet' && ( 
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-yg-green mr-1' /> 
                             Durum: Sevkiyat Devam Ediyor    
                         </p>
                     )}
-                     {item?.progress == 'pending' && (
+                     { item?.progress == 'pending_response' && ( 
                         <p className='text-red-600 flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-red-600 mr-1' /> 
                             Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
                         </p>
                     )}
-                    {item?.progress == 'complated' && (
+                    {item?.progress == 'complated' && ( // 
                         <p className='flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='mr-1' /> 
                             Durum: Sevkiyat Tamamlandı    

@@ -96,6 +96,7 @@ const offerSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    // FINDALL
     builder.addCase(findAll.pending, (state)=>{state.loading= LoadingState.LOADING})
     builder.addCase(findAll.fulfilled, (state,action) => {
       state.message = '' 
