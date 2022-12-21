@@ -75,6 +75,7 @@ const Filter = ({x, save }:any) => {
     const onSubmit: SubmitHandler<any> = data => {
         const options:any = {}
         if(data.load) options.load = data.load
+        if(data.unload) options.unload = data.unload
         dispatch(filters(data))
 
     };

@@ -221,29 +221,52 @@ export enum OfferRoute {
     'inshipment' = 1,
     'accepted' = 2,
     'pending' = 3,
+    'pending_approval' = 4,
+    'pending_response' = 5,
+    'pending_offer' = 6,
+    'outdated' = 7,
+    'all' = 8,
+    'seen' = 9,
+    'ready' = 10,
+    'complated' = 11,
     InShipment = 1,
     Accepted = 2,
     Pending = 3,
+    PendingApproval = 4,
+    PendingResponse = 5,
+    PendingOffer = 6,
+    Outdated = 7,
+    All = 8,
+    Seen = 9,
+    Ready = 10,
+    Complated = 11,
 }
 
 export const OfferReverse:any = {
     '1': 'inshipment',
     '2': 'accepted',
     '3': 'pending',
+    '4': 'pending_approval',
+    '5': 'pending_response',
+    '6': 'pending_offer',
+    '7': 'outdated',
+    '8': 'all',
+    '9': 'seen',
+    '10': 'ready',
+    '11': 'complated',
 }
-
 
 export const inShipmentIn = [
   { id:1, title:'Sevkiyatı Devam Edenler', slug:'inshipment'},
 ];
 
 export const acceptedIn = [
-  { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+  { id:1, title:'Sevkiyata Hazır Olanlar', slug:'ready'},
 ];
 
 export const pendingIn = [
-  { id:1, title:'Teklif Beklenenler', slug:'pending'},
-  { id:2, title:'Yanıt Bekleyenler', slug:'pending'},
+  { id:1, title:'Teklif Beklenenler', slug:'pending_offer'},
+  { id:2, title:'Yanıt Bekleyenler', slug:'pending_response'},
   { id:3, title:'Tümünü Göster', slug:'all'},
 ];
 
@@ -251,22 +274,22 @@ export const pendingIn = [
 
 export const inShipmentOut = [ // sevkiyatta (giden teklifler)
   { id:1, title:'Sevkiyatı Devam Edenler', slug:'inshipment'},
-  { id:2, title:'Teslimat Onayı Bekleyenler', slug:'pending'},
+  { id:2, title:'Teslimat Onayı Bekleyenler', slug:'pending_approval'},
   { id:3, title:'Sevkiyatı Tamamlananlar', slug:'complated'},
   { id:4, title:'Tümünü Göster', slug:'all'},
 ];
 
 export const acceptedOut = [ // kabul edilenler (giden teklifler)
-    { id:1, title:'Sevkiyata Hazır Olanlar', slug:'suitable'},
+    { id:1, title:'Sevkiyata Hazır Olanlar', slug:'ready'},
 ];
 
 export const pendingOut = [ // beklemede (giden teklifler)
   { id:1, title:'Beklemede Olanlar', slug:'pending'},
-  { id:2, title:'İlan Sahibi Tarafından Görülenler', slug:'pending'},
-  { id:3, title:'Kabul Edilmeyenler', slug:'pending'},
-  { id:4, title:'İlan Süresi Geçenler', slug:'pending'},
-  //{ id:1, title:'Teklif Beklenenler', slug:'pending'},
-  //{ id:2, title:'Yanıt Bekleyenler', slug:'pending'},
+  { id:2, title:'İlan Sahibi Tarafından Görülenler', slug:'seen'},
+  { id:3, title:'Kabul Edilmeyenler', slug:'rejected'},
+  { id:4, title:'İlan Süresi Geçenler', slug:'outdated'},
+  //{ id:1, title:'Teklif Beklenenler', slug:'pending_offer'},
+  //{ id:2, title:'Yanıt Bekleyenler', slug:'pending_response'},
   //{ id:3, title:'Tümünü Göster', slug:'all'},
 ];
 

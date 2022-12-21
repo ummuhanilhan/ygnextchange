@@ -8,13 +8,15 @@ export const Dropdown = ({
     filters,
     className,
     dropdwonClass,
+    callback,
  }:{
     title?:string
     filters?:object[]
-     selected?:number
-     className?:string
-     dropdwonClass?:string
+    selected?:number
+    className?:string
+    dropdwonClass?:string
     setSelected?:Function
+    callback?:Function
 }) => {
     const [selected, setSelected] = React.useState(3)
     const [open, setOpen] = React.useState(false)
@@ -55,6 +57,7 @@ export const Dropdown = ({
                             'hover:text-gray-900 py-1')} 
                             onClick={e=>{
                                 handle()
+                                callback && callback(item.slug)
                                 setSelected(item.id)
                              }} 
                             key={`menu-${item.id}`}

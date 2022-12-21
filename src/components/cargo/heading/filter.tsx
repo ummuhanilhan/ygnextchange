@@ -7,7 +7,8 @@ import { Selectes } from "../view"
 export const FilterHeading = ({
     wide, 
     type,
-    actionType
+    actionType,
+    callback
 }:any) => {
 
     const items = (actionType:string) => {
@@ -43,6 +44,7 @@ export const FilterHeading = ({
                 className='py-3 px-5'
                 dropdwonClass='left-0 top-[3.4rem]'
                 filters={items(actionType)}
+                callback={callback}
             />
             {wide && <Selectes />}
         </div>

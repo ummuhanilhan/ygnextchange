@@ -13,6 +13,7 @@ export const Tabs = ({
 }:TabProps) => {
 
     const router = useRouter();
+    console.log('data',data);
     return (
         <ul className={classNames(
             'grid tabs my-4',

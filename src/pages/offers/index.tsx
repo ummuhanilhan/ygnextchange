@@ -34,7 +34,7 @@ export const OfferDummy = ({actionType}:any)=>{
     const { offers, error, loading } = useSelector(selectOffer)
    
     useEffect(()=>{
-        offers?.length <= 0 && dispatch(findAll('id')) 
+        // offers?.length <= 0 && dispatch(findAll('id')) 
     },[]) 
    
     useEffect(()=>{
@@ -43,6 +43,10 @@ export const OfferDummy = ({actionType}:any)=>{
             status:OfferReverse[selected]
         }))
     },[actionType, selected])
+
+    const handleFilter = (slug:number) => {
+        setSelected(OfferRoute[slug])
+    }
 
     const Offers = offers?.map((item:any,i:number)=>(
         <CargoItem 
@@ -57,6 +61,7 @@ export const OfferDummy = ({actionType}:any)=>{
             <FilterHeading 
                 type={actionType}
                 actionType={`${actionType}-${OfferReverse[selected]}`}
+                callback={handleFilter}
             />
             <TabLayout 
                 selected={selected}
