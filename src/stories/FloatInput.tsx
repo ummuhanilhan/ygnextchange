@@ -61,17 +61,17 @@ export const FloatInput = ({
           onChange={(e:string)=>setValue(e)}
         />
 
-<FloatingLabelPhone
-        {...props}
-          className='w-80 bg-white'
+        <FloatingLabelPhone
+            {...props}
+            className='w-80 bg-white'
             border={border}
             value={value}
-          size='medium'
-          onChange={(e:string)=>setValue(e)}
+            size='medium'
+            onChange={(e:string)=>setValue(e)}
         />
 
         <FloatingLabelPhone
-          {...props}
+            {...props}
             active
             border={border}
             className='w-80 bg-white'

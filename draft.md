@@ -1368,3 +1368,113 @@ export const addFav = createAsyncThunk<any, any>(
       }
   }
 )
+
+
+
+
+
+
+"@nestjs/apollo": "^10.1.7",
+"apollo-server-express": "^3.10.2",
+"supertest": "^6.3.3",
+"ts-jest": "29.0.3",
+"@types/jest": "29.2.4",
+"@types/supertest": "^2.0.12",
+"@nestjs/testing": "^9.2.1",
+
+
+"ejs": "^3.1.8",
+"handlebars": "^4.7.7",
+"redis": "^4.5.1",
+
+npm install --save aws-serverless-express && npm install --save aws-lambda && npm install --save-dev serverless-plugin-typescript && npm install --save-dev serverless-plugin-optimize && npm install --save-dev serverless-offline plugin
+
+
+
+https://mqtxqwbboa.execute-api.us-east-1.amazonaws.com/prod/api/v1/definitions/type
+
+/**
+package:
+excludeDevDependencies: true
+exclude:
+  - node_modules/**
+  - .git/**
+  - .vscode/**        
+
+  
+  package:
+    exclude:
+      - node_modules/libphonenumber-js/**
+
+**/
+
+// lambda.ts
+import { Handler, Context } from 'aws-lambda';
+import { Server } from 'http';
+import { createServer, proxy } from 'aws-serverless-express';
+import { eventContext } from 'aws-serverless-express/middleware';
+
+import { NestFactory } from '@nestjs/core';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import { AppModule } from './app.module';
+
+const express = require('express');
+
+// NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely
+// due to a compressed response (e.g. gzip) which has not been handled correctly
+// by aws-serverless-express and/or API Gateway. Add the necessary MIME types to
+// binaryMimeTypes below
+const binaryMimeTypes: string[] = [];
+
+let cachedServer: Server;
+
+async function bootstrapServer(): Promise<Server> {
+ if (!cachedServer) {
+    const expressApp = express();
+    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp))
+    nestApp.use(eventContext());
+    await nestApp.init();
+    cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
+ }
+ return cachedServer;
+}
+
+export const handler: Handler = async (event: any, context: Context) => {
+ cachedServer = await bootstrapServer();
+ return proxy(cachedServer, event, context, 'PROMISE').promise;
+}
+
+
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "preserveConstEnums": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "public",
+    "docs/**/*"
+  ]
+}
+
+

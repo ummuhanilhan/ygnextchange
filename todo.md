@@ -1,7 +1,31 @@
 # next
-- [ ] may addres box broken
-- [ ] elements
-- [ ] input sizes  
+- [ ] total price doesn't save 
+- [ ] input pricing come out 0₺ 
+- [ ] auth pages responses (toastbar, redirection)
+- [ ] select dropdown  z-index (vehicle page)
+
+- [ ] offer actions
+
+- [ ] cargo create form response toastbar message
+- [ ] vehicle create response toastbar message
+
+- [ ] cargoes filter detail
+- [ ] cargoes vehicles
+
+- [ ] paginations  
+
+- [ ] err messages in english 
+- [ ] codebase input elements
+
+- [x] send offer is pulling all vehicles (shoul be only owners)
+
+- [x] addressbox modal
+- [x] input sizes  
+- [x] elements
+- [x] select sizes
+- [x] may addres box broken
+- [x] select input append z-index
+
 - 🧊 view & filter issue
 - [react-paginate](https://github.com/AdeleD/react-paginate)
 - 🧊 create form `other`

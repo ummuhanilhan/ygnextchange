@@ -44,7 +44,7 @@ export const addressValues =  addresses[0]
 
 export const AddressCreate = ({
   border=false, 
-   defaultAddress, 
+  defaultAddress, 
   update,
   id, 
   type,
@@ -75,6 +75,8 @@ export const AddressCreate = ({
    */
    cb?:(data:any)=>void,
 }) => {
+  console.log('default', defaultAddress)
+
     const close = useModal((state:any)=>state.close); 
     const dispatch = useAppDispatch();
     const form = useForm<AddressValues>({
@@ -83,11 +85,14 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
-      console.log('update', update)
-        if (update)
-            dispatch(up({id:data._id, values:data})) // dispatch(updateAddress(data));
-        else 
-            dispatch(create(data)) // dispatch(addAddress(data));
+       if(cb){
+        cb(data)
+       }else{
+          if (update)
+              dispatch(up({id:data._id, values:data})) // dispatch(updateAddress(data));
+          else 
+              dispatch(create(data)) // dispatch(addAddress(data));
+       }
         close()
     };
     const onError = (errors:any) => {
@@ -102,7 +107,7 @@ export const AddressCreate = ({
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 -h-[350px]'>
                 <div className='h-full'>
                      {/** <FloatLabelHook name="place.address" border={border} type="text" className='mb-2' placeholder="Ankara Şirket Adresim" example="" control={control} />  **/}
-                      <FloatLabelHook name="title" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
+                      <FloatLabelHook name="place.title" border={border} type="text" className='mb-2' placeholder="Adres Başlığı" example="" control={control} />
                       <FloatLabelHook name="place.address" border={border} type="text" disabled
                       placeholder="Haritadan Seçili Adres Detayları" className='mb-2' example="" control={control} />
                       <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
@@ -130,7 +135,7 @@ export const AddressCreate = ({
                           />
                       </div>
                       <FloatLabelHook
-                          name="directions"
+                          name="place.description"
                           type="text"
                           border={border}
                           className=''

@@ -3,7 +3,7 @@ import { Calendar, ChevronRightClosed, Clock, People, PinAngle } from "@yukgetir
 import classNames from "classnames"
 import { Actions } from "./Actions"
 
-export const VehicleItem = ({item, type='normal', actionType}:any) => {
+export const VehicleItem = ({item, cargo, type='normal', actionType}:any) => {
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-4',
@@ -58,7 +58,7 @@ export const VehicleItem = ({item, type='normal', actionType}:any) => {
                         </li>
                     </ul>
                 </div>
-               <Actions item={item} actionType={actionType?actionType:'vehicle-active'} />
+               <Actions item={item} cargo={cargo}  actionType={actionType?actionType:'vehicle-active'} />
             </div>
         </div>
     )

@@ -122,7 +122,7 @@ const cargoSlice = createSlice({
     })
     builder.addCase(create.fulfilled, (state:any,action) => {
       state.message = '' 
-      if(state.cargoes.length>0)
+      if(state.cargoes?.length>0)
         state.cargoes = [action.payload, ...state.cargoes] 
       else
         state.cargoes = [action.payload] 

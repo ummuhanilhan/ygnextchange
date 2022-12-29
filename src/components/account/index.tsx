@@ -160,7 +160,9 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     <div>
                       <IconFrame icon={<TextareaResize className="menu-icon" />} title="Üyelik Tipi" />
                       <div 
-                        onClick={()=>setCorporate(!corporate)}
+                        onClick={()=>{
+                            // setCorporate(!corporate)
+                        }}
                         className="type border border-yg-blue rounded-md p-2 py-4 w-full cursor-pointer"
                         >
                             <p className="text-yg-blue">{corporate ? 'Kurumsal':'Bireysel'} Üyelik</p>
@@ -177,7 +179,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                         <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
                         <PhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
                      */}
-                    <PhoneHook size='small' height='55px' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                    <PhoneHook size='medium' height='55px' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                     {/** verified **/}
                     <InputHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
                     {/** 
@@ -254,7 +256,7 @@ export const DriverLicense = ({control, getValues}:any) => {
                     <TagHook 
                          name='driver.licence'
                          placeholder="Sürücü Bilgilerim" 
-                         size='small'
+                         size='medium'
                          id='_id'
                          label='name'
                          items={definitions.driver}
@@ -292,8 +294,8 @@ export const Healthy = ({control}:any) => {
             
             {status&&(
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <FloatLabelHook name="health.blood" type="text" placeholder="Kan Grubu" example="" control={control} />
-                    <FloatLabelHook name="health.chronic_disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
+                    <FloatLabelHook size='medium' name="health.blood" type="text" placeholder="Kan Grubu" example="" control={control} />
+                    <FloatLabelHook size='medium' name="health.chronic_disease" type="text" placeholder="Kronik Rahatsızlığınız Varsa Belirtiniz" example="" control={control} />
                 </div>
             )}
         </li>

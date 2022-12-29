@@ -12,6 +12,8 @@ import { Search } from "@shared/elements/searches";
 import { SimplePagination } from "@shared/paginations";
 import { useAppDispatch } from "stores/store";
 import { findAll, selectVehicle } from "stores/slices/vehicleSlice";
+import { Empty } from "@utils/empty";
+import { LoadingState } from "stores/types";
 
 export const VehicleModal = ({item}:any) => {
 
@@ -27,7 +29,7 @@ export const VehicleModal = ({item}:any) => {
     useEffect(()=>{
         vehicles?.length <= 0 && dispatch(findAll())
         console.log('vehicles', vehicles)
-    },[vehicles])
+    },[])
    
 
 
@@ -48,9 +50,17 @@ export const VehicleModal = ({item}:any) => {
                     >Yeni Adres Ekle</p>
                 </div>
                 <SimpleBar style={{ maxHeight: '80vh' }}>
-                        {vehicles?.map((item:any,i:number)=>(
+                        { loading == LoadingState.LOADING && (
+                            <div>Loading...</div>
+                        ) }
+
+                        { loading != LoadingState.LOADING && vehicles?.length<=0 && (
+                            <Empty />
+                        ) }
+                        {vehicles?.map((vehicle:any,i:number)=>(
                             <VehicleItem 
-                                item={item} 
+                                item={vehicle} 
+                                cargo={item} 
                                 key={`vehiclle-active-${i}`} 
                                 actionType='vehicle-modal'
                                 callback={()=>{

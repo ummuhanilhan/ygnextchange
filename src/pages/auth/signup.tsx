@@ -7,20 +7,18 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook } from "@shared/elements/hooks";
 import { PhoneHook } from "@shared/elements/hooks/phoneHook";
+import { useAppDispatch } from "stores/store";
+import { signup } from "stores/slices/authSlice";
 
 export type SignupValues = {
     name: string,
     email: string,
-    phone: string,
     password: string,
     confirm: string,
-    fullname: string,
-    company: string,
-    type: boolean,
 };
 
-
 export const Signup = () =>{
+    const dispatch = useAppDispatch();
     const [status, setStatus] = React.useState(false)
     const [type, setType] = React.useState(false);
     const change = () => setType(!type);
@@ -28,23 +26,18 @@ export const Signup = () =>{
         defaultValues: {
             name:'',
             email:'',
-            phone:'',
             password:'',
-            confirm:'',
-            fullname:'',
-            company:'',
-            type:false,
+            // confirm:'',
         },
        // resolver: yupResolver(signupSchema),
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<SignupValues> = data => {
-        console.log(data)
-        alert(JSON.stringify(data))
+    const onSubmit: SubmitHandler<SignupValues> = (data:any) => {
+        delete data.aggrement
+        dispatch(signup({...data, type: data.type ? 'individual' : 'corporate' }))
     };
     const onError = (errors:any) => {
-        console.log(errors)
-
+        console.log(errors) 
     };
 
     return (
@@ -70,21 +63,21 @@ export const Signup = () =>{
                         } )} onClick={change}>Kurumsal üyelik</li>
                     </ul>
                     <div className="grid grid-cols-2 gap-2 w-full">
-                        <FloatLabelHook size='small' className='' name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
-                        <FloatLabelHook size='small' className='' name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
-                        <PhoneHook size='small' name="phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
+                        <FloatLabelHook size='small' className='' name='name' type="text" placeholder={type? 'İsim Soyisim': 'Firma Ünvanı'} example="" control={control} />
+                        <FloatLabelHook size='small' className='' name="slug" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
+                        <PhoneHook size='small' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                         <FloatLabelHook size='small' className='' name="email" type="text" placeholder="Eposta" example="orn: deneme@gmail.com" control={control} />
                         <FloatLabelHook size='small' className='' name="password" type="password" placeholder="Şifre" example="" control={control} />
                         <FloatLabelHook size='small' className='' name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
                     </div>
                     <div className="my-4 flex items-start flex-col gap-2 justify-center w-full">
-                        <CheckboxHook name="terms" control={control}>
+                        <CheckboxHook name="aggrement.terms" control={control}>
                             <p className="">
                                 <span className="text-blue-500 cursor-pointer"> Kullanıcı & Üyelik Sözleşmesi </span>
                                 'ni okudum, anladım ve kabul ediyorum.
                             </p>
                         </CheckboxHook>
-                        <CheckboxHook name="kvkk" control={control} >
+                        <CheckboxHook name="aggrement.kvkk" control={control} >
                             <p className="flex items-start justify-center">
                                 <span className="text-blue-500 cursor-pointer"> KVKK Metni</span>
                                 'ni ve 
@@ -92,7 +85,7 @@ export const Signup = () =>{
                                 'ni okudum, anladım ve kabul ediyorum.
                             </p>
                         </CheckboxHook>
-                        <CheckboxHook name="campaign" control={control}>
+                        <CheckboxHook name="aggrement.campaign" control={control}>
                             <p className="">
                                 Kampanya ve tanıtımlar için Email, Telefon ve Sms ile iletişim kurulmasını kabul ediyorum.
                             </p>

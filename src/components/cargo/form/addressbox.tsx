@@ -56,13 +56,15 @@ export const AddressBox = ({
                 <div className="bg-yg-orange p-2 px-4 text-white rounded-md  
                 cursor-pointer text-sm"
                 onClick={()=>{
-                    open({type:'create-address', styles:{padding:0, height:'fit-content' }, values:{
+                    open({type:'create-address', styles:{ height:'fit-content' }, values:{
                         border:true,
                         id:'cargo-modal',  update: !!addr, defaultAddress: addr, type ,
                         footer:<FormFooter />,
                         cb:(data:any) => {
+                            const {geolocation, place, direction, contact } = data;
+
                             if(data){
-                                setValue(`shipping.${type}`, data)
+                                setValue(`shipping.${type}`,  {geolocation, place, direction, contact } )
                                 setAddr(data);
                             }
                         }
@@ -72,10 +74,12 @@ export const AddressBox = ({
                 <div className="bg-yg-blue p-2 px-4 ml-2 text-white rounded-md 
                 cursor-pointer text-sm" 
                 onClick={()=>{
-                    open({type:'addresses', styles:{padding:0, height:'fit-content' }, values:{
+                    open({type:'addresses', styles:{ height:'fit-content' }, values:{
                         border:true,
-                        select:(data:any)=>{
-                            setValue(`shipping.${type}`, data)
+                        cb:(data:any)=>{
+                            const {geolocation, place, direction, contact } = data;
+
+                            setValue(`shipping.${type}`,  {geolocation, place, direction, contact })
                             setAddr(data);
                         }                        
                     } })

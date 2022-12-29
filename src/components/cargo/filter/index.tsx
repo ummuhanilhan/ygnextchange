@@ -4,31 +4,31 @@ import React, { useEffect, useState } from "react";
 import SimpleBar from "simplebar-react";
 import 'simplebar-react/dist/simplebar.min.css';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
 import { View } from "../view";
 import classNames from "classnames";
 import { DoubleFrame } from "@components/frames/MainFrame";
 import { Search } from "@shared/elements/searches";
 import Turkiye from '@utils/dummy/turkiye.json'
-import { initial, tagItems } from "@utils/mock";
-import { Tag } from "@shared/elements/tags";
-import { Select } from "@shared/elements/selects";
-import { IconFrame, IconDropdown } from "@components/frames/IconFrame"
-import { FloatLabelHook, SelectHook } from "@shared/elements/hooks";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Outside from "@utils/useoutside";
-import { FaSearch } from "react-icons/fa"
-import { TagHook } from "@shared/elements/hooks/tagHook";
 import { definitions } from "@utils/dummy/definitions";
- import { useFilter } from "stores/features/filter";
-import FormLayout from "@layouts/FormLayout";
-import { fetcher } from "@utils/helper";
-import useSWR from "swr";
+import { TagHook } from "@shared/elements/hooks/tagHook";
 import {useSelector} from "react-redux";
 import {useAppDispatch} from "stores/store";
 import {filters, selectCargo} from "stores/slices/cargoSlice";
 import { LoadingState } from "stores/types";
 import { useScrollYPosition } from "@utils/hooks/usePosition";
+import { FloatLabelHook, SelectHook } from "@shared/elements/hooks";
+import { IconFrame, IconDropdown } from "@components/frames/IconFrame"
+import { joiResolver } from "@hookform/resolvers/joi";
+import { initial, tagItems } from "@utils/mock";
+import { Tag } from "@shared/elements/tags";
+import { Select } from "@shared/elements/selects";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Outside from "@utils/useoutside";
+import { FaSearch } from "react-icons/fa"
+import { useFilter } from "stores/features/filter";
+import FormLayout from "@layouts/FormLayout";
+import { fetcher } from "@utils/helper";
+import useSWR from "swr";
 
 export type FilterValues = {
     name: string,

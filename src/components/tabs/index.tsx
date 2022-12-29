@@ -8,6 +8,7 @@ export const Tabs = ({
     setSelected,
     type,
     data,
+    filterize,
     routes,
     numeric
 }:TabProps) => {
@@ -23,7 +24,7 @@ export const Tabs = ({
             {data?.map((item:any, i:number)=>(
                 <li 
                 key={`${type}-menu-${i}`} 
-                className={classNames({active: selected?.filter == item.id },`
+                className={classNames({active: (filterize ? selected?.filter : selected) == item.id },`
                 text-md flex flex-center items-center border border-transparent border-b-2 bg-white p-3 rounded-md
                 cursor-pointer mb-3-
                 `)} 
@@ -32,7 +33,8 @@ export const Tabs = ({
                         window.open(item.path, "_blank")    
                 }}
                 onClick={()=>{
-                    setSelected({tab:item.id,filter:item.id})
+                    filterize && setSelected({tab:item.id,filter:item.id})
+                    !filterize && setSelected(item.id)
                 }} >
                     {item.icon}
                     {item.title} {item.count && `(${item.count})` }

@@ -29,7 +29,7 @@ export const Shipping = ({
                 </TitleFrame>
                 <TitleFrame title="Boşaltma Zamanı">
                     <SelectHook 
-                        name="shipping.time" 
+                        name="shipping.time"  
                         control={control} 
                         placeholder="Gün Aralığı Seçiniz" 
                         size='medium'

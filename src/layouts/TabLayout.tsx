@@ -15,6 +15,7 @@ export interface TabProps {
     frame?: boolean
     numeric?: boolean
     filter?: string|number
+    filterize?: boolean
 }
 
 export const TabLayout = (props:TabProps) => {

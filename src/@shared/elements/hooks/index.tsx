@@ -10,11 +10,12 @@ import { CloudArrowUp } from "@shared/icons"
 import { FiX, FiXCircle } from "react-icons/fi"
 import { Toggle } from "../switchers"
 import { cities } from "@utils/mock"
-import { FloatingInput, FloatingPhone } from "../inputs";
+import { FloatingInput } from "../inputs";
 import { Bordered, InputAppend, InputGroup, Select } from "../groups";
 import classNames from "classnames";
 import { Avatar } from "../uploads";
 import { PriceCalculate } from "@components/cargo/form/payload";
+import { FloatingPhone } from "../phones";
 
 export const FloatLabelHook = ({
     control, 
@@ -62,7 +63,7 @@ export const FloatLabelHook = ({
                     name={name}
                     height={height}
                     border={border}
-                    size={size||'small'}
+                    size={size||'medium'}
                     disabled={disabled}
                     // textarea
                     {...rest}

@@ -140,7 +140,7 @@ export const Select = ({
 
             <ul className={classNames(
               'select-dropdown absolute top-16 mt-1 right-0',
-              'bg-white h-auto z-30 rounded-md w-full',
+              'bg-white h-auto z-50 rounded-md w-full',
               'drop-shadow-md overflow-hidden',
               {'hidden':!open}
             )}>

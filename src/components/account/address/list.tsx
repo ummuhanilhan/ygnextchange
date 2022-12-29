@@ -14,7 +14,7 @@ import { add, slugify } from "@utils/helper";
 import classNames from "classnames";
 import { useModal } from "stores/features/useModal";
 
-export const AddressList = ({select, border}:any) => {
+export const AddressList = ({cb, border}:any) => {
     const dispatch = useAppDispatch();
     const {addresses} = useSelector(selectAddress)
     const [data, setData] = React.useState([]);
@@ -73,7 +73,7 @@ export const AddressList = ({select, border}:any) => {
                         {'border': border}
                     )}
                     key={`address-${i}`}>
-                        <h5 className='text-yg-blue text-sm font-medium'>{item.title?item.title:'Adres Başlığı'}</h5>
+                        <h5 className='text-yg-blue text-sm font-medium'>{item?.place?.title? item.place.title:'Adres Başlığı'}</h5>
                         <p className='text-gray-900 text-sm'>{item.place?.address}</p>
                         <p className='text-gray-400 text-sm'>
                             {item.contact?.name} 
@@ -98,6 +98,11 @@ export const AddressList = ({select, border}:any) => {
                                         defaultAddress:item,
                                         update:Object.entries(item)?.length>0,
                                         border:true,
+                                        cb:(data:any)=>{
+                                            console.log('direction',data)
+                                             cb && cb(data);
+                                        }
+ 
                                     },
                                     styles:{
                                         paddingTop:'1rem'
@@ -110,10 +115,10 @@ export const AddressList = ({select, border}:any) => {
                             hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
                             px-4 py-1 rounded-md cursor-pointer'>Düzenle</p>
 
-                            {select && (
+                            {cb && (
                                 <p 
                                     onClick={()=>{
-                                        select && select(item);
+                                        cb && cb(item);
                                     }}
                                     className='bg-yg-blue text-sm ml-1 text-white flex items-center 
                                     hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue

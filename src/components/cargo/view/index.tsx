@@ -13,44 +13,40 @@ export const View = ({
     data,
     error,
     loading,
-    selected,
-    setSelected,
     filter, 
     type, 
     tabs, 
     empty,
     forwardRef, 
-    param={} 
+    param={},
+    selected,
+    setSelected, 
 }:any) => {
 
     return ( 
-        <React.Fragment>
-          
-            <div 
-                ref={forwardRef}
-                className={classNames('view mt-4- rounded-lg',
-                'bg-gray-50 h-full',  
-                {'lg:ml-[18.8em] p-3':!wide}
-                )}> 
-                    <Heading filter={filter} />
-                    {
-                        tabs &&
-                        <Tabs 
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                    }
-
-                   <Cargoes 
-                        data={data}
-                        selected={selected}
-                        type={type}
-                        error={error}
-                        empty={empty}
-                        loading={loading}
-                   />
-                </div>
-        </React.Fragment>
+    <React.Fragment>
+    <div 
+        ref={forwardRef}
+        className={classNames('view mt-4- rounded-lg',
+        'bg-gray-50 h-full pt-4',  
+        {'lg:ml-[18.8em] p-3':!wide}
+        )}> 
+            <Heading filter={filter} />
+            { tabs && <Tabs 
+                selected={selected}
+                setSelected={setSelected}
+                filterize
+            />}
+            <Cargoes 
+                data={data}
+                selected={selected}
+                type={type}
+                error={error}
+                empty={empty}
+                loading={loading}
+            />
+        </div>
+    </React.Fragment>
 
     )
 }

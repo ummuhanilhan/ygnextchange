@@ -235,7 +235,6 @@ export const formSuite = (obj:any) => {
 }
 
 
-
 export const notify = (title:string='', obj:object={}) =>  toast(title||'🦄 Wow so easy!', {
     position: "bottom-right",
     autoClose: 5000,

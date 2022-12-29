@@ -70,6 +70,7 @@ export const OfferDummy = ({actionType}:any)=>{
                 data={offerTabMenu}
                 filter={selected?.filter}
                 routes={OfferRoute}
+                filterize
                 type='vehicle'
             >
             <React.Fragment>

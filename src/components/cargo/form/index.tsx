@@ -58,7 +58,7 @@ export const CargoCreate = ({uptodate, init}:any) => {
         else
             dispatch(create(data))
 
-        if( loading == LoadingState.LOADED) router.push('/')
+        if( loading == LoadingState.LOADING) router.push('/')
        // success()
     };
     const onError = (errors:any) => {

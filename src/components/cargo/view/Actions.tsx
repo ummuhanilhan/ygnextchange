@@ -8,10 +8,11 @@ import { useSelector } from "react-redux"
 import { isfav, selectFavorite } from "stores/slices/favoriteSlice"
 import api from "@utils/api"
 import { slugify } from "@utils/helper"
+import { create } from "stores/slices/offerSlice"
 
 
-export const Actions = ({item, isAuth, actionType, status}:any) => {
-  
+export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
+    const dispatch = useAppDispatch()
     const [fav, setFav] = useState(false)
     useEffect(()=>{
         isFaved()
@@ -71,7 +72,7 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
         return children
     }
 
-    const {open}:any = useModal(state=>state);
+    const {open, close}:any = useModal(state=>state);
 
     const show = (
     <Action 
@@ -204,8 +205,15 @@ export const Actions = ({item, isAuth, actionType, status}:any) => {
                     <Action title='Varsayılan Seç' color='orange' path='#' />
                     <Action onClick={()=>{
                         // create offer
+                        
+                        console.log(item._id, cargo._id)
+                        if(cargo?._id){
+                         dispatch(create({cargo:cargo._id,vehicle:item._id}))
+                        }
+                        
                         // close modal
-                        alert('offered')
+                        // offered
+                        close()
                     }} title='Teklif Gönder' color='blue' path='#' />
                  </Button>)
             break;            
