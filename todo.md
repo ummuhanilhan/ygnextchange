@@ -1,4 +1,6 @@
 # next
+- [ ] change account form by user type
+- [ ] disable button after dispatch
 - [ ] total price doesn't save 
 - [ ] input pricing come out 0₺ 
 - [ ] auth pages responses (toastbar, redirection)
