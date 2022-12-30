@@ -14,12 +14,13 @@ import { PhoneHook } from '@shared/elements/hooks/phoneHook'
 import { TextareaHook } from '@shared/elements/hooks/textareaHook'
 import { TagHook } from '@shared/elements/hooks/tagHook'
 import { SelectHook } from "@shared/elements/hooks/selectHook";
-import { FloatingInput, FloatingPhone } from '@shared/elements/inputs'
+import { FloatingInput } from '@shared/elements/inputs'
 import { CalendarHook } from '@shared/elements/hooks/calendarHook'
 import { InputAppendHook, InputGroupHook } from '@shared/elements/hooks'
 import { FormFooter } from "@shared/footers";
 import { FileUpload } from 'primereact/fileupload';
 import { Select } from '@shared/elements/selects'
+import { FloatingPhone } from '@shared/elements/phones'
  
 export const Codebase = () => {
 
