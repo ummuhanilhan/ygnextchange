@@ -6,6 +6,7 @@
 - [ ] input pricing come out 0₺ 
 - [ ] auth pages responses (toastbar, redirection)
 - [ ] select dropdown  z-index (vehicle page)
+- [ ] cargo owner can't offer  
 
 - [ ] offer actions
 

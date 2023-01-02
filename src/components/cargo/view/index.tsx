@@ -62,7 +62,7 @@ empty,
 }:any) => {
     return(
         <React.Fragment>
-               { data?.map((item:any,i:number)=>( // dummyItems
+                { data?.map((item:any,i:number)=>( // dummyItems
                     <CargoItem 
                         item={!sub ? item : item?.cargo} 
                         key={`cargo-item-${i}`} 

@@ -5,7 +5,7 @@ import PrivateLayout from "@layouts/PrivateLayout";
 export const CargoShow = () => {
 
     return (
-       <Frame>
+       <Frame nopadding >
         <TitleFrameDropdown title='Yük Detayları' nomargin />
         <div className="grid grid-cols-3 gap-2">
             <Box label='İlan No' value='#10567' />

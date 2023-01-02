@@ -30,9 +30,7 @@ export const VehicleModal = ({item}:any) => {
         vehicles?.length <= 0 && dispatch(findAll())
         console.log('vehicles', vehicles)
     },[])
-   
-
-
+    
     return (
        <React.Fragment>
            <div className='m-3'>

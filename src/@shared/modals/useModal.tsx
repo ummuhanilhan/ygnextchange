@@ -4,6 +4,7 @@ import React from "react";
 import { useModal } from "stores/features/useModal";
 import { CargoModal } from "./cargo";
 import Classic, { modalState } from "./classic";
+import { OffersModal } from "./offers";
 import { VehicleModal } from "./vehicle";
  
 const modal = (val:string, values:any) => {
@@ -19,6 +20,9 @@ const modal = (val:string, values:any) => {
         break;
         case 'show-vehicle':
             return <VehicleModal {...values} />
+        break;
+        case 'show-offers':
+            return <OffersModal {...values} />
         break;
         default:
         break;

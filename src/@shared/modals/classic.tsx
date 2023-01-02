@@ -95,3 +95,11 @@ export const defaultOverlays = {
   WebkitBackdropFilter: 'blur(0)',
   backdropFilter: 'blur(0)',
 }
+
+
+export const default15 = {
+  padding:0,
+  height:'fit-content',
+  left:'15%',
+  right:'15%' 
+}

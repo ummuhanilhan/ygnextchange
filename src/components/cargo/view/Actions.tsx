@@ -9,9 +9,11 @@ import { isfav, selectFavorite } from "stores/slices/favoriteSlice"
 import api from "@utils/api"
 import { slugify } from "@utils/helper"
 import { create } from "stores/slices/offerSlice"
+import { default15 } from "@shared/modals/classic"
 
 
 export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
+    const {open, close}:any = useModal(state=>state);
     const dispatch = useAppDispatch()
     const [fav, setFav] = useState(false)
     useEffect(()=>{
@@ -40,6 +42,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
          }
        // setFav(!fav);
     }
+  
     const faved = (
         <div className="inline-block">
             <div 
@@ -71,42 +74,77 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
     const Button = ({children, rich}:any) => {
         return children
     }
-
-    const {open, close}:any = useModal(state=>state);
-
+ 
     const show = (
     <Action 
         title='Detay Gör' 
         color='orange' 
         path='#' 
-        onClick={()=> open({type:'show-cargo', styles:{padding:0, height:'fit-content' }, values:{item} }) }
+        onClick={()=> open({type:'show-cargo', values:{item} }) }
     /> )
 
-    const send = (<></>);
-
-      const openByType = (value:string) => {
-            switch (slugify(value)) {
-                case 'teklif-gonder':
-                    console.log(value)
-                    open({
-                        type:'show-cargo', 
-                        styles:{padding:0, height:'fit-content' }, 
-                        values:{item} 
-                    }) 
-                    return;
+     const openByType = (value:string) => {
+        switch (slugify(value)) {
+            case 'teklif-gonder':
+                console.log(value)
+                open({
+                    type:'show-cargo', 
+                    values:{item} 
+                }) 
+                return;
+            break;
+        
+            default:
                 break;
-            
-                default:
-                    break;
-            }
-            return;
-      }
+        }
+        return;
+    }
 
-      const openOfferSendModal = () => {
-        open({type:'show-vehicle', styles:{padding:0, height:'fit-content', left:'15%', right:'15%' },
-        values:{item} })
+    const ShowDetail = () => {
+        return <Action title='İlan Detayını Gör' color='orange' onClick={()=>open({type:'show-cargo', styles:{padding:0}, values:{item} }) }  path='#' />
+    }
+    const RemoveOffer = () => {
+        return <Action title='Listeden Kaldır' color='gray'  onClick={()=>{}} outline path='#' />
+    }
 
-      } 
+    const SendOffer = () => {
+        return <Action title='Teklif Gönder' color='blue'disabled={!status} 
+        onClick={()=>{}} path='#' />
+    }
+
+    const ComplateOffer = () => {
+        return <Action title='Sevkiyatı Tamamla' color='blue' onClick={()=>{}} path='#' />
+    }    
+    
+    const StartOffer = () => {
+        return <Action title='Sevkiyatı Başlat' color='blue' onClick={()=>{}} path='#' />
+    } 
+
+    const UndoOffer = () => {
+        return <Action title='Teklifi Geri Al' color='blue' onClick={()=>{}}  path='#' />
+    }
+
+    const ApproveOffer = () => {
+        return <Action title='Teslimatı Onayla' color='blue' onClick={()=>{}}  path='#' />
+    }
+
+    const InspectOffer = () => {
+        return <Action title='Diğer Teklifleri İncele (5)' onClick={()=>{}}  color='blue' path='#' />
+    }
+
+    const openOfferSendModal = () => {
+        open({type:'show-vehicle', styles:default15, values:{item} })
+    } 
+
+    const CancelOffer = () => {
+        return  <Action title='Vazgeç' color='gray' outline path='#' />
+    }
+
+    const OffersInspect = () => (
+    <Action title='Teklifleri İncele (3)' onClick={()=>{
+        open({type:'show-offers', styles:default15, values:{item} })
+    }} color='blue' path='#' />
+    )
 
        const getActions = (value:string, item:any, status:boolean) => {
         switch (value) {
@@ -127,7 +165,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                     {item?.viewed && viewed}
                     {isAuth && faved}
                     {show}
-                    {isAuth && <Action title='Teklif Gönder' color='blue'disabled={!status}  path='#' />}
+                    {isAuth && <SendOffer />}
                  </Button>)
             break;
             case 'mycargoes':
@@ -144,49 +182,49 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                 return (<Button rich>
                      {item?.viewed && viewed}
                      {isAuth && faved}
-                     <Action title='Vazgeç' color='gray' outline path='#' />
-                     <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Sevkiyatı Tamamla' color='blue' path='#' />
+                     <CancelOffer />
+                    <ShowDetail />
+                     <ComplateOffer />
                  </Button>)
             break;
             case 'outgoing-accepted':
                 return (<Button>
                      {item?.viewed && viewed}
                      {isAuth && faved}
-                     <Action title='Vazgeç' color='gray' outline path='#' />
-                    <Action title='İlan detayını gör' color='orange' path='#' />
-                    <Action title='Sevkiyatı Başlat' color='blue' path='#' />
+                     <CancelOffer />
+                     <ShowDetail />
+                    <StartOffer />
                </Button>)
             break;
             case 'outgoing-pending':
                 return (<Button rich>
                      {item?.viewed && viewed}
-                     <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Teklifi Geri Al' color='blue' path='#' />
+                      <ShowDetail />
+                     <UndoOffer />
                  </Button>)
             break;            
             case 'ingoing-inshipment':
                 return (<Button rich>
                      {item?.viewed && viewed}
-                     <Action title='Listeden Kaldır' color='gray' outline path='#' />
-                     <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Teslimatı Onayla' color='blue' path='#' />
+                     <RemoveOffer />
+                      <ShowDetail />
+                     <ApproveOffer />
                  </Button>)
             break;
             case 'ingoing-accepted':
                 return (<Button rich>
                      {item?.viewed && viewed}
-                     <Action title='Listeden Kaldır' color='gray' outline path='#' />
-                     <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Diğer Teklifleri İncele (5)' color='blue' path='#' />
+                     <RemoveOffer />
+                      <ShowDetail />
+                     <InspectOffer />
                  </Button>)
             break;
             case 'ingoing-pending':
                 return (<Button rich>
                     {item?.viewed && viewed}
-                     <Action title='Listeden Kaldır' color='gray' outline path='#' />
-                     <Action title='İlan Detayını Gör' color='orange' path='#' />
-                     <Action title='Teklifleri İncele (3)' color='blue' path='#' />
+                     <RemoveOffer />
+                      <ShowDetail />
+                     <OffersInspect />
                  </Button>)
             break;            
             case 'vehicle-active':
@@ -205,12 +243,9 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                     <Action title='Varsayılan Seç' color='orange' path='#' />
                     <Action onClick={()=>{
                         // create offer
-                        
-                        console.log(item._id, cargo._id)
                         if(cargo?._id){
                          dispatch(create({cargo:cargo._id,vehicle:item._id}))
                         }
-                        
                         // close modal
                         // offered
                         close()
