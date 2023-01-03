@@ -13,6 +13,10 @@ const initialState: any = {
   loading: LoadingState.IDLE,
   error: undefined,
   message: '',
+  sub_offers: [],
+  sub_loading: LoadingState.IDLE,
+  sub_error: undefined,
+  sub_message: '',
 }
 
 export const findAll = createAsyncThunk<any, string>(
@@ -72,6 +76,93 @@ export const update = createAsyncThunk<any, any>(
   async ({id, values}, thunkAPI) => {
       try {
           const response = await api.post(`/offers`,{id, ...values})
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+
+// SUB OFFERS
+
+export const offers = createAsyncThunk<any, any>(
+  'offer/offers',
+  async (id, thunkAPI) => {
+      try {
+          const response = await api.get(`/offers/${id}/all`)
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+/**
+ * Counts by type
+ */
+export const counts = createAsyncThunk<any, any>(
+  'offer/counts',
+  async (type, thunkAPI) => {
+      try {
+          const response = await api.patch(`/offers/counts/`, {type})
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+export const count = createAsyncThunk<any, any>(
+  'offer/count',
+  async (id, thunkAPI) => {
+      try {
+          const response = await api.patch(`/offers/${id}/count/`)
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+/**
+ * Interactions
+ */
+export const accept = createAsyncThunk<any, any>(
+  'offer/accept',
+  async (id, thunkAPI) => {
+      try {
+          const response = await api.patch(`/offers/accept/`+id)
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+export const reject = createAsyncThunk<any, any>(
+  'offer/reject',
+  async (id, thunkAPI) => {
+      try {
+          const response = await api.patch(`/offers/reject/`+id)
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+export const start = createAsyncThunk<any, any>(
+  'offer/start',
+  async (id, thunkAPI) => {
+      try {
+          const response = await api.patch(`/offers/start/`+id)
           return response.data
             
       } catch (error:any) {
@@ -166,6 +257,15 @@ const offerSlice = createSlice({
       state.message = action.payload?.error; 
       state.loading= LoadingState.ERROR
    })
+   // 
+   builder.addCase(offers.pending, (state)=>{state.sub_loading= LoadingState.LOADING})
+   builder.addCase(offers.fulfilled, (state,action) => {
+     state.sub_message = '' 
+     state.sub_offers = action.payload 
+     state.sub_loading = LoadingState.LOADED
+   })
+   builder.addCase(offers.rejected, (state)=>{state.sub_loading= LoadingState.ERROR})
+ 
 
   }
 })
@@ -183,7 +283,9 @@ export const selectOffer = createSelector(
     filter: state.offer.filter,
     message: state.offer.message,
     error: state.offer.error,
-    loading: state.offer.loading
+    loading: state.offer.loading,
+    sub_offers: state.offer.sub_offers,
+    sub_loading: state.offer.sub_loading,
   }),
   (state) => state
 )

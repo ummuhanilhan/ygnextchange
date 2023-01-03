@@ -104,40 +104,56 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
         return <Action title='İlan Detayını Gör' color='orange' onClick={()=>open({type:'show-cargo', styles:{padding:0}, values:{item} }) }  path='#' />
     }
     const RemoveOffer = () => {
-        return <Action title='Listeden Kaldır' color='gray'  onClick={()=>{}} outline path='#' />
+        return <Action title='Listeden Kaldır' color='gray'  onClick={()=>{
+            alert('remove')
+        }} outline path='#' />
     }
 
     const SendOffer = () => {
         return <Action title='Teklif Gönder' color='blue'disabled={!status} 
-        onClick={()=>{}} path='#' />
+        onClick={()=>{
+            alert('send offer')
+        }} path='#' />
     }
 
-    const ComplateOffer = () => {
-        return <Action title='Sevkiyatı Tamamla' color='blue' onClick={()=>{}} path='#' />
+    const ComplateToOffer = () => {
+        return <Action title='Sevkiyatı Tamamla' color='blue' onClick={()=>{
+            alert('complate offer')
+        }} path='#' />
     }    
     
-    const StartOffer = () => {
-        return <Action title='Sevkiyatı Başlat' color='blue' onClick={()=>{}} path='#' />
+    const StartToOffer = () => {
+        return <Action title='Sevkiyatı Başlat' color='blue' onClick={()=>{
+            alert('start to inshipment')
+        }} path='#' />
     } 
 
-    const UndoOffer = () => {
-        return <Action title='Teklifi Geri Al' color='blue' onClick={()=>{}}  path='#' />
+    const UndoToOffer = () => {
+        return <Action title='Teklifi Geri Al' color='blue' onClick={()=>{
+            alert('return back to offer')
+        }}  path='#' />
     }
 
-    const ApproveOffer = () => {
-        return <Action title='Teslimatı Onayla' color='blue' onClick={()=>{}}  path='#' />
+    const ApproveToOffer = () => {
+        return <Action title='Teslimatı Onayla' color='blue' onClick={()=>{
+            alert('approve to offer')
+        }}  path='#' />
     }
 
-    const InspectOffer = () => {
-        return <Action title='Diğer Teklifleri İncele (5)' onClick={()=>{}}  color='blue' path='#' />
+    const InspectToOffer = () => {
+        return <Action title='Diğer Teklifleri İncele (5)' onClick={()=>{
+             open({type:'show-offers', styles:default15, values:{item} })
+        }}  color='blue' path='#' />
     }
 
     const openOfferSendModal = () => {
         open({type:'show-vehicle', styles:default15, values:{item} })
     } 
 
-    const CancelOffer = () => {
-        return  <Action title='Vazgeç' color='gray' outline path='#' />
+    const CancelToOffer = () => {
+        return  <Action title='Vazgeç' color='gray' onClick={()=>{
+            alert('remove to offer')
+        }} outline path='#' />
     }
 
     const OffersInspect = () => (
@@ -182,25 +198,25 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                 return (<Button rich>
                      {item?.viewed && viewed}
                      {isAuth && faved}
-                     <CancelOffer />
+                     <CancelToOffer />
                     <ShowDetail />
-                     <ComplateOffer />
+                     <ComplateToOffer />
                  </Button>)
             break;
             case 'outgoing-accepted':
                 return (<Button>
                      {item?.viewed && viewed}
                      {isAuth && faved}
-                     <CancelOffer />
+                     <CancelToOffer />
                      <ShowDetail />
-                    <StartOffer />
+                    <StartToOffer />
                </Button>)
             break;
             case 'outgoing-pending':
                 return (<Button rich>
                      {item?.viewed && viewed}
                       <ShowDetail />
-                     <UndoOffer />
+                     <UndoToOffer />
                  </Button>)
             break;            
             case 'ingoing-inshipment':
@@ -208,7 +224,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                      {item?.viewed && viewed}
                      <RemoveOffer />
                       <ShowDetail />
-                     <ApproveOffer />
+                     <ApproveToOffer />
                  </Button>)
             break;
             case 'ingoing-accepted':
@@ -216,7 +232,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                      {item?.viewed && viewed}
                      <RemoveOffer />
                       <ShowDetail />
-                     <InspectOffer />
+                     <InspectToOffer />
                  </Button>)
             break;
             case 'ingoing-pending':

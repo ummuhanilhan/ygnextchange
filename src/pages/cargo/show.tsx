@@ -1,8 +1,10 @@
 import { TitleFrameDropdown } from "@components/frames/IconFrame";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
+import { useDefinitions } from "@utils/useDefinitions";
 
 export const CargoShow = () => {
+    const {definitions, loaded} = useDefinitions();
 
     return (
        <Frame nopadding >

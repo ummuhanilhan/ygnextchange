@@ -5,10 +5,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectDefinition } from "stores/slices/definitionSlice";
 import SimpleBar from "simplebar-react";
+import { useDefinitions } from "@utils/useDefinitions";
 
 export const CargoModal = ({item}:any) => {
+    const {definitions} = useDefinitions();
 
-    const { definitions, formatted } = useSelector(selectDefinition);
+    const { formatted } = useSelector(selectDefinition);
     const defined = (name:string) => formatted[name]?.name
     const defines = (values:string[]) => values.map((v:string)=> `${defined(v)} `) || ''
 
