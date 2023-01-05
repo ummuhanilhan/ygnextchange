@@ -243,10 +243,11 @@ export const notify = (title:string='', obj:object={}) =>  toast(title||'🦄 Wo
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "dark",
-    type: 'success',
+    theme: "light",
+    type: 'error',
     ...obj,
 });
+
 
 function firstLetter(string:string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

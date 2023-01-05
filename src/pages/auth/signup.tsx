@@ -9,36 +9,77 @@ import { CheckboxHook, FloatLabelHook, FloatLabelPhoneHook } from "@shared/eleme
 import { PhoneHook } from "@shared/elements/hooks/phoneHook";
 import { useAppDispatch } from "stores/store";
 import { signup } from "stores/slices/authSlice";
+import { notify } from "@utils/helper";
+import api from "@utils/api";
+import { send } from "process";
+import { useRouter } from "next/router";
+import { joiResolver } from "@hookform/resolvers/joi";
 
 export type SignupValues = {
+    slug: string,
     name: string,
     email: string,
     password: string,
     confirm: string,
+    contact: {
+        phone: string,
+    },
+    type: boolean,
+    aggrement:{
+        terms: boolean,
+        kvkk: boolean,
+        campaign: boolean
+    }
 };
 
 export const Signup = () =>{
     const dispatch = useAppDispatch();
     const [status, setStatus] = React.useState(false)
     const [type, setType] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+    const router = useRouter();
     const change = () => setType(!type);
     const form = useForm<SignupValues>({
         defaultValues: {
             name:'',
             email:'',
             password:'',
-            // confirm:'',
+            confirm: '',
+            type:false,
         },
-       // resolver: yupResolver(signupSchema),
+        resolver: joiResolver(signupSchema),
+
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
-    const onSubmit: SubmitHandler<SignupValues> = (data:any) => {
+    const onSubmit: SubmitHandler<SignupValues> = async (data:any)  => {
         delete data.aggrement
-        dispatch(signup({...data, type: data.type ? 'individual' : 'corporate' }))
-    };
-    const onError = (errors:any) => {
-        console.log(errors) 
-    };
+        const values = {...data, type: data.type ? 'individual' : 'corporate' };
+       
+        try{
+            setLoading(true)
+            const result:any =  await api.post('/auth/signup', values)
+            const {accessToken,refreshToken } = result?.data;
+
+            setLoading(false)
+            if(accessToken && refreshToken){
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
+                notify('Başarıyla oluşturuldu!',{type:'success'})
+                router.push('/auth/signin')
+            }
+
+        }catch(err:any){
+            console.log(err)
+            setTimeout(() => {
+                setLoading(false)
+            }, 3000);
+            notify(err?.response?.data?.message)
+        }
+    }; 
+
+    
+
+    const onError = (errors:any) => {};
 
     return (
         <form onSubmit={handleSubmit(onSubmit, onError)} 
@@ -126,10 +167,19 @@ export const Signup = () =>{
                             </div>
                             <p className="mx-1">Apple ile</p>
                         </button>
-                        <button type="submit" className="w-full cursor-pointer bg-yg-blue mt-2- px-20- p-3-
+                        <button type="submit" disabled={loading} className="w-full cursor-pointer bg-yg-blue mt-2- px-20- p-3-
                             px-5 py-2.5 col-span-2
                              text-sm text-white text-center rounded-md ">
-                            Eposta ile üye ol
+                            
+                            {loading ?(
+                            <React.Fragment>
+                                <svg role="status" className="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                                </svg>
+                                Loading...
+                            </React.Fragment>
+                        ) : <>Eposta ile üye ol</>}
                         </button>
 
                     </div>

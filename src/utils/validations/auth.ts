@@ -7,13 +7,20 @@ export const signinSchema = Joi.object({
 });
 
 export const signupSchema = Joi.object({
-  fullname: Joi.string().required(),
-  name: Joi.string().required(),
+  name: Joi.string(),
+  slug: Joi.string(),
   email: Joi.string().required(),
   password: Joi.string().min(8).max(32).required().required(),
   confirm: Joi.string().required(),
-  phone: Joi.string().min(7).max(13).required(),
+  contact: Joi.object({
+    phone: Joi.string().min(7).max(13).required(),
+  }),
   type: Joi.boolean(),
+  aggrement: Joi.object({
+    terms: Joi.boolean().required(),
+    kvkk: Joi.boolean().required(),
+    campaign: Joi.boolean().required(),
+  }),
 }).required();
 
 export const forgottenSchema = Joi.object({

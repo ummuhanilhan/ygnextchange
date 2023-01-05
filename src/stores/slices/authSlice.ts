@@ -78,6 +78,9 @@ export const authSlice = createSlice({
     clear:(state) => {
         state.message = ''
     },
+    setAuth:(state, action) => {
+        state.isAuth = action.payload ? true : false
+    },
   },
   extraReducers:(builder)=>{
     builder.addCase(signin.fulfilled, (state, action) => {
@@ -147,6 +150,6 @@ export const selectAuth = createSelector(
     (state) => state
 )
   
-export const { setSession, signout, clear } = authSlice.actions
+export const { setSession, signout, clear, setAuth } = authSlice.actions
 
 export default authSlice.reducer
