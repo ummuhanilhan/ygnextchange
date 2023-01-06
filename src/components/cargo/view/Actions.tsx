@@ -12,7 +12,7 @@ import { default15 } from "@shared/modals/classic"
 
 
 export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
-    if(!item?._id) return;
+    if(!item?._id) return <></>;
 
     const {open, close}:any = useModal(state=>state);
     const dispatch = useAppDispatch()
