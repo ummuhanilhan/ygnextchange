@@ -39,7 +39,7 @@ export const VehicleModal = ({item}:any) => {
                         value={query}
                         border
                         onChange={(e:any)=>setQuery(e.target.value)}
-                        placeholder='Adres Başlığı Ara' 
+                        placeholder='Araçlarımdan seç' 
                     />
                     <p 
                     className='hidden  -flex button bg-yg-blue py-2 px-10 justify-center text-sm

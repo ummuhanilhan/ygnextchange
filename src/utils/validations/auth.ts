@@ -13,7 +13,10 @@ export const signupSchema = Joi.object({
   password: Joi.string().min(8).max(32).required().required(),
   confirm: Joi.string().required(),
   contact: Joi.object({
-    phone: Joi.string().min(7).max(13).required(),
+  phone: Joi.string().min(6).max(13).required().messages({
+    'string.empty': '{{#label} boş bırakılamaz',
+
+  }),
   }),
   type: Joi.boolean(),
   aggrement: Joi.object({

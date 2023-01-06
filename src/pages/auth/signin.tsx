@@ -102,6 +102,7 @@ export const Signin = () =>{
                         ) : <>Giriş Yap</>}
                         
                     </button>
+                    <a href="/auth/signup" className="mt-1">Hesabınız yok mu?</a>
                 </div>
             </div>
         </form>

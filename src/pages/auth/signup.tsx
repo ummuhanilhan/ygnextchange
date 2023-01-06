@@ -108,8 +108,14 @@ export const Signup = () =>{
                         <FloatLabelHook size='small' className='' name="slug" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                         <PhoneHook size='small' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                         <FloatLabelHook size='small' className='' name="email" type="text" placeholder="Eposta" example="orn: deneme@gmail.com" control={control} />
-                        <FloatLabelHook size='small' className='' name="password" type="password" placeholder="Şifre" example="" control={control} />
-                        <FloatLabelHook size='small' className='' name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
+                        <div>
+                            <FloatLabelHook size='small' className='' name="password" type="password" placeholder="Şifre" example="" control={control} />
+                            {false && errors.password && <span className='text-red-500 text-sm p-1'> {errors.password?.message} </span>}
+                        </div>
+                        <div>
+                            <FloatLabelHook size='small' className='' name="confirm" type="password" placeholder="Şifre Tekrarı" example="" control={control} />
+
+                        </div>
                     </div>
                     <div className="my-4 flex items-start flex-col gap-2 justify-center w-full">
                         <CheckboxHook name="aggrement.terms" control={control}>

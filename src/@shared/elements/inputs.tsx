@@ -180,7 +180,7 @@ export const FloatingInput = ({
               className={classNames(
                 "p-2 absolute top-0 left-0 flex items-center transition-all duration-200 ease-in-out",
                 active ? "font-medium " : " text-gray-500 ",
-                size=='small' ? (active ? 'text-xs' : 'text-sm pt-5') : '',
+                size=='small' ? (active ? 'text-xs' : 'text-sm pt-4') : '',
                 size=='medium' ? (active ? 'text-xs pt-3' : 'text-base pt-5') : '',
                 size=='large' ? (active ? 'text-sm' : 'text-base pt-5') : '',
               )}

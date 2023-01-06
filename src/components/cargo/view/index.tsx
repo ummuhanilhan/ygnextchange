@@ -2,6 +2,7 @@ import TabLayout from "@layouts/TabLayout"
 import { SimplePagination } from "@shared/paginations"
 import { Empty } from "@utils/empty"
 import { CargoRoute, cargoTabMenu, dummyItems, items } from "@utils/mock"
+import { SkeletonLoading } from "@utils/skeleton"
 import classNames from "classnames"
 import React, { useEffect, useState } from "react"
 import {  FiMinusCircle, FiXCircle } from "react-icons/fi"
@@ -74,22 +75,16 @@ empty,
                 {error && <h3>Bir şeyler ters gitti!</h3>}
                 
                 {!empty && loading && ( // spinner
-                      <div className="flex items-center justify-between">
-                        <div>
-                            <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                            <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-                        </div>
-                        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                    <div className="flex flex-center w-full justify-center">
+                        <SkeletonLoading />
                     </div>
                 )}
                 { empty && ( // [...items]?.length<=0 
                     <Empty /> // <h1>Sonuç yok</h1>
                 )}
 
-             
-                <div className="flex flex-center w-full justify-center">
-                        Loading...
-                    </div>
+       
+
                 {[
                 // ...items
                 ].map((item,i:number)=>(

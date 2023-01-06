@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react"
 import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import classNames from "classnames"
@@ -13,15 +12,18 @@ import { default15 } from "@shared/modals/classic"
 
 
 export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
+    if(!item?._id) return;
+
     const {open, close}:any = useModal(state=>state);
     const dispatch = useAppDispatch()
     const [fav, setFav] = useState(false)
+    const [count, setCount] = useState(0)
     useEffect(()=>{
         isFaved()
     },[])
 
     const isFaved = async () => {
-        if(item){
+        if(item?._id){
             const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
             //@ts-ignore
             if(isfaved?.data?.result){
@@ -32,15 +34,31 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
         }
     }
 
+    const getCount = async () => {
+        if(item?._id){
+            const counter = await api.get(`/offers/${item._id}/count`)
+            //@ts-ignore
+            if(counter?.data){
+                setCount(counter?.data)
+            }
+        }
+    }
+
     const toggle = async () => {
-         const isfaved: {result:boolean} = await api.post(`/favorites/toggle`,{cargo:item._id})
-          //@ts-ignore
-          if(isfaved?.data?.result){
-             setFav(true)
-         }else{
-             setFav(false);
-         }
-       // setFav(!fav);
+        if(item?._id){
+
+            const isfaved: {result:boolean} = await api.post(`/favorites/toggle`,{cargo:item._id})
+            //@ts-ignore
+            if(isfaved?.data?.result){
+                setFav(true)
+            }else{
+                setFav(false);
+            }
+            // setFav(!fav);
+        }else{
+            console.log(item)
+        }
+
     }
   
     const faved = (
@@ -272,7 +290,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                 return (<Button>
                     {item?.viewed && viewed}
                     {show}
-                    <Action title='Teklif Gönder'  color='blue' path='#' />
+                    <SendOffer/>
                  </Button>)
             break;      
             case 'ingoing-vehicle-offers':
