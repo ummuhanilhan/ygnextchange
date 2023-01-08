@@ -48,7 +48,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                     </a>
                 </li>
             </ul>
-            {!isAuth && (
+            {!isAuth && isAuth!=undefined && (
                     <div className='flex justify-end items-center'>
                         <a href='/auth/signin' className='flex items-start pr-3'>
                             <FiUser className="" /> <p className="ml-2 hidden sm:block">Giriş yap</p> 
