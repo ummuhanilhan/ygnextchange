@@ -11,6 +11,7 @@ import moment from "moment"
 import { capitalize, priceFormat, currencyFormat } from "@utils/helper"
 
 export const CargoItem = ({item, actionType='', status}:any) => {
+    if(!item?._id) return <></>
     const { definitions, formatted } = useSelector(selectDefinition);
     const { isAuth} = useSelector(selectAuth);
     

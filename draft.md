@@ -1478,3 +1478,53 @@ export const handler: Handler = async (event: any, context: Context) => {
 }
 
 
+
+<div role="status" className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
+   
+    <div className="w-full">
+        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5 w-[440px]"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+    </div>
+    <div>
+        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12 mb-2.5 w-[100px]"></div>
+        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+    </div>
+
+</div>
+
+
+    'string.alphanum': '{{#label}} must only contain alpha-numeric characters',
+    'string.base': '{{#label}} must be a string',
+    'string.base64': '{{#label}} must be a valid base64 string',
+    'string.creditCard': '{{#label}} must be a credit card',
+    'string.dataUri': '{{#label}} must be a valid dataUri string',
+    'string.domain': '{{#label}} must contain a valid domain name',
+    'string.email': '{{#label}} must be a valid email',
+    'string.empty': '{{#label} boş bırakılamaz',
+    'string.guid': '{{#label}} must be a valid GUID',
+    'string.hex': '{{#label}} must only contain hexadecimal characters',
+    'string.hexAlign': '{{#label}} hex decoded representation must be byte aligned',
+    'string.hostname': '{{#label}} must be a valid hostname',
+    'string.ip': '{{#label}} must be a valid ip address with a {{#cidr}} CIDR',
+    'string.ipVersion': '{{#label}} must be a valid ip address of one of the following versions {{#version}} with a {{#cidr}} CIDR',
+    'string.isoDate': '{{#label}} must be in iso format',
+    'string.isoDuration': '{{#label}} must be a valid ISO 8601 duration',
+    'string.length': '{{#label}} length must be {{#limit}} characters long',
+    'string.lowercase': '{{#label}} must only contain lowercase characters',
+    'string.max': '{{#label}} en fazla {{#limit}} haneli olabilir',
+    'string.min': '{{#label}} en az {{#limit}} haneli olabilir',
+    'string.normalize': '{{#label}} must be unicode normalized in the {{#form}} form',
+    'string.token': '{{#label}} must only contain alpha-numeric and underscore characters',
+    'string.pattern.base': '{{#label}} with value {:[.]} fails to match the required pattern: {{#regex}}',
+    'string.pattern.name': '{{#label}} with value {:[.]} fails to match the {{#name}} pattern',
+    'string.pattern.invert.base': '{{#label}} with value {:[.]} matches the inverted pattern: {{#regex}}',
+    'string.pattern.invert.name': '{{#label}} with value {:[.]} matches the inverted {{#name}} pattern',
+    'string.trim': '{{#label}} must not have leading or trailing whitespace',
+    'string.uri': '{{#label}} must be a valid uri',
+    'string.uriCustomScheme': '{{#label}} must be a valid uri with a scheme matching the {{#scheme}} pattern',
+    'string.uriRelativeOnly': '{{#label}} must be a valid relative uri',
+    'string.uppercase': '{{#label}} must only contain uppercase characters'

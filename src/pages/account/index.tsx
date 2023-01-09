@@ -39,7 +39,7 @@ return(
          <Account 
           uptodate={{
             ...data, 
-            birth: new Date(data.birth),
+            birth: data.birth ? new Date(data.birth) : undefined,
             driver:{
               ...data.driver,
               year: new Date(data?.driver?.year)

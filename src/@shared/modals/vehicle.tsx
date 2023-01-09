@@ -14,6 +14,7 @@ import { useAppDispatch } from "stores/store";
 import { findAll, selectVehicle } from "stores/slices/vehicleSlice";
 import { Empty } from "@utils/empty";
 import { LoadingState } from "stores/types";
+import { SkeletonLoading } from "@utils/skeleton";
 
 export const VehicleModal = ({item}:any) => {
 
@@ -39,7 +40,7 @@ export const VehicleModal = ({item}:any) => {
                         value={query}
                         border
                         onChange={(e:any)=>setQuery(e.target.value)}
-                        placeholder='Adres Başlığı Ara' 
+                        placeholder='Araçlarımdan seç' 
                     />
                     <p 
                     className='hidden  -flex button bg-yg-blue py-2 px-10 justify-center text-sm
@@ -49,7 +50,7 @@ export const VehicleModal = ({item}:any) => {
                 </div>
                 <SimpleBar style={{ maxHeight: '80vh' }}>
                         { loading == LoadingState.LOADING && (
-                            <div>Loading...</div>
+                            <SkeletonLoading />
                         ) }
 
                         { loading != LoadingState.LOADING && vehicles?.length<=0 && (

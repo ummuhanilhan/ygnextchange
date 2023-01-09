@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import React from "react"
 import { useState } from "react"
 import { NotificationList, NotificationMini } from "@components/notification"
-import { FiMenu } from 'react-icons/fi' 
+import { FiMenu, FiUser } from 'react-icons/fi' 
 import Classic, { defaultOverlays, defaultStyles } from "@shared/modals/classic"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FloatLabelHook } from "@shared/elements/hooks"
@@ -48,6 +48,15 @@ export const Header = ({mobile, setMobile}:any) =>{
                     </a>
                 </li>
             </ul>
+            {!isAuth && isAuth!=undefined && (
+                    <div className='flex justify-end items-center'>
+                        <a href='/auth/signin' className='flex items-start pr-3'>
+                            <FiUser className="" /> <p className="ml-2 hidden sm:block">Giriş yap</p> 
+                        </a>
+                    </div>
+                )}
+
+
             {isAuth && ( 
                 <Profile 
                     bellStatus={bellStatus}
@@ -222,6 +231,7 @@ export const Profile = ({
                     </div>
                     </React.Fragment>
                 )}
+              
                 <div className="mx-2 cursor-pointer lg:hidden" onClick={()=>setMobile(!mobile)} >
                     <FiMenu size={25} className="text-gray-500" />
                 </div>

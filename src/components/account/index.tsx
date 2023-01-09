@@ -22,7 +22,7 @@ import { TagHook } from "@shared/elements/hooks/tagHook";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { useAppDispatch } from "stores/store";
 import { update } from "stores/slices/userSlice";
-import { successMessage } from "@utils/helper";
+import { notify, successMessage } from "@utils/helper";
 import { useSelector } from "react-redux";
 import { selectDefinition } from "stores/slices/definitionSlice";
 
@@ -106,7 +106,7 @@ export const Account = ({uptodate}:any) => {
     const onSubmit: SubmitHandler<any> = data => {
          dispatch(update({id:uptodate._id, data}))
         console.log(uptodate._id, data)
-        successMessage();
+        notify('Başarıyla Güncellendi!', {type:'success',position:'bottom-center'});
     };
     const onError = (errors:any) => { console.log(errors) };
     return (
@@ -172,7 +172,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                 </div>
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mb-2'>
-                    <InputHook name={type?'fullname':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
+                    <InputHook name={type?'name':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
                     <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                     {/**
                         <InputHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
@@ -208,7 +208,7 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     </div>
                     <div className="w-full">
                         <CalendarHook className='mb-2'name="birth" type="text" placeholder="Doğum Tarihi" example="" control={control} />
-                        <TextareaHook className='mt-2'name="address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
+                        <TextareaHook className='mt-2'name="location.place.address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
                     </div>
                 </div>
             </div>
