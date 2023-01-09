@@ -1,13 +1,18 @@
 import { notificationList } from "@utils/mock";
-import React from "react";
-import { NotificaitonItem } from "./item";
-
+import React, {useEffect, useState} from "react";
+import { NotificaitonItem, NotificationAlert} from "./item";
+import { useQuery } from "@utils/helper";
 export const NotificationList = () =>{
+
+    const { data, isLoading, error }:any = useQuery(`notifications`, null, 'get')
 
     return (
         <React.Fragment>
+            {data?.length < 1 &&
+                <NotificationAlert /> 
+            }
             <ul className='notifications border-none'>
-                {notificationList.map((item,i:number)=>(
+                {data?.map((item:any,i:number)=>(
                     <NotificaitonItem item={item} key={`notify-${i}`} />
                 ))}
             </ul>
@@ -17,23 +22,35 @@ export const NotificationList = () =>{
 
 export const NotificationMini = () =>{
 
+    const { data, isLoading, error }:any = useQuery(`notifications`, null, 'get')
+
     return (
         <React.Fragment>
-            <div className="flex justify-between w-full border-none">
-               <div></div> 
-               <p className='text-yg-orange'>Tümünü Okundu İşaretle</p> 
+            {data?.length > 1  ?
+                <>
+                    <div className="flex justify-between min-h-full w-full border-non ">
+                        <div></div> 
+                        <p className='text-yg-orange'>Tümünü Okundu İşaretle</p> 
+                        </div>
+                        <ul className='notifications-mini border-none'>
+                            {data?.map((item:any,i:number)=>(
+                                <NotificaitonItem mini item={item} key={`notify-${i}`} />
+                            ))}
+                        </ul>
+                        <div className="flex justify-between w-full border-none">
+                        <div></div> 
+                        <a href="/notifications">
+                            <p className='text-yg-gray'>Tümünü Gör</p> 
+                        </a>
+                    </div>
+                </>
+            :
+            <div className="flex justify-between min-h-full w-full border-non ">
+                <ul className='notifications-mini border-none'>
+                    <NotificationAlert />
+                </ul>
             </div>
-            <ul className='notifications-mini border-none'>
-                {notificationList.map((item,i:number)=>(
-                    <NotificaitonItem mini item={item} key={`notify-${i}`} />
-                ))}
-            </ul>
-            <div className="flex justify-between w-full border-none">
-               <div></div> 
-               <a href="/notifications">
-                   <p className='text-yg-gray'>Tümünü Gör</p> 
-               </a>
-            </div>
+            }
         </React.Fragment>
     )
 }
