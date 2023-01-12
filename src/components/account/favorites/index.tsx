@@ -3,7 +3,6 @@ import { AccountLayout } from "@layouts/AccountLayouts";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Cargoes, View } from "@components/cargo/view";
-import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from "react";
 import { useQuery } from "@utils/helper";
 
