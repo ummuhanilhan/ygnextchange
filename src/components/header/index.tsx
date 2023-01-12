@@ -77,7 +77,7 @@ export const NotificationDropdown = ({status, setBellStatus}:any) => {
     return (
         <React.Fragment>
             <div id="dropdownNotification" className={classNames(
-                "notifications-mini absolute right-0 top-[5rem] p-3 z-20 w-96 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
+                "notifications-mini absolute right-2 top-[3%] p-3 z-20 w-96 max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700",
                 {'hidden':!status}
             )} >
 

@@ -31,3 +31,23 @@ export const NotificaitonItem = ({item,mini}:any) =>{
         </li>
     )
 }
+
+export const NotificationAlert = () =>{
+    return(
+        <ul className='notifications border-none'>
+            <li className={classNames(
+                'notify rounded-lg border-none flex items-center my-2 pl-4 bg-white p-1 gray',
+            )}>
+                <div className={classNames(
+                    'bg-gray ml-2 gray w-full'
+                )}>
+                    <h3 className={classNames(
+                        'action font-semibold text-yg-blue'
+                    )}
+                    >Henüz bildiriminiz bulunmamaktadır</h3>
+                    <p className='message'>Lütfen bildirimlerinizi ara ara kontrol ediniz</p>
+                </div>
+            </li>
+        </ul>
+    )
+}
