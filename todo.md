@@ -1,28 +1,38 @@
 # next
-- [ ] change account form by user type
+- [ ] offer actions
+- [ ] modal padding 
+- [ ] addr box responsive
+- [ ] avatar, upload 
+- [ ]  
+- [ ]  
+- [ ]  
+
+- [ ] select dropdown  z-index (vehicle page)
+
+## cargo
+- [ ] err messages in english 
 - [ ] save cargo lowercase
+- [ ] cargo create form response toastbar message
 - [ ] disable button after dispatch
 - [ ] total price doesn't save 
 - [ ] input pricing come out 0₺ 
-- [ ] auth pages responses (toastbar, redirection)
-- [ ] select dropdown  z-index (vehicle page)
-- [ ] cargo owner can't offer  
-
-- [ ] offer actions
-
-- [ ] cargo create form response toastbar message
-- [ ] vehicle create response toastbar message
-
 - [ ] cargoes filter detail
 - [ ] cargoes vehicles
-
 - [ ] paginations  
-
-- [ ] err messages in english 
+- [ ] cargo owner can't offer  
+- [ ] support
+- [ ] pagination
+- [ ] filter
 - [ ] codebase input elements
+- [ ] change pass
+- [ ] notification `readed_at`
+- [ ] favorites
 
+
+- [x] vehicle create response toastbar message
+- [x] change account form by user type
 - [x] send offer is pulling all vehicles (shoul be only owners)
-
+- [x] auth pages responses (toastbar, redirection)
 - [x] addressbox modal
 - [x] input sizes  
 - [x] elements
@@ -46,3 +56,12 @@
 - remain pages
 - logs & ts
 - docs & storybook
+
+
+
+```
+vergi numarası - dairesi
+kurumsal mail - web sitesi
+yetkili isim  cinsiyet   -[doğum tarihi]
+
+```

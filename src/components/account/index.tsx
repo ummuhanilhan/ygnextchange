@@ -50,11 +50,16 @@ type AccountValues = {
         chronic_disease:string,
     },
     company: string,
-    tax: string,
-    tax_administrator: string,
-    business_phone: string,
-    website: string,
-    authorized: string,
+    tax:{
+        no: string,
+        administration: string,
+    },
+    corporate:{
+        mail: string,
+        official: string,
+        website: string,        
+        phone: string        
+    },
 
 };
 
@@ -81,11 +86,18 @@ const initialValues = {
         blood:'+A',
         chronic_disease:'',
     },
-    company:'HyperWise.co',
-    tax: '',
+    tax:{
+        no:'',
+        administration:'',
+    },
+    corporate:{
+        mail:'',
+        official:'',
+        website:'',        
+        phone:''        
+    },
     tax_administrator: '',
     business_phone: 5012345678,
-    website: 'http://test.com',
     authorized: '',
 }
 
@@ -171,27 +183,24 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     </div>
                 </div>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mb-2'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 w-full'>
                     <InputHook name={type?'name':'company'} type="text" placeholder={type? 'İsim Soyisim' :'Firma Ünvanı'} example="" control={control} />
                     <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                     {/**
-                        <InputHook name="tax" type="text" placeholder="Vergi Numarası" example="" control={control} />
-                        <InputHook name="tax_administrator" type="text" placeholder="Vergi Dairesi" example="" control={control} />
-                        <PhoneHook name="business_phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
                      */}
+                    <InputHook name="tax.no" type="text" placeholder="Vergi Numarası" example="" control={control} />
+                    <InputHook name="tax.administration" type="text" placeholder="Vergi Dairesi" example="" control={control} />
+                    <PhoneHook name="corporate.phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
+
+                  
                     <PhoneHook size='medium' height='55px' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
                     {/** verified **/}
-                    <InputHook name="email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
+                    <InputHook name="corporate.email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
                     {/** 
-                      <InputHook name="website" type="text" placeholder="Web Sitesi" example="" control={control} />
-                        <InputHook name="authorized" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
                      */}
-                </div>    
-               
-                {/** selecbox **/}
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-                    <div className="w-ful">
-                        <SelectHook 
+                    <InputHook name="corporate.website" type="text" placeholder="Web Sitesi" example="" control={control} />
+                    <InputHook name="corporate.official" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
+                    <SelectHook 
                             name="gender" 
                             placeholder="Cinsiyet Seçiniz"  
                             control={control} 
@@ -203,12 +212,36 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                             ]} 
                             className='mb-2' 
                         />                 
-                        <SelectHook items={Turkiye} className='mb-2' name="city" control={control} placeholder="İl Seçiniz"  />                 
-                        <SelectHook items={[]} className='mb-2' name="district" control={control} placeholder="İlçe Seçiniz"  />                 
+                </div>    
+               
+                {/** selecbox **/}
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+                    <div className="w-ful">
+                      
+                        <SelectHook items={Turkiye} 
+                            label='label'
+                            value='value'
+                            className='mb-2' 
+                            name="city" 
+                            control={control} 
+                            placeholder="İl Seçiniz"  
+                        />                 
+                        <SelectHook 
+                            disabled
+                            items={[]} 
+                            className='mb-2' 
+                            name="district" 
+                            control={control} 
+                            placeholder="İlçe Seçiniz"  
+                        />                 
                     </div>
-                    <div className="w-full">
-                        <CalendarHook className='mb-2'name="birth" type="text" placeholder="Doğum Tarihi" example="" control={control} />
-                        <TextareaHook className='mt-2'name="location.place.address" textarea type="text" placeholder="Şirket adresi" example="" control={control} />
+                    <div className="w-full mb-2">
+                        {/** 
+                            <CalendarHook className='mb-2'name="birth" type="text" placeholder="Doğum Tarihi" example="" control={control} />
+                         */}
+                        <TextareaHook className='h-full'name="location.place.address" 
+                        textarea type="text" placeholder="Şirket adresi" example="" 
+                        control={control} />
                     </div>
                 </div>
             </div>

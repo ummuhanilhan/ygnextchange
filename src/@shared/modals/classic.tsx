@@ -87,7 +87,7 @@ export const defaultStyles = {
   right:'20%',
   borderRadius:'10px',
   overflow:'visible',
-  padding:'0',
+  padding:'1em',
 }
 
 export const defaultOverlays = {

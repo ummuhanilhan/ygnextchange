@@ -15,6 +15,7 @@ export const View = ({
     error,
     loading,
     filter, 
+    selects, 
     type, 
     tabs, 
     empty,
@@ -32,7 +33,7 @@ export const View = ({
         'bg-gray-50 h-full pt-4',  
         {'lg:ml-[18.8em] p-3':!wide}
         )}> 
-            <Heading filter={filter} />
+            <Heading selects={selects} filter={filter} />
             { tabs && <Tabs 
                 selected={selected}
                 setSelected={setSelected}

@@ -75,7 +75,7 @@ export const MenuItem = ({item, pathname}:any) => {
         <li 
             ref={ref}
             className={`${item.path==pathname?`active`:''} text`}
-            onClick={()=>{
+            onClick={()=>{  
                 // router.push(item.path, undefined, { shallow: true })
             }}
             onMouseDown={(e:any)=>{

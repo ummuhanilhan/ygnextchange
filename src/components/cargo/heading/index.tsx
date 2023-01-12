@@ -5,7 +5,7 @@ import { FaChevronRight } from "react-icons/fa"
 import { Selectes } from "../view"
 
 
-export const Heading = ({filter}:any) => {
+export const Heading = ({selects, filter}:any) => {
   
     return (
         <div className='heading'>
@@ -17,12 +17,14 @@ export const Heading = ({filter}:any) => {
                     />
                     <p className='ml-2'>İlan göster</p>
                 </div>
-              <Dropdown 
-                title='Sırala' 
-                filters={inShipmentOut}
-              />
+              {filter && (
+                    <Dropdown 
+                    title='Sırala' 
+                    filters={filter}
+                />
+              )}
             </div>
-            {filter && <Selectes />}
+            {selects && <Selectes />}
         </div>
     )
 }

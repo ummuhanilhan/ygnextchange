@@ -169,7 +169,7 @@ export const Tag = ({
          </div>
             <ul className={classNames(
               'select-dropdown absolute mt-2',
-              'bg-white h-auto z-20 rounded-md w-full',
+              'bg-white h-auto z-50 rounded-md w-full',
               'drop-shadow-md overflow-hidden right-0',
                rotation ?  rotation :'top-16',
               {'hidden':!open}
