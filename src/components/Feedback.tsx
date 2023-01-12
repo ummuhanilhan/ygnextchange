@@ -1,16 +1,12 @@
-import PrivateLayout from "@layouts/PrivateLayout";
 import React, { useState } from "react";
 import Modal from "../components/Modal";
 import { Textarea } from "../@shared/elements/textareas";
+import { useModal } from "@shared/contexts/ModalContext";
 
-interface Props {
-  show: boolean;
-  setShow: (show: boolean) => void;
-}
-
-export const Feedback = ({ show, setShow }: Props) => {
+export const Feedback = () => {
   const [feedback, setFeedback] = useState<number | null>();
   const [value, setValue] = useState("");
+  const { show, setShow } = useModal();
 
   const rating = [
     {
@@ -44,12 +40,16 @@ export const Feedback = ({ show, setShow }: Props) => {
     setFeedback(rate);
   };
 
+  const handleClose = () => {
+    setShow(false);
+  };
+
   return (
     <>
       <Modal
         heading={"Uygulama İçi Geri Bildirim"}
         open={show}
-        handleClose={() => setShow(false)}
+        handleClose={handleClose}
         handleSubmit={() => {}}
       >
         <h6 className="text-base font-medium">Değerlendirme Yap</h6>
@@ -73,14 +73,12 @@ export const Feedback = ({ show, setShow }: Props) => {
         <Textarea
           className="w-100"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={setValue}
           placeholder="Bu bölüme bizi değerlendirmek için yorum bırakabilirsiniz."
         />
       </Modal>
     </>
   );
 };
-
-Feedback.Layout = PrivateLayout;
 
 export default Feedback;

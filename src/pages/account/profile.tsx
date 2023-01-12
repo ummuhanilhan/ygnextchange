@@ -10,3 +10,5 @@ export const ProfilePage = () => {
 
 ProfilePage.Layout = PrivateLayout;
 export default ProfilePage;
+
+

@@ -21,7 +21,7 @@ export const NotificaitonItem = ({item,mini}:any) =>{
                 'ml-2',
                 !item.err && item.read && 'gray'
             )}>
-                <h3 className={classNames(
+                r<h3 className={classNames(
                     'action font-semibold',
                     item.err ? 'text-[#e30a17]' : 'text-yg-blue'
                 )}
