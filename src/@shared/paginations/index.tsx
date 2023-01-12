@@ -101,6 +101,7 @@ export const SimplePagination = ({  itemsPerPage }:any) => {
 
     const onPageInputKeyDown = (event:any, options:any) => {
         if (event.key === 'Enter') {
+            //@ts-ignore
             const page = parseInt(currentPage);
             if (page < 0 || page > options.totalPages) {
                 setPageInputTooltip(`Value must be between 1 and ${options.totalPages}.`);
