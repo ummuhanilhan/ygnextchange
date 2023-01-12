@@ -1,7 +1,7 @@
 # next
 - [ ] offer actions
 - [ ] modal padding 
-- [ ] addr box responsive
+- [ ] addr box responsive / auth responsive
 - [ ] avatar, upload 
 - [ ]  
 - [ ]  
