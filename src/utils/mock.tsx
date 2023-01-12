@@ -75,7 +75,7 @@ export const menuItems = [
   {
     title: "Geri Bildirim",
     icon: <Smile className="menu-icon" />,
-    path: "/feedback",
+    path: "#",
   },
 ];
 

@@ -7,38 +7,39 @@ import { me, selectAuth } from "stores/slices/authSlice";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { LoadingState } from "stores/types";
+import Feedback from "@components/Feedback";
 
 type DefaultState = {
-    children: ReactNode
-    title?: string
-}
+  children: ReactNode;
+  title?: string;
+};
 
-export const Private = ({children}: DefaultState) => {
-    const router = useRouter();
-    const { isAuth, loading } = useSelector(selectAuth)
-    const dispatch = useAppDispatch();
-    React.useEffect(()=>{dispatch(me())},[])
-    useEffect(()=>{
-        if( loading == LoadingState.ERROR && !isAuth ) router.push('/')
-    },[loading])
+export const Private = ({ children }: DefaultState) => {
+  const router = useRouter();
+  const { isAuth, loading } = useSelector(selectAuth);
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    dispatch(me());
+  }, []);
+  useEffect(() => {
+    if (loading == LoadingState.ERROR && !isAuth) router.push("/");
+  }, [loading]);
 
-
-    const content = isAuth ? (
-        <div className="flex flex-center items-center">
-            <div className="max-w-[1669px] w-full">
-                <Main>
-                    {children}
-                </Main>
-            </div>
-        </div>
-    ) : <></>
-
-    const basic = (
-        <Main className='max-w-[1669px]' >
-            {children}
+  const content = isAuth ? (
+    <div className="flex flex-center items-center">
+      <div className="max-w-[1669px] w-full">
+        <Main>
+          {children}
+          <Feedback />
         </Main>
-    )
-    return content;
-}
+      </div>
+    </div>
+  ) : (
+    <></>
+  );
+
+  const basic = <Main className="max-w-[1669px]">{children}</Main>;
+  return content;
+};
 
 export default Private;
