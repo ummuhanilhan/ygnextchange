@@ -1,3 +1,9 @@
+sevkiyatı başlat -> pending -> inshipment
+teslimatı onayla -> inshipmnet -> complated
+listeden kaldır -> delete/rejected
+
+only once offer to cargo
+
 - account, favorites
  
 

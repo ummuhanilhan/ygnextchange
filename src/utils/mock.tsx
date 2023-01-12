@@ -2981,59 +2981,17 @@ export const dummyItems = [
             name: "Türkiye",
           },
         },
-        contact: {
-          name: "test",
-          phone: "0234 234 23 42",
-          type: "home",
-          verify: false,
-        },
-      },
-      "time-custom": "test deneme",
-      distance: {
-        text: "594 KM",
-        value: 593777,
-      },
-      duration: {
-        text: "7 SAAT 33 DAKIKA",
-        value: 27181,
-      },
+
+        "end": {
+            "date": "2022-07-29T12:40:28.860Z",
+            "option": "1month"
+        }
     },
-    payload: {
-      bargain: true,
-      weight: {
-        unit: "kg",
-        size: "152342",
-      },
-      type: "yük cinsi",
-      definition: "yük tanımı",
-      transport: {
-        load: "62b870456230c566be927f17",
-        unload: "62b870456230c566be927f17",
-      },
-    },
-    fee: {
-      manual: true,
-      price: {
-        unit: 0,
-        total: 23423423,
-      },
-      paymethod: "onload",
-      currency: "try",
-      vat: "include",
-    },
-    publish: {
-      start: {
-        date: "2022-07-01T12:40:24.677Z",
-        option: "date",
-      },
-      end: {
-        date: "2022-07-29T12:40:28.860Z",
-        option: "1month",
-      },
-    },
-    updated_at: "2022-11-14T19:43:03.855Z",
-    created_at: "2022-11-14T19:43:03.855Z",
-    __v: 0,
-    id: "63729a47a988970cf6093b56",
-  },
-];
+    "updated_at": "2022-11-14T19:43:03.855Z",
+    "created_at": "2022-11-14T19:43:03.855Z",
+    "__v": 0,
+    "id": "63729a47a988970cf6093b56"
+}]
+
+
+

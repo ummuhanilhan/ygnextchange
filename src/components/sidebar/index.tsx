@@ -68,12 +68,32 @@ export const Sidebar = ({ mobile, setMobile }: any) => {
               ))}
           </SimpleBar>
         </ul>
+                {isAuth && (
+                    <ul className="footer"
+                    onClick={()=>{
+                        dispatch(signout())
+                    }}
+                    >
+                        <li className="justify-center cursor-pointer">
+                            <BoxArrowRight className="menu-icon" />
+                            <p className="text-yg-gray">Çıkış Yap</p>
+                        </li>
+                    </ul>
+                )}
+                <p className="text-yg-gray text-xs text-center my-2">©️ 2020 - 2022 Bilinova Bilişim A.Ş.</p>
+            </div>  
+    )
+}
 
-        {isAuth && (
-          <ul
-            className="footer"
-            onClick={() => {
-              dispatch(signout());
+export const MenuItem = ({item, pathname}:any) => {
+    const router = useRouter();
+    const ref = useRef(null);
+    return(
+        <li 
+            ref={ref}
+            className={`${item.path==pathname?`active`:''} text`}
+            onClick={()=>{  
+                // router.push(item.path, undefined, { shallow: true })
             }}
           >
             <li className="justify-center cursor-pointer">

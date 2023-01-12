@@ -176,7 +176,9 @@
       filter: state.vehicle.filter,
       message: state.vehicle.message,
       error: state.vehicle.error,
-      loading: state.vehicle.loading
+      loading: state.vehicle.loading,
+      isLoading: state.vehicle.loading==LoadingState.LOADING,
+      isLoaded: state.vehicle.loading==LoadingState.LOADED,
     }),
     (state) => state
   )

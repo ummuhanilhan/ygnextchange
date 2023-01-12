@@ -6,7 +6,7 @@ import { useAppDispatch } from "stores/store"
 import { useSelector } from "react-redux"
 import { isfav, selectFavorite } from "stores/slices/favoriteSlice"
 import api from "@utils/api"
-import { slugify } from "@utils/helper"
+import { notify, slugify } from "@utils/helper"
 import { create } from "stores/slices/offerSlice"
 import { default15 } from "@shared/modals/classic"
 
@@ -280,6 +280,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                         if(cargo?._id){
                          dispatch(create({cargo:cargo._id,vehicle:item._id}))
                         }
+                        notify('Başarıyla gönderildi!',{type:'success'})
                         // close modal
                         // offered
                         close()

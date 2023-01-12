@@ -2,7 +2,7 @@ import PrivateLayout from "@layouts/PrivateLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@utils/validations/account";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Frame } from "@components/frames/MainFrame";
 import { TitleFrame, TitleFrameCovered } from "@components/frames/TitleFrame";
 import { tagItems } from "@utils/mock";
@@ -17,7 +17,11 @@ import { FormFooter } from "@shared/footers";
 import { vehicleSchema } from "@utils/validations/vehicle";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useAppDispatch } from "stores/store";
-import { create } from "stores/slices/vehicleSlice";
+import { create, selectVehicle } from "stores/slices/vehicleSlice";
+import { notify } from "@utils/helper";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { LoadingState } from "stores/types";
 // import { FormFooter } from "@pages/account";
 // import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 
@@ -65,10 +69,11 @@ export enum VehicleType {
 
 export const VehicleCreate = () => {
     const dispatch = useAppDispatch();
-
+    const router = useRouter();
+    const {isLoading, isLoaded, error, message } = useSelector(selectVehicle);
     const form = useForm<VehicleValues>({
         resolver: joiResolver(vehicleSchema),
-        defaultValues: initialValues,
+        //defaultValues: initialValues,
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
    
@@ -78,6 +83,18 @@ export const VehicleCreate = () => {
         console.log(data)
         dispatch(create(data));
     };
+
+    useEffect(()=>{
+        if(isLoaded) {
+            notify('Created Successfully', {type:'success', position:'bottom-center' })
+            router.push('/')
+        }
+    },[isLoading])
+    
+    useEffect(()=>{
+        if(error && message) notify(message || 'Boş alanları doldurunuz!', { position:'bottom-center' })
+    },[error])
+
     const onError = (errors:any) => {
         console.log('err',errors)
     };
@@ -110,7 +127,7 @@ export const VehicleCreate = () => {
                 </TitleFrame>
                 <TitleFrame title="Araç Model Yılını">
                     <CalendarHook 
-                        name='model_year' 
+                        name='year' 
                         type="text" 
                         maxDate={new Date()} 
                         placeholder='Araç Model Yılını Seçiniz' 
@@ -200,6 +217,7 @@ export const VehicleCreate = () => {
 
             </div>
             <FormFooter 
+                loading={isLoading}   
                 control={control}
                 label='Araç Bilgilerimin doğru olduğunu onaylıyorum ve teklif verdiğim ilan sahipleriyle paylaşılmasına izin veriyorum.'
                 check={true}

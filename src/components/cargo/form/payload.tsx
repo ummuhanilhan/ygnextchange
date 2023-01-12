@@ -193,6 +193,15 @@ export const PriceCalculate = ({
 
     const err = errors?.fee?.price;
 
+    const valueReturn = (value:number) =>{
+        if(value === 0){
+            return '';
+        }
+        else{
+            return value;
+        }
+    }
+
     return (
 
     <TitleFrame title="Ücret Hesaplayıcı" color='orange'>
@@ -203,7 +212,7 @@ export const PriceCalculate = ({
                     placeholder="Ağırlık Giriniz (Ton Cinsinden)" 
                     size='medium'
                     type='number'
-                    value={tonnage}
+                    value={valueReturn(tonnage)}
                     onChange={setTonnage}
                     disabled={disabled}
                     error={err?.tonnage}
@@ -214,7 +223,7 @@ export const PriceCalculate = ({
                     placeholder="Birim Fiyat Giriniz" 
                     size='medium'
                     type='number'
-                    value={unit}
+                    value={valueReturn(unit)}
                     onChange={setUnit}     
                     disabled={disabled}
                     error={err?.unit}
@@ -225,7 +234,7 @@ export const PriceCalculate = ({
                     placeholder="Toplam Tutar" 
                     size='medium'
                     type='number'
-                    value={total}
+                    value={valueReturn(total)}
                     onChange={setTotal}
                     disabled={!disabled}
                     error={err?.total}
