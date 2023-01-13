@@ -7,7 +7,7 @@ import { CargoState } from "stores/types"
 
 type ItemState = {
     item:CargoState,
-    status: Boolean
+    status?: Boolean
 }
  
 export const ShowDetail = ({item}:ItemState) => {

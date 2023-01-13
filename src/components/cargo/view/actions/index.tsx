@@ -13,11 +13,6 @@ import { Action } from "./action"
 import { Faved, Viewed } from "./favorite"
 import { ApproveToOffer, CancelToOffer, ComplateToOffer, InspectToOffer, OffersInspect, openOfferSendModal, RemoveOffer, SendOffer, ShowDetail, StartToOffer, UndoToOffer } from "./dispatchers"
 
-type ItemState = {
-    _id: String,
-    cargo: String,
-    vehicle: String,
-}
 
 
 export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
