@@ -2,8 +2,6 @@
 - [ ] offer actions
 - [ ] addr box responsive / auth responsive
 - [ ] avatar, upload 
-- [ ]  
-- [ ] select dropdown  z-index (vehicle page)
 
 ## cargo
 - [ ] save cargo lowercase
@@ -23,9 +21,13 @@
 - [ ] notification `readed_at`
 - [ ] favorites
 - [ ] only once offer to cargo
+- [ ] tags mandatroy field is not working 
+- [ ] amount * price = toatl is not working properly
+- [ ] sended offer caroges doenst shown can send multiple
+- [ ] can send offer to himself cargo
 
 ## server 
-
+- [x] select dropdown  z-index (vehicle page)
 - [x] vehicle create response toastbar message
 - [x] change account form by user type
 - [x] send offer is pulling all vehicles (shoul be only owners)
