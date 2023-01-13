@@ -1,8 +1,8 @@
 
 export const SkeletonLoading = () => (
-    <div className='bg-white- p-4 rounded-md
+    <div className='bg-white- rounded-md
     space-y-4 divide-y divide-gray-200 
-    animate-pulse dark:divide-gray-700 md:p-6 w-full
+    animate-pulse dark:divide-gray-700 md:p-6- py-3 w-full
     '>
         <div className="flex items-center justify-between">
             <div>

@@ -41,8 +41,15 @@ export const CargoCreate = ({uptodate, init}:any) => {
     const sendref = useRef<HTMLButtonElement>(null);
     const [selected, setSelected] = React.useState<number>(1);
     const {message, loading, error}:any = useSelector(selectCargo)
+
     useEffect(()=>{
-        error && errMessage(message)
+      if( loading == LoadingState.LOADED) {
+            notify('Başarıyla oluşturuldu', {type:'success', position:'bottom-center'})
+            router.push('/')
+        }
+    },[loading])
+    useEffect(()=>{
+        error && notify(message)
     },[error])
     const form = useForm<any>({
         defaultValues: init ? formSuite(init): initial,
@@ -52,15 +59,13 @@ export const CargoCreate = ({uptodate, init}:any) => {
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
-        console.log(data);
         if(uptodate)
             dispatch(create(data)) // update({id:'', values:data})
         else
             dispatch(create(data))
-
-        if( loading == LoadingState.LOADING) router.push('/')
-       // success()
+  
     };
+
     const onError = (errors:any) => {
         errMessage(message); 
         console.log('errors', errors, form.getValues() ) 
@@ -129,7 +134,7 @@ export const CargoCreate = ({uptodate, init}:any) => {
                 <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>
-    ) :<>Loading...</>
+    ) :<>Yükleniyor...</>
 }
 
 export default CargoCreate;

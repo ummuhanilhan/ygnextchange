@@ -1,16 +1,11 @@
 # next
 - [ ] offer actions
-- [ ] modal padding 
 - [ ] addr box responsive / auth responsive
 - [ ] avatar, upload 
 - [ ]  
-- [ ]  
-- [ ]  
-
 - [ ] select dropdown  z-index (vehicle page)
 
 ## cargo
-- [ ] err messages in english 
 - [ ] save cargo lowercase
 - [ ] cargo create form response toastbar message
 - [ ] disable button after dispatch
@@ -27,7 +22,9 @@
 - [ ] change pass
 - [ ] notification `readed_at`
 - [ ] favorites
+- [ ] only once offer to cargo
 
+## server 
 
 - [x] vehicle create response toastbar message
 - [x] change account form by user type
@@ -39,6 +36,7 @@
 - [x] select sizes
 - [x] may addres box broken
 - [x] select input append z-index
+- [x] modal padding 
 
 - 🧊 view & filter issue
 - [react-paginate](https://github.com/AdeleD/react-paginate)

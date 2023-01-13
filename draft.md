@@ -1,19 +1,27 @@
-sevkiyatı başlat -> pending -> inshipment
-teslimatı onayla -> inshipmnet -> complated
-listeden kaldır -> delete/rejected
+- - - - - - - - - - - - - - - - - - -                                         *
+- sevkiyatı başlat -> pending -> inshipment
+- teslimatı onayla -> inshipmnet -> complated
+- listeden kaldır -> delete/rejected
+- - - - - - - - - - - - - - - - - - -                                         *
+- offers 
+- cargoes
+- - - - - - - - - - - - - - - - - - -                                         *
+- status 
+- cargo
+- - - progress
+- - - - - - - - - - - - - - - - - - -                                         *
+- pending
+- inshipment
+- accepted
+- rejected
 
-only once offer to cargo
-
-- account, favorites
- 
-
+- - - - - - - - - - - - - - - - - - -                                         *
 - Ağırlık giriniz: fee.price.tonnage
 - Birim fiyat giriniz: fee.price.unit
 - Toplam Tutar: fee.price.unit
 - yük cinsi: payload.type
 - yük tanımı: payload.definition
-
-
+- - - - - - - - - - - - - - - - - - -                                         *
 - Yükleme Şekli: payload.transport.load
 - Boşaltma Şekli: payload.transport.unload
 - Ağırlık: payload.weight
@@ -28,11 +36,12 @@ only once offer to cargo
 - Yükleme / Boşaltma Adresi: shipping.load / unload
 - Boşaltma Zamanı: shipping.time
 - Yükleme Tarih Aralığı: shipping.range
-
+- - - - - - - - - - - - - - - - - - -                                         *
 - Araç Özellikleri: rent.features
 - Donanım seçenekleri: rent.options
 - Araç markası: rent.type
 - Araç tipi: rent.vehicle
+- - - - - - - - - - - - - - - - - - -                                         *
 
 `&from=${'filter.from'}&to=${filter.to}`
 

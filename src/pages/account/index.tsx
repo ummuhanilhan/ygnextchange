@@ -35,7 +35,7 @@ export const Profile = () => {
 
 return(
      <React.Fragment>
-      {data && definitions.load && (
+      {data && definitions.load ? (
          <Account 
           uptodate={{
             ...data, 
@@ -47,7 +47,7 @@ return(
             gender: data.gender ? 1:0
           }}
         />
-      )}
+      ):'Yükleniyor..'}
      </React.Fragment>
   )
 }
