@@ -6,17 +6,19 @@ import { useSelector } from "react-redux";
 import { selectDefinition } from "stores/slices/definitionSlice";
 import SimpleBar from "simplebar-react";
 import { useDefinitions } from "@utils/useDefinitions";
+import { Spinner } from "@utils/skeleton";
 
 export const CargoModal = ({item}:any) => {
     const {definitions} = useDefinitions();
 
     const { formatted } = useSelector(selectDefinition);
     const defined = (name:string) => formatted[name]?.name
-    const defines = (values:string[]) => values.map((v:string)=> `${defined(v)} `) || ''
+    const defines = (values:string[]) => values?.map((v:string)=> `${defined(v)} `) || ''
 
     return (
        <Frame>
-            <SimpleBar style={{ maxHeight: '80vh' }}>
+            {item._id ? (
+                <SimpleBar style={{ maxHeight: '80vh' }}>
 
                 <TitleFrameDropdown title='Yük Detayları' nomargin />
                 <div className="grid grid-cols-3 gap-2">
@@ -65,7 +67,10 @@ export const CargoModal = ({item}:any) => {
                     <Box label='Telefon Numarası' value='+90 5*** *** ** **' />
                 </div>
 
-        </SimpleBar>
+           </SimpleBar>
+            ): <div className="w-full h-full flex items-center justify-center">
+                <Spinner />
+            </div> }
 
        </Frame>
     )

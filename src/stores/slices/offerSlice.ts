@@ -84,6 +84,20 @@ export const update = createAsyncThunk<any, any>(
   }
 )
 
+export const remove = createAsyncThunk<any, any>(
+  'offer/remove',
+  async (id, thunkAPI) => {
+      try {
+          const response = await api.post(`/offers/${id}/remove`)
+          return response.data
+            
+      } catch (error:any) {
+          return thunkAPI.rejectWithValue({ error:error?.response?.data?.message })
+      }
+  }
+)
+
+
 
 // SUB OFFERS
 

@@ -1,12 +1,12 @@
 import React from "react"
 import { Calendar, ChevronRightClosed, Clock, People, PinAngle } from "@yukgetir-icons"
 import classNames from "classnames"
-import { Actions } from "./Actions"
+import { Actions } from "./actions"
 
 export const VehicleItem = ({item, cargo, type='normal', actionType}:any) => {
     return (
         <div className={classNames(
-            'cargo-item bg-white px-4 my-3 rounded-lg py-4',
+            'cargo-item bg-white px-4 my-3 rounded-lg py-2',
             {'grayscale': item?.outdated}
         )}>
             <div className="flex justify-between mb-[1.2rem]">

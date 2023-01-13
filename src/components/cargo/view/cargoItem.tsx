@@ -3,12 +3,18 @@ import { Calendar, Capslock, ChevronDoubleRight, CircleFill, CircleHalf, Clock, 
 import classNames from "classnames"
 import { FaMapPin } from "react-icons/fa"
 import { FiInfo } from "react-icons/fi"
-import { Actions } from "./Actions"
+import { Actions } from "./actions"
 import { useSelector } from "react-redux"
 import { selectDefinition } from "stores/slices/definitionSlice"
 import { selectAuth } from "stores/slices/authSlice"
 import moment from "moment"
 import { capitalize, priceFormat, currencyFormat } from "@utils/helper"
+
+export type CargoProps = {
+    _id: String,
+    cargo: String,
+    vehicle: String,
+}
 
 export const CargoItem = ({item, actionType='', status}:any) => {
     if(!item?._id) return <></>

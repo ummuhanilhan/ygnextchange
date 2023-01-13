@@ -73,12 +73,12 @@ export type AuthProps = {
     isAuth:Boolean | undefined
 } & LoadingProps
 
-
-
-
 export type CargoState = {
     user: object;
     date:Date;
+     _id: String;
+    cargo: String;
+    vehicle: String;
 } | {}
 
 export type CargoProps = {
