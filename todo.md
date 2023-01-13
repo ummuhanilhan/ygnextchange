@@ -1,6 +1,7 @@
 # next
 - [ ] offer actions
 - [ ] addr box responsive / auth responsive
+- [ ] addr loading
 - [ ] avatar, upload 
 
 ## cargo

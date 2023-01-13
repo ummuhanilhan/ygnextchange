@@ -1,5 +1,6 @@
 import { CargoItem } from "@components/cargo/view/cargoItem";
 import { VehicleItem } from "@components/cargo/view/vehicleItem";
+import { SkeletonLoading } from "@utils/skeleton";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { offers, selectOffer } from "stores/slices/offerSlice";
@@ -17,12 +18,12 @@ export const OffersModal = ({item}:any) => {
 
     return (
         <div>
-            { sub_offers?.map((item:any,i:number)=>(
+            { sub_offers?.length>0 ? sub_offers?.map((item:any,i:number)=>(
                 <VehicleItem 
                     item={item?.vehicle} 
                     key={`sub-offers-${i}`}  
                 />
-            ))}
+            )): <div className='p-3'><SkeletonLoading /></div> }
         </div>
     )
 }
