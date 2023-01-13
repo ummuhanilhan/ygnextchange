@@ -98,7 +98,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
         title='Detay Gör' 
         color='orange' 
         path='#' 
-        onClick={()=> open({type:'show-cargo', values:{item} }) }
+        onClick={()=> open({type:'show-cargo', values:{item}, styles:{padding:0} }) }
     /> )
 
      const openByType = (value:string) => {
