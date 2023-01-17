@@ -249,6 +249,15 @@ export const notify = (title:string='', obj:object={}) =>  toast(title||'🦄 Wo
 });
 
 
+export const notifySuccess = (title:string='', obj:object={}) =>{
+    return notify(title, {...obj, type:'success', position:'bottom-center' })
+};
+
+export const notifyError = (title:string='', obj:object={}) =>{
+    return notify(title, {...obj, type:'error', position:'bottom-center' })
+};
+
+
 function firstLetter(string:string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }

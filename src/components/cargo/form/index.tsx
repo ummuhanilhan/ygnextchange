@@ -2,10 +2,6 @@ import React, { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormFooter } from "@shared/footers";
 import Rent from "./rent";
-import { Frame } from "@components/frames/MainFrame";
-import { CargoTab } from "@components/tabs/CargoTab";
-import { yupResolver } from "@hookform/resolvers/yup";
-import SimpleBar from "simplebar-react";
 import { CargoLayout } from "@layouts/CargoLayout";
 import classNames from "classnames";
 import Payload from "./payload";
@@ -23,7 +19,11 @@ import { useEffect } from "react";
 import { LoadingState } from "stores/types";
 import { useRouter } from "next/router";
 import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice";
- 
+import { Frame } from "@components/frames/MainFrame";
+import { CargoTab } from "@components/tabs/CargoTab";
+import { yupResolver } from "@hookform/resolvers/yup";
+import SimpleBar from "simplebar-react";
+
 export type CargoValues = {
     name: string,
     rent: {
@@ -63,7 +63,6 @@ export const CargoCreate = ({uptodate, init}:any) => {
             dispatch(create(data)) // update({id:'', values:data})
         else
             dispatch(create(data))
-  
     };
 
     const onError = (errors:any) => {

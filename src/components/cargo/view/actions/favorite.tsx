@@ -1,5 +1,7 @@
 import { Eye, Heart, HeartFill } from "@yukgetir-icons"
 import api from "@utils/api"
+import { useAppDispatch } from "stores/store"
+import { useEffect, useState } from "react"
 
 export const Faved = ({fav, toggle}:any) => (
     <div className="inline-block">
@@ -62,3 +64,47 @@ const toggle = async ({item, setFav}:any) => {
 
 }
 
+
+
+
+export const Favorite = ({item}:any) => {
+    const dispatch = useAppDispatch();
+    const [faved, setFaved] = useState(false)
+
+    useEffect(()=>{
+        // isFaved()
+    },[])
+
+    const isFaved = async () => {
+        // const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
+        // if(isfaved.result){
+        //     setFaved(true)
+        // }else{
+        //     setFaved(false);
+        // }
+    }
+
+    const toggle = async () => {
+        // const isfaved: {result:boolean} = await api.post(`/favorites/toggle`,{cargo:item._id})
+        // if(isfaved.result){
+        //     setFaved(true)
+        // }else{
+        //     setFaved(false);
+        // }
+        setFaved(!faved);
+
+    }
+
+    return (
+        <div className="inline-block">
+            <div 
+            onClick={()=>toggle()}
+            className='heart rounded-md border border-1 border-yg-orange 
+            h-[1.85em] w-[1.85em] flex items-center justify-center ml-2 
+            cursor-pointer hover:bg-yg-lightblue'> 
+                {faved ? <HeartFill width={15} className='fill-yg-orange' /> : 
+                <Heart width={15} className='fill-yg-orange' />}
+            </div>
+        </div>
+    )
+}

@@ -15,7 +15,7 @@ import { ApproveToOffer, CancelToOffer, ComplateToOffer, InspectToOffer, OffersI
 
 
 
-export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
+export const Actions = ({item, offerId, cargo, isAuth, actionType, status}:any) => {
     if(!item?._id) return <></>;
 
     const {open, close}:any = useModal(state=>state);
@@ -42,8 +42,6 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
         path='#' 
         onClick={()=> open({type:'show-cargo', values:{item}, styles:{padding:0} }) }
     /> )
-
-     
 
        const getActions = (value:string, item:any, status:boolean) => {
         switch (value) {
@@ -81,25 +79,25 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                 return (<Button rich>
                      {item?.viewed && <Viewed item={item} />}
                      {isAuth && <Faved item={item} />}
-                     <CancelToOffer item={item} />
+                     <CancelToOffer item={item} id={offerId} />
                     <ShowDetail item={item} />
-                     <ComplateToOffer item={item} />
+                     <ComplateToOffer item={item} id={offerId} />
                  </Button>)
             break;
             case 'outgoing-accepted':
                 return (<Button>
                      {item?.viewed && <Viewed item={item} />}
                      {isAuth && <Faved item={item} />}
-                     <CancelToOffer item={item}  />
+                     <CancelToOffer item={item} id={offerId}  />
                      <ShowDetail item={item}  />
-                    <StartToOffer item={item}  />
+                    <StartToOffer item={item} id={offerId} />
                </Button>)
             break;
             case 'outgoing-pending':
                 return (<Button rich>
                      {item?.viewed && <Viewed item={item} />}
                       <ShowDetail item={item}  />
-                     <UndoToOffer item={item} />
+                     <UndoToOffer item={item} id={offerId} />
                  </Button>)
             break;            
             case 'ingoing-inshipment':
@@ -107,7 +105,7 @@ export const Actions = ({item, cargo, isAuth, actionType, status}:any) => {
                      {item?.viewed && <Viewed item={item} />}
                      <RemoveOffer item={item}  />
                       <ShowDetail item={item}  />
-                     <ApproveToOffer item={item}  />
+                     <ApproveToOffer item={item} id={offerId} />
                  </Button>)
             break;
             case 'ingoing-accepted':

@@ -27,6 +27,7 @@ export const findAll = createAsyncThunk<any>(
       }
   }
 )
+
 export const filters = createAsyncThunk<any, any>(
     'cargo/findAll',
     async (param, thunkAPI) => {
@@ -39,7 +40,6 @@ export const filters = createAsyncThunk<any, any>(
         }
     }
 )
-
 
 export const find = createAsyncThunk<string, any>(
   'cargo/find',
@@ -79,7 +79,6 @@ export const update = createAsyncThunk<any, any>(
       }
   }
 )
-
 
 const cargoSlice = createSlice({
   name: 'cargo',

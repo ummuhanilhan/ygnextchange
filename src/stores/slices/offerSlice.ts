@@ -13,10 +13,17 @@ const initialState: any = {
   loading: LoadingState.IDLE,
   error: undefined,
   message: '',
-  sub_offers: [],
-  sub_loading: LoadingState.IDLE,
-  sub_error: undefined,
-  sub_message: '',
+  act:{
+    loading: LoadingState.IDLE,
+    error: undefined,
+    message: '',
+  },
+  sub:{
+    offers: [],
+    loading: LoadingState.IDLE,
+    error: undefined,
+    message: '',
+  }
 }
 
 export const findAll = createAsyncThunk<any, string>(
@@ -75,7 +82,7 @@ export const update = createAsyncThunk<any, any>(
   'offer/update',
   async ({id, values}, thunkAPI) => {
       try {
-          const response = await api.post(`/offers`,{id, ...values})
+          const response = await api.patch(`/offers/`+id,values)
           return response.data
             
       } catch (error:any) {
@@ -194,6 +201,9 @@ const offerSlice = createSlice({
         state.offers = action.payload 
     },
     clear: (state) => {
+      state.offers = []
+    },
+    reset: (state) => {
       state.message = ''
     },
     setFilter: (state, action) => {
@@ -257,29 +267,32 @@ const offerSlice = createSlice({
     })
 
     // UPDATE
-    builder.addCase(update.pending, (state)=>{ 
-      state.error=false;
-      state.message='';
-      state.loading= LoadingState.LOADING})
+    builder.addCase(update.pending, (state)=>{
+        state.act.message = ''
+        state.act.error=false;
+        state.act.loading= LoadingState.LOADING
+    })
     builder.addCase(update.fulfilled, (state)=>{
-       state.error=false;
-       state.message = '';
-      state.loading= LoadingState.LOADED
+      state.act.message = 'Başarı ile oluşturuldu'
+      state.act.loading = LoadingState.LOADED
+
     })
     builder.addCase(update.rejected, (state, action:any)=>{
-      state.error = true;  
-      state.message = action.payload?.error; 
-      state.loading= LoadingState.ERROR
-   })
-   // 
-   builder.addCase(offers.pending, (state)=>{state.sub_loading= LoadingState.LOADING})
+      state.act.error = true;  
+      state.act.message = action.payload?.error; 
+      state.act.loading= LoadingState.ERROR
+    })
+
+   // SUB FIND ALL 
+   builder.addCase(offers.pending, (state)=>{state.sub.loading= LoadingState.LOADING})
    builder.addCase(offers.fulfilled, (state,action) => {
-     state.sub_message = '' 
-     state.sub_offers = action.payload 
-     state.sub_loading = LoadingState.LOADED
+     state.sub.message = '' 
+     state.sub.offers = action.payload 
+     state.sub.loading = LoadingState.LOADED
    })
-   builder.addCase(offers.rejected, (state)=>{state.sub_loading= LoadingState.ERROR})
- 
+   builder.addCase(offers.rejected, (state)=>{state.sub.loading= LoadingState.ERROR})
+   
+   // REMOVE
 
   }
 })
@@ -298,8 +311,9 @@ export const selectOffer = createSelector(
     message: state.offer.message,
     error: state.offer.error,
     loading: state.offer.loading,
-    sub_offers: state.offer.sub_offers,
-    sub_loading: state.offer.sub_loading,
+    sub_offers: state.offer.sub.offers,
+    sub_loading: state.offer.sub.loading,
+    act: state.offer.act,
   }),
   (state) => state
 )
@@ -308,6 +322,7 @@ export const {
   refresh,
   setFilter,
   clear,
+  reset
 } = offerSlice.actions
  
 export default offerSlice.reducer

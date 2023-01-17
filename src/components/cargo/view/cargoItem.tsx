@@ -16,7 +16,7 @@ export type CargoProps = {
     vehicle: String,
 }
 
-export const CargoItem = ({item, actionType='', status}:any) => {
+export const CargoItem = ({item, actionType='', status, offerId}:any) => {
     if(!item?._id) return <></>
     const { definitions, formatted } = useSelector(selectDefinition);
     const { isAuth} = useSelector(selectAuth);
@@ -103,33 +103,74 @@ export const CargoItem = ({item, actionType='', status}:any) => {
                     <p className='text-gray-400 text-sm'>{item?.payload?.weight?.size} {item?.payload?.weight?.unit}</p>
                 </li>
                 </ul>
-
-                {true && (
+                {status && (
                     <React.Fragment>
                     {/*** SHIPMENT  **/}
-                    {item?.progress == 'inshipmnet' && ( 
+                    {status == 'inshipment' && ( 
                         <p className='text-yg-green flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='text-yg-green mr-1' /> 
                             Durum: Sevkiyat Devam Ediyor    
                         </p>
                     )}
-                     { item?.progress == 'pending_response' && ( 
-                        <p className='text-red-600 flex items-center justify-start text-sm'>  
-                            <FiInfo size={17} className='text-red-600 mr-1' /> 
-                            Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
+                      {status == 'accepted' && ( 
+                        <p className='text-black flex items-center justify-start text-sm'>  
+                            <FiInfo size={17} className='text-black mr-1' /> 
+                            Durum: Sevkiyat Tamamlandı    
                         </p>
                     )}
-                    {item?.progress == 'complated' && ( // 
+
+                    {status == 'complated' && ( // 
                         <p className='flex items-center justify-start text-sm'>  
                             <FiInfo size={17} className='mr-1' /> 
                             Durum: Sevkiyat Tamamlandı    
+                        </p>
+                    )}
+                    
+                    {status == 'seen' && ( 
+                    <p className='text-gray-400 flex items-center justify-start text-sm'>  
+                        <FiInfo size={17} className='text-gray-400 mr-1' /> 
+                        Durum: İlan Sahibi Tarafından Görüldü
+                    </p>
+                   )}
+
+                    {status == 'outdated' && ( 
+                    <p className='text-gray-400 flex items-center justify-start text-sm'>  
+                        <FiInfo size={17} className='text-gray-400 mr-1' /> 
+                        Durum: İlan Süresi Geçti
+                    </p>
+                   )}
+
+                   
+                    {status == 'pending_offer' && ( 
+                        <p className='text-yg-red flex items-center justify-start text-sm'>  
+                            <FiInfo size={17} className='text-yg-red mr-1' /> 
+                            Durum: Sevkiyat İçin Sürücülerden Teklif Bekleniyor
+                        </p>
+                    )}
+                    
+                      {status == 'pending_approval' && ( 
+                        <p className='text-yg-green flex items-center justify-start text-sm'>  
+                            <FiInfo size={17} className='text-yg-green mr-1' /> 
+                            Durum: Sevkiyat İçin Seçtiğiniz Sürücüden Yanıt Bekleniyor  
+                        </p>
+                    )}
+
+                     { status == 'pending_response' && ( 
+                        <p className='text-red-600 flex items-center justify-start text-sm'>  
+                            <FiInfo size={17} className='text-red-600 mr-1' /> 
+                            Durum: İlan Sahibinden Teslimat Onayı Bekliyor    
                         </p>
                     )}
                 </React.Fragment>
 
                 )}
                 </div>
-                   <Actions item={item} isAuth={isAuth} actionType={actionType} status={status} />
+                <Actions 
+                    offerId={offerId}
+                    item={item} 
+                    isAuth={isAuth} 
+                    actionType={actionType} status={status} 
+                />
             </div>
         </div>
     )

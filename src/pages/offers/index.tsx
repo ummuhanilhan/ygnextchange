@@ -13,7 +13,7 @@ import classNames from "classnames";
 import useSWR from "swr";
 import { useAppDispatch } from "stores/store";
 import { useSelector } from "react-redux";
-import { filters, findAll, selectOffer } from "stores/slices/offerSlice";
+import { clear, filters, findAll, selectOffer } from "stores/slices/offerSlice";
 import { LoadingState } from "stores/types";
 import { Empty } from "@utils/empty";
 import { SkeletonLoading } from "@utils/skeleton";
@@ -32,7 +32,7 @@ export const OfferDummy = ({actionType}:any)=>{
     const [selected, setSelected] = React.useState<any>({tab:String(1), filter:1}); 
     const [param, setParam] = useState([]);
     const dispatch = useAppDispatch();
-    const { offers, error, loading } = useSelector(selectOffer);
+    const { offers, error, loading, act } = useSelector(selectOffer);
    
     useEffect(()=>{
         // offers?.length <= 0 && dispatch(findAll('id')) 
@@ -43,7 +43,7 @@ export const OfferDummy = ({actionType}:any)=>{
             route:actionType,
             status:OfferReverse[selected?.tab]
         }))
-    },[actionType, selected])
+    },[actionType, selected, act.loading])
 
     const handleFilter = (slug:any) => {
         setSelected({...selected, filter:OfferRoute[slug]})
@@ -52,6 +52,8 @@ export const OfferDummy = ({actionType}:any)=>{
     const Offers = offers?.map((item:any,i:number)=>(
         <CargoItem 
             item={item.cargo} 
+            status={item.status}
+            offerId={item._id}
             key={`vehicle-active-${i}`}  
             // @ts-ignore
             actionType={`${actionType}-${OfferReverse[selected?.tab]}`} 

@@ -1543,3 +1543,32 @@ export const handler: Handler = async (event: any, context: Context) => {
     'string.uriCustomScheme': '{{#label}} must be a valid uri with a scheme matching the {{#scheme}} pattern',
     'string.uriRelativeOnly': '{{#label}} must be a valid relative uri',
     'string.uppercase': '{{#label}} must only contain uppercase characters'
+
+
+
+    const openByType = (value:string) => {
+        switch (slugify(value)) {
+            case 'teklif-gonder':
+                console.log(value)
+                open({
+                    type:'show-cargo', 
+                    values:{item} 
+                }) 
+                return;
+            break;
+        
+            default:
+                break;
+        }
+        return;
+    }
+  
+/**
+<Action title='Sil' color='gray' outline path='#' outline />
+<Action title='Vazgeç' color='gray' outline path='#' outline />
+<Action title='Kopyala' color='blue' path='#' outline />
+<Action title='Düzenle' color='blue' path='#' />
+<Action title='İlan Detayını Gör' color='orange' path='#' />
+<Action title='Sevkiyatı Tamamla' color='green' path='#' />
+ */
+

@@ -121,6 +121,7 @@ export const Account = ({uptodate}:any) => {
         notify('Başarıyla Güncellendi!', {type:'success',position:'bottom-center'});
     };
     const onError = (errors:any) => { console.log(errors) };
+    
     return (
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
