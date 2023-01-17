@@ -41,8 +41,9 @@ export const OfferDummy = ({actionType}:any)=>{
     useEffect(()=>{
         dispatch(filters({
             route:actionType,
-            status:OfferReverse[selected?.tab]
+            status:OfferReverse[selected?.filter]
         }))
+        console.log(OfferReverse[selected?.filter])
     },[actionType, selected, act.loading])
 
     const handleFilter = (slug:any) => {
@@ -56,7 +57,7 @@ export const OfferDummy = ({actionType}:any)=>{
             offerId={item._id}
             key={`vehicle-active-${i}`}  
             // @ts-ignore
-            actionType={`${actionType}-${OfferReverse[selected?.tab]}`} 
+            actionType={`${actionType}-${OfferReverse[selected?.filter]}`} 
         />
     ))
     return (

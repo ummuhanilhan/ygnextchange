@@ -103,6 +103,7 @@ export const CargoItem = ({item, actionType='', status, offerId}:any) => {
                     <p className='text-gray-400 text-sm'>{item?.payload?.weight?.size} {item?.payload?.weight?.unit}</p>
                 </li>
                 </ul>
+              
                 {status && (
                     <React.Fragment>
                     {/*** SHIPMENT  **/}

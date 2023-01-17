@@ -276,17 +276,17 @@ export enum VehicleRoute {
 }
 
 export enum OfferRoute {
-  "inshipment" = 1,
-  "accepted" = 2,
-  "pending" = 3,
-  "pending_approval" = 4,
-  "pending_response" = 5,
-  "pending_offer" = 6,
-  "outdated" = 7,
-  "all" = 8,
-  "seen" = 9,
-  "ready" = 10,
-  "complated" = 11,
+  inshipment = 1,
+  accepted = 2,
+  pending = 3,
+  pending_approval = 4,
+  pending_response = 5,
+  pending_offer = 6,
+  outdated = 7,
+  all = 8,
+  seen = 9,
+  complated = 10,
+  rejected = 11,
   InShipment = 1,
   Accepted = 2,
   Pending = 3,
@@ -296,8 +296,8 @@ export enum OfferRoute {
   Outdated = 7,
   All = 8,
   Seen = 9,
-  Ready = 10,
-  Complated = 11,
+  Complated = 10,
+  Rejected = 11,
 }
 
 export const OfferReverse: any = {
@@ -310,8 +310,8 @@ export const OfferReverse: any = {
   "7": "outdated",
   "8": "all",
   "9": "seen",
-  "10": "ready",
-  "11": "complated",
+  "10": "complated",
+  "11": "rejected",
 };
 
 export const inShipmentIn = [
@@ -319,7 +319,7 @@ export const inShipmentIn = [
 ];
 
 export const acceptedIn = [
-  { id: 1, title: "Sevkiyata Hazır Olanlar", slug: "ready" },
+  { id: 1, title: "Sevkiyata Hazır Olanlar", slug: "accepted" },
 ];
 
 export const pendingIn = [
@@ -338,7 +338,7 @@ export const inShipmentOut = [
 
 export const acceptedOut = [
   // kabul edilenler (giden teklifler)
-  { id: 1, title: "Sevkiyata Hazır Olanlar", slug: "ready" },
+  { id: 1, title: "Sevkiyata Hazır Olanlar", slug: "accepted" },
 ];
 
 export const pendingOut = [
