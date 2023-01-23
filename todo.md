@@ -1,11 +1,11 @@
-- [ ] arr->direciton empty and range err
-- [ ] addr box responsive / auth responsive
-- [ ] addr map crashing
+- [ ] upload avatar & file
+# addr
+- [ ] direciton empty and range err
+- [ ] box responsive / auth responsive
+- [ ] map crashing
+- [ ] loading
 # next
 - [ ] offer actions
-- [ ] addr loading
-- [ ] avatar, upload 
-
 ## cargo
 - [ ] save cargo lowercase
 - [ ] cargo create form response toastbar message
@@ -28,7 +28,7 @@
 - [ ] amount * price = toatl is not working properly
 - [ ] sended offer caroges doenst shown can send multiple
 - [ ] can send offer to himself cargo
-
+## sw
 - [ ] redis implemantation needed
 - [ ] if remover is offer owner itself than delete
 
