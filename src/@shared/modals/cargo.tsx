@@ -17,7 +17,8 @@ export const CargoModal = ({item}:any) => {
 
     return (
        <Frame>
-            {item._id ? (
+           
+            {  definitions && item._id ? (
                 <SimpleBar style={{ maxHeight: '80vh' }}>
 
                 <TitleFrameDropdown title='Yük Detayları' nomargin />
@@ -68,9 +69,11 @@ export const CargoModal = ({item}:any) => {
                 </div>
 
            </SimpleBar>
-            ): <div className="w-full h-full flex items-center justify-center">
-                <Spinner />
-            </div> }
+            ): (
+            <div className="w-full h-full flex items-center justify-center">
+                <Spinner className='h-16 w-16 text-yg-blue' />
+            </div> 
+            )}
 
        </Frame>
     )

@@ -11,13 +11,12 @@ import { create, remove, update } from "stores/slices/offerSlice"
 import { default15 } from "@shared/modals/classic"
 import { Action } from "./action"
 import { Faved, Viewed } from "./favorite"
-import { ApproveToOffer, CancelToOffer, ComplateToOffer, InspectToOffer, OffersInspect, openOfferSendModal, RemoveOffer, SendOffer, ShowDetail, StartToOffer, UndoToOffer } from "./dispatchers"
+import { ApproveToOffer, CancelToOffer, ComplateToOffer, InspectToOffer, ItemState, OffersInspect, openOfferSendModal, RemoveOffer, SendOffer, ShowDetail, StartToOffer, UndoToOffer } from "./dispatchers"
 
 
 
-export const Actions = ({item, offerId, cargo, isAuth, actionType, status}:any) => {
+export const Actions = ({item, offerId, cargo, vehicle, isAuth, actionType, status}:any) => {
     if(!item?._id) return <></>;
-
     const {open, close}:any = useModal(state=>state);
     const dispatch = useAppDispatch()
     const [fav, setFav] = useState(false)
@@ -35,6 +34,11 @@ export const Actions = ({item, offerId, cargo, isAuth, actionType, status}:any) 
         return children
     }
  
+    const openOfferSendModal = ({item}:ItemState) => {
+        open({type:'show-vehicle', styles:default15, values:{item} })
+    } 
+    
+
     const show = (
     <Action 
         title='Detay Gör' 
@@ -62,7 +66,7 @@ export const Actions = ({item, offerId, cargo, isAuth, actionType, status}:any) 
                     {item?.viewed && <Viewed item={item} />}
                     {isAuth && <Faved item={item} />}
                     {show}
-                    {isAuth && <SendOffer item={item} status={status} />}
+                    {isAuth && <SendOffer cargoId={item._id} vehicleId={vehicle._id} status={status} />}
                  </Button>)
             break;
             case 'mycargoes':

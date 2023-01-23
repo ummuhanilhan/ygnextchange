@@ -35,8 +35,8 @@ export const AddressBox = ({
         }
         )}>
 
-         { !addr?.title && <p className='text-gray-400'>Yükün Yükleneceği Konumu Seçiniz</p> }
-          { addr?.title && <h3 className='text-yg-blue text-2xlxl text-medium'>{addr.title}</h3> }
+         { !addr?.place?.title && <p className='text-gray-400'>Yükün Yükleneceği Konumu Seçiniz</p> }
+          { addr?.place?.title && <h3 className='text-yg-blue text-2xlxl text-medium'>{addr?.place.title}</h3> }
             
            {addr && (
              <div>

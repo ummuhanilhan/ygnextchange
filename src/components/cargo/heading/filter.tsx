@@ -1,7 +1,7 @@
+import React from "react"
 import { Dropdown } from "@shared/elements/dropdowns"
 import { Search } from "@shared/elements/searches"
 import { acceptedIn, acceptedOut, inShipmentIn, inShipmentOut, pendingIn, pendingOut } from "@utils/mock"
-import React from "react"
 import { Selectes } from "../view"
 
 export const FilterHeading = ({

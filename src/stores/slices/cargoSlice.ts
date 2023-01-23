@@ -41,6 +41,20 @@ export const filters = createAsyncThunk<any, any>(
     }
 )
 
+export const mycargoes = createAsyncThunk<any, any>(
+    'cargo/mycargoes',
+    async (_,thunkAPI) => {
+        try {
+            const response = await api.post(`/cargo/my`)
+            return response.data
+
+        } catch (error) {
+            return thunkAPI.rejectWithValue({ error: (error as Error).message })
+        }
+    }
+)
+
+
 export const find = createAsyncThunk<string, any>(
   'cargo/find',
   async (id, thunkAPI) => {
@@ -95,7 +109,7 @@ const cargoSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-
+    // FILTERS
     builder.addCase(filters.pending, (state)=>{state.loading= LoadingState.LOADING})
     builder.addCase(filters.fulfilled, (state,action) => {
       state.message = '' 
@@ -103,6 +117,15 @@ const cargoSlice = createSlice({
       state.loading = LoadingState.LOADED
     })
     builder.addCase(filters.rejected, (state)=>{state.loading= LoadingState.ERROR})
+    
+    // MY CARGOES
+    builder.addCase(mycargoes.pending, (state)=>{state.loading= LoadingState.LOADING})
+    builder.addCase(mycargoes.fulfilled, (state,action) => {
+      state.message = '' 
+      state.cargoes = action.payload 
+      state.loading = LoadingState.LOADED
+    })
+    builder.addCase(mycargoes.rejected, (state)=>{state.loading= LoadingState.ERROR})
 
     // FIND
     builder.addCase(find.rejected, (state)=>{state.loading= LoadingState.ERROR})

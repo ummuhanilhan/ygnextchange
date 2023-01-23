@@ -74,9 +74,9 @@ export type AuthProps = {
 } & LoadingProps
 
 export type CargoState = {
+    _id: String;
     user: object;
     date:Date;
-     _id: String;
     cargo: String;
     vehicle: String;
 } | {}

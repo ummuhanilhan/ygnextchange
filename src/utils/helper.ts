@@ -269,6 +269,8 @@ export function currencyFormat(price:string, currency:string) {
         break;
         case 'usd':
             return '$' + price
+        case 'eur':
+            return '€' + price
         break;
         default:
             return price + '₺';
@@ -297,6 +299,4 @@ export const definedVehicle = (value:string) => {
                 break;
         }
 }
-
-
-
+ 

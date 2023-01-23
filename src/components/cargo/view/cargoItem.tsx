@@ -16,7 +16,7 @@ export type CargoProps = {
     vehicle: String,
 }
 
-export const CargoItem = ({item, actionType='', status, offerId}:any) => {
+export const CargoItem = ({item, actionType='', vehicle, status, offerId}:any) => {
     if(!item?._id) return <></>
     const { definitions, formatted } = useSelector(selectDefinition);
     const { isAuth} = useSelector(selectAuth);
@@ -139,8 +139,7 @@ export const CargoItem = ({item, actionType='', status, offerId}:any) => {
                         <FiInfo size={17} className='text-gray-400 mr-1' /> 
                         Durum: İlan Süresi Geçti
                     </p>
-                   )}
-
+                   )} 
                    
                     {status == 'pending_offer' && ( 
                         <p className='text-yg-red flex items-center justify-start text-sm'>  
@@ -169,6 +168,7 @@ export const CargoItem = ({item, actionType='', status, offerId}:any) => {
                 <Actions 
                     offerId={offerId}
                     item={item} 
+                    vehicle={vehicle} 
                     isAuth={isAuth} 
                     actionType={actionType} status={status} 
                 />

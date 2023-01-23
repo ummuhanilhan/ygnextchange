@@ -34,9 +34,9 @@ export const CargoUpdate = () => {
                     ...cargo,
                     shipping:{
                         ...cargo.shipping,
-                        range: [...cargo.shipping.range.map((date:string)=> date && new Date(date))]
-                    }
-                    // ...defaultItem,              
+                        range: [...cargo.shipping?.range.map((date:string)=> date && new Date(date))||[] ]
+                    },
+                    ...defaultItem,              
                 }} />
             )}
         </div>

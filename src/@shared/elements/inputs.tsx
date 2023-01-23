@@ -175,6 +175,7 @@ export const FloatingInput = ({
               type={type=='password'? (!hide?'text':type) : type }
               onTouchMove={handleActivation}
               onChange={handleActivation}
+              onKeyDown={handleActivation}
             />
             <label
               className={classNames(

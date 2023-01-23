@@ -660,17 +660,6 @@ export const item: any = {
 };
 
 export const defaultItem: any = {
-  _id: {
-    $oid: "62d778aee8ef39b2070f8ace",
-  },
-  user: {
-    $oid: "62d684f20af2af81b3455a71",
-    name: "Tester Test",
-    phone: "055555555",
-    email: "test@test.com",
-  },
-  privacy: "draft",
-  viewing: 0,
   rent: {
     vehicle: "truck", // 18wheeler
     type: "parsiel",
@@ -714,6 +703,8 @@ export const defaultItem: any = {
       place: {
         address: "Aşçıbekirli, İsimsiz Yol, 01470 Pozantı/Adana, Türkiye",
         street: "",
+        title: "adres başlığı test",
+        description: "açık adres tarif",
       },
       direction: {
         city: "isparta",
@@ -729,8 +720,6 @@ export const defaultItem: any = {
         email: "test@test.com",
         verify: false,
       },
-      title: "adres başlığı test",
-      directions: "açık adres tarif",
     },
     unload: {
       geolocation: {
@@ -741,6 +730,8 @@ export const defaultItem: any = {
         address:
           "Akdere, Akdere Tekir Yayla Yolu, 38900 Tomarza/Kayseri, Türkiye",
         street: "No: Akdere Tekir Yayla Yolu",
+        title: "adres başlığı 2",
+        description: "açık adres 2",
       },
       direction: {
         city: "kayseri",
@@ -820,16 +811,7 @@ export const defaultItem: any = {
       option: "62b14d9d7810ae9b35ea4b0a", //10day
     },
   },
-  updated_at: {
-    $date: {
-      $numberLong: "1658288302697",
-    },
-  },
-  created_at: {
-    $date: {
-      $numberLong: "1658288302697",
-    },
-  },
+
 };
 
 // shipping
@@ -883,6 +865,9 @@ export const addresses = [
       phone: "0234 234 32 43",
       name: "tester",
     },
+    title: "adres başlığı test",
+    directions: "açık adres tarif",
+
   },
   {
     no: 2,
@@ -905,6 +890,8 @@ export const addresses = [
       name: "tester",
       phone: "0543 535 43 54",
     },
+    title: "adres başlığı test",
+    directions: "açık adres tarif",
   },
 ];
 
@@ -1005,8 +992,6 @@ export const issues = [
 export const addressList: any = [
   {
     _id: "1",
-    title: "Ev adresi",
-    directions: "Açık Adres",
     geolocation: {
       lat: 40.788855,
       lng: 30.40595399999999,
@@ -1020,8 +1005,8 @@ export const addressList: any = [
       verify: false,
     },
     place: {
-      title: "",
-      description: "",
+      title: "Ev adresi",
+      description: "Açık Adres",
       street: "",
       address: "Adapazarı, Karaosman, 54100 Adapazarı/Sakarya, Türkiye",
     },
@@ -1036,12 +1021,11 @@ export const addressList: any = [
       province: "",
       town: "",
     },
+    
   },
   {
     _id: "2",
-    title: "İşyeri",
-    directions: "Ana caddenin hemen üzeri",
-    geolocation: {
+     geolocation: {
       lat: 40.788855,
       lng: 30.40595399999999,
     },
@@ -1055,8 +1039,8 @@ export const addressList: any = [
       verify: false,
     },
     place: {
-      title: "",
-      description: "",
+      title: "İşyeri",
+      directions: "Ana caddenin hemen üzeri",
       street: "",
       address: "Karaduvar, Mersin Limanı, 33020 - Merkez...",
     },
@@ -1097,15 +1081,7 @@ export const addressList: any = [
 ];
 
 export const dummyItem = {
-  _id: "63729a47a988970cf6093b56",
-  user: {
-    _id: "6372896dc8297c87a97f91c3",
-    name: "Tester Tester",
-    slug: "tester-tester",
-  },
-  privacy: "drafted",
   progress: "pending",
-  viewing: 0,
   rent: {
     vehicle: "romork",
     type: "parsiel",
@@ -2906,15 +2882,7 @@ export const dummyFormatted = {
 
 export const dummyItems = [
   {
-    _id: "63729a47a988970cf6093b56",
-    user: {
-      _id: "6372896dc8297c87a97f91c3",
-      name: "Tester Tester",
-      slug: "tester-tester",
-    },
-    privacy: "drafted",
     progress: "pending",
-    viewing: 0,
     rent: {
       vehicle: "romork",
       type: "parsiel",

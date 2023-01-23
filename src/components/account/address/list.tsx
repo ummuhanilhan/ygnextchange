@@ -13,6 +13,7 @@ import { FormFooter } from "@shared/footers";
 import { add, slugify } from "@utils/helper";
 import classNames from "classnames";
 import { useModal } from "stores/features/useModal";
+import { Empty } from "@utils/empty";
 
 export const AddressList = ({cb, border}:any) => {
     const dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ export const AddressList = ({cb, border}:any) => {
         await dispatch(findAll())
     }
     useEffect(()=>{
-        setData(addresses);
+        addresses && setData(addresses);
     },[addresses])
     return (
         <React.Fragment>  
@@ -59,7 +60,11 @@ export const AddressList = ({cb, border}:any) => {
                     }}
                     >Yeni Adres Ekle</p>
                 </div>
-          
+                    
+                { data?.length<=0 && ( 
+                    <Empty />
+                )}  
+
                 <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
                 {data?.length>0 && data
                 .filter((item:any)=>{

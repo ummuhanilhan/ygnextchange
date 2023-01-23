@@ -71,10 +71,8 @@ empty,
                         actionType={type} 
                         status={selected===1}  
                     />
-                ))}
-
-                {error && <h3>Bir şeyler ters gitti!</h3>}
-                
+                ))} 
+                {error && <h3>Bir şeyler ters gitti!</h3>} 
                 {!empty && loading && ( // spinner
                     <div className="flex flex-center w-full justify-center">
                         <SkeletonLoading />
@@ -82,10 +80,7 @@ empty,
                 )}
                 { empty && ( // [...items]?.length<=0 
                     <Empty /> // <h1>Sonuç yok</h1>
-                )}
-
-       
-
+                )}  
                 {[
                 // ...items
                 ].map((item,i:number)=>(
@@ -96,9 +91,7 @@ empty,
                         status={selected===1}  
                     />
                 ))}
-            <SimplePagination 
-            
-            />
+            <SimplePagination />
         </React.Fragment>
     )
 }

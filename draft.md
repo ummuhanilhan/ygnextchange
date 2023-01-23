@@ -1,3 +1,40 @@
+```js
+{
+    "_id": {
+        "message": "\"_id\" is not allowed",
+        "type": "object.unknown"
+    },
+    "user": {
+        "message": "\"user\" is not allowed",
+        "type": "object.unknown"
+    },
+    "privacy": {
+        "message": "\"privacy\" is not allowed",
+        "type": "object.unknown"
+    },
+    "viewing": {
+        "message": "\"viewing\" is not allowed",
+        "type": "object.unknown"
+    },
+    "updated_at": {
+        "message": "\"updated_at\" is not allowed",
+        "type": "object.unknown"
+    },
+    "created_at": {
+        "message": "\"created_at\" is not allowed",
+        "type": "object.unknown"
+    }
+}
+```
+
+```js
+    if(selected==1){
+        dispatch(my({ status:'inshipment' }))
+    }else{
+        dispatch(my({ status:'outdated' }))
+    }
+```
+
 - - - - - - - - - - - - - - - - - - -                                         *
 - sevkiyatı başlat -> pending -> inshipment
 - teslimatı onayla -> inshipmnet -> complated

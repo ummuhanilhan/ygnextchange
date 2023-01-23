@@ -5,11 +5,14 @@ import { useModal } from "stores/features/useModal"
 import { default15 } from "@shared/modals/classic"
 import { CargoState } from "stores/types"
 import { notify, notifySuccess } from "@utils/helper"
+import { useEffect } from "react"
 
-type ItemState = {
-    item:CargoState,
+export type ItemState = {
+    item:CargoState
     status?: Boolean
     id?: String
+    cargoId?: String
+    vehicleId?: String
 }
  
 export const ShowDetail = ({item}:ItemState) => {
@@ -67,19 +70,14 @@ export const InspectToOffer = ({item}:ItemState) => {
     }}  color='blue' path='#' />
 }
 
-export const SendOffer = ({item, status}:ItemState) => {
+export const SendOffer = ({cargoId, vehicleId, status}:ItemState) => {
     const dispatch = useAppDispatch();
     return <Action title='Teklif Gönder' color='blue'disabled={!status} 
     onClick={()=>{
         // alert('send offer')
-        dispatch(create({ cargo:'', vehicle:''  }))
+        dispatch(create({ cargo:cargoId, vehicle:vehicleId  }))
     }} path='#' />
 }
-
-export const openOfferSendModal = ({item}:ItemState) => {
-    const {open, close}:any = useModal(state=>state);
-    open({type:'show-vehicle', styles:default15, values:{item} })
-} 
 
 export const CancelToOffer = ({item, id}:ItemState) => {
     const dispatch = useAppDispatch();
@@ -96,3 +94,5 @@ export const OffersInspect = ({item}:ItemState) => {
         open({type:'show-offers', styles:default15, values:{item} })
     }} color='blue' path='#' />
 }
+
+ 

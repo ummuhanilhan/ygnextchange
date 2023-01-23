@@ -1,6 +1,8 @@
+- [ ] arr->direciton empty and range err
+- [ ] addr box responsive / auth responsive
+- [ ] addr map crashing
 # next
 - [ ] offer actions
-- [ ] addr box responsive / auth responsive
 - [ ] addr loading
 - [ ] avatar, upload 
 
@@ -27,7 +29,14 @@
 - [ ] sended offer caroges doenst shown can send multiple
 - [ ] can send offer to himself cargo
 
+- [ ] redis implemantation needed
+- [ ] if remover is offer owner itself than delete
+
 ## server 
+- [x] loading button at > create-cargo-page
+- [x] prev next buttons for > create-cargo-page
+- [x] publish footer loading
+- [x] show modal `undefined` need pre-loading
 - [x] select dropdown  z-index (vehicle page)
 - [x] vehicle create response toastbar message
 - [x] change account form by user type

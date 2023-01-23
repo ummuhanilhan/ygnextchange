@@ -23,6 +23,7 @@ import { Frame } from "@components/frames/MainFrame";
 import { CargoTab } from "@components/tabs/CargoTab";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SimpleBar from "simplebar-react";
+import { Spinner } from "@utils/skeleton";
 
 export type CargoValues = {
     name: string,
@@ -59,6 +60,8 @@ export const CargoCreate = ({uptodate, init}:any) => {
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
     const onSubmit: SubmitHandler<CargoValues> = data => {
+        //@ts-ignore
+        console.log('price:', data?.fee?.price, data)
         if(uptodate)
             dispatch(create(data)) // update({id:'', values:data})
         else
@@ -124,13 +127,16 @@ export const CargoCreate = ({uptodate, init}:any) => {
                     {/** <SimpleBar style={{ maxHeight: '350px' }} > **/}
                         <Publish control={control} 
                         footer={<FormFooter 
+                            loading={loading == LoadingState.LOADING} 
                             cb={()=>sendref.current?.click()} 
                             close={()=>setOpen(!open)}
                         />}  />
                     {/** </SimpleBar> **/}
                 </Classic>
                 <button type='submit' className='hidden-' ref={sendref}>send</button>
-                <Footer selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
+                <Footer 
+                loading={loading == LoadingState.LOADING}
+                selected={selected} setSelected={setSelected} update={update} setOpen={setOpen} />
             </form>
         </CargoLayout>
     ) :<>Yükleniyor...</>
@@ -142,20 +148,30 @@ export const Footer = ({
     selected,
     setSelected,
     update,
-    setOpen
+    setOpen,
+    loading
 }:any) => {
+    const router = useRouter();
 
     return (
         <div className="grid grid-cols-1 
         sm:flex sm:justify-end mt-3 
         -sticky right-3 bottom-3 sm:p-3  ">
-            <div className="bg-yg-orange p-3 text-center px-12 text-white rounded-md  cursor-pointer">Vazgeç</div>
+            {selected==1 && <div 
+            onClick={()=>router.push('/')}
+            className="bg-yg-orange p-3 text-center px-12 text-white rounded-md  cursor-pointer">Vazgeç</div> }
+            {selected!=1 && <div 
+            onClick={()=>setSelected(--selected)}
+            className="bg-yg-orange p-3 text-center px-12 text-white rounded-md  cursor-pointer">Geri</div> }
             <div 
             className="bg-yg-blue p-3 px-12 mt-2 sm:mt-0 sm:ml-2 text-white rounded-md cursor-pointer" 
             onClick={()=>{
                 selected< 3 && setSelected(selected+1)
                 selected>=3 && setOpen && setOpen(true)
-            }}>{selected<3 ? 'Devam Et' : (update ?'Güncelle':'Oluştur')}</div>
+            }}>
+                {loading &&  <Spinner />}
+                {  loading ? 'Yükleniyor' : (selected<3 ? 'Devam Et' : (update ?'Güncelle':'Yayınla') ) }
+            </div>
         </div>
     )
 }

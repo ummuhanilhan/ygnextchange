@@ -191,6 +191,11 @@ export const PriceCalculate = ({
         setValue('fee.price.total',total)
     },[unit,tonnage])
 
+    React.useEffect(()=>{
+        console.log(total)
+        setValue('fee.price.total',total)
+    },[total])
+
     const err = errors?.fee?.price;
 
     const valueReturn = (value:number) =>{

@@ -53,6 +53,7 @@ export const OfferDummy = ({actionType}:any)=>{
     const Offers = offers?.map((item:any,i:number)=>(
         <CargoItem 
             item={item.cargo} 
+            vehicle={item.vehicle} 
             status={item.status}
             offerId={item._id}
             key={`vehicle-active-${i}`}  
