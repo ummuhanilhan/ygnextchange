@@ -29,7 +29,8 @@ import { useFilter } from "stores/features/filter";
 import FormLayout from "@layouts/FormLayout";
 import { fetcher } from "@utils/helper";
 import useSWR from "swr";
-
+import { RentRadioHook } from "@shared/elements/hooks";
+import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 export type FilterValues = {
     name: string,
 };
@@ -74,10 +75,16 @@ const Filter = ({x, save }:any) => {
    
     const onSubmit: SubmitHandler<any> = data => {
         const options:any = {}
+        options.rent = {};
+        if(data.rent.type) options.rent.type = data.rent.type;
+        if(data.rent.types) options.rent.vehicle = data.rent.types;
+        if(data.rent.features) options.rent.features = data.rent.features;
+        if(data.rent.options) options.rent.options = data.rent.options;
         if(data.load) options.load = data.load
         if(data.unload) options.unload = data.unload
-        dispatch(filters(data))
-
+        if(data.date) options.date = data.date
+        console.log(options)
+        dispatch(filters(options))
     };
     const onError = (errors:any) => {}
     return (
@@ -175,7 +182,16 @@ export const Dates = ({control}:any) => {
              setStatus={setStatus} 
             icon={<Calendar className="fill-yg-blue" width={19} />} title="Tarih" />
             <div className={classNames({hidden:!status})}>
-
+                <CalendarHook 
+                            name='date' 
+                            type="text" 
+                            maxDate={new Date()} 
+                            placeholder='Hangi aralıkta girmek istediğinizi seçiniz' 
+                            control={control}
+                            className=' bg-white'
+                            size='medium'
+                            selectionMode='range'
+                        />
             </div>
         </React.Fragment>
     )
@@ -190,7 +206,10 @@ export const Hiring = ({control}:any) => {
              setStatus={setStatus} 
             icon={<CircleHalf className="fill-yg-blue" width={15} />} title="Kiralama Tipi" />
             <div className={classNames({hidden:!status})}>
-
+                <RentRadioHook 
+                            name='rent.type'
+                            control={control}
+                        />
             </div>
         </React.Fragment>
     )

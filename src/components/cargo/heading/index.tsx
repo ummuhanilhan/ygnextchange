@@ -15,7 +15,7 @@ export const Heading = ({selects, filter}:any) => {
                         title='Her sayfada sırala' 
                         filters={ranges}
                     />
-                    <p className='ml-2'>İlan göster</p>
+                    <p className='ml-2 text-[11px] md:text-base'>İlan göster</p>
                 </div>
               {filter && (
                     <Dropdown 

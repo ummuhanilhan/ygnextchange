@@ -32,8 +32,8 @@ export const Dropdown = ({
         >
            <div className='flex justify-between items-center' onClick={handle}>
             <div className="flex items-start">
-                    <p>{title?title:'Filtrele'}:</p>
-                    <p className="text-yg-orange mx-2">
+                    <p className="text-[11px] md:text-base">{title?title:'Filtrele'}:</p>
+                    <p className="text-yg-orange mx-2 text-[11px] md:text-base">
                         {/** @ts-ignore */}
                         {(filters[parseInt(selected-1)]||filters[0])?.title}
                     </p>

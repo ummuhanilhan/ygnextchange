@@ -16,9 +16,11 @@
             @extend .flex-center;
             @apply bg-yg-lightblue p-4
             rounded-md
-            px-10
+            px-2
+            sm:px-10
             my-1
-            h-12
+            h-8
+            md:h-12
             cursor-pointer
             mr-3
             hover:bg-gray-100

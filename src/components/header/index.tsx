@@ -27,24 +27,27 @@ export const Header = ({mobile, setMobile}:any) =>{
     const router = useRouter()
     return (
         <div id="header" className="flex justify-end md:justify-between ">
-            <ul className={classNames(
+             <ul className={classNames(
                 "actions md:flex justify-between flex-row",
-                "hidden md:block",
-                {hidden: !mobile}
+                "flex float-left flex-row md:block",
+                {hidden: mobile}
             )}>
-                <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })}>
-                    <a href='/cargo/create' className="flex items-center">
-                        <Packet className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Yüküm Var</p>    
+                 <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })} className={classNames(
+                    router.pathname === '/cargo/create' && "flex items-center border-l-[.4rem] border-yg-orange",
+                {hidden: mobile}
+                )}>
+                    <a href='/cargo/create' className="flex items-center ">
+                        <Packet className="hidden menu-icon orange sm:block" /><p className="ml-2 whitespace-nowrap sm:text-base">Yüküm Var</p>    
                     </a> 
-                </li>
+                </li> 
                 <li className={classNames(
-                    "flex items-center border-l-[.4rem] border-yg-orange",
-                {hidden: !mobile}
+                    router.pathname === '/vehicles/create' && "flex items-center border-l-[.4rem] border-yg-orange",
+                {hidden: mobile}
                 )} 
                 onClick={()=>router.push('/vehicles/create', undefined, 
                 { shallow: true })}>
                     <a href='/vehicles/create' className='flex items-start'>
-                        <Truck className="menu-icon orange" /> <p className="ml-2 hidden sm:block">Aracım Var</p> 
+                        <Truck className="hidden menu-icon orange sm:block" /> <p className="ml-2 whitespace-nowrap sm:text-base">Aracım Var</p> 
                     </a>
                 </li>
             </ul>
