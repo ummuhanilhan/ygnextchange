@@ -1,28 +1,25 @@
 
 #header{
     @apply
-    bg-white
-    flex 
+    bg-white 
     px-2
     text-[1.07em]
-    py-2
     rounded-md
+    py-1
+    h-28
+    sm:h-16
     ;
 
     .actions{
-       
-
         li{
-            @extend .flex-center;
             @apply bg-yg-lightblue p-4
             rounded-md
-            px-2
+            px-5
             sm:px-10
             my-1
-            h-8
-            md:h-12
-            cursor-pointer
+            h-12
             mr-3
+            cursor-pointer
             hover:bg-gray-100
          }
     }
@@ -30,7 +27,6 @@
     .profile{
         @extend .flex-center;
        >  ul{
-            @extend .flex-center;
          >   li{
                 @apply 
                 flex 

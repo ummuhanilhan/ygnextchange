@@ -26,10 +26,10 @@ export const Header = ({mobile, setMobile}:any) =>{
 
     const router = useRouter()
     return (
-        <div id="header" className="flex justify-end md:justify-between ">
+        <div id="header" className="flex justify-end md:justify-between sm:static">
              <ul className={classNames(
-                "actions md:flex justify-between flex-row",
-                "flex float-left flex-row md:block",
+                "actions md:flex justify-between ",
+                "flex absolute mt-10 md:block sm:static sm:mt-0",
                 {hidden: mobile}
             )}>
                  <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })} className={classNames(
@@ -37,7 +37,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                 {hidden: mobile}
                 )}>
                     <a href='/cargo/create' className="flex items-center ">
-                        <Packet className="hidden menu-icon orange sm:block" /><p className="ml-2 whitespace-nowrap sm:text-base">Yüküm Var</p>    
+                        <Packet className="menu-icon orange" /><p className="ml-2 whitespace-nowrap sm:text-base">Yüküm Var</p>    
                     </a> 
                 </li> 
                 <li className={classNames(
@@ -47,10 +47,11 @@ export const Header = ({mobile, setMobile}:any) =>{
                 onClick={()=>router.push('/vehicles/create', undefined, 
                 { shallow: true })}>
                     <a href='/vehicles/create' className='flex items-start'>
-                        <Truck className="hidden menu-icon orange sm:block" /> <p className="ml-2 whitespace-nowrap sm:text-base">Aracım Var</p> 
+                        <Truck className="menu-icon orange " /> <p className="ml-2 whitespace-nowrap sm:text-base">Aracım Var</p> 
                     </a>
                 </li>
             </ul>
+
             {!isAuth && isAuth!=undefined && (
                     <div className='flex justify-end items-center'>
                         <a href='/auth/signin' className='flex items-start pr-3'>
@@ -165,10 +166,10 @@ export const Profile = ({
     const { user, isAuth }:any = useSelector(selectAuth);
 
     return (
-        <div className="profile ">
+        <div className="profile flex h-10 sm:h-full">
                 {isAuth && (
                     <React.Fragment>
-                            <ul className="">
+                            <ul className="flex">
                                 <li className="relative hover:bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center">
                                     <Share className="menu-icon" />
                                     {/** <p>Davet Et</p> **/}
@@ -235,7 +236,7 @@ export const Profile = ({
                     </React.Fragment>
                 )}
               
-                <div className="mx-2 cursor-pointer lg:hidden" onClick={()=>setMobile(!mobile)} >
+                <div className="mx-2 cursor-pointer flex lg:hidden" onClick={()=>setMobile(!mobile)} >
                     <FiMenu size={25} className="text-gray-500" />
                 </div>
             </div>
