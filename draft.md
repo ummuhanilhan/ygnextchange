@@ -1,3 +1,77 @@
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```javascript
+// 
+
+// 
+```
+
+```js
+
+    useEffect(()=>{
+        // isFaved()
+    },[])
+
+    const isFaved = async () => {
+        // const isfaved: {result:boolean} = await api.get(`/favorites/isfav/` + item._id)
+        // if(isfaved.result){
+        //     setFaved(true)
+        // }else{
+        //     setFaved(false);
+        // }
+    }
+
+    const toggle = async () => {
+        // const isfaved: {result:boolean} = await api.post(`/favorites/toggle`,{cargo:item._id})
+        // if(isfaved.result){
+        //     setFaved(true)
+        // }else{
+        //     setFaved(false);
+        // }
+        setFaved(!faved);
+
+    }
+```
+
 ```js
 {
     "_id": {
@@ -82,51 +156,9 @@
 
 `&from=${'filter.from'}&to=${filter.to}`
 
-```javascript
-// 
 
-// 
-```
 
-```javascript
-// 
 
-// 
-```
-```javascript
-// 
-
-// 
-```
-
-```javascript
-// 
-
-// 
-```
-
-```javascript
-// 
-
-// 
-```
-```javascript
-// 
-
-// 
-```
-
-```javascript
-// 
-
-// 
-```
-
-```javascript
-// 
-
-// 
-```
 ```javascript
 <Classic 
     status={status} 
