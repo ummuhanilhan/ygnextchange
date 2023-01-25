@@ -1,9 +1,26 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Calendar, ChevronRightClosed, Clock, People, PinAngle } from "@yukgetir-icons"
 import classNames from "classnames"
 import { Actions } from "./actions"
+import api from "@utils/api"
 
 export const VehicleItem = ({item, cargo, type='normal', actionType}:any) => {
+    const [offered, setOffered] = useState(undefined)
+    useEffect(()=>{
+        isOffered()
+    },[])
+
+    const isOffered = async () => {
+        console.log('item', item)
+        console.log('cargo', cargo)
+        if(item?._id && cargo?._id){
+            const offered = await api.post('/offers/isoffered',{
+                vehicle:item._id,
+                cargo:cargo._id,
+            }) 
+            setOffered(offered?.data?.offered);
+        }
+    }
     return (
         <div className={classNames(
             'cargo-item bg-white px-4 my-3 rounded-lg py-2',
@@ -58,7 +75,12 @@ export const VehicleItem = ({item, cargo, type='normal', actionType}:any) => {
                         </li>
                     </ul>
                 </div>
-               <Actions item={item} cargo={cargo}  actionType={actionType?actionType:'vehicle-active'} />
+               <Actions
+                    item={{...item, offered}} 
+                    vehicle={{...item, offered}} 
+                    cargo={cargo} 
+                    actionType={actionType?actionType:'vehicle-active'} 
+                />
             </div>
         </div>
     )

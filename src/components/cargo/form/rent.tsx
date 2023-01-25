@@ -13,7 +13,7 @@ export const Rent = ({control}:any) => {
     return (
             <React.Fragment>
 
-                <TitleFrame title="Araç Markası">
+                <TitleFrame title="Kiralama Tipi">
                     <RentRadioHook
                         name='rent.type'
                         control={control}

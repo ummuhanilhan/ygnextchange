@@ -8,7 +8,7 @@ import { notify, notifySuccess } from "@utils/helper"
 import { useEffect } from "react"
 
 export type ItemState = {
-    item:CargoState
+    item?:CargoState
     status?: Boolean
     id?: String
     cargoId?: String
@@ -74,7 +74,7 @@ export const SendOffer = ({cargoId, vehicleId, status}:ItemState) => {
     const dispatch = useAppDispatch();
     return <Action title='Teklif Gönder' color='blue'disabled={!status} 
     onClick={()=>{
-        // alert('send offer')
+        alert('send offer')
         dispatch(create({ cargo:cargoId, vehicle:vehicleId  }))
     }} path='#' />
 }

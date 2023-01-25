@@ -70,6 +70,7 @@ export const create = createAsyncThunk<any, any>(
   async (values, thunkAPI) => {
       try {
           const response = await api.post(`/offers`, {...values})
+          console.log(response.data, values)
           return response.data
             
       } catch (error:any) {
@@ -104,10 +105,7 @@ export const remove = createAsyncThunk<any, any>(
   }
 )
 
-
-
 // SUB OFFERS
-
 export const offers = createAsyncThunk<any, any>(
   'offer/offers',
   async (id, thunkAPI) => {

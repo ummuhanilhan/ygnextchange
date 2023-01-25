@@ -1,3 +1,4 @@
+- [ ] favorites
 - [ ] upload avatar & file
 # addr
 - [ ] direciton empty and range err
@@ -5,33 +6,32 @@
 - [ ] map crashing
 - [ ] loading
 # next
-- [ ] offer actions
-## cargo
-- [ ] save cargo lowercase
-- [ ] cargo create form response toastbar message
-- [ ] disable button after dispatch
-- [ ] total price doesn't save 
-- [ ] input pricing come out 0₺ 
-- [ ] cargoes filter detail
-- [ ] cargoes vehicles
-- [ ] paginations  
-- [ ] cargo owner can't offer  
 - [ ] support
-- [ ] pagination
-- [ ] filter
-- [ ] codebase input elements
 - [ ] change pass
+- [ ] codebase input elements
 - [ ] notification `readed_at`
-- [ ] favorites
-- [ ] only once offer to cargo
-- [ ] tags mandatroy field is not working 
-- [ ] amount * price = toatl is not working properly
-- [ ] sended offer caroges doenst shown can send multiple
-- [ ] can send offer to himself cargo
+## cargo
+- [ ] cargoes filter detail
+- [ ] paginations  
+- [ ] filter
+- [ ] tags mandatroy field 
+- [ ] can't cargo send offer to himself 
+- [ ] price can't be 0
+- [ ] cargo owner can't offer  
 ## sw
 - [ ] redis implemantation needed
 - [ ] if remover is offer owner itself than delete
 
+- [x] offer actions
+- [x] only once offer to cargo
+- [x] sended offer caroges doenst shown can send multiple
+- [x] amount * price = toatl is not working properly
+- [x] cargoes vehicles
+- [x] input pricing come out 0₺ 
+- [x] total price doesn't save 
+- [x] disable button after dispatch
+- [x] cargo create form response toastbar message
+- [x] save cargo lowercase
 ## server 
 - [x] loading button at > create-cargo-page
 - [x] prev next buttons for > create-cargo-page

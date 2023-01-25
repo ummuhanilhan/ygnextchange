@@ -168,6 +168,7 @@ export const CargoItem = ({item, actionType='', vehicle, status, offerId}:any) =
                 <Actions 
                     offerId={offerId}
                     item={item} 
+                    cargo={item} 
                     vehicle={vehicle} 
                     isAuth={isAuth} 
                     actionType={actionType} status={status} 

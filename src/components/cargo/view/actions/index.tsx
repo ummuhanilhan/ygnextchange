@@ -11,7 +11,7 @@ import { create, remove, update } from "stores/slices/offerSlice"
 import { default15 } from "@shared/modals/classic"
 import { Action } from "./action"
 import { Faved, Viewed } from "./favorite"
-import { ApproveToOffer, CancelToOffer, ComplateToOffer, InspectToOffer, ItemState, OffersInspect, openOfferSendModal, RemoveOffer, SendOffer, ShowDetail, StartToOffer, UndoToOffer } from "./dispatchers"
+import { ApproveToOffer, CancelToOffer, ComplateToOffer, InspectToOffer, ItemState, OffersInspect, RemoveOffer, SendOffer, ShowDetail, StartToOffer, UndoToOffer } from "./dispatchers"
 
 
 
@@ -34,7 +34,7 @@ export const Actions = ({item, offerId, cargo, vehicle, isAuth, actionType, stat
         return children
     }
  
-    const openOfferSendModal = ({item}:ItemState) => {
+    const openOfferSendModal = () => {
         open({type:'show-vehicle', styles:default15, values:{item} })
     } 
     
@@ -142,16 +142,21 @@ export const Actions = ({item, offerId, cargo, vehicle, isAuth, actionType, stat
                 return (<Button>
                     <Action title='Araç Değiştir' color='blue' outline path='#' />
                     <Action title='Varsayılan Seç' color='orange' path='#' />
-                    <Action onClick={()=>{
-                        // create offer
-                        if(cargo?._id){
-                         dispatch(create({cargo:cargo._id,vehicle:item._id}))
-                        }
-                        notify('Başarıyla gönderildi!',{type:'success'})
-                        // close modal
-                        // offered
-                        close()
-                    }} title='Teklif Gönder' color='blue' path='#' />
+                    <Action 
+                        disabled={item?.offered}
+                        loading={item?.offered==undefined}
+                        onClick={()=>{
+                            if(!item?.offered){
+                                if(item?._id){
+                                    dispatch(create({cargo:cargo._id,vehicle:item._id}))
+                                    notify('Başarıyla gönderildi!',{type:'success'})
+                                }
+                                close()
+                            }
+                        }} 
+                        title='Teklif Gönder' color='blue' path='#' 
+                    />
+                   
                  </Button>)
             break;            
             case 'vehicle-pending':
