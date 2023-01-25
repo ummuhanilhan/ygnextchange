@@ -65,7 +65,7 @@ export const AddressList = ({cb, border}:any) => {
                     <Empty />
                 )}  
 
-                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
+                <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-3 gap-3'>
                 {data?.length>0 && data
                 .filter((item:any)=>{
                     const title = slugify(item.title).includes(slugify(query))
@@ -85,13 +85,13 @@ export const AddressList = ({cb, border}:any) => {
                         {item.contact?.code && ' +'+ item.contact?.code} {item.contact?.phone}
                         {` `}{item.contact?.email} 
                         </p>
-                        <div className='flex justify-end w-full mt-2'>
+                        <div className='flex justify-end w-full mt-2 '>
                             <p 
                             onClick={()=>{
                                 dispatch(remove(item._id))// dispatch(removeAddress(item._id))
                             }}
-                            className='bg-yg-orange text-sm mr-1 text-white flex items-center 
-                            hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange
+                            className='bg-yg-orange text-sm mr-1 ml-1 mb-2 text-white flex items-center text-center
+                            hover:bg-transparent hover:text-yg-orange border border-1 border-transparent hover:border-yg-orange 
                             px-4 py-1 rounded-md cursor-pointer' 
                             >Sil</p>
                             <p 
@@ -116,7 +116,7 @@ export const AddressList = ({cb, border}:any) => {
 
 
                             }}
-                            className='bg-yg-blue text-sm ml-1 text-white flex items-center 
+                            className='bg-yg-blue text-sm ml-1 text-white mb-2 flex items-center 
                             hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
                             px-4 py-1 rounded-md cursor-pointer'>Düzenle</p>
 
@@ -125,7 +125,7 @@ export const AddressList = ({cb, border}:any) => {
                                     onClick={()=>{
                                         cb && cb(item);
                                     }}
-                                    className='bg-yg-blue text-sm ml-1 text-white flex items-center 
+                                    className='bg-yg-blue text-sm ml-1 mb-2 text-white flex items-center 
                                     hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue
                                     px-4 py-1 rounded-md cursor-pointer'>
                                      Seç

@@ -32,7 +32,7 @@ export const Header = ({mobile, setMobile}:any) =>{
                 "flex absolute mt-10 md:block sm:static sm:mt-0",
                 {hidden: mobile}
             )}>
-                 <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })} className={classNames(
+                <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })} className={classNames(
                     router.pathname === '/cargo/create' && "flex items-center border-l-[.4rem] border-yg-orange",
                 {hidden: mobile}
                 )}>
