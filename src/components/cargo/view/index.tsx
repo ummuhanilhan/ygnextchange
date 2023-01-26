@@ -33,7 +33,7 @@ export const View = ({
         'bg-gray-50 h-full pt-4',  
         {'lg:ml-[18.8em] p-3':!wide}
         )}> 
-            <Heading selects={selects} filter={filter} />
+            <Heading selects={true} filter={filter} />
             { tabs && <Tabs 
                 selected={selected}
                 setSelected={setSelected}
@@ -106,7 +106,7 @@ const selected = [
     {id:6, title:'Fiyat: 7.500 - 12.000 ₺'},
 ]
 
-export const Selectes = () => {
+export const Selections = () => {
 
     return (
         <div className='w-full inline-block mt-2 mb-1'>

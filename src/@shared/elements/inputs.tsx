@@ -126,8 +126,8 @@ export const FloatingInput = ({
     }
 
     function handleLabel(e:any) {
-      const node = inputRef.current;
-      node && node.focus()
+      const node = inputRef?.current;
+      node && node?.focus()
     }
 
     React.useEffect(()=>{

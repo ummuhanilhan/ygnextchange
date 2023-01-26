@@ -64,9 +64,9 @@ export const Actions = ({item, offerId, cargo, vehicle, isAuth, actionType, stat
             case 'favorites':
                 return (<Button>
                     {item?.viewed && <Viewed item={item} />}
-                    {isAuth && <Faved item={item} />}
+                    { isAuth && <Faved item={item} />}
                     {show}
-                    {isAuth && <SendOffer cargoId={item._id} vehicleId={vehicle._id} status={status} />}
+                    {isAuth && <SendOffer cargoId={item._id} vehicleId={vehicle?._id} status={status} />}
                  </Button>)
             break;
             case 'mycargoes':

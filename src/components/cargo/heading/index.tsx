@@ -2,7 +2,7 @@ import { Dropdown } from "@shared/elements/dropdowns"
 import { inShipmentOut, ranges } from "@utils/mock"
 import React from "react"
 import { FaChevronRight } from "react-icons/fa"
-import { Selectes } from "../view"
+import { Selections } from "../view"
 
 
 export const Heading = ({selects, filter}:any) => {
@@ -24,7 +24,7 @@ export const Heading = ({selects, filter}:any) => {
                 />
               )}
             </div>
-            {selects && <Selectes />}
+            {selects && <Selections />}
         </div>
     )
 }

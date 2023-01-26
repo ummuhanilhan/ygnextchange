@@ -128,7 +128,6 @@ export const fee = Joi.object({
   price,
 });
 
-  
 export const publish = Joi.object({
   start: Joi.object({
     date: Joi.any().required(),

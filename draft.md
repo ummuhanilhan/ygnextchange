@@ -41,6 +41,12 @@
 
 ```javascript
 // 
+ const {total, amount, unit} = dto?.fee;
+    if(!total && total?.length <3 ){
+       if(!amount && !unit){
+         return;
+       }
+    }
 
 // 
 ```

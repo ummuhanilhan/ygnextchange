@@ -1,27 +1,15 @@
-- [ ] favorites
-- [ ] upload avatar & file
-# addr
-- [ ] direciton empty and range err
-- [ ] box responsive / auth responsive
-- [ ] map crashing
-- [ ] loading
+- [ ] addr loading direciton empty & range err & map crashing 
+- [ ] upload avatar & files
+- [ ] cargoes filter & paginations  
+- [ ] cargoes features/options error is not working 
 # next
-- [ ] support
-- [ ] change pass
-- [ ] codebase input elements
-- [ ] notification `readed_at`
-## cargo
-- [ ] cargoes filter detail
-- [ ] paginations  
-- [ ] filter
-- [ ] tags mandatroy field 
-- [ ] can't cargo send offer to himself 
-- [ ] price can't be 0
-- [ ] cargo owner can't offer  
-## sw
-- [ ] redis implemantation needed
-- [ ] if remover is offer owner itself than delete
+- [ ] pages: support, change pass,  notification (`readed_at`)
 
+- [x] price can't be 0
+- [x] box responsive 
+- [x] cargo owner can't send offer to himself 
+- [x] auth responsive
+- [x] favorites
 - [x] offer actions
 - [x] only once offer to cargo
 - [x] sended offer caroges doenst shown can send multiple
