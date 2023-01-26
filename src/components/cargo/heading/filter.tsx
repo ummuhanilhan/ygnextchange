@@ -2,7 +2,7 @@ import React from "react"
 import { Dropdown } from "@shared/elements/dropdowns"
 import { Search } from "@shared/elements/searches"
 import { acceptedIn, acceptedOut, inShipmentIn, inShipmentOut, pendingIn, pendingOut } from "@utils/mock"
-import { Selectes } from "../view"
+import { Selections } from "../view"
 
 export const FilterHeading = ({
     wide, 
@@ -47,7 +47,7 @@ export const FilterHeading = ({
                 filters={items(actionType)}
                 callback={callback}
             />
-            {wide && <Selectes />}
+            {wide && <Selections />}
         </div>
     )
 }
