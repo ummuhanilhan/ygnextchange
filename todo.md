@@ -1,9 +1,9 @@
 - [ ] check offer actions
 - [ ] file uploads
 - [ ] comp: pagination, filter
-- [ ] pages: support, change pass,  notification (`readed_at`)
-- [ ] page: cargo range err 
+- [ ] pages: support, change pass, notification (`readed_at`)
 
+- [x] page: cargo range err 
 - [x] addr: modal g map view responsiveness
 - [x] addr: form is not updateing `/account/address`
 - [x] addr: loading direciton empty 

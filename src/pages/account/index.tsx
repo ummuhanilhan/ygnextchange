@@ -45,7 +45,7 @@ return(
               year: new Date(data?.driver?.year)
             },
             gender: data.gender ? 1:0,
-            avatar: process.env.STORAGE + data.avatar,
+            avatar: data.avatar ? process.env.STORAGE + data.avatar : null,
           }}
         />
       ):'Yükleniyor..'}

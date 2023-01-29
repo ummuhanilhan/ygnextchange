@@ -127,7 +127,7 @@ export const Account = ({uptodate}:any) => {
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
             className="flex items-center justify-start flex-col h-full informations" id="profile">
-                <ProfileInformation control={control} setSelected={setSelected} selected={selected} getValues={getValues} />
+                <ProfileInformation corporate={uptodate.type=='corporate'} control={control} setSelected={setSelected} selected={selected} getValues={getValues} />
                 <div className={classNames(' w-full',{'hidden-':selected!=AccountRoute.ChangePassword})} ></div>
             </form>
         </AccountLayout>
@@ -138,12 +138,12 @@ Account.Layout = PrivateLayout
 
 export default Account;
 
-export const ProfileInformation = ({control, selected, setSelected, getValues}:any) =>{
-    const [type, setType] = React.useState(true)
+export const ProfileInformation = ({corporate, control, selected, setSelected, getValues}:any) =>{
+    const [type, setType] = React.useState(corporate)
     return(
         <div className={classNames('w-full',{'hidden-':selected!=AccountRoute.ChangePassword })} >
             <ul className='w-full'>
-                <Corporate control={control} corporate={type} setCorporate={setType} />
+                <Corporate control={control} corporate={corporate} setCorporate={setType} />
                 <DriverLicense control={control}  getValues={getValues} />
                 <Healthy control={control} />
 
@@ -190,18 +190,23 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                     {/**
                      */}
-                    <InputHook name="tax.no" type="text" placeholder="Vergi Numarası" example="" control={control} />
-                    <InputHook name="tax.administration" type="text" placeholder="Vergi Dairesi" example="" control={control} />
-                    <PhoneHook name="corporate.phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
-
+                    {corporate && (
+                        <React.Fragment>
+                            <InputHook name="tax.no" type="text" placeholder="Vergi Numarası" example="" control={control} />
+                            <InputHook name="tax.administration" type="text" placeholder="Vergi Dairesi" example="" control={control} />
+                            <PhoneHook name="corporate.phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
+                        </React.Fragment>
+                    )}
                   
                     <PhoneHook size='medium' height='55px' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
-                    {/** verified **/}
-                    <InputHook name="corporate.email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
-                    {/** 
-                     */}
-                    <InputHook name="corporate.website" type="text" placeholder="Web Sitesi" example="" control={control} />
-                    <InputHook name="corporate.official" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
+                   
+                    {corporate && (
+                        <React.Fragment>
+                            <InputHook name="corporate.email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
+                            <InputHook name="corporate.website" type="text" placeholder="Web Sitesi" example="" control={control} />
+                            <InputHook name="corporate.official" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />
+                        </React.Fragment>
+                    )}                   
                     <SelectHook 
                             name="gender" 
                             placeholder="Cinsiyet Seçiniz"  
