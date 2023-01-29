@@ -31,7 +31,7 @@ export const CalendarHook = ({
             id={field.name}
             {...rest}
             {...field}
-            // inputRef={calendarRef}
+             inputRef={ref}
             value={value} 
             size={size||'medium'}
             onChange={onChange}
@@ -44,7 +44,7 @@ export const CalendarHook = ({
             placeholder={placeholder||'Tarih Seçiniz'}
         />
         <div 
-        // onClick={()=>calendarRef?.current?.focus()}
+        // onClick={()=>ref?.current?.focus()}
         className="lay absolute z-0 cursor-pointer left-0 right-0 top-0 bottom-0"></div>
       </div>
          

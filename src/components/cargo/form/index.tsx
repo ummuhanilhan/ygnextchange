@@ -56,9 +56,12 @@ export const CargoCreate = ({uptodate, init}:any) => {
         defaultValues: init ? formSuite(init): initial,
        resolver: joiResolver(cargoSchema),
     });
-    const [amount, setAmount] = React.useState(form.getValues('fee.price.amount')||false)
 
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
+
+    const [amount, setAmount] = React.useState(form.getValues('fee.price.amount')||false)
+
+    
     const onSubmit: SubmitHandler<CargoValues> = data => {
         //@ts-ignore
         console.log('price:', data?.fee?.price, data)
@@ -100,6 +103,7 @@ export const CargoCreate = ({uptodate, init}:any) => {
                             dirtyFields={dirtyFields}
                         />
                     </div>
+                    
                     <div className={classNames({'hidden': CargoCreateRoute.payload!=selected})}>
                         <Payload 
                             control={control} 
@@ -109,7 +113,7 @@ export const CargoCreate = ({uptodate, init}:any) => {
                             setAmount={setAmount} 
                             errors={errors} 
                             watch={watch}
-                        />
+                       />
                     </div>
                  </div>
                 

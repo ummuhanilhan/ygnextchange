@@ -1,10 +1,17 @@
-- [ ] addr loading direciton empty & range err & map crashing 
-- [ ] upload avatar & files
-- [ ] cargoes filter & paginations  
-- [ ] cargoes features/options error is not working 
-# next
+- [ ] check offer actions
+- [ ] file uploads
+- [ ] comp: pagination
+- [ ] comp: filter
+- [ ] page: cargo range err & map crashing 
+- [ ] page: change account 
 - [ ] pages: support, change pass,  notification (`readed_at`)
 
+- [x] addr: modal g map view responsiveness
+- [x] addr: form is not updateing `/account/address`
+- [x] addr: loading direciton empty 
+- [x] create-cargo-page form issue
+- [x] cargoes features/options error is not working 
+- [x] upload avatar
 - [x] price can't be 0
 - [x] box responsive 
 - [x] cargo owner can't send offer to himself 

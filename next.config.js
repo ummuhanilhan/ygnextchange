@@ -4,6 +4,7 @@ const path = require('path')
 const nextConfig = {
   env:{
     DOMAIN:process.env.DOMAIN,
+    STORAGE:process.env.STORAGE,
     GOOGLE_MAP_API_KEY:process.env.GOOGLE_MAP_API_KEY
 
   },

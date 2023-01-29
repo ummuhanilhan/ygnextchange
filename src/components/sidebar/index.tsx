@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { FiX } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import SimpleBar from "simplebar-react";
-import "simplebar-react/dist/simplebar.min.css";
 import { selectAuth, signout } from "stores/slices/authSlice";
 import { useAppDispatch } from "stores/store";
 import { useModal } from "../../@shared/contexts/ModalContext";

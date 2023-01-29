@@ -75,8 +75,8 @@ export const Tag = ({
 
     return (
       <div className={classnames(
-          {'error': error},
       'w-full flashback floatinglabel-selects rounded-md relative', 
+      {'error': error},
        className,
        size||'medium',
       {'success': success},

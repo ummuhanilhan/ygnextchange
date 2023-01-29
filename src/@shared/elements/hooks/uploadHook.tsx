@@ -4,7 +4,7 @@ import React from "react"
 import { CloudArrowUp } from "@shared/icons"
 import { Upload } from "../uploads";
 
-export const FileUploadHook = ({
+export const UploadHook = ({
     control, 
     name,
     placeholder,

@@ -1,4 +1,6 @@
 import "../styles/main.scss";
+import "react-toastify/dist/ReactToastify.css";
+import "simplebar-react/dist/simplebar.min.css";
 import React, { ComponentType } from "react";
 import { AppInitialProps, AppProps } from "next/app";
 import PrimeReact, { addLocale, locale } from "primereact/api";
@@ -7,7 +9,6 @@ import { primeOptions } from "@utils/mock";
 import { Provider } from "react-redux";
 import { store } from "stores/store";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Modals } from "@shared/modals/useModal";
 import { ModalProvider } from "../@shared/contexts/ModalContext";
 

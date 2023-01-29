@@ -12,7 +12,7 @@ import { VehicleRadioHook } from "@shared/elements/hooks/checkboxHook";
 import { InputHook } from "@shared/elements/hooks/inputHook";
 import { CalendarHook } from "@shared/elements/hooks/calendarHook";
 import { TagHook } from "@shared/elements/hooks/tagHook";
-import { FileUploadHook } from "@shared/elements/hooks/uploadHook";
+import { UploadHook } from "@shared/elements/hooks/uploadHook";
 import { FormFooter } from "@shared/footers";
 import { vehicleSchema } from "@utils/validations/vehicle";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -23,7 +23,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { LoadingState } from "stores/types";
 // import { FormFooter } from "@pages/account";
-// import { CalendarHook, CheckboxHook, FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
+// import { CalendarHook, , FileUploadHook, FloatLabelHook, FloatLabelPhoneHook, MultiSelectHook, VehicleRadioHook } from "@shared/elements/hooks";
 
 export type VehicleValues = {
     model: string,
@@ -207,7 +207,7 @@ export const VehicleCreate = () => {
                     </TitleFrame>   
 
                     <TitleFrame title="K1 Yetki Belgesi">
-                        <FileUploadHook 
+                        <UploadHook 
                             name="k1_file" 
                             height='h-full'
                             placeholder="K1 Yetki Belgesi Ekle (Opsiyonel)"  

@@ -14,11 +14,12 @@ import { add, slugify } from "@utils/helper";
 import classNames from "classnames";
 import { useModal } from "stores/features/useModal";
 import { Empty } from "@utils/empty";
+import { AddrSkeleton, Spinner } from "@utils/skeleton";
 
-export const AddressList = ({cb, border}:any) => {
+export const AddressList = ({cb, callback, border}:any) => {
     const dispatch = useAppDispatch();
     const {addresses} = useSelector(selectAddress)
-    const [data, setData] = React.useState([]);
+    const [data, setData] = React.useState(undefined);
     const [query, setQuery] = React.useState('');
     React.useEffect(()=>{
         getAddr()
@@ -61,6 +62,11 @@ export const AddressList = ({cb, border}:any) => {
                     >Yeni Adres Ekle</p>
                 </div>
                     
+                { data == undefined && (  
+                    <AddrSkeleton />
+                )}  
+
+
                 { data?.length<=0 && ( 
                     <Empty />
                 )}  
@@ -101,9 +107,9 @@ export const AddressList = ({cb, border}:any) => {
                                     values:{
                                         id:'modal',
                                         defaultAddress:item,
-                                        update:Object.entries(item)?.length>0,
+                                        up:Object.entries(item)?.length>0,
                                         border:true,
-                                        cb:(data:any)=>{
+                                        callback:(data:any)=>{
                                             console.log('direction',data)
                                              cb && cb(data);
                                         }
@@ -123,7 +129,7 @@ export const AddressList = ({cb, border}:any) => {
                             {cb && (
                                 <p 
                                     onClick={()=>{
-                                        cb && cb(item);
+                                        cb && callback(item);
                                     }}
                                     className='bg-yg-blue text-sm ml-1 mb-2 text-white flex items-center 
                                     hover:bg-transparent hover:text-yg-blue border border-1 border-transparent hover:border-yg-blue

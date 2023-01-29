@@ -5,8 +5,8 @@ export const passwordExp = new RegExp('^[a-zA-Z0-9]{3,30}$');
 export const rent = Joi.object({
   type: Joi.string().required(),
   vehicle: Joi.string().required(),
-  features: Joi.array().required(),
-  options: Joi.array().required(),
+  features: Joi.array().items(Joi.string().required()),
+  options: Joi.array().items(Joi.string().required()),
 });
 
 export const contact = Joi.object({
@@ -64,7 +64,7 @@ export const label = Joi.object({
 export const shipping = Joi.object({
   time: Joi.string().required(),
   "time-custom": Joi.string().optional(),
-  range: Joi.array().required(),
+  range: Joi.array().items(Joi.string()).required(),
   load: statement,
   unload: statement,
   distance: label,

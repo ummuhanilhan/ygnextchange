@@ -25,6 +25,7 @@ import { update } from "stores/slices/userSlice";
 import { notify, successMessage } from "@utils/helper";
 import { useSelector } from "react-redux";
 import { selectDefinition } from "stores/slices/definitionSlice";
+import { UploadHook } from "@shared/elements/hooks/uploadHook";
 
 type AccountValues = {
     name: string,
@@ -303,9 +304,9 @@ export const DriverLicense = ({control, getValues}:any) => {
                     />                              
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-                <Upload name="driver.file" control={control} placeholder="Sürücü Belgesi Ekle"  />
-                    <Upload name="driver.src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
-                    <Upload name="driver.psychotechnicalal_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
+                    <UploadHook name="driver.file" control={control} placeholder="Sürücü Belgesi Ekle"  />
+                    <UploadHook name="driver.src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
+                    <UploadHook name="driver.psychotechnicalal_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
                 </div>
     
             </div>

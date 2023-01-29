@@ -60,7 +60,8 @@ export const AddressBox = ({
                         border:true,
                         id:'cargo-modal',  update: !!addr, defaultAddress: addr, type ,
                         footer:<FormFooter />,
-                        cb:(data:any) => {
+                        cb:true,
+                        callback:(data:any) => {
                             const {geolocation, place, direction, contact } = data;
 
                             if(data){
@@ -76,7 +77,8 @@ export const AddressBox = ({
                 onClick={()=>{
                     open({type:'addresses', styles:{ height:'fit-content' }, values:{
                         border:true,
-                        cb:(data:any)=>{
+                        cb:true,
+                        callback:(data:any)=>{
                             const {geolocation, place, direction, contact } = data;
 
                             setValue(`shipping.${type}`,  {geolocation, place, direction, contact })

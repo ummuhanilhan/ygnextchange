@@ -4,7 +4,7 @@ import { FloatLabelHook } from "@shared/elements/hooks";
 import Turkiye from '@utils/dummy/turkiye.json'
 import { SelectHook } from "@shared/elements/hooks/selectHook";
 import { useSelector } from "react-redux";
-import { addAddress, create, update as up, selectAddress } from "stores/slices/addressSlice";
+import { addAddress, create, update, selectAddress } from "stores/slices/addressSlice";
 import { addresses, item } from "@utils/mock";
 import { MapView } from "@shared/maps";
 import Communication from "./communication";
@@ -12,6 +12,7 @@ import { useAppDispatch } from "stores/store";
 import { generateRandomNDigits } from "@utils/helper";
 import { FormFooter } from "@shared/footers";
 import { useModal } from "stores/features/useModal";
+import SimpleBar from "simplebar-react";
 
 export type AddressValues = {
     _id?:number | string,
@@ -45,10 +46,11 @@ export const addressValues =  addresses[0]
 export const AddressCreate = ({
   border=false, 
   defaultAddress, 
-  update,
+  up,
   id, 
   type,
-  cb, 
+  callback, 
+  cb,
 }:{
   /** 
    * border
@@ -61,7 +63,7 @@ export const AddressCreate = ({
   /** 
    * If updatable it will call defaults
   */
-  update?:boolean,
+  up?:boolean,
   /** 
    * top form extension for seperating by modal
   */
@@ -73,7 +75,8 @@ export const AddressCreate = ({
   /** 
    * set data to another form with callback
    */
-   cb?:(data:any)=>void,
+   callback?:(data:any)=>void,
+   cb:boolean,
 }) => {
   console.log('default', defaultAddress)
 
@@ -85,11 +88,13 @@ export const AddressCreate = ({
     });
     const { register, control, handleSubmit, watch, setValue, formState: { errors } } = form;
     const onSubmit: SubmitHandler<AddressValues> = data => {
-       if(cb){
-        cb(data)
+     
+      if(cb){
+        callback(data)
        }else{
-          if (update)
-              dispatch(up({id:data._id, values:data})) // dispatch(updateAddress(data));
+
+          if (up)
+              dispatch(update({id:data._id, values:data})) // dispatch(updateAddress(data));
           else 
               dispatch(create(data)) // dispatch(addAddress(data));
        }
@@ -103,6 +108,8 @@ export const AddressCreate = ({
     const addr = getAddr.addr;
 
     return (
+      <SimpleBar style={{ maxHeight: 700 }}>
+
       <form onSubmit={handleSubmit(onSubmit, onError)}>           
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 -h-[350px]'>
                 <div className='h-full'>
@@ -156,6 +163,7 @@ export const AddressCreate = ({
             <Communication control={control} border />
             <FormFooter close={close} className='mb-4' />
       </form> 
+      </SimpleBar>
     )
 }
 
