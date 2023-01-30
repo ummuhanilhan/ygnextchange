@@ -25,7 +25,6 @@ import { update } from "stores/slices/userSlice";
 import { notify, successMessage } from "@utils/helper";
 import { useSelector } from "react-redux";
 import { selectDefinition } from "stores/slices/definitionSlice";
-import { UploadHook } from "@shared/elements/hooks/uploadHook";
 
 type AccountValues = {
     name: string,
@@ -122,12 +121,11 @@ export const Account = ({uptodate}:any) => {
         notify('Başarıyla Güncellendi!', {type:'success',position:'bottom-center'});
     };
     const onError = (errors:any) => { console.log(errors) };
-    
     return (
         <AccountLayout selected={selected} setSelected={setSelected} >
             <form onSubmit={handleSubmit(onSubmit, onError)}
             className="flex items-center justify-start flex-col h-full informations" id="profile">
-                <ProfileInformation corporate={uptodate.type=='corporate'} control={control} setSelected={setSelected} selected={selected} getValues={getValues} />
+                <ProfileInformation control={control} setSelected={setSelected} selected={selected} getValues={getValues} />
                 <div className={classNames(' w-full',{'hidden-':selected!=AccountRoute.ChangePassword})} ></div>
             </form>
         </AccountLayout>
@@ -138,12 +136,12 @@ Account.Layout = PrivateLayout
 
 export default Account;
 
-export const ProfileInformation = ({corporate, control, selected, setSelected, getValues}:any) =>{
-    const [type, setType] = React.useState(corporate)
+export const ProfileInformation = ({control, selected, setSelected, getValues}:any) =>{
+    const [type, setType] = React.useState(true)
     return(
         <div className={classNames('w-full',{'hidden-':selected!=AccountRoute.ChangePassword })} >
             <ul className='w-full'>
-                <Corporate control={control} corporate={corporate} setCorporate={setType} />
+                <Corporate control={control} corporate={type} setCorporate={setType} />
                 <DriverLicense control={control}  getValues={getValues} />
                 <Healthy control={control} />
 
@@ -190,23 +188,18 @@ export const Corporate = ({control, corporate, setCorporate}:any) => {
                     <InputHook name="name" type="text" placeholder="Kullanıcı Adı" example="" control={control} />
                     {/**
                      */}
-                    {corporate && (
-                        <React.Fragment>
-                            <InputHook name="tax.no" type="text" placeholder="Vergi Numarası" example="" control={control} />
-                            <InputHook name="tax.administration" type="text" placeholder="Vergi Dairesi" example="" control={control} />
-                            <PhoneHook name="corporate.phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
-                        </React.Fragment>
-                    )}
+                    <InputHook name="tax.no" type="text" placeholder="Vergi Numarası" example="" control={control} />
+                    <InputHook name="tax.administration" type="text" placeholder="Vergi Dairesi" example="" control={control} />
+                    <PhoneHook name="corporate.phone" type="text" placeholder="Şirket Telefonu" example="(212) 12 34" control={control} />
+
                   
                     <PhoneHook size='medium' height='55px' name="contact.phone" type="text" placeholder="Cep Telefonu" example="(212) 12 34" control={control} />
-                   
-                    {corporate && (
-                        <React.Fragment>
-                            <InputHook name="corporate.email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
-                            <InputHook name="corporate.website" type="text" placeholder="Web Sitesi" example="" control={control} />
-                            <InputHook name="corporate.official" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />
-                        </React.Fragment>
-                    )}                   
+                    {/** verified **/}
+                    <InputHook name="corporate.email" type="text" placeholder="Kurumsal Eposta" example="" control={control} />
+                    {/** 
+                     */}
+                    <InputHook name="corporate.website" type="text" placeholder="Web Sitesi" example="" control={control} />
+                    <InputHook name="corporate.official" className="mb-2" type="text" placeholder="Yetkili İsim Soyisim" example="" control={control} />                   
                     <SelectHook 
                             name="gender" 
                             placeholder="Cinsiyet Seçiniz"  
@@ -309,9 +302,9 @@ export const DriverLicense = ({control, getValues}:any) => {
                     />                              
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-                    <UploadHook name="driver.file" control={control} placeholder="Sürücü Belgesi Ekle"  />
-                    <UploadHook name="driver.src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
-                    <UploadHook name="driver.psychotechnicalal_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
+                <Upload name="driver.file" control={control} placeholder="Sürücü Belgesi Ekle"  />
+                    <Upload name="driver.src_file" control={control} placeholder="Src Belgesi Ekle" default={getValues('src_file')} />
+                    <Upload name="driver.psychotechnicalal_file" control={control} placeholder="Psikoteknik Belgesi Ekle"  />
                 </div>
     
             </div>
