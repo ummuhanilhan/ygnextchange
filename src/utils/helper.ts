@@ -7,6 +7,7 @@ import api from "@utils/api";
 import useSWR from "swr";
 
 export const server = typeof window === "undefined";
+export const storage = "https://yukgetir.s3.us-east-1.amazonaws.com/"
 
 export function slugify(value:string='', options={}) {
     return slug((String(value)), options) || ''
