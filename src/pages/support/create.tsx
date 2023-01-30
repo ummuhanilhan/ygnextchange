@@ -1,7 +1,7 @@
 import { IconFrame } from "@components/frames/IconFrame";
 import { Frame } from "@components/frames/MainFrame";
 import PrivateLayout from "@layouts/PrivateLayout";
-import { FileUploadHook } from "@shared/elements/hooks/uploadHook";
+import { UploadHook } from "@shared/elements/hooks/uploadHook";
 import { Message } from "@shared/icons";
 import classNames from "classnames";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -81,7 +81,7 @@ export const CreateSupport = () => {
                 perferendis aut repellendus, nulla dolores maiores saepe quis!
               </textarea>
             </Box>
-            <FileUploadHook
+            <UploadHook
               name="cover"
               placeholder="Dosya Ekle (Opsiyonel)"
               control={control}

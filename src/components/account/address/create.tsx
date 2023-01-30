@@ -76,7 +76,7 @@ export const AddressCreate = ({
    * set data to another form with callback
    */
    callback?:(data:any)=>void,
-   cb:boolean,
+   cb?:boolean,
 }) => {
   console.log('default', defaultAddress)
 
