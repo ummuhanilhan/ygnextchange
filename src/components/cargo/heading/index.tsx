@@ -3,10 +3,10 @@ import { inShipmentOut, ranges } from "@utils/mock"
 import React from "react"
 import { FaChevronRight } from "react-icons/fa"
 import { Selections } from "../view"
+import { useEffect } from "react"
 
+export const Heading = ({selects, setSelected,filter}:any) => {
 
-export const Heading = ({selects, filter}:any) => {
-  
     return (
         <div className='heading'>
             <div className='flex justify-between items-center rounded-md w-full bg-white py-3 px-2'>
@@ -24,7 +24,7 @@ export const Heading = ({selects, filter}:any) => {
                 />
               )}
             </div>
-            {selects && <Selections />}
+            {selects && <Selections selected={selects} setSelected={setSelected}/>}
         </div>
     )
 }

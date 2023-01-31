@@ -25,6 +25,7 @@ export const View = ({
     setSelected, 
 }:any) => {
 
+    
     return ( 
     <React.Fragment>
     <div 
@@ -33,7 +34,7 @@ export const View = ({
         'bg-gray-50 h-full pt-4',  
         {'lg:ml-[18.8em] p-3':!wide}
         )}> 
-            <Heading selects={true} filter={filter} />
+            <Heading selects={selected} setSelected={setSelected} filter={filter} />
             { tabs && <Tabs 
                 selected={selected}
                 setSelected={setSelected}
@@ -97,32 +98,33 @@ empty,
 }
 
 
-const selected = [
+/*const selected = [
     {id:1, title:'Yükleme Yeri: Ankara'},
     {id:2, title:'Boşaltma Yeri: Mersin'},
     {id:3, title:'Yükleme Tarihi: 22.07.2022 - 25.07.2022'},
     {id:4, title:'Boşaltma Zamanı: 1-3 Gün'},
     {id:5, title:'Kiralama Tipi: Parsiyel'},
     {id:6, title:'Fiyat: 7.500 - 12.000 ₺'},
-]
+]*/
 
-export const Selections = () => {
-
+export const Selections = ({selected,setSelected}) => {
     return (
         <div className='w-full inline-block mt-2 mb-1'>
             <ul className=''>
-                {selected.map((item,i:number)=>(
+                {!!selected && selected.map((item,i:number)=>(
                     <li key={`selected-${i}`} className='flex justify-between items-center cursor-pointer px-3 p-1 mr-2 mt-2 
                     rounded-md bg-white w-fit float-left'>
                         <p className='text-gray-400 text-sm'> {item.title} </p>
                         <div> <FiMinusCircle  className='text-gray-400 ml-2' size={15} /> </div>
                     </li>
                 ))}
-                <li className='flex justify-between items-center cursor-pointer px-4 p-1 mr-2 mt-2 
-                    rounded-md bg-gray-200 w-fit float-left'>
-                    <p className='text-gray-400 text-sm'> Temizle </p>
-                    <div> <FiXCircle  className='text-gray-400 ml-2' size={15} /> </div>
-                </li>
+                {!!selected && selected.length > 0 && 
+                    <li className='flex justify-between items-center cursor-pointer px-4 p-1 mr-2 mt-2 
+                        rounded-md bg-gray-200 w-fit float-left'>
+                        <p className='text-gray-400 text-sm' onClick={()=>setSelected([])}> Temizle </p>
+                         <div> <FiXCircle  className='text-gray-400 ml-2' size={15} /> </div>
+                    </li>
+                }
             </ul>
 
         </div>

@@ -28,8 +28,8 @@ export const Header = ({mobile, setMobile}:any) =>{
     return (
         <div id="header" className="flex justify-end md:justify-between sm:static">
              <ul className={classNames(
-                "actions md:flex justify-between ",
-                "flex absolute mt-10 md:block sm:static sm:mt-0",
+                "actions flex justify-between ",
+                "absolute mt-10 sm:static sm:mt-0 ",
                 {hidden: mobile}
             )}>
                 <li onClick={()=>router.push('/cargo/create', undefined, { shallow: true })} className={classNames(
@@ -53,9 +53,9 @@ export const Header = ({mobile, setMobile}:any) =>{
             </ul>
 
             {!isAuth && isAuth!=undefined && (
-                    <div className='flex justify-end items-center'>
+                    <div className='flex justify-end items-center mb-14 sm:mb-0'>
                         <a href='/auth/signin' className='flex items-start pr-3'>
-                            <FiUser className="" /> <p className="ml-2 hidden sm:block">Giriş yap</p> 
+                            <FiUser className="" /> <p className="ml-2 ">Giriş yap</p> 
                         </a>
                     </div>
                 )}

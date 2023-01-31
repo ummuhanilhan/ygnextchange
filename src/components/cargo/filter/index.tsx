@@ -31,6 +31,7 @@ import { fetcher } from "@utils/helper";
 import useSWR from "swr";
 import { RentRadioHook } from "@shared/elements/hooks";
 import { CalendarHook } from "@shared/elements/hooks/calendarHook";
+import moment from "moment";
 export type FilterValues = {
     name: string,
 };
@@ -39,19 +40,19 @@ const initialValues = {
     name:'test',
 }
 
-
 export const CargoFilter = () => {
     const [ref, props]:any = useDimensions();
     const [param, setParam] = useState<any>({})
     const dispatch = useAppDispatch()
     const { cargoes, error, loading }:any = useSelector(selectCargo)
+    const [selected,setSelected] = useState<any>([]);
     useEffect(()=>{
         dispatch(filters(param))
     },[])
 
     const content = (
         <DoubleFrame  id="cargoes" className="bottomize" >
-            <Filter {...props}  />
+            <Filter selected={selected} setSelected={setSelected} {...props} />
             <View 
                 type='cargoes'
                 forwardRef={ref}
@@ -60,32 +61,69 @@ export const CargoFilter = () => {
                 loading={loading==LoadingState.LOADING}
                 empty={cargoes?.length<=0}
                 error={error}
+                selected={selected}
+                setSelected={setSelected}
             />
         </DoubleFrame>
     )
     return content;
 }
 
-const Filter = ({x, save }:any) => {
+const Filter = ({x, selected,setSelected,save}:any) => {
     const y = useScrollYPosition();
     const form = useForm<any>({});
     const { register, control, handleSubmit, watch, setValue, formState: { errors, isDirty, dirtyFields } } = form;
-    const dispatch = useAppDispatch()
-   
-   
+    const dispatch = useAppDispatch()   
+
     const onSubmit: SubmitHandler<any> = data => {
-        const options:any = {}
-        options.rent = {};
-        if(data.rent.type) options.rent.type = data.rent.type;
-        if(data.rent.types) options.rent.vehicle = data.rent.types;
-        if(data.rent.features) options.rent.features = data.rent.features;
-        if(data.rent.options) options.rent.options = data.rent.options;
-        if(data.load) options.load = data.load
-        if(data.unload) options.unload = data.unload
-        if(data.date) options.date = data.date
-        console.log(options)
-        dispatch(filters(options))
+            selected = [];
+                const options:any = {}
+                options.rent = {};
+                let index = 0;
+                let title = "";
+                if(data.rent.type) {index++; selected.push({id:index,title:"Kiralama Tipi:" + data.rent.type}); options.rent.type = data.rent.type}
+                if(data.rent.types.length > 0) {
+                    index++;
+                    data.rent.types.map((item:any,index:any)=>{
+                        if(index===0) title = "Araç Tipi:";
+                        title += item + "-";
+                    })
+                    selected.push({id:index,title:title})
+                    options.rent.vehicle = data.rent.types
+                }
+                if(data.rent.features.length > 0) {
+                    index++;
+                    data.rent.features.map((item:any,index:any)=>{
+                        if(index===0) title = "Araç Özellikleri:";
+                        title += item + "-";
+                    })
+                    selected.push({id:index,title:title})
+                    options.rent.features = data.rent.features
+                }
+                if(data.rent.options.length > 0) {
+                    index++;
+                    data.rent.options.map((item:any,index:any)=>{
+                        if(index===0) title = "Donanım Özellikleri:";
+                        title += item + "-";
+                    })
+                    selected.push({id:index,title:title})
+                    options.rent.options = data.rent.options
+                }
+                if(data.load) {index++;selected.push({id:index,title:"Yükleme Yeri:" + data.load}); options.load = data.load}
+                if(data.unload) {index++;selected.push({id:index,title:"Boşaltma Noktası:" + data.unload}); options.unload = data.unload}
+                let date:String = "";
+                if(data.date) {
+                    index++;
+                    date = moment(data.date[0]).format('DD.MM.YYYY');
+                    if(!!data.date[1]) {
+                        date = moment(data.date[0]).format('DD.MM.YYYY') + "-" + moment(data.date[1]).format('DD.MM.YYYY');
+                    }
+                    selected.push({id:index,title:"Yükleme Tarihi:" + date}); options.date = data.date
+                }
+                setSelected(selected);
+                dispatch(filters(options))   
     };
+    
     const onError = (errors:any) => {}
     return (
         <form onSubmit={handleSubmit(onSubmit, onError)}>
