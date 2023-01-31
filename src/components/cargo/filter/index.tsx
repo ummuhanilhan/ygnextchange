@@ -120,7 +120,7 @@ const Filter = ({x, selected,setSelected,save}:any) => {
                     }
                     selected.push({id:index,title:"Yükleme Tarihi:" + date}); options.date = data.date
                 }
-                setSelected(selected);
+                setSelected(selected)
                 dispatch(filters(options))   
     };
     
