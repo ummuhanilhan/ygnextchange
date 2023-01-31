@@ -8,7 +8,7 @@ import {  Upload } from '@shared/elements/uploads'
 import { Tag } from '@shared/elements/tags'
 import { Textarea } from '@shared/elements/textareas'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { FileUploadHook } from '@shared/elements/hooks/uploadHook'
+import { UploadHook } from '@shared/elements/hooks/uploadHook'
 import { InputHook } from '@shared/elements/hooks/inputHook'
 import { PhoneHook } from '@shared/elements/hooks/phoneHook'
 import { TextareaHook } from '@shared/elements/hooks/textareaHook'
@@ -269,7 +269,7 @@ export const Forms = () => {
           </div>
           <div className='w-full'>
          <h3 className='text-md'>File Upload</h3>
-          <FileUploadHook 
+          <UploadHook 
             name="driver_file" 
             height='h-full'
             placeholder="Psikoteknik Belgesi Ekle (Opsiyonel)"  
@@ -280,14 +280,14 @@ export const Forms = () => {
 
       <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2 my-5'>
        <div className='w-full'>
-          <FileUploadHook 
+          <UploadHook 
             name="avatar" 
             placeholder="Profil Fotoğrafı Ekle"
             control={control}
           />
         </div>
         <div className='w-full'>
-            <FileUploadHook
+            <UploadHook
               name="src_file" 
               placeholder="Src Belgesi"
               file='file://'  
@@ -296,7 +296,7 @@ export const Forms = () => {
         </div>
      
         <div className='w-full'>
-          <FileUploadHook
+          <UploadHook
             name="driver_file" 
             placeholder="Sürücü Belgesi Ekle"  
             control={control}

@@ -9,7 +9,7 @@ import { getDefinitions, selectDefinition } from "stores/slices/definitionSlice"
 import useSWR from 'swr'
 import api from "@utils/api";
 import { my, selectUser } from "stores/slices/userSlice";
-import { useQuery } from "@utils/helper";
+import { storage, useQuery } from "@utils/helper";
 
 export const AccountPage = () => {
   return(
@@ -45,7 +45,7 @@ return(
               year: new Date(data?.driver?.year)
             },
             gender: data.gender ? 1:0,
-            avatar: process.env.STORAGE + data.avatar,
+            avatar: data.avatar ? storage + data.avatar : null,
           }}
         />
       ):'Yükleniyor..'}

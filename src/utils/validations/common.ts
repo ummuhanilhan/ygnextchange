@@ -64,7 +64,7 @@ export const label = Joi.object({
 export const shipping = Joi.object({
   time: Joi.string().required(),
   "time-custom": Joi.string().optional(),
-  range: Joi.array().items(Joi.string()).required(),
+  range: Joi.array().items(Joi.date()).required(),
   load: statement,
   unload: statement,
   distance: label,
